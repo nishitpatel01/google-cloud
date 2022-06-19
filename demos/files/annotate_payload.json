@@ -1,9 +1,0 @@
-
-{
-  "exportConfig": {
-    "gcsDestination": {
-      "outputUriPrefix": "gs://ds-ml-demos/packages-image-metadata/"
-    },
-    "annotationsFilter": "labels.aiplatform.googleapis.com/annotation_set_name=package-classification_iod"
-  }
-}
