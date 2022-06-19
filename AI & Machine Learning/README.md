@@ -3,4 +3,4 @@
 
 
 
-![ML on Google Cloud](./google-cloud./data/images/gcp-aiml.png)
+![ML on Google Cloud](../data/images/gcp-aiml.png)
