@@ -12,7 +12,18 @@ We will use this datase with `Time Series Insight API` to detect anomalies using
 
 - Enable Time Series API
     - Google Cloud Console > API Library Page > Time Series API
-        ``` gcloud services enable timeseriesinsights.googleapis.com
+        ``` 
+            gcloud services enable timeseriesinsights.googleapis.com
         ``` 
 - Authorization
     - Create a `service account`
+        ```
+            gcloud iam service-accounts create <SERVICE_ACCOUNT_ID> \
+            --description="DESCRIPTION" \
+            --display-name="DISPLAY_NAME"
+        ```
+    - Grant service account `Timeseries Insights DataSet Owner` role
+        ```
+            gcloud projects add-iam-policy-binding "${PROJECT_ID}" --member="serviceAccount:${SVC_ACCOUNT}"  \
+            --role=roles/timeseriesinsights.datasetsOwner 
+        ```
