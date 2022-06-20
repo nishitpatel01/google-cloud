@@ -27,3 +27,10 @@ We will use this datase with `Time Series Insight API` to detect anomalies using
             gcloud projects add-iam-policy-binding "${PROJECT_ID}" --member="serviceAccount:${SVC_ACCOUNT}"  \
             --role=roles/timeseriesinsights.datasetsOwner 
         ```
+        
+### Dataset
+
+As mentioned in the problem descrition, we have used an artificial dataset containing the few dimensions for each event. Some sample rows from the dataset looks like below. This is a table in the Bigquery
+
+![TSI Tabular Data](../data/images/TSI-tabular-sample.png)
+
