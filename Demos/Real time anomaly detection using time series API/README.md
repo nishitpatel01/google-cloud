@@ -42,18 +42,48 @@ We will use this data to perform anonmaly detection on dimesion `Temperature` an
 
 
 The converted jsonl event looks like below:
-    ```
-        {"groupId":"2583958225776393023",
-            "eventTime":"2021-06-14T00:00:04+00:00",
-            "Dimensions":[
-                {"name":"measure","stringVal":"LTTH"},
-                {"name":"Humidity","doubleVal":36},
-                {"name":"Light","doubleVal":99},
-                {"name":"h2_raw","doubleVal":1041},
-                {"name":"temp","doubleVal":36.97}
-        ]}
 
-    ```
+        ```
+            {"groupId":"2583958225776393023",
+                "eventTime":"2021-06-14T00:00:04+00:00",
+                "Dimensions":[
+                    {"name":"measure","stringVal":"LTTH"},
+                    {"name":"Humidity","doubleVal":36},
+                    {"name":"Light","doubleVal":99},
+                    {"name":"h2_raw","doubleVal":1041},
+                    {"name":"temp","doubleVal":36.97}
+            ]}
+
+        ```
+
+### Dataset Inspection and API Methods
+
+The Time Series API has five main methods that users can used to interact with API and used for forecasting and anomaly detection:
+
+- Creating dataset
+
+The first step is to create a dataset that you can query for anomaly or forecasting. A jsonl file with events stored in a cloud storage can be used to create datset in time series api. Once all the data was converted and stored in a Cloud Storage bucket, we loaded the dataset by sending a create request to the API. 
+
+A sample of our JSON payload sent to the API looks like this:
+
+        ```
+            file_data = {
+                           "name": "test", #alter this as more testing is done
+                           "ttl": "30000000s",
+                           "dataNames": [
+                               "measure",
+                               "Humidity",
+                               "Light",
+                               "h2_raw",
+                               "temp",
+                           ],
+                           "dataSources": [
+                               {"uri": "gs://[GCP_BUCKET]/[JSON_FILE].json"} #sample of data in Cloud Storage JSON file
+                               ],
+                        }
+
+        ```
+Before attempting to append events to a dataset or query it, it is important to make a GET call to the API to [list](https://cloud.google.com/timeseries-insights/docs/reference/rest/v1/projects.datasets/list) the current datasets under your GCP Project. It may take a while  before your dataset is loaded and ready for analysis depending on how big is your dataset
 
 
-
+-- 
