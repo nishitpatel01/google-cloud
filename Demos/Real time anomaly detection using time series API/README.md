@@ -45,8 +45,8 @@ We will use this data to perform anonmaly detection on dimesion `Temperature` an
 
 The converted jsonl event looks like below:
 
-        ```
-            {"groupId":"2583958225776393023",
+        
+            { "groupId":"2583958225776393023",
                 "eventTime":"2021-06-14T00:00:04+00:00",
                 "Dimensions":[
                     {"name":"measure","stringVal":"LTTH"},
@@ -55,7 +55,7 @@ The converted jsonl event looks like below:
                     {"name":"h2_raw","doubleVal":1041},
                     {"name":"temp","doubleVal":36.97}
             ]}
-        ```
+        
 
 ### Dataset Inspection and API Methods
 
@@ -92,6 +92,7 @@ List method can be used to list all the dataset that exists in Time Series API a
 
 
 Here’s an example of our query request:
+
         ```
             request_body = {
                "detectionTime": "2022-04-20T00:35:20Z", #Input the date of a timestamp that was appneded to your dataset.
