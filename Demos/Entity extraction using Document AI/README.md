@@ -15,36 +15,36 @@ Using Document AI, you can:
 
 - Enable Document API in your Google cloud project
     - Google Cloud Console > API Library Page > Cloud Document AI API
-        ```
+        
             gcloud services enable documentai.googleapis.com
-        ```
+        
         
 - Setup Authentication
     - Create a `service account`
-        ```
+        
             gcloud iam service-accounts create <SERVICE_ACCOUNT_ID> \
             --description="DESCRIPTION" \
             --display-name="DISPLAY_NAME"
-        ```
+        
     - Grant service account `Document AI Owner` role
-        ```
+        
             gcloud projects add-iam-policy-binding "${PROJECT_ID}" --member="serviceAccount:${SVC_ACCOUNT}"  \
             --role=roles/documentai.owner 
-        ```
+        
         
 ### Model Factory Development
 
 #### Step 1: Install dependencies
         
-        ```
+        
             !pip install joblib google-cloud-documentai ratelimiter tabulate immutabledict
-        ```
+        
         
 #### Step 2: Create laberer pool
 
 The pool can be reused in the development of multiple processors. 
 
-        ```
+        
             from model_factory import http_client
 
             LABELER_POOL_DISPLAY_NAME = 'Labeler Pool Name',
@@ -61,7 +61,7 @@ The pool can be reused in the development of multiple processors.
                 print(f'Labeler pool created: {labeler_pool}')
                 else:
                     print(f'Failed to create labeler pool: {lro}')
-        ```
+        
 
 After the labeler pool is created, labeler pool managers should receive a email including a link to the manager dashboard for managing labeling tasks and labelers.
 
