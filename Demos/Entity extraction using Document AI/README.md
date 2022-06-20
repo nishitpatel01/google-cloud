@@ -76,7 +76,7 @@ Code below will create an Extraction processor. Currently, there are three types
 
 In this demo, we will be using `Custom Document Entity Extractor` to extract custom information from given documents such as document number and document title
 
-        ```
+        
             from model_factory import http_client, processor
 
             
@@ -84,11 +84,11 @@ In this demo, we will be using `Custom Document Entity Extractor` to extract cus
             new_processor = processor.ExtractionProcessor(WORKSPACE)
             # new_processor = processor.ClassificationProcessor(WORKSPACE) # Use this if you are training for custom classifier
             # new_processor = processor.SplittingProcessor(WORKSPACE)      # Use this if you are training custom splitter
-        ```
+        
         
 #### Step 4: Provide schema and labeling instructions
 
-        ```
+        
         from model_factory import http_client
         from IPython.display import HTML, display
         import tabulate
@@ -105,9 +105,9 @@ In this demo, we will be using `Custom Document Entity Extractor` to extract cus
             for pool in response['labelerPools']:
                 table.append([pool['displayName'],pool['name'],', '.join(pool['managerEmails'])])
             display(HTML(tabulate.tabulate(table, tablefmt='html',headers='firstrow')))
-        ```
         
-        ```
+        
+        
             # Replace values below
 
             LABELER_POOL = 'projects/*/locations/*/labelerPools/*' # Use a labeler pool from the above table
@@ -131,32 +131,32 @@ In this demo, we will be using `Custom Document Entity Extractor` to extract cus
 
             INSTRUCTION_URI = 'gs://<your_bucket_name>/<path_to_the_instruction_pdf>' # PDF instructions to be shared with labeler manager.
             new_processor.update_data_labeling_config(SCHEMA, INSTRUCTION_URI, LABELER_POOL)
-        ```
+        
         
 #### Step 5: Import training and test documents
 
-        ```
+        
             TRAINING_SET_PATH = 'gs://<your_bucket_name>/<path_to_training_set>'
             TEST_SET_PATH = 'gs://<your_bucket_name>/<path_to_test_set>'
 
             new_processor.import_documents(TRAINING_SET_PATH, 'training')
             new_processor.import_documents(TEST_SET_PATH, 'test')
-        ```
+        
         
 #### Step 6: Label documents
 
 After you run the below code block, please go to the labeler manager console to assign the task to corresponding labelers so that they can see the tasks in the UI.
 
-        ```
+        
             new_processor.label_dataset('training')
             new_processor.label_dataset('test')
-        ```
+        
         
 #### Step 7: Train the processor    
 
 This step could take a few hours depending on the size of training and test datasets.
 
-        ```
+        
             PROCESSOR_VERSION_DISPLAY_NAME = 'Version1' # Use English letters, digits, underscore, hyphen only.
 
             # If you are training an extraction processor and interested in specifying algorithms. Set active algorithms first:
@@ -175,4 +175,4 @@ This step could take a few hours depending on the size of training and test data
 
             from IPython.core.display import display, HTML
             display(HTML(f'<a href=\"{evaluation_uri}\">Evaluation page</a>'))
-        ```
+        
