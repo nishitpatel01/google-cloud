@@ -32,5 +32,6 @@ We will use this datase with `Time Series Insight API` to detect anomalies using
 
 As mentioned in the problem descrition, we have used an artificial dataset containing the few dimensions for each event. Some sample rows from the dataset looks like below. This is a table in the Bigquery
 
-![TSI Tabular Data](../data/images/TSI-tabular-sample.png)
+![TSI Tabular Data](../../data/images/TSI-tabular-sample.png)
 
+We will use this data to perform anonmaly detection on dimesion `Temperature` and `Light`. But first, we will need to convert this tabular data into another jsonl form so that API can consume it. 
