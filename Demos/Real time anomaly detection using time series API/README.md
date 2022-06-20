@@ -11,8 +11,8 @@ We will use this datase with `Time Series Insight API` to detect anomalies using
 ### Setup 
 
 - Enable Time Series API
-    -- Google Cloud Console > API Library Page > Time Series API
-       ``` gcloud services enable timeseriesinsights.googleapis.com
-       ``` 
+    - Google Cloud Console > API Library Page > Time Series API
+        ``` gcloud services enable timeseriesinsights.googleapis.com
+        ``` 
 - Authorization
-    -- Create a `service account`
+    - Create a `service account`
