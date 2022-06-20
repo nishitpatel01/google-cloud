@@ -2,7 +2,7 @@
 
 ### Time Series Insight API is serverless and fully managed API and can be used for large scale forecasting and supports real time anomaly detection with low latency. It handles dataset consisting of billions of events and supports thousands of queries per second. Users can detect trends and anomalies with multiple event dimensions.
 
-### The notebooks in this repo go through end-to-end lifecyle of creating a new dataset, query it for anomaly detection and forecasting and different methods to interact with Time Series API
+#### The notebooks in this repo go through end-to-end lifecyle of creating a new dataset, query it for anomaly detection and forecasting and different methods to interact with Time Series API
 
 ### Problem Desciption
 
@@ -17,7 +17,7 @@ We will use this datase with `Time Series Insight API` to detect anomalies using
         ``` 
             gcloud services enable timeseriesinsights.googleapis.com
         ``` 
-- Authorization
+- Set up authentication
     - Create a `service account`
         ```
             gcloud iam service-accounts create <SERVICE_ACCOUNT_ID> \
