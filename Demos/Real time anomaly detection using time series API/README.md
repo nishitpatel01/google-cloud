@@ -34,4 +34,26 @@ As mentioned in the problem descrition, we have used an artificial dataset conta
 
 ![TSI Tabular Data](../../data/images/TSI-tabular-sample.png)
 
-We will use this data to perform anonmaly detection on dimesion `Temperature` and `Light`. But first, we will need to convert this tabular data into another jsonl form so that API can consume it. 
+Here are the values for each dimension change over time
+
+![TSI Chart](../../data/images/TSI-chart.png)
+
+We will use this data to perform anonmaly detection on dimesion `Temperature` and `Light`. But first, we will need to convert this tabular data into another jsonl form so that API can consume it. Because all these data dimensions are of numerical value, it is important for our use case to insert a “dummy” categorical string based dimension on our data, so that we could query on that “slice”. Currently, the only way to create a dataset is from a Cloud Storage object. This Cloud Storage object must be a JSON file with all the event data as a JSON object with each data point on a new line (this is sometimes known as JSONL). The data must also be structured in the form the API is expecting for an event which can be seen [here](https://cloud.google.com/timeseries-insights/docs/reference/rest/v1/projects.datasets/appendEvents#Event).
+
+
+The converted jsonl event looks like below:
+    ```
+        {"groupId":"2583958225776393023",
+            "eventTime":"2021-06-14T00:00:04+00:00",
+            "Dimensions":[
+                {"name":"measure","stringVal":"LTTH"},
+                {"name":"Humidity","doubleVal":36},
+                {"name":"Light","doubleVal":99},
+                {"name":"h2_raw","doubleVal":1041},
+                {"name":"temp","doubleVal":36.97}
+        ]}
+
+    ```
+
+
+
