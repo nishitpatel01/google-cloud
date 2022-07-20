@@ -1,1 +1,0 @@
-# Bigquery ML on Google Cloud
