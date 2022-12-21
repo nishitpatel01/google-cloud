@@ -7,9 +7,12 @@ This folder contains demos, codes, notebooks and references using pre-built ML A
 
 - [x] 01-01 TimeSeries Insights API
 
-## TODO
+## In-progress
 
 - [ ] 01-02 Cloud Natural Language AI
+
+## TODO
+
 - [ ] 01-02 Media Translation
 - [ ] 01-03 Speech-to-Text API
 - [ ] 01-04 Text-to-Speech API
