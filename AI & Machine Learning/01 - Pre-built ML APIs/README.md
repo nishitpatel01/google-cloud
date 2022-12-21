@@ -3,11 +3,11 @@
 This folder contains demos, codes, notebooks and references using pre-built ML APIs like vision, natural language, STT, TTS and transaction etc. Demos and notebooks uses public datasets. 
 
 
-Completed
+## Completed Notebooks
 
 - 01-01 TimeSeries Insights API
 
-TODO
+## TODO
 
 - 01-02 Cloud Natural Language AI
 - 01-02 Media Translation
