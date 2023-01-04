@@ -13,10 +13,10 @@ This folder contains demos, codes, notebooks and references using pre-built ML A
 
 ## TODO
 
-- [ ] 01-02 Media Translation
-- [ ] 01-03 Speech-to-Text API
-- [ ] 01-04 Text-to-Speech API
-- [ ] 01-05 Translation AI
-- [ ] 01-06 Data Loss Prevention 
-- [ ] 01-07 Cloud Vision
-- [ ] 01-08 Video Intelligence AI 
+- [ ] 01-03 Media Translation
+- [ ] 01-04 Speech-to-Text API
+- [ ] 01-05 Text-to-Speech API
+- [ ] 01-06 Translation AI
+- [ ] 01-07 Data Loss Prevention 
+- [ ] 01-08 Cloud Vision
+- [ ] 01-09 Video Intelligence AI 
