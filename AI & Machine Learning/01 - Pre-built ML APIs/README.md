@@ -6,15 +6,15 @@ This folder contains demos, codes, notebooks and references using pre-built ML A
 ## Completed Notebooks
 
 - [x] 01-01 TimeSeries Insights API
+- [x] 01-02 Cloud Natural Language AI
 
 ## In-progress
 
-- [ ] 01-02 Cloud Natural Language AI
+- [ ] 01-04 Speech-to-Text API
 
 ## TODO
 
 - [ ] 01-03 Media Translation
-- [ ] 01-04 Speech-to-Text API
 - [ ] 01-05 Text-to-Speech API
 - [ ] 01-06 Translation AI
 - [ ] 01-07 Data Loss Prevention 
