@@ -13,7 +13,7 @@ Google Cloud demos, scripts, codes and notebooks
     - AI Industry Solutions
     - End-to-End MLOps
     - Generative AI
-        -- Language
-        -- Image
+        - Language
+        - Image
     
 - Data Analytics
