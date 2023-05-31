@@ -12,5 +12,8 @@ Google Cloud demos, scripts, codes and notebooks
     - Vertex AI & Custom ML
     - AI Industry Solutions
     - End-to-End MLOps
+    - Generative AI
+        -- Language
+        -- Image
     
 - Data Analytics
