@@ -1,13 +1,19 @@
 # google-cloud
 
-Google Cloud demos, scripts, codes and notebooks
+
+This repo contains a collection of demos, scripts, code samples, and notebooks that demonstrate how to use Google Cloud Platform services. The repo is organized by service, and each service directory contains a README file that provides more information about the demos, scripts, and code samples in that directory.
+
+The demos in this repo are designed to be runnable, so you can easily try them out on your own. The scripts and code samples in this repo can be used as a starting point for your own projects, or you can modify them to fit your specific needs.
+
+The notebooks in this repo are Jupyter notebooks, which are a great way to experiment with GCP services and to share your work with others.
+
+I hope you find this repo helpful!
 
 
 
+## AI & Machine Learning
 
-# AI & Machine Learning
-
-Google Cloud offers a wide range of AI and machine learning services, including:
+This reposiGoogle Cloud offers a wide range of AI and machine learning services, including:
 
 * **Pre-trained ML APIs:** These APIs provide access to pre-trained machine learning models that can be used for a variety of tasks, such as image classification, natural language processing, and speech recognition.
 * **AutoML:** These services help you build and deploy machine learning models without having to write any code.
@@ -23,6 +29,17 @@ Google Cloud offers a wide range of AI and machine learning services, including:
 * **Generative AI:** These services help you create new content, such as images, text, and music, using machine learning.
     * **Image:** This service can be used to generate realistic images from text descriptions.
     * **Language:** This service can be used to generate text, translate languages, and write different kinds of creative content.
+
+
+## Data Analytics 
+
+
+## Demos
+Google cloud end-to-end demos with use cases
+
+* Entity extraction using Document AI
+* Reak time anomaly detection using Timeseries Insights API
+
 
 ## Learn more
 
