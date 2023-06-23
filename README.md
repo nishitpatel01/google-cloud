@@ -10,8 +10,9 @@ The notebooks in this repo are Jupyter notebooks, which are a great way to exper
 I hope you find this repo helpful!
 
 
+## Repo structure 
 
-## AI & Machine Learning
+### AI & Machine Learning
 
 This reposiGoogle Cloud offers a wide range of AI and machine learning services, including:
 
@@ -31,17 +32,20 @@ This reposiGoogle Cloud offers a wide range of AI and machine learning services,
     * **Language:** This service can be used to generate text, translate languages, and write different kinds of creative content.
 
 
-## Data Analytics 
+### Data Analytics 
 
 
-## Demos
+### Demos
 Google cloud end-to-end demos with use cases
 
 * Entity extraction using Document AI
 * Reak time anomaly detection using Timeseries Insights API
 
 
-## Learn more
+### Tips and Tricks
+
+
+### Resources
 
 * [Google Cloud AI & Machine Learning website](https://cloud.google.com/ai-platform/)
 * [Google Cloud AI blog](https://cloud.google.com/blog/topics/ai)
