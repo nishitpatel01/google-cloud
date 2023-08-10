@@ -1,0 +1,6 @@
+streamlit
+# transformers
+# tensorflow
+google-cloud-aiplatform
+langchain
+google-cloud-discoveryengine
