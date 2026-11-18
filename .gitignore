@@ -127,3 +127,41 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Node / Frontend builds
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-error.log*
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+override.tf
+override.tf.json
+
+# Environment files & credentials
+.env.*
+!.env.example
+deploy/*.env
+!deploy/*.env.example
+*.pem
+*.key
+*credentials*.json
+*service-account*.json
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+
+# Local internal planning & tracking docs (never publish to GitHub)
+_internal/
+*SOLUTIONS_BLUEPRINT*.md
+
+
