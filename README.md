@@ -12,7 +12,7 @@ The [`solutions/`](solutions/README.md) directory houses turnkey, self-contained
 
 | Solution | Category | Industries | Core GCP AI Capabilities | Status |
 | :--- | :--- | :--- | :--- | :---: |
-| *First solution launching soon — see [`solutions/README.md`](solutions/README.md)* | Agentic / GenAI / MLOps | Multi-Industry | Cloud Run, Vertex AI, ADK, BigQuery, Terraform | In Preparation |
+| [**Enterprise GraphRAG & Contagion Explorer**](solutions/enterprise-graphrag/README.md) (`solutions/enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2`, ADK, Cloud Run | Phase 0 Complete (`24` tests passing) |
 
 ---
 

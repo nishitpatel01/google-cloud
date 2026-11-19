@@ -1,0 +1,773 @@
+[
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CLAUSE-ANTI-ASSIGNMENT",
+    "canonical_name": "Anti-Assignment Restriction (Consent Required)",
+    "entity_type": "LegalClause",
+    "jurisdiction": "MULTI",
+    "risk_tier": "HIGH",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-01"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CLAUSE-CHANGE-OF-CONTROL",
+    "canonical_name": "Change of Control Termination / Consent Trigger",
+    "entity_type": "LegalClause",
+    "jurisdiction": "MULTI",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-01"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CLAUSE-EXCLUSIVITY",
+    "canonical_name": "Commercial Exclusivity Commitment",
+    "entity_type": "LegalClause",
+    "jurisdiction": "MULTI",
+    "risk_tier": "HIGH",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-01"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CLAUSE-IP-OWNERSHIP",
+    "canonical_name": "IP Ownership Assignment Encumbrance",
+    "entity_type": "LegalClause",
+    "jurisdiction": "MULTI",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-03"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CLAUSE-LICENSE-GRANT",
+    "canonical_name": "Commercial IP / Technology License Grant",
+    "entity_type": "LegalClause",
+    "jurisdiction": "MULTI",
+    "risk_tier": "HIGH",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-01"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-01",
+    "canonical_name": "WEBSITE CONTENT LICENSE AGREEMENT (GopageCorp)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "Nevada",
+    "risk_tier": "HIGH",
+    "exposure_usd": 4200000.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-01"
+    ],
+    "attributes": {
+      "cuad_filename": "GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf",
+      "modeled_arr_usd": 4200000.0,
+      "governing_law": "Nevada"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-02",
+    "canonical_name": "CO-BRANDING AGREEMENT (EdietsComInc)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "California",
+    "risk_tier": "HIGH",
+    "exposure_usd": 3600000.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-02"
+    ],
+    "attributes": {
+      "cuad_filename": "EdietsComInc_20001030_10QSB_EX-10.4_2606646_EX-10.4_Co-Branding Agreement.pdf",
+      "modeled_arr_usd": 3600000.0,
+      "governing_law": "California"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-03",
+    "canonical_name": "ENDORSEMENT LICENSING AND CO-BRANDING AGREEMENT (MusclepharmCorp)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "California",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 5100000.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-03"
+    ],
+    "attributes": {
+      "cuad_filename": "MusclepharmCorp_20170208_10-KA_EX-10.38_9893581_EX-10.38_Co-Branding Agreement.pdf",
+      "modeled_arr_usd": 5100000.0,
+      "governing_law": "California"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-04",
+    "canonical_name": "CO-BRANDING AGREEMENT (TomOnlineInc)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "England, United Kingdom",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 2800000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-04"
+    ],
+    "attributes": {
+      "cuad_filename": "TomOnlineInc_20060501_20-F_EX-4.46_749700_EX-4.46_Co-Branding Agreement.pdf",
+      "modeled_arr_usd": 2800000.0,
+      "governing_law": "England, United Kingdom"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-05",
+    "canonical_name": "DEVELOPMENT AGREEMENT (ConformisInc)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "New York",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 6400000.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-05"
+    ],
+    "attributes": {
+      "cuad_filename": "ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement.pdf",
+      "modeled_arr_usd": 6400000.0,
+      "governing_law": "New York"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-06",
+    "canonical_name": "EXCLUSIVE LICENSE AND PRODUCT DEVELOPMENT AGREEMENT (EtonPharmaceuticalsInc)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "Delaware",
+    "risk_tier": "HIGH",
+    "exposure_usd": 3100000.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-06"
+    ],
+    "attributes": {
+      "cuad_filename": "EtonPharmaceuticalsInc_20191114_10-Q_EX-10.1_11893941_EX-10.1_Development Agreement.pdf",
+      "modeled_arr_usd": 3100000.0,
+      "governing_law": "Delaware"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-07",
+    "canonical_name": "JOINT DEVELOPMENT AGREEMENT (FuelcellEnergyInc)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "New York",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 4750000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-07"
+    ],
+    "attributes": {
+      "cuad_filename": "FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf",
+      "modeled_arr_usd": 4750000.0,
+      "governing_law": "New York"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-08",
+    "canonical_name": "EXCLUSIVE DISTRIBUTOR AGREEMENT (WaterNowInc)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "Texas",
+    "risk_tier": "HIGH",
+    "exposure_usd": 2450000.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-08"
+    ],
+    "attributes": {
+      "cuad_filename": "WaterNowInc_20191120_10-Q_EX-10.12_11900227_EX-10.12_Distributor Agreement.pdf",
+      "modeled_arr_usd": 2450000.0,
+      "governing_law": "Texas"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-09",
+    "canonical_name": "INTELLECTUAL PROPERTY AGREEMENT, d (CerenceInc)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "Delaware",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 3900000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-09"
+    ],
+    "attributes": {
+      "cuad_filename": "CerenceInc_20191002_8-K_EX-10.4_11827494_EX-10.4_Intellectual Property Agreement.pdf",
+      "modeled_arr_usd": 3900000.0,
+      "governing_law": "Delaware"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "CTR-CUAD-10",
+    "canonical_name": "INTELLECTUAL PROPERTY AGREEMENT, d (GarrettMotionInc)",
+    "entity_type": "MaterialContract",
+    "jurisdiction": "New York",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 5500000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-10"
+    ],
+    "attributes": {
+      "cuad_filename": "GarrettMotionInc_20181001_8-K_EX-2.4_11364532_EX-2.4_Intellectual Property Agreement.pdf",
+      "modeled_arr_usd": 5500000.0,
+      "governing_law": "New York"
+    }
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "LAW-CALIFORNIA",
+    "canonical_name": "Governing Law: California",
+    "entity_type": "Jurisdiction",
+    "jurisdiction": "California",
+    "risk_tier": "LOW",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-02"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "LAW-DELAWARE",
+    "canonical_name": "Governing Law: Delaware",
+    "entity_type": "Jurisdiction",
+    "jurisdiction": "Delaware",
+    "risk_tier": "LOW",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-06"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "LAW-ENGLAND-UNITED-KINGDOM",
+    "canonical_name": "Governing Law: England, United Kingdom",
+    "entity_type": "Jurisdiction",
+    "jurisdiction": "England, United Kingdom",
+    "risk_tier": "LOW",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-04"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "LAW-NEVADA",
+    "canonical_name": "Governing Law: Nevada",
+    "entity_type": "Jurisdiction",
+    "jurisdiction": "Nevada",
+    "risk_tier": "LOW",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-01"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "LAW-NEW-YORK",
+    "canonical_name": "Governing Law: New York",
+    "entity_type": "Jurisdiction",
+    "jurisdiction": "New York",
+    "risk_tier": "LOW",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-05"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "LAW-TEXAS",
+    "canonical_name": "Governing Law: Texas",
+    "entity_type": "Jurisdiction",
+    "jurisdiction": "Texas",
+    "risk_tier": "LOW",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-08"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "MOD-DEAL-PORTFOLIO-ALPHA",
+    "canonical_name": "Modeled M&A Scenario: Portfolio Roll-Up Acquisition Alpha",
+    "entity_type": "DealScenario",
+    "jurisdiction": "DELAWARE",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 12900000.0,
+    "single_source": false,
+    "data_origin": "MODELED_BRIDGE",
+    "source_license": "MODELED",
+    "source_url": "",
+    "source_chunk_ids": [
+      "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "MOD-DEAL-PORTFOLIO-BETA",
+    "canonical_name": "Modeled M&A Scenario: Strategic Carve-Out Acquisition Beta",
+    "entity_type": "DealScenario",
+    "jurisdiction": "DELAWARE",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 12300000.0,
+    "single_source": false,
+    "data_origin": "MODELED_BRIDGE",
+    "source_license": "MODELED",
+    "source_url": "",
+    "source_chunk_ids": [
+      "CHK-DEAL-MOD-DEAL-PORTFOLIO-BETA"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-01-1-PSITECH-CORPORATION",
+    "canonical_name": "PSiTech Corporation",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "Nevada",
+    "risk_tier": "HIGH",
+    "exposure_usd": 4200000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-01"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-01-2-EMPIRICAL-VENTURES-INC",
+    "canonical_name": "Empirical Ventures, Inc",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "Nevada",
+    "risk_tier": "HIGH",
+    "exposure_usd": 4200000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-01"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-02-1-WOMEN-COM-NETWORKS-INC",
+    "canonical_name": "WOMEN.COM NETWORKS, INC",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "California",
+    "risk_tier": "HIGH",
+    "exposure_usd": 3600000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-02"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-02-2-EDIETS-COM-INC",
+    "canonical_name": "EDIETS.COM, INC",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "California",
+    "risk_tier": "HIGH",
+    "exposure_usd": 3600000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-02"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-03-1-MARINE-MP-LLC",
+    "canonical_name": "Marine MP, LLC",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "California",
+    "risk_tier": "HIGH",
+    "exposure_usd": 5100000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-03"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-03-2-ARNOLD-SCHWARZENEGGER",
+    "canonical_name": "Arnold Schwarzenegger",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "California",
+    "risk_tier": "HIGH",
+    "exposure_usd": 5100000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-03"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-04-1-SKYPE-COMMUNICATIONS-S",
+    "canonical_name": "Skype Communications, S.A",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "England, United Kingdom",
+    "risk_tier": "HIGH",
+    "exposure_usd": 2800000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-04"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-04-2-SKYPE-TECHNOLOGIES-S-A",
+    "canonical_name": "Skype Technologies, S.A",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "England, United Kingdom",
+    "risk_tier": "HIGH",
+    "exposure_usd": 2800000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-04"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-05-1-HOWMEDICA-OSTENONICS-COR",
+    "canonical_name": "Howmedica Ostenonics Corp",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "New York",
+    "risk_tier": "HIGH",
+    "exposure_usd": 6400000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-05"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-05-2-CONFORMIS-INC",
+    "canonical_name": "Conformis, Inc",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "New York",
+    "risk_tier": "HIGH",
+    "exposure_usd": 6400000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-05"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-06-1-ETON-PHARMACEUTICALS-IN",
+    "canonical_name": "Eton Pharmaceuticals, Inc",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "Delaware",
+    "risk_tier": "HIGH",
+    "exposure_usd": 3100000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-06"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-06-2-AUCTA-PHARMACEUTICALS-I",
+    "canonical_name": "Aucta Pharmaceuticals, Inc",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "Delaware",
+    "risk_tier": "HIGH",
+    "exposure_usd": 3100000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-06"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-07-1-EXXONMOBIL-RESEARCH-AND",
+    "canonical_name": "ExxonMobil Research and Engineering Company",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "New York",
+    "risk_tier": "HIGH",
+    "exposure_usd": 4750000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-07"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-07-2-FUELCELL-ENERGY-INC",
+    "canonical_name": "FuelCell Energy, Inc",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "New York",
+    "risk_tier": "HIGH",
+    "exposure_usd": 4750000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-07"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-08-1-WATER-NOW-INC",
+    "canonical_name": "WATER NOW, INC",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "Texas",
+    "risk_tier": "HIGH",
+    "exposure_usd": 2450000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-08"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-08-2-HYDRASPIN-USA-INC",
+    "canonical_name": "Hydraspin USA, Inc",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "Texas",
+    "risk_tier": "HIGH",
+    "exposure_usd": 2450000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-08"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-09-1-NUANCE-COMMUNICATIONS-I",
+    "canonical_name": "NUANCE COMMUNICATIONS, INC",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "Delaware",
+    "risk_tier": "HIGH",
+    "exposure_usd": 3900000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-09"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-09-2-CERENCE-INC",
+    "canonical_name": "CERENCE INC",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "Delaware",
+    "risk_tier": "HIGH",
+    "exposure_usd": 3900000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-09"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-10-1-HONEYWELL-INTERNATIONAL",
+    "canonical_name": "HONEYWELL INTERNATIONAL INC",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "New York",
+    "risk_tier": "HIGH",
+    "exposure_usd": 5500000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-10"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "legal_ma_clause_graph",
+    "entity_id": "PARTY-10-2-GARRETT-MOTION-INC",
+    "canonical_name": "GARRETT MOTION INC",
+    "entity_type": "CompanyOrParty",
+    "jurisdiction": "New York",
+    "risk_tier": "HIGH",
+    "exposure_usd": 5500000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC_BY_4_0",
+    "source_url": "https://doi.org/10.5281/zenodo.4595826",
+    "source_chunk_ids": [
+      "CHK-CUAD-10"
+    ],
+    "attributes": {}
+  }
+]

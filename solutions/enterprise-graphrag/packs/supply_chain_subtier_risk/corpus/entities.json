@@ -1,0 +1,690 @@
+[
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-ANDORRA",
+    "canonical_name": "Andorra",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "ANDORRA",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-INTEL"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-AUSTRALIA",
+    "canonical_name": "Australia",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "AUSTRALIA",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-INTEL"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-AUSTRIA",
+    "canonical_name": "Austria",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "AUSTRIA",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-INTEL"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-BELGIUM",
+    "canonical_name": "Belgium",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "BELGIUM",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-INTEL"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-BOLIVIA-PLURINATIONAL-STATE-OF",
+    "canonical_name": "Bolivia (Plurinational State Of)",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "BOLIVIA (PLURINATIONAL STATE OF)",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-INTEL"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-BRAZIL",
+    "canonical_name": "Brazil",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "BRAZIL",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-INTEL"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-CHINA",
+    "canonical_name": "China",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "CHINA",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sciencebase.gov/catalog/item/6798f5d9d34ea8c18376e88d",
+    "source_chunk_ids": [
+      "CHK-USGS-TUNGSTEN"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-DR-CONGO",
+    "canonical_name": "Dr Congo",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "DR CONGO",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/",
+    "source_chunk_ids": [
+      "CHK-USGS-TANTALUM"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-ESTONIA",
+    "canonical_name": "Estonia",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "ESTONIA",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-INTEL"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "COUNTRY-GERMANY",
+    "canonical_name": "Germany",
+    "entity_type": "CountryOrHub",
+    "jurisdiction": "GERMANY",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-INTEL"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "ISSUER-AMD",
+    "canonical_name": "Advanced Micro Devices, Inc.",
+    "entity_type": "Issuer",
+    "jurisdiction": "UNITED STATES",
+    "risk_tier": "HIGH",
+    "exposure_usd": 25800000000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000103/fy2025cmr.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD"
+    ],
+    "attributes": {
+      "sec_cik": "2488",
+      "sec_accession": "0000002488-26-000103"
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "ISSUER-INTEL",
+    "canonical_name": "Intel Corporation",
+    "entity_type": "Issuer",
+    "jurisdiction": "UNITED STATES",
+    "risk_tier": "HIGH",
+    "exposure_usd": 54200000000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-INTEL"
+    ],
+    "attributes": {
+      "sec_cik": "50863",
+      "sec_accession": "0000050863-26-000132"
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "ISSUER-NVIDIA",
+    "canonical_name": "NVIDIA Corporation",
+    "entity_type": "Issuer",
+    "jurisdiction": "UNITED STATES",
+    "risk_tier": "HIGH",
+    "exposure_usd": 130500000000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000043/a2026conflictmineralsrepor.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-NVIDIA"
+    ],
+    "attributes": {
+      "sec_cik": "1045810",
+      "sec_accession": "0001045810-26-000043"
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "ISSUER-QUALCOMM",
+    "canonical_name": "QUALCOMM Incorporated",
+    "entity_type": "Issuer",
+    "jurisdiction": "UNITED STATES",
+    "risk_tier": "HIGH",
+    "exposure_usd": 39000000000.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/804328/000080432826000069/ex101-conflictmineralsrepo.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "sec_cik": "804328",
+      "sec_accession": "0000804328-26-000069"
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "MINERAL-GOLD",
+    "canonical_name": "Gold (3TG Critical Mineral)",
+    "entity_type": "ComponentOrMetal",
+    "jurisdiction": "GLOBAL",
+    "risk_tier": "HIGH",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/",
+    "source_chunk_ids": [
+      "CHK-USGS-GOLD"
+    ],
+    "attributes": {
+      "usgs_top_producer_share_pct": 12
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "MINERAL-TANTALUM",
+    "canonical_name": "Tantalum (3TG Critical Mineral)",
+    "entity_type": "ComponentOrMetal",
+    "jurisdiction": "GLOBAL",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/",
+    "source_chunk_ids": [
+      "CHK-USGS-TANTALUM"
+    ],
+    "attributes": {
+      "usgs_top_producer_share_pct": 62
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "MINERAL-TIN",
+    "canonical_name": "Tin (3TG Critical Mineral)",
+    "entity_type": "ComponentOrMetal",
+    "jurisdiction": "GLOBAL",
+    "risk_tier": "HIGH",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/",
+    "source_chunk_ids": [
+      "CHK-USGS-TIN"
+    ],
+    "attributes": {
+      "usgs_top_producer_share_pct": 48
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "MINERAL-TUNGSTEN",
+    "canonical_name": "Tungsten (3TG Critical Mineral)",
+    "entity_type": "ComponentOrMetal",
+    "jurisdiction": "GLOBAL",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sciencebase.gov/catalog/item/6798f5d9d34ea8c18376e88d",
+    "source_chunk_ids": [
+      "CHK-USGS-TUNGSTEN"
+    ],
+    "attributes": {
+      "usgs_top_producer_share_pct": 81
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "MOD-EVENT-CHINA-EXPORT-CTRL",
+    "canonical_name": "Modeled Scenario: Critical Mineral Export Licensing Delay (China)",
+    "entity_type": "DisruptionEvent",
+    "jurisdiction": "CHINA",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "MODELED_BRIDGE",
+    "source_license": "MODELED",
+    "source_url": "",
+    "source_chunk_ids": [
+      "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO-DO-SITIO-EA5AB97D",
+    "canonical_name": "AngloGold Ashanti Corrego do Sitio Mineracao",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "BRAZIL",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Gold",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-GOLD-L-ORFEBRE-S-A",
+    "canonical_name": "L'Orfebre S.A.",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "ANDORRA",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Gold",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-GOLD-UMICORE-S-A-BUSINESS-UNIT-PRECIOUS-AAA93ADE",
+    "canonical_name": "Umicore S.A. Business Unit Precious Metals Refining",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "BELGIUM",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Gold",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TANTALUM-AMG-BRASIL",
+    "canonical_name": "AMG Brasil",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "BRAZIL",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tantalum",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD",
+    "canonical_name": "F&X Electro-Materials Ltd.",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "CHINA",
+    "risk_tier": "HIGH",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tantalum",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TANTALUM-MINERACAO-TABOCA-S-A",
+    "canonical_name": "Mineracao Taboca S.A.",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "BRAZIL",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tantalum",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TANTALUM-NPM-SILMET-AS",
+    "canonical_name": "NPM Silmet AS",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "ESTONIA",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tantalum",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TIN-AURUBIS-BEERSE",
+    "canonical_name": "Aurubis Beerse",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "BELGIUM",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tin",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TIN-CRM-FUNDICAO-DE-METAIS-E-COMERCIO-D-A2DEA2C0",
+    "canonical_name": "CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "BRAZIL",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tin",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TIN-GLOBAL-ADVANCED-METALS-GREENBUSHES-PTY-LTD",
+    "canonical_name": "Global Advanced Metals Greenbushes Pty Ltd.",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "AUSTRALIA",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tin",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TIN-OPERACIONES-METALURGICAS-S-A",
+    "canonical_name": "Operaciones Metalurgicas S.A.",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "BOLIVIA (PLURINATIONAL STATE OF)",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tin",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+    "canonical_name": "China Molybdenum Tungsten Co., Ltd.",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "CHINA",
+    "risk_tier": "HIGH",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tungsten",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TUNGSTEN-CRONIMET-BRASIL-LTDA",
+    "canonical_name": "Cronimet Brasil Ltda",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "BRAZIL",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tungsten",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GMBH",
+    "canonical_name": "H.C. Starck Tungsten GmbH",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "GERMANY",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tungsten",
+      "disclosing_issuers_count": 4
+    }
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "entity_id": "SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HUTTEN-AG",
+    "canonical_name": "Wolfram Bergbau und Hutten AG",
+    "entity_type": "SmelterOrSupplier",
+    "jurisdiction": "AUSTRIA",
+    "risk_tier": "MEDIUM",
+    "exposure_usd": 0.0,
+    "single_source": true,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+    "source_chunk_ids": [
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM"
+    ],
+    "attributes": {
+      "mineral": "Tungsten",
+      "disclosing_issuers_count": 4
+    }
+  }
+]

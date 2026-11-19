@@ -1,0 +1,65 @@
+pack_id: banking_aml_ubo_contagion
+title: "Banking AML, Sanctions & Beneficial Ownership Contagion"
+subtitle: "Uncover 2-to-4 hop indirect sanctions links, corporate parent hierarchies, and shell intermediaries from live US Treasury OFAC SDN and GLEIF LEI records."
+industry: "Banking & Financial Crime Compliance"
+persona: "Head of AML & Sanctions Compliance"
+manual_baseline_cost_usd: 850.00
+manual_baseline_minutes: 360
+default_max_hops: 4
+primary_sources:
+  - "US Treasury OFAC SDN, ALT & ADD Lists (Explicit Linked To: Graph) — US Gov Public Domain"
+  - "GLEIF Global LEI Level-1 & Level-2 Corporate Hierarchies — CC0 1.0 Public Domain"
+  - "FinCEN Public Sanctions Evasion Advisories — US Gov Public Domain"
+ontology:
+  node_types:
+    - type: ApplicantOrEntity
+      label: "Onboarding Applicant / Entity"
+      color: "#2563EB"
+      shape: hexagon
+      is_revenue_bearing: true
+    - type: CorporateEntity
+      label: "Corporate / Holding / Shell Entity"
+      color: "#7C3AED"
+      shape: circle
+      is_revenue_bearing: false
+    - type: SanctionedOrg
+      label: "OFAC Designated Organization / Bank"
+      color: "#DC2626"
+      shape: diamond
+      is_revenue_bearing: false
+    - type: IndividualOrVessel
+      label: "Designated Individual / Vessel / Alias"
+      color: "#D97706"
+      shape: circle
+      is_revenue_bearing: false
+    - type: ProgramOrJurisdiction
+      label: "Sanctions Program / Jurisdiction"
+      color: "#0891B2"
+      shape: square
+      is_revenue_bearing: false
+  edge_types:
+    - type: LINKED_TO
+      label: "OFAC Explicit Linked To"
+      directed: true
+      propagates_risk: true
+    - type: OWNED_OR_CONTROLLED_BY
+      label: "Owned / Controlled / Consolidated By"
+      directed: true
+      propagates_risk: true
+    - type: DESIGNATED_UNDER
+      label: "Designated Under Sanctions Program"
+      directed: true
+      propagates_risk: true
+    - type: REGISTERED_IN
+      label: "Registered / Located In Jurisdiction"
+      directed: true
+      propagates_risk: true
+    - type: SHARES_INTERMEDIARY
+      label: "Transacts / Shares Intermediary With"
+      directed: true
+      propagates_risk: true
+  dlp_info_types:
+    - CREDIT_CARD_NUMBER
+    - US_SOCIAL_SECURITY_NUMBER
+    - EMAIL_ADDRESS
+    - PERSON_NAME

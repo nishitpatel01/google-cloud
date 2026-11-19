@@ -1,0 +1,233 @@
+[
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-GLEIF-5493001MUQVL0LIMI213",
+    "doc_name": "GLEIF_LEI_5493001MUQVL0LIMI213.json",
+    "doc_type": "gleif_lei_record",
+    "page_number": 1,
+    "content": "GLEIF Global LEI Registry Record 5493001MUQVL0LIMI213 (CC0 1.0 Public Domain): Legal Name: INTEL INVEST. Jurisdiction: CY. Registration Status: LAPSED. Zero OFAC SDN matches.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC0_1_0",
+    "source_url": "https://api.gleif.org/api/v1/lei-records/5493001MUQVL0LIMI213"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-GLEIF-815600423B1B667F7E37",
+    "doc_name": "GLEIF_LEI_815600423B1B667F7E37.json",
+    "doc_type": "gleif_lei_record",
+    "page_number": 1,
+    "content": "GLEIF Global LEI Registry Record 815600423B1B667F7E37 (CC0 1.0 Public Domain): Legal Name: INTEL ITALY - S.R.L.. Jurisdiction: IT. Registration Status: ISSUED. Zero OFAC SDN matches.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC0_1_0",
+    "source_url": "https://api.gleif.org/api/v1/lei-records/815600423B1B667F7E37"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-GLEIF-KNX4USFCNGPY45LOCE31",
+    "doc_name": "GLEIF_LEI_KNX4USFCNGPY45LOCE31.json",
+    "doc_type": "gleif_lei_record",
+    "page_number": 1,
+    "content": "GLEIF Global LEI Registry Record KNX4USFCNGPY45LOCE31 (CC0 1.0 Public Domain): Legal Name: INTEL CORPORATION. Jurisdiction: US-DE. Registration Status: ISSUED. Zero OFAC SDN matches.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC0_1_0",
+    "source_url": "https://api.gleif.org/api/v1/lei-records/KNX4USFCNGPY45LOCE31"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-10392",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_10392.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #10392 (US Gov Public Domain): Name: MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS. Type: -0-. Programs: [SDGT] [NPWMD] [IFSR] [IRAN-CON-ARMS-EO] [RUSSIA-EO14024]. Jurisdiction/Address Country: IRAN. Aliases: MINISTRY OF DEFENSE AND SUPPORT FOR ARMED FORCES LOGISTICS, MODAFL, MODSAF. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: See Section 11 of Executive Order 14024.; alt. Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: ROSOBORONEKSPORT OAO.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-10465",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_10465.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #10465 (US Gov Public Domain): Name: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE. Type: -0-. Programs: [FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR] [ELECTION-EO13848]. Jurisdiction/Address Country: IRAN. Aliases: PASDARAN-E ENGHELAB-E ISLAMI (PASDARAN), SEPAH-E QODS (JERUSALEM FORCE), IRGC-QF. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-11195",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_11195.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #11195 (US Gov Public Domain): Name: IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY. Type: -0-. Programs: [NPWMD] [IFSR] [IRAN-CON-ARMS-EO]. Jurisdiction/Address Country: IRAN. Aliases: HESA TRADE CENTER, IRAN AIRCRAFT MANUFACTURING INDUSTRIES, IRAN AIRCRAFT MANUFACTURING COMPANY. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; National ID No. 10100722073 (Iran); Registration Number 26740 (Iran); a.k.a. 'HESA'; a.k.a. 'HTC'; a.k.a. 'IAMI'; a.k.a. 'IAMCO'; a.k.a. 'HAVA PEYMA SAZI-E IRAN'; a.k.a. 'HAVAPEYMA SAZI IRAN'; a.k.a. 'HAVAPEYMA SAZHRAN'; a.k.a. 'HEVAPEIMASAZI'; a.k.a. 'SHAHIN CO.'; a.k.a. 'FTP CO.'; Linked To: MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-11317",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_11317.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #11317 (US Gov Public Domain): Name: NATIONAL IRANIAN OIL COMPANY. Type: -0-. Programs: [IRAN] [SDGT] [IFSR] [IFCA]. Jurisdiction/Address Country: IRAN. Aliases: NIOC. Official Remarks: Website www.nioc.ir; IFCA Determination - Involved in Energy Sector; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; all offices worldwide; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: MINISTRY OF PETROLEUM.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-11618",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_11618.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #11618 (US Gov Public Domain): Name: NATIONAL PETROCHEMICAL COMPANY. Type: -0-. Programs: [IRAN] [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: THE NATIONAL PETROCHEMICAL COMPANY. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; National ID No. 9614 (Iran); all offices worldwide; a.k.a. 'NPC'; a.k.a. 'NIPC'; Linked To: MINISTRY OF PETROLEUM.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-12727",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_12727.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #12727 (US Gov Public Domain): Name: BASIJ RESISTANCE FORCE. Type: -0-. Programs: [FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR]. Jurisdiction/Address Country: IRAN. Aliases: SAZMAN-E MOGHAVEMAT-E BASIJ, BASIJ-E MELLI, BASEEJ. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; a.k.a. 'NATIONAL RESISTANCE MOBILIZATION'; a.k.a. 'RESISTANCE MOBILIZATION FORCE'; f.k.a. 'NATIONAL MOBILIZATION ORGANIZATION'; a.k.a. 'MOBILIZATION OF THE OPPRESSED'; a.k.a. 'MOBILIZATION OF THE OPPRESSED UNIT'; a.k.a. 'ORGANIZATION OF THE MOBILISATION OF THE OPPRESSED'; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-12802",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_12802.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #12802 (US Gov Public Domain): Name: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY. Type: -0-. Programs: [SDGT] [NPWMD] [IRGC] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: MEHR EGHTESAD IRANIAN INVESTMENT COMPANY, MEHR IRANIAN ECONOMY COMPANY, MEHR IRANIAN ECONOMY INVESTMENTS. Official Remarks: Website www.mebank.ir; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Phone Number 982188526300; alt. Phone Number 982188526301; alt. Phone Number 982188526302; alt. Phone Number 982188526303; alt. Phone Number 9821227700019; Business Registration Document # 103222 (Iran); National ID No. 10101863528 (Iran); Fax: 982188526337; Alt. Fax: 9221227700019; Linked To: MEHR EQTESAD BANK.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-17260",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_17260.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #17260 (US Gov Public Domain): Name: STATE CORPORATION ROSTEC. Type: -0-. Programs: [UKRAINE-EO13662] [RUSSIA-EO14024]. Jurisdiction/Address Country: RUSSIA. Aliases: STATE CORPORATION FOR THE PROMOTION OF THE DEVELOPMENT, MANUFACTURE, AND EXPORT OF HIGH TECH PRODUCTS ROSTEC. Official Remarks: Executive Order 13662 Directive Determination - Subject to Directive 3; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Organization Established Date 03 Dec 2007; Registration ID 1077799030847 (Russia); Tax ID No. 7704274402 (Russia); Government Gazette Number 94137372 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-18782",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_18782.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #18782 (US Gov Public Domain): Name: ROSOBORONEKSPORT OAO. Type: -0-. Programs: [UKRAINE-EO13662] [IRAN-CON-ARMS-EO] [RUSSIA-EO14024]. Jurisdiction/Address Country: RUSSIA. Aliases: RUSSIAN DEFENSE EXPORT ROSOBORONEXPORT, ROSOBORONEXPORT JSC, ROSOBORONEKSPORT OJSC. Official Remarks: Website www.roe.ru; Executive Order 13662 Directive Determination - Subject to Directive 3; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Registration ID 1117746521452 (Russia); Tax ID No. 7718852163 (Russia); Government Gazette Number 56467052 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives; Linked To: STATE CORPORATION ROSTEC.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-25017",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_25017.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #25017 (US Gov Public Domain): Name: BONYAD TAAVON BASIJ. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: BASIJ COOPERATIVE FOUNDATION. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: BASIJ RESISTANCE FORCE.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-25018",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_25018.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #25018 (US Gov Public Domain): Name: MEHR EQTESAD BANK. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: MEHR INTEREST-FREE BANK. Official Remarks: Website www.mebank.ir; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: BONYAD TAAVON BASIJ; Linked To: BASIJ RESISTANCE FORCE.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-25020",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_25020.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #25020 (US Gov Public Domain): Name: TADBIRGARAN ATIYEH IRANIAN INVESTMENT COMPANY. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: None listed. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; National ID No. 10102867151 (Iran); Registration Number 246077 (Iran); Linked To: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-25037",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_25037.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #25037 (US Gov Public Domain): Name: MEHR EQTESAD FINANCIAL GROUP. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: None listed. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; National ID No. 10101471388 (Iran); Linked To: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-29788",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_29788.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #29788 (US Gov Public Domain): Name: MINISTRY OF PETROLEUM. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: IRANIAN MINISTRY OF PETROLEUM. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-41123",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_41123.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #41123 (US Gov Public Domain): Name: HANGZHOU FUYANG KOTO MACHINERY CO., LTD. Type: -0-. Programs: [NPWMD] [IFSR]. Jurisdiction/Address Country: CHINA. Aliases: KOTO MACHINERY CO., LTD, KOTO MACHINRY CO., LTD, HANGZHOU FUYANG KOTO MACHINERY. Official Remarks: Website https://kotomachinery.wixsite.com/kotomach/blank; Additional Sanctions Information - Subject to Secondary Sanctions; Linked To: IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-OFAC-41127",
+    "doc_name": "US_Treasury_OFAC_SDN_Entry_41127.txt",
+    "doc_type": "ofac_sdn_record",
+    "page_number": 1,
+    "content": "US Treasury OFAC SDN Official Record #41127 (US Gov Public Domain): Name: GUILIN ALPHA RUBBER & PLASTICS TECHNOLOGY CO., LTD. Type: -0-. Programs: [NPWMD] [IFSR]. Jurisdiction/Address Country: CHINA. Aliases: GUILIN ALPHA RUBBER & PLASTICS TECHNOLOGY COMPANY, GUILIN ALPHA RUBBER AND PLASTICS TECHNOLOGY CO., LTD, GUILIN ALPHA RUBBER AND PLASTICS TECHNOLOGY COMPANY. Official Remarks: Website www.alpha06.com; alt. Website www.alpha06.cn; alt. Website www.alphaindustry.cn; Additional Sanctions Information - Subject to Secondary Sanctions; Organization Code 791301394 (China); Registration Number 450305200023881 (China); Unified Social Credit Code (USCC) 91450305791301394Q (China); Linked To: IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-SYN-SYN-APPLICANT-ENERGY-02",
+    "doc_name": "MODELED_KYC_DOSSIER_SYN-APPLICANT-ENERGY-02.txt",
+    "doc_type": "modeled_kyc_application",
+    "page_number": 1,
+    "content": "MODELED_BRIDGE fictional bank onboarding dossier: SYN-APPLICANT-ENERGY-02 requests a $12.0M correspondent settlement facility; wire counterparties include OFAC-listed MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS.",
+    "data_origin": "MODELED_BRIDGE",
+    "source_license": "MODELED",
+    "source_url": ""
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "chunk_id": "CHK-SYN-SYN-APPLICANT-TRADE-01",
+    "doc_name": "MODELED_KYC_DOSSIER_SYN-APPLICANT-TRADE-01.txt",
+    "doc_type": "modeled_kyc_application",
+    "page_number": 1,
+    "content": "MODELED_BRIDGE fictional bank onboarding dossier: SYN-APPLICANT-TRADE-01 requests an $18.5M trade-finance credit line; KYC beneficial-ownership disclosure reveals a minority intermediary link to OFAC-listed entity MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY.",
+    "data_origin": "MODELED_BRIDGE",
+    "source_license": "MODELED",
+    "source_url": ""
+  }
+]

@@ -1,0 +1,63 @@
+pack_id: legal_ma_clause_graph
+title: "M&A Change-of-Control, Anti-Assignment & IP Clause Contagion"
+subtitle: "Trace cascading contract termination triggers, IP license encumbrances, and governing-law exposure across real CUAD SEC Exhibit 10 agreements."
+industry: "Corporate Legal & Private Equity M&A"
+persona: "General Counsel / M&A Deal Partner"
+manual_baseline_cost_usd: 3200.00
+manual_baseline_minutes: 600
+default_max_hops: 4
+primary_sources:
+  - "CUAD v1 (The Atticus Project, Zenodo 4595826) Real SEC Exhibit 10 Contracts — CC-BY 4.0"
+  - "SEC EDGAR Material Agreements & Exhibit 21.1 Subsidiary Disclosures — US Gov Public Domain"
+ontology:
+  node_types:
+    - type: DealScenario
+      label: "M&A Target / Acquiror Scenario"
+      color: "#DC2626"
+      shape: diamond
+      is_revenue_bearing: false
+    - type: CompanyOrParty
+      label: "Contracting Party / Subsidiary"
+      color: "#2563EB"
+      shape: hexagon
+      is_revenue_bearing: true
+    - type: MaterialContract
+      label: "SEC Exhibit 10 Commercial Agreement"
+      color: "#7C3AED"
+      shape: circle
+      is_revenue_bearing: true
+    - type: LegalClause
+      label: "Change-of-Control / Anti-Assignment / IP Clause"
+      color: "#D97706"
+      shape: square
+      is_revenue_bearing: false
+    - type: Jurisdiction
+      label: "Governing Law Jurisdiction"
+      color: "#0891B2"
+      shape: square
+      is_revenue_bearing: false
+  edge_types:
+    - type: ACQUIRES_OR_TARGETS
+      label: "Targets / Acquires Party"
+      directed: true
+      propagates_risk: true
+    - type: PARTY_TO_CONTRACT
+      label: "Contracting Party To"
+      directed: true
+      propagates_risk: true
+    - type: CONTAINS_CLAUSE
+      label: "Contains Risk Clause"
+      directed: true
+      propagates_risk: true
+    - type: GOVERNED_BY_LAW
+      label: "Governed By Jurisdiction"
+      directed: true
+      propagates_risk: false
+    - type: ENCUMBERS_IP_OR_REVENUE
+      label: "Encumbers Shared IP / Exclusivity"
+      directed: true
+      propagates_risk: true
+  dlp_info_types:
+    - EMAIL_ADDRESS
+    - PHONE_NUMBER
+    - PERSON_NAME

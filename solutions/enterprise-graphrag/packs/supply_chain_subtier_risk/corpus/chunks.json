@@ -1,0 +1,101 @@
+[
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "chunk_id": "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL",
+    "doc_name": "MODELED_SCENARIO_MOD-EVENT-CHINA-EXPORT-CTRL.txt",
+    "doc_type": "modeled_disruption_scenario",
+    "page_number": 1,
+    "content": "MODELED_BRIDGE what-if scenario: Hypothetical 90-day export licensing delay affecting tungsten and tin refining facilities located in China, modeled to stress-test multi-tier semiconductor supply exposure.",
+    "data_origin": "MODELED_BRIDGE",
+    "source_license": "MODELED",
+    "source_url": ""
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "chunk_id": "CHK-SEC-SD-ISSUER-AMD",
+    "doc_name": "SEC_FormSD_2026_ISSUER-AMD_fy2025cmr.htm",
+    "doc_type": "sec_form_sd_cmr",
+    "page_number": 1,
+    "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0000002488-26-000103, US Gov Public Domain) filed by Advanced Micro Devices, Inc. (CIK 2488). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000103/fy2025cmr.htm"
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+    "doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+    "doc_type": "sec_form_sd_cmr",
+    "page_number": 1,
+    "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0000050863-26-000132, US Gov Public Domain) filed by Intel Corporation (CIK 50863). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm"
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "chunk_id": "CHK-SEC-SD-ISSUER-NVIDIA",
+    "doc_name": "SEC_FormSD_2026_ISSUER-NVIDIA_a2026conflictmineralsrepor.htm",
+    "doc_type": "sec_form_sd_cmr",
+    "page_number": 1,
+    "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0001045810-26-000043, US Gov Public Domain) filed by NVIDIA Corporation (CIK 1045810). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000043/a2026conflictmineralsrepor.htm"
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "chunk_id": "CHK-SEC-SD-ISSUER-QUALCOMM",
+    "doc_name": "SEC_FormSD_2026_ISSUER-QUALCOMM_ex101-conflictmineralsrepo.htm",
+    "doc_type": "sec_form_sd_cmr",
+    "page_number": 1,
+    "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0000804328-26-000069, US Gov Public Domain) filed by QUALCOMM Incorporated (CIK 804328). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/804328/000080432826000069/ex101-conflictmineralsrepo.htm"
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "chunk_id": "CHK-USGS-GOLD",
+    "doc_name": "USGS_MCS_2025_Gold.txt",
+    "doc_type": "usgs_mineral_summary",
+    "page_number": 1,
+    "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): Gold is globally diversified across China (~12%), Australia, Canada, and Japan/Korea refining hubs, used extensively in semiconductor wire bonding and corrosion-resistant connectors.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/"
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "chunk_id": "CHK-USGS-TANTALUM",
+    "doc_name": "USGS_MCS_2025_Tantalum.txt",
+    "doc_type": "usgs_mineral_summary",
+    "page_number": 1,
+    "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): The Democratic Republic of the Congo and Rwanda together supply over 60% of global primary tantalum ore used in high-capacitance electronic capacitors and semiconductor barrier layers; U.S. net import reliance is 100% for primary tantalum.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/"
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "chunk_id": "CHK-USGS-TIN",
+    "doc_name": "USGS_MCS_2025_Tin.txt",
+    "doc_type": "usgs_mineral_summary",
+    "page_number": 1,
+    "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): China and Indonesia together account for nearly half of global refined tin supply critical for lead-free electronics solder across server boards, GPUs, and mobile SoCs; U.S. net import reliance is ~77%.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/"
+  },
+  {
+    "pack_id": "supply_chain_subtier_risk",
+    "chunk_id": "CHK-USGS-TUNGSTEN",
+    "doc_name": "USGS_MCS_2025_Tungsten.txt",
+    "doc_type": "usgs_mineral_summary",
+    "page_number": 1,
+    "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): China accounts for approximately 81% of global primary tungsten mine production and dominates ammonium paratungstate (APT) refining used in semiconductor metallization, aerospace tooling, and high-density contacts; U.S. net import reliance exceeds 50%.",
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.sciencebase.gov/catalog/item/6798f5d9d34ea8c18376e88d"
+  }
+]

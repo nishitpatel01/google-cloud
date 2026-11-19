@@ -12,7 +12,7 @@ Solutions are added here incrementally as each standalone app is implemented, te
 
 | Solution | Category | Industries | Core GCP AI Stack | Status |
 | :--- | :--- | :--- | :--- | :---: |
-| *First solution launching soon* | Agentic / GenAI / MLOps | Multi-Industry | Cloud Run, Vertex AI, ADK, BigQuery, Terraform | In Preparation |
+| [**Enterprise GraphRAG & Contagion Explorer**](enterprise-graphrag/README.md) (`enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2`, ADK, Cloud Run | Phase 0 Complete (`24` tests passing) |
 
 ---
 

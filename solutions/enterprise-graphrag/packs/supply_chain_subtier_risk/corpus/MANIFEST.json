@@ -1,0 +1,16 @@
+{
+  "pack_id": "supply_chain_subtier_risk",
+  "entities_count": 34,
+  "edges_count": 95,
+  "chunks_count": 9,
+  "benchmark_questions": 5,
+  "real_public_entity_pct": 97.1,
+  "real_public_edge_pct": 98.9,
+  "real_public_chunk_pct": 88.9,
+  "real_public_overall_pct": 97.8,
+  "sha256": {
+    "entities.json": "f1646536023e5a7ad3a8221fbc1378677a622a42315b87d867ef9eef39d5543f",
+    "edges.json": "cf58bce6db5ec483f4f03a0cc2d091b4daaf4e1652d3e89b24f77717776b8867",
+    "chunks.json": "79bff6e058b1bdb2755562b90391d58d15fb95f7be417c5f8b79f632a7ba6dac"
+  }
+}

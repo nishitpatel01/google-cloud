@@ -1,0 +1,16 @@
+{
+  "pack_id": "legal_ma_clause_graph",
+  "entities_count": 43,
+  "edges_count": 78,
+  "chunks_count": 12,
+  "benchmark_questions": 5,
+  "real_public_entity_pct": 95.3,
+  "real_public_edge_pct": 92.3,
+  "real_public_chunk_pct": 83.3,
+  "real_public_overall_pct": 92.5,
+  "sha256": {
+    "entities.json": "b2c33251a8c026ca4e2577b96ee05471106f27e33dc1972dbefd0c4f0f603fe4",
+    "edges.json": "be57f1310485ea6331d65b42078727c0b3cc3eb3a81700d6659ed54c6a47d448",
+    "chunks.json": "d3572ed30872f7dd72cbdc4814f8860b9d8643aa3dcf4e5729428f4cb9fa98e4"
+  }
+}

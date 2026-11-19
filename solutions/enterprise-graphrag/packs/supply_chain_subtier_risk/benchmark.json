@@ -1,0 +1,132 @@
+{
+  "pack_id": "supply_chain_subtier_risk",
+  "questions": [
+    {
+      "question_id": "sc_q01",
+      "question": "Trace the 3-hop contagion chain from Intel Corporation through disclosed Tungsten smelters in China to the modeled export-control disruption scenario.",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "ISSUER-INTEL"
+      ],
+      "expected_entity_ids": [
+        "ISSUER-INTEL",
+        "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+        "COUNTRY-CHINA",
+        "MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "expected_edge_ids": [
+        "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CHINA-MOL-748BD926",
+        "EDGE-LOC-SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGS-64D61CA7",
+        "EDGE-MOD-COUNTRY-CHINA-MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "expected_answer_points": [
+        "Intel discloses Tungsten smelter China Molybdenum Tungsten Co., Ltd. in China",
+        "China exposure links directly to the modeled export-licensing delay scenario"
+      ],
+      "why_flat_vector_misses": "Intel's Form SD never mentions the modeled export-control shock; linking issuer -> smelter -> country -> disruption requires 3 graph hops across separate filings."
+    },
+    {
+      "question_id": "sc_q02",
+      "question": "Which USGS-tracked country dominates the global mineral refined by NVIDIA's disclosed Tin smelters across a 3-hop path?",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "ISSUER-NVIDIA"
+      ],
+      "expected_entity_ids": [
+        "ISSUER-NVIDIA",
+        "SMELTER-TIN-GLOBAL-ADVANCED-METALS-GREENBUSHES-PTY-LTD",
+        "MINERAL-TIN",
+        "COUNTRY-CHINA"
+      ],
+      "expected_edge_ids": [
+        "EDGE-SRC-ISSUER-NVIDIA-SMELTER-TIN-GLOBAL-ADVANC-5F186091",
+        "EDGE-REF-SMELTER-TIN-GLOBAL-ADVANCED-METALS-GREE-277C4220",
+        "EDGE-USGS-TIN-CHINA"
+      ],
+      "expected_answer_points": [
+        "NVIDIA discloses Tin smelter Global Advanced Metals Greenbushes Pty Ltd.",
+        "USGS Mineral Commodity Summaries show China dominates global Tin supply (~48% with Indonesia)"
+      ],
+      "why_flat_vector_misses": "NVIDIA's Conflict Minerals Report lists smelter names without USGS global supply-share statistics; connecting them requires Issuer -> Smelter -> Mineral -> Country traversal."
+    },
+    {
+      "question_id": "sc_q03",
+      "question": "Trace AMD's Tantalum smelter disclosures through mineral refining to the USGS top primary-producing country.",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "ISSUER-AMD"
+      ],
+      "expected_entity_ids": [
+        "ISSUER-AMD",
+        "SMELTER-TANTALUM-AMG-BRASIL",
+        "MINERAL-TANTALUM",
+        "COUNTRY-DR-CONGO"
+      ],
+      "expected_edge_ids": [
+        "EDGE-SRC-ISSUER-AMD-SMELTER-TANTALUM-AMG-BRASIL",
+        "EDGE-REF-SMELTER-TANTALUM-AMG-BRASIL-MINERAL-TANTALUM",
+        "EDGE-USGS-TANTALUM-DR-CONGO"
+      ],
+      "expected_answer_points": [
+        "AMD discloses Tantalum smelter AMG Brasil",
+        "USGS reports DR Congo (with Rwanda) supplies >60% of primary Tantalum with 100% US net import reliance"
+      ],
+      "why_flat_vector_misses": "AMD's smelter table does not state USGS global production concentration; flat chunk search misses the intermediate smelter-to-mineral bridge."
+    },
+    {
+      "question_id": "sc_q04",
+      "question": "Starting from the modeled China export-control disruption event, trace upstream 3 hops to identify which public semiconductor issuers share exposure via the same Tier-2 smelter.",
+      "hop_depth": 3,
+      "direction": "incoming",
+      "seed_entity_ids": [
+        "MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "expected_entity_ids": [
+        "MOD-EVENT-CHINA-EXPORT-CTRL",
+        "COUNTRY-CHINA",
+        "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+        "ISSUER-INTEL",
+        "ISSUER-NVIDIA"
+      ],
+      "expected_edge_ids": [
+        "EDGE-MOD-COUNTRY-CHINA-MOD-EVENT-CHINA-EXPORT-CTRL",
+        "EDGE-LOC-SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGS-64D61CA7",
+        "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CHINA-MOL-748BD926",
+        "EDGE-SRC-ISSUER-NVIDIA-SMELTER-TUNGSTEN-CHINA-MO-C48C59CC"
+      ],
+      "expected_answer_points": [
+        "Shared Tier-2 smelter China Molybdenum Tungsten Co., Ltd. connects multiple issuers",
+        "Both Intel Corporation and NVIDIA Corporation inherit upstream disruption risk"
+      ],
+      "why_flat_vector_misses": "Reverse upstream contagion from a disruption scenario to multiple issuers sharing an identical smelter requires incoming multi-hop traversal across separate Form SD filings."
+    },
+    {
+      "question_id": "sc_q05",
+      "question": "Which China-located smelters disclosed by QUALCOMM connect within 3 hops to the modeled China critical-mineral export-control disruption?",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "ISSUER-QUALCOMM"
+      ],
+      "expected_entity_ids": [
+        "ISSUER-QUALCOMM",
+        "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+        "COUNTRY-CHINA",
+        "MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "expected_edge_ids": [
+        "EDGE-SRC-ISSUER-QUALCOMM-SMELTER-TUNGSTEN-CHINA--6084A012",
+        "EDGE-LOC-SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGS-64D61CA7",
+        "EDGE-MOD-COUNTRY-CHINA-MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "expected_answer_points": [
+        "QUALCOMM discloses China facility China Molybdenum Tungsten Co., Ltd.",
+        "Facility location creates 3-hop exposure to the modeled export-control scenario"
+      ],
+      "why_flat_vector_misses": "QUALCOMM's filing does not mention hypothetical export controls; flat vector retrieval fails to join issuer disclosures with disruption events."
+    }
+  ]
+}
