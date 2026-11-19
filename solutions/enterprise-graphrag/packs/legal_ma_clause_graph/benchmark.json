@@ -1,0 +1,132 @@
+{
+  "pack_id": "legal_ma_clause_graph",
+  "questions": [
+    {
+      "question_id": "ma_q01",
+      "question": "For Modeled M&A Scenario Alpha, trace 3 hops from the acquisition scenario through target contracting parties and their SEC Exhibit 10 agreements to Change-of-Control consent triggers.",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-ALPHA"
+      ],
+      "expected_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-ALPHA",
+        "PARTY-01-1-PSITECH-CORPORATION",
+        "CTR-CUAD-01",
+        "CLAUSE-CHANGE-OF-CONTROL"
+      ],
+      "expected_edge_ids": [
+        "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-01-1-PSI-C3F0EE8B",
+        "EDGE-PTY-PARTY-01-1-PSITECH-CORPORATION-CTR-CUAD-01",
+        "EDGE-CL-CTR-CUAD-01-CLAUSE-CHANGE-OF-CONTROL"
+      ],
+      "expected_answer_points": [
+        "Target party PSiTech Corporation holds WEBSITE CONTENT LICENSE AGREEMENT with an annotated Change-of-Control clause",
+        "Requires pre-closing counterparty consent across the Portfolio Alpha contracts"
+      ],
+      "why_flat_vector_misses": "The acquisition memo names target companies without quoting Exhibit 10 clauses; connecting Deal -> Party -> Contract -> Change-of-Control requires 3 hops."
+    },
+    {
+      "question_id": "ma_q02",
+      "question": "Trace 3 hops from Portfolio Acquisition Beta to identify which commercial agreements combine Anti-Assignment restrictions with IP License Grants.",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-BETA"
+      ],
+      "expected_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-BETA",
+        "PARTY-04-1-SKYPE-COMMUNICATIONS-S",
+        "CTR-CUAD-04",
+        "CLAUSE-ANTI-ASSIGNMENT",
+        "CLAUSE-LICENSE-GRANT"
+      ],
+      "expected_edge_ids": [
+        "EDGE-DEAL-MOD-DEAL-PORTFOLIO-BETA-PARTY-04-1-SKYP-D8DFFE29",
+        "EDGE-PTY-PARTY-04-1-SKYPE-COMMUNICATIONS-S-CTR-CUAD-04",
+        "EDGE-CL-CTR-CUAD-04-CLAUSE-ANTI-ASSIGNMENT",
+        "EDGE-CL-CTR-CUAD-04-CLAUSE-LICENSE-GRANT"
+      ],
+      "expected_answer_points": [
+        "Agreement CO-BRANDING AGREEMENT restricts assignment and carries an active license grant",
+        "Closing without assignment waivers risks IP license termination"
+      ],
+      "why_flat_vector_misses": "Flat vector search retrieves isolated license paragraphs without tying them back through entity ownership to the carve-out perimeter."
+    },
+    {
+      "question_id": "ma_q03",
+      "question": "Which real agreements under Modeled M&A Scenario: Portfolio Roll-Up Acquisition Alpha carry an IP Ownership Assignment encumbrance, traced 3 hops from the deal scenario?",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-ALPHA"
+      ],
+      "expected_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-ALPHA",
+        "PARTY-03-1-MARINE-MP-LLC",
+        "CTR-CUAD-03",
+        "CLAUSE-IP-OWNERSHIP"
+      ],
+      "expected_edge_ids": [
+        "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-03-1-MAR-88BC93D8",
+        "EDGE-PTY-PARTY-03-1-MARINE-MP-LLC-CTR-CUAD-03",
+        "EDGE-CL-CTR-CUAD-03-CLAUSE-IP-OWNERSHIP"
+      ],
+      "expected_answer_points": [
+        "Contract ENDORSEMENT LICENSING AND CO-BRANDING AGREEMENT contains an expert-annotated IP Ownership Assignment clause",
+        "Acquiror must audit assigned foreground IP rights prior to signing"
+      ],
+      "why_flat_vector_misses": "Deal memos and SEC Exhibit 10 IP assignment clauses reside in disjoint documents with no shared lexical overlap."
+    },
+    {
+      "question_id": "ma_q04",
+      "question": "Starting from the Change-of-Control clause node, traverse upstream 3 hops to list impacted commercial contracts, contracting parties, and M&A scenarios.",
+      "hop_depth": 3,
+      "direction": "incoming",
+      "seed_entity_ids": [
+        "CLAUSE-CHANGE-OF-CONTROL"
+      ],
+      "expected_entity_ids": [
+        "CLAUSE-CHANGE-OF-CONTROL",
+        "CTR-CUAD-01",
+        "PARTY-01-1-PSITECH-CORPORATION",
+        "MOD-DEAL-PORTFOLIO-ALPHA"
+      ],
+      "expected_edge_ids": [
+        "EDGE-CL-CTR-CUAD-01-CLAUSE-CHANGE-OF-CONTROL",
+        "EDGE-PTY-PARTY-01-1-PSITECH-CORPORATION-CTR-CUAD-01",
+        "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-01-1-PSI-C3F0EE8B"
+      ],
+      "expected_answer_points": [
+        "Reverse clause-to-deal traversal surfaces all affected contracts across Portfolio Alpha and Beta",
+        "Includes WEBSITE CONTENT LICENSE AGREEMENT and CO-BRANDING AGREEMENT"
+      ],
+      "why_flat_vector_misses": "Top-k semantic search on 'change of control' returns fragmented paragraphs and misses the reverse join back to deal-level exposure."
+    },
+    {
+      "question_id": "ma_q05",
+      "question": "Map the governing-law jurisdictions applicable to Portfolio Alpha's commercial contracts across a 3-hop Deal -> Party -> Contract -> Jurisdiction traversal.",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-ALPHA"
+      ],
+      "expected_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-ALPHA",
+        "PARTY-02-1-WOMEN-COM-NETWORKS-INC",
+        "CTR-CUAD-02",
+        "LAW-CALIFORNIA"
+      ],
+      "expected_edge_ids": [
+        "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-02-1-WOM-97E98E76",
+        "EDGE-PTY-PARTY-02-1-WOMEN-COM-NETWORKS-INC-CTR-CUAD-02",
+        "EDGE-LAW-CTR-CUAD-02-LAW-CALIFORNIA"
+      ],
+      "expected_answer_points": [
+        "Portfolio Alpha spans governing law California (CO-BRANDING AGREEMENT)",
+        "Also involves Nevada and California legal venues for consent disputes"
+      ],
+      "why_flat_vector_misses": "Governing law clauses appear at the end of contracts with no mention of the portfolio acquisition grouping."
+    }
+  ]
+}

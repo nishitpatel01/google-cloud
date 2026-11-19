@@ -1,0 +1,68 @@
+pack_id: supply_chain_subtier_risk
+title: "Multi-Tier Supply Chain & Critical Mineral Contagion"
+subtitle: "Trace shared Tier-2/3 smelters, conflict minerals, and single-source country concentration across real SEC Form SD, 10-K, and USGS disclosures."
+industry: "Manufacturing, Electronics & Aerospace"
+persona: "Chief Supply Chain Officer"
+manual_baseline_cost_usd: 4500.00
+manual_baseline_minutes: 960
+default_max_hops: 4
+primary_sources:
+  - "SEC EDGAR Form SD / Conflict Minerals Reports (2026) — US Gov Public Domain"
+  - "SEC EDGAR Form 10-K Item 1A Risk Factors & Exhibit 21.1 — US Gov Public Domain"
+  - "USGS Mineral Commodity Summaries (Critical Minerals) — US Gov Public Domain"
+ontology:
+  node_types:
+    - type: Issuer
+      label: "Public Issuer / OEM"
+      color: "#2563EB"
+      shape: hexagon
+      is_revenue_bearing: true
+    - type: ComponentOrMetal
+      label: "Component / 3TG Mineral"
+      color: "#0891B2"
+      shape: circle
+      is_revenue_bearing: false
+    - type: SmelterOrSupplier
+      label: "Tier-2/3 Smelter / Supplier"
+      color: "#7C3AED"
+      shape: circle
+      is_revenue_bearing: false
+    - type: CountryOrHub
+      label: "Sourcing Country / Hub"
+      color: "#D97706"
+      shape: square
+      is_revenue_bearing: false
+    - type: DisruptionEvent
+      label: "Regulatory / Disruption Risk"
+      color: "#DC2626"
+      shape: diamond
+      is_revenue_bearing: false
+  edge_types:
+    - type: DEPENDS_ON_MINERAL
+      label: "Depends On Mineral / Component"
+      directed: true
+      propagates_risk: true
+    - type: SOURCED_FROM_SMELTER
+      label: "Sourced From Disclosed Smelter"
+      directed: true
+      propagates_risk: true
+    - type: REFINES_MINERAL
+      label: "Refines / Processes Mineral"
+      directed: true
+      propagates_risk: true
+    - type: LOCATED_IN
+      label: "Operates / Located In"
+      directed: true
+      propagates_risk: true
+    - type: DOMINATED_BY_COUNTRY
+      label: "Global Supply Concentrated In"
+      directed: true
+      propagates_risk: true
+    - type: EXPOSED_TO_DISRUPTION
+      label: "Exposed To Disruption / Control"
+      directed: true
+      propagates_risk: true
+  dlp_info_types:
+    - EMAIL_ADDRESS
+    - PHONE_NUMBER
+    - PERSON_NAME

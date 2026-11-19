@@ -1,0 +1,16 @@
+{
+  "pack_id": "banking_aml_ubo_contagion",
+  "entities_count": 26,
+  "edges_count": 33,
+  "chunks_count": 21,
+  "benchmark_questions": 5,
+  "real_public_entity_pct": 92.3,
+  "real_public_edge_pct": 93.9,
+  "real_public_chunk_pct": 90.5,
+  "real_public_overall_pct": 92.5,
+  "sha256": {
+    "entities.json": "d1299110ed34a4d9f02b3f7a125c30b31e6333c1257c8ded1d8973d831b0ebb4",
+    "edges.json": "2897a9a13b55427b58c31cb2be7cd92bf1f601ad548a10abe800960e4c34da4e",
+    "chunks.json": "377b6b910d15eecc2f37941ebcdb10fd47122c92f35cb22abe50bf32688143ed"
+  }
+}

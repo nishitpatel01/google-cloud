@@ -1,0 +1,36 @@
+Enterprise GraphRAG Accelerator (solutions/enterprise-graphrag)
+Copyright (c) Google Cloud Solutions Contributors
+
+This solution incorporates curated excerpts from authoritative, permissively
+licensed public datasets for demonstration and benchmarking:
+
+1. Contract Understanding Atticus Dataset (CUAD) v1
+   Source: The Atticus Project (https://doi.org/10.5281/zenodo.4595826)
+   License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+   https://creativecommons.org/licenses/by/4.0/
+   Usage: Curated excerpts of real SEC EDGAR Exhibit 10 commercial contracts
+   and expert clause annotations (Change of Control, Anti-Assignment, License
+   Grant, IP Ownership) used in packs/legal_ma_clause_graph/.
+
+2. U.S. Securities and Exchange Commission (SEC) EDGAR Public Filings
+   Source: https://www.sec.gov/edgar (Form 10-K, Form SD Conflict Minerals
+   Reports, Exhibit 21.1 Subsidiaries, Exhibit 10 Material Contracts)
+   License: U.S. Government Public Domain.
+
+3. U.S. Department of the Treasury — Office of Foreign Assets Control (OFAC)
+   Source: https://www.treasury.gov/ofac/downloads/ (SDN, ALT, ADD lists)
+   License: U.S. Government Public Domain.
+
+4. U.S. Geological Survey (USGS) — Mineral Commodity Summaries
+   Source: https://www.sciencebase.gov/catalog/ (USGS National Minerals
+   Information Center)
+   License: U.S. Government Public Domain.
+
+5. Global Legal Entity Identifier Foundation (GLEIF) — LEI Level 1 & 2 Data
+   Source: https://api.gleif.org/
+   License: Creative Commons Zero v1.0 Universal (CC0 1.0 Public Domain).
+
+Any hypothetical disruption scenarios, modeled SKU revenue splits, redacted
+contract deal schedules, or fictional bank loan applicants added solely to
+demonstrate end-to-end what-if contagion simulations are explicitly labeled
+with data_origin="MODELED_BRIDGE" in both storage tables and UI badges.

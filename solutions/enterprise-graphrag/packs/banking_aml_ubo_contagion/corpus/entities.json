@@ -1,0 +1,558 @@
+[
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "GLEIF-5493001MUQVL0LIMI213",
+    "canonical_name": "INTEL INVEST",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "CY",
+    "risk_tier": "LOW",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC0_1_0",
+    "source_url": "https://api.gleif.org/api/v1/lei-records/5493001MUQVL0LIMI213",
+    "source_chunk_ids": [
+      "CHK-GLEIF-5493001MUQVL0LIMI213"
+    ],
+    "attributes": {
+      "lei": "5493001MUQVL0LIMI213"
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "GLEIF-815600423B1B667F7E37",
+    "canonical_name": "INTEL ITALY - S.R.L.",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IT",
+    "risk_tier": "LOW",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC0_1_0",
+    "source_url": "https://api.gleif.org/api/v1/lei-records/815600423B1B667F7E37",
+    "source_chunk_ids": [
+      "CHK-GLEIF-815600423B1B667F7E37"
+    ],
+    "attributes": {
+      "lei": "815600423B1B667F7E37"
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "GLEIF-KNX4USFCNGPY45LOCE31",
+    "canonical_name": "INTEL CORPORATION",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "US-DE",
+    "risk_tier": "LOW",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "CC0_1_0",
+    "source_url": "https://api.gleif.org/api/v1/lei-records/KNX4USFCNGPY45LOCE31",
+    "source_chunk_ids": [
+      "CHK-GLEIF-KNX4USFCNGPY45LOCE31"
+    ],
+    "attributes": {
+      "lei": "KNX4USFCNGPY45LOCE31"
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-10392",
+    "canonical_name": "MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-10392"
+    ],
+    "attributes": {
+      "ofac_ent_num": "10392",
+      "programs": "SDGT] [NPWMD] [IFSR] [IRAN-CON-ARMS-EO] [RUSSIA-EO14024",
+      "aliases": [
+        "MINISTRY OF DEFENSE AND SUPPORT FOR ARMED FORCES LOGISTICS",
+        "MODAFL",
+        "MODSAF"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-10465",
+    "canonical_name": "ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE",
+    "entity_type": "SanctionedOrg",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-10465"
+    ],
+    "attributes": {
+      "ofac_ent_num": "10465",
+      "programs": "FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR] [ELECTION-EO13848",
+      "aliases": [
+        "PASDARAN-E ENGHELAB-E ISLAMI (PASDARAN)",
+        "SEPAH-E QODS (JERUSALEM FORCE)",
+        "IRGC-QF"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-11195",
+    "canonical_name": "IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-11195"
+    ],
+    "attributes": {
+      "ofac_ent_num": "11195",
+      "programs": "NPWMD] [IFSR] [IRAN-CON-ARMS-EO",
+      "aliases": [
+        "HESA TRADE CENTER",
+        "IRAN AIRCRAFT MANUFACTURING INDUSTRIES",
+        "IRAN AIRCRAFT MANUFACTURING COMPANY"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-11317",
+    "canonical_name": "NATIONAL IRANIAN OIL COMPANY",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-11317"
+    ],
+    "attributes": {
+      "ofac_ent_num": "11317",
+      "programs": "IRAN] [SDGT] [IFSR] [IFCA",
+      "aliases": [
+        "NIOC"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-11618",
+    "canonical_name": "NATIONAL PETROCHEMICAL COMPANY",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-11618"
+    ],
+    "attributes": {
+      "ofac_ent_num": "11618",
+      "programs": "IRAN] [SDGT] [IFSR",
+      "aliases": [
+        "THE NATIONAL PETROCHEMICAL COMPANY"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-12727",
+    "canonical_name": "BASIJ RESISTANCE FORCE",
+    "entity_type": "SanctionedOrg",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-12727"
+    ],
+    "attributes": {
+      "ofac_ent_num": "12727",
+      "programs": "FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR",
+      "aliases": [
+        "SAZMAN-E MOGHAVEMAT-E BASIJ",
+        "BASIJ-E MELLI",
+        "BASEEJ"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-12802",
+    "canonical_name": "MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-12802"
+    ],
+    "attributes": {
+      "ofac_ent_num": "12802",
+      "programs": "SDGT] [NPWMD] [IRGC] [IFSR",
+      "aliases": [
+        "MEHR EGHTESAD IRANIAN INVESTMENT COMPANY",
+        "MEHR IRANIAN ECONOMY COMPANY",
+        "MEHR IRANIAN ECONOMY INVESTMENTS"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-17260",
+    "canonical_name": "STATE CORPORATION ROSTEC",
+    "entity_type": "SanctionedOrg",
+    "jurisdiction": "RUSSIA",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-17260"
+    ],
+    "attributes": {
+      "ofac_ent_num": "17260",
+      "programs": "UKRAINE-EO13662] [RUSSIA-EO14024",
+      "aliases": [
+        "STATE CORPORATION FOR THE PROMOTION OF THE DEVELOPMENT, MANUFACTURE, AND EXPORT OF HIGH TECH PRODUCTS ROSTEC"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-18782",
+    "canonical_name": "ROSOBORONEKSPORT OAO",
+    "entity_type": "SanctionedOrg",
+    "jurisdiction": "RUSSIA",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-18782"
+    ],
+    "attributes": {
+      "ofac_ent_num": "18782",
+      "programs": "UKRAINE-EO13662] [IRAN-CON-ARMS-EO] [RUSSIA-EO14024",
+      "aliases": [
+        "RUSSIAN DEFENSE EXPORT ROSOBORONEXPORT",
+        "ROSOBORONEXPORT JSC",
+        "ROSOBORONEKSPORT OJSC"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-25017",
+    "canonical_name": "BONYAD TAAVON BASIJ",
+    "entity_type": "SanctionedOrg",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-25017"
+    ],
+    "attributes": {
+      "ofac_ent_num": "25017",
+      "programs": "SDGT] [IFSR",
+      "aliases": [
+        "BASIJ COOPERATIVE FOUNDATION"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-25018",
+    "canonical_name": "MEHR EQTESAD BANK",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-25018"
+    ],
+    "attributes": {
+      "ofac_ent_num": "25018",
+      "programs": "SDGT] [IFSR",
+      "aliases": [
+        "MEHR INTEREST-FREE BANK"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-25020",
+    "canonical_name": "TADBIRGARAN ATIYEH IRANIAN INVESTMENT COMPANY",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-25020"
+    ],
+    "attributes": {
+      "ofac_ent_num": "25020",
+      "programs": "SDGT] [IFSR",
+      "aliases": []
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-25037",
+    "canonical_name": "MEHR EQTESAD FINANCIAL GROUP",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-25037"
+    ],
+    "attributes": {
+      "ofac_ent_num": "25037",
+      "programs": "SDGT] [IFSR",
+      "aliases": []
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-29788",
+    "canonical_name": "MINISTRY OF PETROLEUM",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "IRAN",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-29788"
+    ],
+    "attributes": {
+      "ofac_ent_num": "29788",
+      "programs": "SDGT] [IFSR",
+      "aliases": [
+        "IRANIAN MINISTRY OF PETROLEUM"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-41123",
+    "canonical_name": "HANGZHOU FUYANG KOTO MACHINERY CO., LTD",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "CHINA",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-41123"
+    ],
+    "attributes": {
+      "ofac_ent_num": "41123",
+      "programs": "NPWMD] [IFSR",
+      "aliases": [
+        "KOTO MACHINERY CO., LTD",
+        "KOTO MACHINRY CO., LTD",
+        "HANGZHOU FUYANG KOTO MACHINERY"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "OFAC-41127",
+    "canonical_name": "GUILIN ALPHA RUBBER & PLASTICS TECHNOLOGY CO., LTD",
+    "entity_type": "CorporateEntity",
+    "jurisdiction": "CHINA",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-41127"
+    ],
+    "attributes": {
+      "ofac_ent_num": "41127",
+      "programs": "NPWMD] [IFSR",
+      "aliases": [
+        "GUILIN ALPHA RUBBER & PLASTICS TECHNOLOGY COMPANY",
+        "GUILIN ALPHA RUBBER AND PLASTICS TECHNOLOGY CO., LTD",
+        "GUILIN ALPHA RUBBER AND PLASTICS TECHNOLOGY COMPANY"
+      ]
+    }
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "PROG-FTO",
+    "canonical_name": "OFAC Program: FTO",
+    "entity_type": "ProgramOrJurisdiction",
+    "jurisdiction": "UNITED STATES",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-12727"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "PROG-IRAN",
+    "canonical_name": "OFAC Program: IRAN",
+    "entity_type": "ProgramOrJurisdiction",
+    "jurisdiction": "UNITED STATES",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-11317"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "PROG-NPWMD",
+    "canonical_name": "OFAC Program: NPWMD",
+    "entity_type": "ProgramOrJurisdiction",
+    "jurisdiction": "UNITED STATES",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-11195"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "PROG-SDGT",
+    "canonical_name": "OFAC Program: SDGT",
+    "entity_type": "ProgramOrJurisdiction",
+    "jurisdiction": "UNITED STATES",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-12802"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "PROG-UKRAINE-EO13662",
+    "canonical_name": "OFAC Program: UKRAINE-EO13662",
+    "entity_type": "ProgramOrJurisdiction",
+    "jurisdiction": "UNITED STATES",
+    "risk_tier": "CRITICAL",
+    "exposure_usd": 0.0,
+    "single_source": false,
+    "data_origin": "REAL_PUBLIC",
+    "source_license": "US_GOV_PUBLIC_DOMAIN",
+    "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+    "source_chunk_ids": [
+      "CHK-OFAC-18782"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "SYN-APPLICANT-ENERGY-02",
+    "canonical_name": "SYN-Applicant: Caspian Energy Brokers Ltd [Fictional Onboarding Case]",
+    "entity_type": "ApplicantOrEntity",
+    "jurisdiction": "UAE",
+    "risk_tier": "HIGH",
+    "exposure_usd": 12000000.0,
+    "single_source": false,
+    "data_origin": "MODELED_BRIDGE",
+    "source_license": "MODELED",
+    "source_url": "",
+    "source_chunk_ids": [
+      "CHK-SYN-SYN-APPLICANT-ENERGY-02"
+    ],
+    "attributes": {}
+  },
+  {
+    "pack_id": "banking_aml_ubo_contagion",
+    "entity_id": "SYN-APPLICANT-TRADE-01",
+    "canonical_name": "SYN-Applicant: Meridian Maritime Trade LLC [Fictional Onboarding Case]",
+    "entity_type": "ApplicantOrEntity",
+    "jurisdiction": "UAE",
+    "risk_tier": "HIGH",
+    "exposure_usd": 18500000.0,
+    "single_source": false,
+    "data_origin": "MODELED_BRIDGE",
+    "source_license": "MODELED",
+    "source_url": "",
+    "source_chunk_ids": [
+      "CHK-SYN-SYN-APPLICANT-TRADE-01"
+    ],
+    "attributes": {}
+  }
+]

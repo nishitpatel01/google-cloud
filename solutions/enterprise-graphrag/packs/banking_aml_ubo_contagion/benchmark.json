@@ -1,0 +1,130 @@
+{
+  "pack_id": "banking_aml_ubo_contagion",
+  "questions": [
+    {
+      "question_id": "aml_q01",
+      "question": "Trace the 3-hop indirect sanctions contagion chain from fictional onboarding applicant SYN-APPLICANT-TRADE-01 to the ultimate OFAC-designated organization BONYAD TAAVON BASIJ.",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "SYN-APPLICANT-TRADE-01"
+      ],
+      "expected_entity_ids": [
+        "SYN-APPLICANT-TRADE-01",
+        "OFAC-12802",
+        "OFAC-25018",
+        "OFAC-25017"
+      ],
+      "expected_edge_ids": [
+        "EDGE-SYN-SYN-APPLICANT-TRADE-01-OFAC-12802",
+        "EDGE-OFAC-OFAC-12802-OFAC-25018",
+        "EDGE-OFAC-OFAC-25018-OFAC-25017"
+      ],
+      "expected_answer_points": [
+        "Applicant links to MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY, which OFAC links to MEHR EQTESAD BANK",
+        "Second OFAC Linked To hop reaches BONYAD TAAVON BASIJ exposing $18.5M credit line"
+      ],
+      "why_flat_vector_misses": "The KYC dossier only names the first-hop entity and never mentions the ultimate 3rd-hop designated organization."
+    },
+    {
+      "question_id": "aml_q02",
+      "question": "Using solely US Treasury OFAC SDN records, trace the 3-hop path from MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY through MEHR EQTESAD BANK to the sanctions program governing BONYAD TAAVON BASIJ.",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "OFAC-12802"
+      ],
+      "expected_entity_ids": [
+        "OFAC-12802",
+        "OFAC-25018",
+        "OFAC-25017",
+        "PROG-SDGT"
+      ],
+      "expected_edge_ids": [
+        "EDGE-OFAC-OFAC-12802-OFAC-25018",
+        "EDGE-OFAC-OFAC-25018-OFAC-25017",
+        "EDGE-PROG-OFAC-25017-PROG-SDGT"
+      ],
+      "expected_answer_points": [
+        "100% real OFAC SDN Linked To hops: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY -> MEHR EQTESAD BANK -> BONYAD TAAVON BASIJ",
+        "Terminal sanctions program is OFAC Program: SDGT"
+      ],
+      "why_flat_vector_misses": "Each OFAC SDN record only prints its direct 1-hop Linked To remark; stitching 3 hops across separate SDN entries requires graph traversal."
+    },
+    {
+      "question_id": "aml_q03",
+      "question": "Trace the 3-hop indirect sanctions exposure for fictional applicant SYN-APPLICANT-ENERGY-02 through MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS to STATE CORPORATION ROSTEC.",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "SYN-APPLICANT-ENERGY-02"
+      ],
+      "expected_entity_ids": [
+        "SYN-APPLICANT-ENERGY-02",
+        "OFAC-10392",
+        "OFAC-18782",
+        "OFAC-17260"
+      ],
+      "expected_edge_ids": [
+        "EDGE-SYN-SYN-APPLICANT-ENERGY-02-OFAC-10392",
+        "EDGE-OFAC-OFAC-10392-OFAC-18782",
+        "EDGE-OFAC-OFAC-18782-OFAC-17260"
+      ],
+      "expected_answer_points": [
+        "Connects through MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS and ROSOBORONEKSPORT OAO",
+        "Reaches designated organization STATE CORPORATION ROSTEC on $12.0M settlement request"
+      ],
+      "why_flat_vector_misses": "Three separate documents hold the KYC wire, the intermediate OFAC entity, and the ultimate designated parent."
+    },
+    {
+      "question_id": "aml_q04",
+      "question": "Starting from OFAC-designated hub BONYAD TAAVON BASIJ, trace upstream 3 hops to uncover which onboarding applicants and intermediaries inherit indirect sanctions risk.",
+      "hop_depth": 3,
+      "direction": "incoming",
+      "seed_entity_ids": [
+        "OFAC-25017"
+      ],
+      "expected_entity_ids": [
+        "OFAC-25017",
+        "OFAC-25018",
+        "OFAC-12802",
+        "SYN-APPLICANT-TRADE-01"
+      ],
+      "expected_edge_ids": [
+        "EDGE-OFAC-OFAC-25018-OFAC-25017",
+        "EDGE-OFAC-OFAC-12802-OFAC-25018",
+        "EDGE-SYN-SYN-APPLICANT-TRADE-01-OFAC-12802"
+      ],
+      "expected_answer_points": [
+        "Reverse contagion traverses MEHR EQTESAD BANK and MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY",
+        "Flags SYN-APPLICANT-TRADE-01 for immediate AML escalation"
+      ],
+      "why_flat_vector_misses": "Reverse screening from a newly designated entity to downstream bank applicants requires incoming variable-length graph hops."
+    },
+    {
+      "question_id": "aml_q05",
+      "question": "Trace the real OFAC SDN multi-hop network starting at IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY through MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS and ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE to its primary sanctions program.",
+      "hop_depth": 3,
+      "direction": "outgoing",
+      "seed_entity_ids": [
+        "OFAC-11195"
+      ],
+      "expected_entity_ids": [
+        "OFAC-11195",
+        "OFAC-10392",
+        "OFAC-10465",
+        "PROG-FTO"
+      ],
+      "expected_edge_ids": [
+        "EDGE-OFAC-OFAC-11195-OFAC-10392",
+        "EDGE-OFAC-OFAC-10392-OFAC-10465",
+        "EDGE-PROG-OFAC-10465-PROG-FTO"
+      ],
+      "expected_answer_points": [
+        "Verifies real OFAC chain IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY -> MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS -> ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE",
+        "Maps to OFAC Program: FTO"
+      ],
+      "why_flat_vector_misses": "Multi-hop OFAC remarks are isolated across separate SDN rows that share no single text passage."
+    }
+  ]
+}
