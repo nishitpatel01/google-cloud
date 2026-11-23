@@ -74,6 +74,7 @@ export function ExplorerPage({
 }: ExplorerPageProps) {
   const [graphCache, setGraphCache] = useState<Record<string, PackGraphResponse>>({});
   const [loadErrors, setLoadErrors] = useState<Record<string, string | null>>({});
+  const [graphExpanded, setGraphExpanded] = useState(false);
   const [workByPack, setWorkByPack] = useState<Record<string, PackWorkState>>(() => ({
     [pack.pack_id]: createInitialWorkState(pack),
   }));
@@ -307,7 +308,7 @@ export function ExplorerPage({
         </div>
       )}
 
-      <div className="explorer-grid">
+      <div className={`explorer-grid${graphExpanded ? " graph-expanded" : ""}`}>
         {/* Left Rail: Investigation Controls & Sample Questions */}
         <aside className="panel" aria-label="Investigation controls">
           <div className="panel-header">
@@ -481,7 +482,7 @@ export function ExplorerPage({
         </aside>
 
         {/* Center: Interactive Network Visualization + Verbatim Source Evidence */}
-        <div className="stack-md">
+        <div className="explorer-center stack-md">
           {graph ? (
             <GraphCanvas
               nodes={graph.nodes}
@@ -491,6 +492,8 @@ export function ExplorerPage({
               highlightedEdgeIds={highlightedEdgeIds}
               selectedNodeId={work.selectedNode?.entity_id ?? null}
               selectedEdgeId={work.selectedEdge?.edge_id ?? null}
+              isExpanded={graphExpanded}
+              onToggleExpand={() => setGraphExpanded((prev) => !prev)}
               onSelectNode={(n) =>
                 patchWork(pack.pack_id, (w) => ({
                   ...w,
