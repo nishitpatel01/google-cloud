@@ -22,15 +22,17 @@ class DataOrigin(str, Enum):
 
     REAL_PUBLIC = "REAL_PUBLIC"
     MODELED_BRIDGE = "MODELED_BRIDGE"
+    CUSTOMER_UPLOAD = "CUSTOMER_UPLOAD"
 
 
 class SourceLicense(str, Enum):
-    """Permissive licenses verified for MIT-repo redistribution."""
+    """Permissive licenses verified for MIT-repo redistribution (plus private BYO uploads)."""
 
     US_GOV_PUBLIC_DOMAIN = "US_GOV_PUBLIC_DOMAIN"
     CC0_1_0 = "CC0_1_0"
     CC_BY_4_0 = "CC_BY_4_0"
     MODELED = "MODELED"
+    CUSTOMER_PRIVATE = "CUSTOMER_PRIVATE"
 
 
 class RiskTier(str, Enum):
@@ -83,8 +85,13 @@ class EntityNode(BaseModel):
     def _check_origin_license_consistency(self) -> "EntityNode":
         if self.data_origin == DataOrigin.MODELED_BRIDGE and self.source_license != SourceLicense.MODELED:
             raise ValueError("MODELED_BRIDGE records must use source_license=MODELED")
-        if self.data_origin == DataOrigin.REAL_PUBLIC and self.source_license == SourceLicense.MODELED:
-            raise ValueError("REAL_PUBLIC records cannot use source_license=MODELED")
+        if self.data_origin == DataOrigin.REAL_PUBLIC and self.source_license in (
+            SourceLicense.MODELED,
+            SourceLicense.CUSTOMER_PRIVATE,
+        ):
+            raise ValueError("REAL_PUBLIC records cannot use MODELED or CUSTOMER_PRIVATE licenses")
+        if self.data_origin == DataOrigin.CUSTOMER_UPLOAD and self.source_license != SourceLicense.CUSTOMER_PRIVATE:
+            raise ValueError("CUSTOMER_UPLOAD records must use source_license=CUSTOMER_PRIVATE")
         return self
 
 
@@ -128,8 +135,13 @@ class GraphEdge(BaseModel):
             raise ValueError(f"Self-loop edge rejected: {self.edge_id} -> {self.source_entity_id}")
         if self.data_origin == DataOrigin.MODELED_BRIDGE and self.source_license != SourceLicense.MODELED:
             raise ValueError("MODELED_BRIDGE edges must use source_license=MODELED")
-        if self.data_origin == DataOrigin.REAL_PUBLIC and self.source_license == SourceLicense.MODELED:
-            raise ValueError("REAL_PUBLIC edges cannot use source_license=MODELED")
+        if self.data_origin == DataOrigin.REAL_PUBLIC and self.source_license in (
+            SourceLicense.MODELED,
+            SourceLicense.CUSTOMER_PRIVATE,
+        ):
+            raise ValueError("REAL_PUBLIC edges cannot use MODELED or CUSTOMER_PRIVATE licenses")
+        if self.data_origin == DataOrigin.CUSTOMER_UPLOAD and self.source_license != SourceLicense.CUSTOMER_PRIVATE:
+            raise ValueError("CUSTOMER_UPLOAD edges must use source_license=CUSTOMER_PRIVATE")
         return self
 
 
