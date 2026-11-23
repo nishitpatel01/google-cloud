@@ -16,67 +16,119 @@ import type {
   StageEvent,
   TraversalDirection,
 } from "../types/graphrag";
-import type { CitationKind } from "../utils/format";
+import { formatUsd, type CitationKind } from "../utils/format";
 
 interface ExplorerPageProps {
   pack: PackSummary;
   mode: "replay" | "live";
   synthesisModel: string;
+  onRunningChange?: (running: boolean) => void;
 }
 
-export function ExplorerPage({ pack, mode, synthesisModel }: ExplorerPageProps) {
-  const [graph, setGraph] = useState<PackGraphResponse | null>(null);
-  const [loadError, setLoadError] = useState<string | null>(null);
+interface PackWorkState {
+  selectedQuestionId: string | null;
+  queryText: string;
+  engineId: EngineId;
+  maxHops: number;
+  direction: TraversalDirection;
+  enableRerank: boolean;
+  isRunning: boolean;
+  stageEvents: StageEvent[];
+  result: EngineResultPayload | null;
+  runError: string | null;
+  selectedNode: EntityNode | null;
+  selectedEdge: GraphEdge | null;
+  selectedChunk: SourceChunk | null;
+}
 
-  const [selectedQuestionId, setSelectedQuestionId] = useState<string | null>(
-    pack.questions[0]?.question_id ?? null
-  );
-  const [queryText, setQueryText] = useState(pack.questions[0]?.question ?? "");
-  const [engineId, setEngineId] = useState<EngineId>("bq_graphrag");
-  const [maxHops, setMaxHops] = useState<number>(pack.questions[0]?.hop_depth ?? 3);
-  const [direction, setDirection] = useState<TraversalDirection>(
-    pack.questions[0]?.direction ?? "both"
-  );
-  const [enableRerank, setEnableRerank] = useState(true);
+function createInitialWorkState(pack: PackSummary): PackWorkState {
+  const firstQ = pack.questions[0];
+  return {
+    selectedQuestionId: firstQ?.question_id ?? null,
+    queryText: firstQ?.question ?? "",
+    engineId: "bq_graphrag",
+    maxHops: firstQ?.hop_depth ?? 3,
+    direction: firstQ?.direction ?? "both",
+    enableRerank: true,
+    isRunning: false,
+    stageEvents: [],
+    result: null,
+    runError: null,
+    selectedNode: null,
+    selectedEdge: null,
+    selectedChunk: null,
+  };
+}
 
-  const [isRunning, setIsRunning] = useState(false);
-  const [stageEvents, setStageEvents] = useState<StageEvent[]>([]);
-  const [result, setResult] = useState<EngineResultPayload | null>(null);
-  const [runError, setRunError] = useState<string | null>(null);
+function directionLabel(dir: TraversalDirection): string {
+  if (dir === "outgoing") return "Downstream Impact";
+  if (dir === "incoming") return "Upstream Root Cause";
+  return "Full 360° Network";
+}
 
-  const [selectedNode, setSelectedNode] = useState<EntityNode | null>(null);
-  const [selectedEdge, setSelectedEdge] = useState<GraphEdge | null>(null);
-  const [selectedChunk, setSelectedChunk] = useState<SourceChunk | null>(null);
+export function ExplorerPage({
+  pack,
+  mode,
+  synthesisModel,
+  onRunningChange,
+}: ExplorerPageProps) {
+  const [graphCache, setGraphCache] = useState<Record<string, PackGraphResponse>>({});
+  const [loadErrors, setLoadErrors] = useState<Record<string, string | null>>({});
+  const [workByPack, setWorkByPack] = useState<Record<string, PackWorkState>>(() => ({
+    [pack.pack_id]: createInitialWorkState(pack),
+  }));
 
-  const abortRef = useRef<AbortController | null>(null);
+  const abortRefs = useRef<Record<string, AbortController>>({});
 
+  // Ensure every selected pack has its own preserved work state & cached graph
   useEffect(() => {
+    setWorkByPack((prev) => {
+      if (prev[pack.pack_id]) return prev;
+      return { ...prev, [pack.pack_id]: createInitialWorkState(pack) };
+    });
+
+    if (graphCache[pack.pack_id]) return;
+
     let cancelled = false;
-    setLoadError(null);
-    setSelectedNode(null);
-    setSelectedEdge(null);
-    setSelectedChunk(null);
-    setResult(null);
-    setStageEvents([]);
-    setRunError(null);
-
-    const firstQ = pack.questions[0];
-    setSelectedQuestionId(firstQ?.question_id ?? null);
-    setQueryText(firstQ?.question ?? "");
-    setMaxHops(firstQ?.hop_depth ?? 3);
-    setDirection(firstQ?.direction ?? "both");
-
+    setLoadErrors((prev) => ({ ...prev, [pack.pack_id]: null }));
     fetchPackGraph(pack.pack_id)
       .then((g) => {
-        if (!cancelled) setGraph(g);
+        if (!cancelled) {
+          setGraphCache((prev) => ({ ...prev, [pack.pack_id]: g }));
+        }
       })
       .catch((err: Error) => {
-        if (!cancelled) setLoadError(err.message);
+        if (!cancelled) {
+          setLoadErrors((prev) => ({ ...prev, [pack.pack_id]: err.message }));
+        }
       });
     return () => {
       cancelled = true;
     };
-  }, [pack.pack_id, pack.questions]);
+  }, [pack, graphCache]);
+
+  const anyRunning = useMemo(
+    () => Object.values(workByPack).some((w) => w.isRunning),
+    [workByPack]
+  );
+
+  useEffect(() => {
+    onRunningChange?.(anyRunning);
+  }, [anyRunning, onRunningChange]);
+
+  const work = workByPack[pack.pack_id] ?? createInitialWorkState(pack);
+  const graph = graphCache[pack.pack_id] ?? null;
+  const loadError = loadErrors[pack.pack_id] ?? null;
+
+  const patchWork = (
+    targetPackId: string,
+    updater: (prev: PackWorkState) => PackWorkState
+  ) => {
+    setWorkByPack((prev) => {
+      const base = prev[targetPackId] ?? createInitialWorkState(pack);
+      return { ...prev, [targetPackId]: updater(base) };
+    });
+  };
 
   const nodesById = useMemo(
     () => new Map((graph?.nodes ?? []).map((n) => [n.entity_id, n])),
@@ -93,92 +145,110 @@ export function ExplorerPage({ pack, mode, synthesisModel }: ExplorerPageProps) 
 
   const highlightedNodeIds = useMemo(() => {
     const s = new Set<string>();
-    if (!result) return s;
-    for (const id of result.retrieved_entity_ids) s.add(id);
-    for (const p of result.paths) {
+    if (!work.result) return s;
+    for (const id of work.result.retrieved_entity_ids) s.add(id);
+    for (const p of work.result.paths) {
       for (const nid of p.node_ids) s.add(nid);
     }
     return s;
-  }, [result]);
+  }, [work.result]);
 
   const highlightedEdgeIds = useMemo(() => {
     const s = new Set<string>();
-    if (!result) return s;
-    for (const id of result.retrieved_edge_ids) s.add(id);
-    for (const p of result.paths) {
+    if (!work.result) return s;
+    for (const id of work.result.retrieved_edge_ids) s.add(id);
+    for (const p of work.result.paths) {
       for (const eid of p.edge_ids) s.add(eid);
     }
     return s;
-  }, [result]);
+  }, [work.result]);
 
   const handleCitationClick = (kind: CitationKind, id: string) => {
+    const pid = pack.pack_id;
     if (kind === "ENTITY") {
       const node = nodesById.get(id);
       if (node) {
-        setSelectedNode(node);
-        setSelectedEdge(null);
-        setSelectedChunk(null);
+        patchWork(pid, (w) => ({
+          ...w,
+          selectedNode: node,
+          selectedEdge: null,
+          selectedChunk: null,
+        }));
       }
     } else if (kind === "EDGE") {
       const edge = edgesById.get(id);
       if (edge) {
-        setSelectedEdge(edge);
-        setSelectedNode(null);
-        setSelectedChunk(null);
+        patchWork(pid, (w) => ({
+          ...w,
+          selectedEdge: edge,
+          selectedNode: null,
+          selectedChunk: null,
+        }));
       }
     } else if (kind === "CHUNK") {
       const chunk = chunksById.get(id);
       if (chunk) {
-        setSelectedChunk(chunk);
-        setSelectedNode(null);
-        setSelectedEdge(null);
+        patchWork(pid, (w) => ({
+          ...w,
+          selectedChunk: chunk,
+          selectedNode: null,
+          selectedEdge: null,
+        }));
       }
     }
   };
 
   const handleRun = async () => {
-    if (!queryText.trim()) return;
-    abortRef.current?.abort();
-    const ctrl = new AbortController();
-    abortRef.current = ctrl;
+    const pid = pack.pack_id;
+    const current = workByPack[pid] ?? createInitialWorkState(pack);
+    if (!current.queryText.trim()) return;
 
-    setIsRunning(true);
-    setStageEvents([]);
-    setResult(null);
-    setRunError(null);
+    abortRefs.current[pid]?.abort();
+    const ctrl = new AbortController();
+    abortRefs.current[pid] = ctrl;
+
+    patchWork(pid, (w) => ({
+      ...w,
+      isRunning: true,
+      stageEvents: [],
+      result: null,
+      runError: null,
+    }));
 
     try {
       await streamQuery(
         {
-          pack_id: pack.pack_id,
-          query: queryText.trim(),
-          engine_id: engineId,
+          pack_id: pid,
+          query: current.queryText.trim(),
+          engine_id: current.engineId,
           synthesis_model: synthesisModel,
-          question_id: selectedQuestionId,
-          max_hops: maxHops,
-          direction,
-          enable_rerank: enableRerank,
+          question_id: current.selectedQuestionId,
+          max_hops: current.maxHops,
+          direction: current.direction,
+          enable_rerank: current.enableRerank,
           mode,
         },
         {
-          onStage: (ev) => setStageEvents((prev) => [...prev, ev]),
-          onResult: (res) => setResult(res),
-          onError: (msg) => setRunError(msg),
+          onStage: (ev) =>
+            patchWork(pid, (w) => ({ ...w, stageEvents: [...w.stageEvents, ev] })),
+          onResult: (res) => patchWork(pid, (w) => ({ ...w, result: res })),
+          onError: (msg) => patchWork(pid, (w) => ({ ...w, runError: msg })),
         },
         ctrl.signal
       );
     } catch (err) {
       if ((err as Error).name !== "AbortError") {
-        setRunError((err as Error).message);
+        patchWork(pid, (w) => ({ ...w, runError: (err as Error).message }));
       }
     } finally {
-      setIsRunning(false);
+      patchWork(pid, (w) => ({ ...w, isRunning: false }));
     }
   };
 
   const handleStop = () => {
-    abortRef.current?.abort();
-    setIsRunning(false);
+    const pid = pack.pack_id;
+    abortRefs.current[pid]?.abort();
+    patchWork(pid, (w) => ({ ...w, isRunning: false }));
   };
 
   return (
@@ -190,48 +260,89 @@ export function ExplorerPage({ pack, mode, synthesisModel }: ExplorerPageProps) 
         </div>
         <div className="row-wrap">
           <span className="badge badge-verified">
-            {Math.round(pack.real_public_overall_ratio * 100)}% Real Public Data
+            {Math.round(pack.real_public_overall_ratio * 100)}% Verified Public Filings
           </span>
           <span className="badge">{pack.industry}</span>
-          <span className="badge">Persona: {pack.persona}</span>
+          <span className="badge">Built for {pack.persona}</span>
         </div>
       </div>
 
+      {/* Executive Business Value Strip */}
+      <section className="value-strip" aria-label="Business impact overview">
+        <div className="value-tile">
+          <div className="value-tile-label">Manual Analyst Effort</div>
+          <div className="value-tile-main">
+            {formatUsd(pack.manual_baseline_cost_usd)} · {pack.manual_baseline_minutes} min
+          </div>
+          <div className="value-tile-sub">Typical cross-filing investigation</div>
+        </div>
+        <div className="value-tile">
+          <div className="value-tile-label">AI Multi-Tier Trace</div>
+          <div className="value-tile-main">~$0.003 · Under 15s</div>
+          <div className="value-tile-sub">Serverless BigQuery Graph + Vertex AI</div>
+        </div>
+        <div className="value-tile">
+          <div className="value-tile-label">Source Grounding</div>
+          <div className="value-tile-main">
+            {Math.round(pack.real_public_overall_ratio * 100)}% Public Records
+          </div>
+          <div className="value-tile-sub">
+            {pack.primary_sources[0] ?? "Auditable regulatory & contract filings"}
+          </div>
+        </div>
+        <div className="value-tile">
+          <div className="value-tile-label">Active Coverage</div>
+          <div className="value-tile-main">
+            {graph ? `${graph.nodes.length} Entities · ${graph.edges.length} Links` : "Loading…"}
+          </div>
+          <div className="value-tile-sub">
+            {pack.questions.length} verified multi-tier risk scenarios ready
+          </div>
+        </div>
+      </section>
+
       {loadError && (
         <div role="alert" className="error-banner">
-          Failed to load pack graph: {loadError}
+          Unable to load scenario network: {loadError}
         </div>
       )}
 
       <div className="explorer-grid">
-        {/* Left Rail: Query Controls & Golden Multi-Hop Scenarios */}
+        {/* Left Rail: Investigation Controls & Sample Questions */}
         <aside className="panel" aria-label="Investigation controls">
           <div className="panel-header">
-            <h2 className="panel-title">Contagion Query</h2>
-            <span className="badge">{mode === "live" ? "Live GCP" : "Replay"}</span>
+            <h2 className="panel-title">Risk Investigation</h2>
+            <span className="badge">
+              {mode === "live" ? "Live Cloud" : "Replay Cache"}
+            </span>
           </div>
           <div className="panel-body stack-md">
             <div>
               <label className="field-label" htmlFor="engine-select">
-                Retrieval &amp; Reasoning Engine
+                Analysis Approach
               </label>
               <select
                 id="engine-select"
                 className="select-control w-full"
-                value={engineId}
-                onChange={(e) => setEngineId(e.target.value as EngineId)}
+                value={work.engineId}
+                onChange={(e) =>
+                  patchWork(pack.pack_id, (w) => ({
+                    ...w,
+                    engineId: e.target.value as EngineId,
+                  }))
+                }
               >
                 <option value="bq_graphrag">
-                  BigQuery Property Graph (ISO GQL · Tier-1)
+                  Graph Intelligence (Recommended · BigQuery)
                 </option>
                 <option value="adk_graph_coordinator">
-                  Google ADK 2.15 Graph Coordinator (Multi-Tool)
+                  Autonomous Risk Agent (Google ADK 2.15)
                 </option>
                 <option value="flat_vector_rag">
-                  Flat Vector RAG (Baseline — Chunks Only)
+                  Standard Document Search (Baseline)
                 </option>
                 <option value="spanner_graphrag">
-                  Spanner Graph ISO GQL (Tier-2 Enterprise)
+                  Real-Time Enterprise Graph (Spanner Tier-2)
                 </option>
               </select>
             </div>
@@ -239,32 +350,42 @@ export function ExplorerPage({ pack, mode, synthesisModel }: ExplorerPageProps) 
             <div className="grid-2">
               <div>
                 <label className="field-label" htmlFor="direction-select">
-                  Direction
+                  Impact Scope
                 </label>
                 <select
                   id="direction-select"
                   className="select-control w-full"
-                  value={direction}
-                  onChange={(e) => setDirection(e.target.value as TraversalDirection)}
+                  value={work.direction}
+                  onChange={(e) =>
+                    patchWork(pack.pack_id, (w) => ({
+                      ...w,
+                      direction: e.target.value as TraversalDirection,
+                    }))
+                  }
                 >
-                  <option value="outgoing">Outgoing (Downstream)</option>
-                  <option value="incoming">Incoming (Upstream)</option>
-                  <option value="both">Both (UNION ALL)</option>
+                  <option value="outgoing">Downstream Impact</option>
+                  <option value="incoming">Upstream Root Cause</option>
+                  <option value="both">Full 360° Network</option>
                 </select>
               </div>
               <div>
                 <label className="field-label" htmlFor="hops-select">
-                  Max Hops
+                  Search Depth
                 </label>
                 <select
                   id="hops-select"
                   className="select-control w-full"
-                  value={maxHops}
-                  onChange={(e) => setMaxHops(Number(e.target.value))}
+                  value={work.maxHops}
+                  onChange={(e) =>
+                    patchWork(pack.pack_id, (w) => ({
+                      ...w,
+                      maxHops: Number(e.target.value),
+                    }))
+                  }
                 >
-                  <option value={2}>2 hops</option>
-                  <option value={3}>3 hops</option>
-                  <option value={4}>4 hops</option>
+                  <option value={2}>2 tiers deep</option>
+                  <option value={3}>3 tiers deep</option>
+                  <option value={4}>4 tiers deep</option>
                 </select>
               </div>
             </div>
@@ -272,24 +393,32 @@ export function ExplorerPage({ pack, mode, synthesisModel }: ExplorerPageProps) 
             <label className="row-wrap clickable-label">
               <input
                 type="checkbox"
-                checked={enableRerank}
-                onChange={(e) => setEnableRerank(e.target.checked)}
+                checked={work.enableRerank}
+                onChange={(e) =>
+                  patchWork(pack.pack_id, (w) => ({
+                    ...w,
+                    enableRerank: e.target.checked,
+                  }))
+                }
               />
-              Enable Discovery Engine Semantic Reranker
+              Prioritize highest-relevance evidence (Semantic Reranking)
             </label>
 
             <div>
               <label className="field-label" htmlFor="analyst-prompt">
-                Analyst Prompt
+                Ask a Business Risk Question
               </label>
               <textarea
                 id="analyst-prompt"
                 className="textarea-input"
-                value={queryText}
-                onChange={(e) => {
-                  setQueryText(e.target.value);
-                  setSelectedQuestionId(null);
-                }}
+                value={work.queryText}
+                onChange={(e) =>
+                  patchWork(pack.pack_id, (w) => ({
+                    ...w,
+                    queryText: e.target.value,
+                    selectedQuestionId: null,
+                  }))
+                }
               />
             </div>
 
@@ -298,13 +427,13 @@ export function ExplorerPage({ pack, mode, synthesisModel }: ExplorerPageProps) 
                 type="button"
                 id="run-investigation-btn"
                 className="btn btn-primary flex-1"
-                disabled={isRunning || !queryText.trim()}
+                disabled={work.isRunning || !work.queryText.trim()}
                 onClick={handleRun}
               >
                 <Play size={14} aria-hidden="true" />
-                {isRunning ? "Running…" : "Run Investigation"}
+                {work.isRunning ? "Investigating…" : "Run Investigation"}
               </button>
-              {isRunning && (
+              {work.isRunning && (
                 <button type="button" className="btn" onClick={handleStop}>
                   <Square size={13} aria-hidden="true" />
                   Stop
@@ -312,32 +441,37 @@ export function ExplorerPage({ pack, mode, synthesisModel }: ExplorerPageProps) 
               )}
             </div>
 
-            {runError && (
+            {work.runError && (
               <div role="alert" className="error-banner">
-                {runError}
+                {work.runError}
               </div>
             )}
 
             <div className="stack-sm">
-              <div className="field-label">Verified Multi-Hop Benchmark Scenarios</div>
-              {pack.questions.map((q) => (
+              <div className="field-label">Sample Multi-Tier Scenarios</div>
+              {pack.questions.map((q, idx) => (
                 <button
                   key={q.question_id}
                   type="button"
                   className={`preset-btn${
-                    selectedQuestionId === q.question_id ? " selected" : ""
+                    work.selectedQuestionId === q.question_id ? " selected" : ""
                   }`}
-                  onClick={() => {
-                    setSelectedQuestionId(q.question_id);
-                    setQueryText(q.question);
-                    setMaxHops(q.hop_depth);
-                    setDirection(q.direction);
-                  }}
+                  onClick={() =>
+                    patchWork(pack.pack_id, (w) => ({
+                      ...w,
+                      selectedQuestionId: q.question_id,
+                      queryText: q.question,
+                      maxHops: q.hop_depth,
+                      direction: q.direction,
+                    }))
+                  }
                 >
                   <div className="preset-meta">
-                    <span>{q.question_id}</span>
+                    <span>Scenario {idx + 1}</span>
                     <span>·</span>
-                    <span>{q.hop_depth}-hop {q.direction}</span>
+                    <span>
+                      {q.hop_depth}-tier · {directionLabel(q.direction)}
+                    </span>
                   </div>
                   <div className="preset-text">{q.question}</div>
                 </button>
@@ -346,7 +480,7 @@ export function ExplorerPage({ pack, mode, synthesisModel }: ExplorerPageProps) 
           </div>
         </aside>
 
-        {/* Center: Force-Directed Graph Canvas + Evidence Inspector */}
+        {/* Center: Interactive Network Visualization + Verbatim Source Evidence */}
         <div className="stack-md">
           {graph ? (
             <GraphCanvas
@@ -355,44 +489,59 @@ export function ExplorerPage({ pack, mode, synthesisModel }: ExplorerPageProps) 
               ontology={graph.ontology}
               highlightedNodeIds={highlightedNodeIds}
               highlightedEdgeIds={highlightedEdgeIds}
-              selectedNodeId={selectedNode?.entity_id ?? null}
-              selectedEdgeId={selectedEdge?.edge_id ?? null}
-              onSelectNode={(n) => {
-                setSelectedNode(n);
-                setSelectedEdge(null);
-                setSelectedChunk(null);
-              }}
-              onSelectEdge={(e) => {
-                setSelectedEdge(e);
-                setSelectedNode(null);
-                setSelectedChunk(null);
-              }}
+              selectedNodeId={work.selectedNode?.entity_id ?? null}
+              selectedEdgeId={work.selectedEdge?.edge_id ?? null}
+              onSelectNode={(n) =>
+                patchWork(pack.pack_id, (w) => ({
+                  ...w,
+                  selectedNode: n,
+                  selectedEdge: null,
+                  selectedChunk: null,
+                }))
+              }
+              onSelectEdge={(e) =>
+                patchWork(pack.pack_id, (w) => ({
+                  ...w,
+                  selectedEdge: e,
+                  selectedNode: null,
+                  selectedChunk: null,
+                }))
+              }
             />
           ) : (
             <div className="panel">
-              <div className="panel-body">Loading knowledge graph…</div>
+              <div className="panel-body">Loading connected risk network…</div>
             </div>
           )}
 
           <EvidenceInspector
-            selectedNode={selectedNode}
-            selectedEdge={selectedEdge}
-            selectedChunk={selectedChunk}
+            selectedNode={work.selectedNode}
+            selectedEdge={work.selectedEdge}
+            selectedChunk={work.selectedChunk}
             chunksById={chunksById}
             nodesById={nodesById}
-            onSelectChunk={(c) => {
-              setSelectedChunk(c);
-              setSelectedNode(null);
-              setSelectedEdge(null);
-            }}
+            onSelectChunk={(c) =>
+              patchWork(pack.pack_id, (w) => ({
+                ...w,
+                selectedChunk: c,
+                selectedNode: null,
+                selectedEdge: null,
+              }))
+            }
           />
         </div>
 
-        {/* Right: Live SSE Pipeline Stage Rail + Cited Executive Brief */}
+        {/* Right: Live Investigation Steps + Grounded Executive Risk Brief */}
         <div className="explorer-right stack-md">
-          <StageRail events={stageEvents} isRunning={isRunning} />
-          {result && (
-            <CitedAnswer result={result} onClickCitation={handleCitationClick} />
+          <StageRail events={work.stageEvents} isRunning={work.isRunning} />
+          {work.result && (
+            <CitedAnswer
+              result={work.result}
+              nodesById={nodesById}
+              edgesById={edgesById}
+              chunksById={chunksById}
+              onClickCitation={handleCitationClick}
+            />
           )}
         </div>
       </div>

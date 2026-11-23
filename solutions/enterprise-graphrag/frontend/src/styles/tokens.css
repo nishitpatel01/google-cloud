@@ -1,54 +1,111 @@
-/* Design System Tokens — Executive Light-First Editorial Palette (WCAG 2.1 AA >= 4.5:1) */
+/* Design System Tokens — Subtle Modern Editorial Light & Dark Themes (WCAG 2.1 AA) */
 
-:root {
-  --bg-canvas: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-subtle: #f1f5f9;
-  --bg-elevated: #ffffff;
+:root,
+[data-theme="light"] {
+  color-scheme: light;
 
-  --ink-primary: #0f172a;
-  --ink-secondary: #334155;
-  --ink-muted: #526074;
-  --ink-inverse: #ffffff;
+  /* Soft, low-glare neutral surfaces */
+  --bg-canvas: #f3f5f8;
+  --bg-surface: #fafbfc;
+  --bg-subtle: #eaeef4;
+  --bg-hover: #e4e9f1;
+  --bg-graph: #f7f9fc;
 
-  --border-subtle: #e2e8f0;
-  --border-strong: #cbd5e1;
+  /* Refined low-glare slate ink (avoids harsh pure black on bright white) */
+  --ink-primary: #243042;
+  --ink-secondary: #4a586e;
+  --ink-muted: #66748a;
+  --ink-inverse: #f8fafc;
 
-  --accent-primary: #1a56db;
-  --accent-primary-hover: #1443b0;
-  --accent-primary-soft: #eff6ff;
+  /* Quiet hairline dividers */
+  --border-subtle: #dfe4ec;
+  --border-strong: #c8d1de;
 
-  --status-verified-bg: #ecfdf5;
-  --status-verified-ink: #065f46;
-  --status-verified-border: #a7f3d0;
+  /* Calm steel-indigo primary accent */
+  --accent-primary: #3b6cc9;
+  --accent-primary-hover: #2f5cb3;
+  --accent-primary-soft: #eaf0fb;
 
-  --status-modeled-bg: #fffbeb;
-  --status-modeled-ink: #92400e;
-  --status-modeled-border: #fde68a;
+  /* Muted semantic states */
+  --status-verified-bg: #ecf6f2;
+  --status-verified-ink: #1e6b52;
+  --status-verified-border: #bce2d3;
 
-  --status-upload-bg: #eff6ff;
-  --status-upload-ink: #1e40af;
-  --status-upload-border: #bfdbfe;
+  --status-modeled-bg: #faf4e8;
+  --status-modeled-ink: #8a5a18;
+  --status-modeled-border: #ebd4ab;
 
-  --status-danger-bg: #fef2f2;
-  --status-danger-ink: #991b1b;
-  --status-danger-border: #fecaca;
+  --status-upload-bg: #edf3fc;
+  --status-upload-ink: #2c559e;
+  --status-upload-border: #c4d7f4;
 
-  --risk-critical: #dc2626;
-  --risk-high: #d97706;
-  --risk-medium: #2563eb;
-  --risk-low: #475569;
+  --status-danger-bg: #fbf0f0;
+  --status-danger-ink: #9c3434;
+  --status-danger-border: #ecc4c4;
+
+  /* Graph canvas tokens */
+  --graph-edge: #bcc7d6;
+  --graph-edge-active: #c84b4b;
+  --graph-node-stroke: #fafbfc;
+  --graph-node-selected: #243042;
+  --code-bg: #1c2430;
+  --code-ink: #dde5f0;
 
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.06);
+  --shadow-sm: 0 1px 2px rgba(24, 34, 48, 0.04);
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
 
-  --focus-ring: 0 0 0 3px rgba(26, 86, 219, 0.35);
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Soothing charcoal-graphite surfaces (zero harsh neon or purple-on-dark) */
+  --bg-canvas: #12161c;
+  --bg-surface: #191f27;
+  --bg-subtle: #222a35;
+  --bg-hover: #2a3442;
+  --bg-graph: #151a22;
+
+  --ink-primary: #e2e8f0;
+  --ink-secondary: #b1bdd0;
+  --ink-muted: #8494aa;
+  --ink-inverse: #12161c;
+
+  --border-subtle: #28313e;
+  --border-strong: #394657;
+
+  --accent-primary: #6b99ee;
+  --accent-primary-hover: #81abf2;
+  --accent-primary-soft: #1d2b42;
+
+  --status-verified-bg: #162a24;
+  --status-verified-ink: #72cca9;
+  --status-verified-border: #254a3e;
+
+  --status-modeled-bg: #2b2418;
+  --status-modeled-ink: #e4b66a;
+  --status-modeled-border: #4d3d23;
+
+  --status-upload-bg: #1a273c;
+  --status-upload-ink: #8bb4f7;
+  --status-upload-border: #2c4368;
+
+  --status-danger-bg: #2e1b1d;
+  --status-danger-ink: #ea9191;
+  --status-danger-border: #532c30;
+
+  --graph-edge: #465468;
+  --graph-edge-active: #e06c6c;
+  --graph-node-stroke: #191f27;
+  --graph-node-selected: #f1f5f9;
+  --code-bg: #0e1218;
+  --code-ink: #d6e0ee;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.28);
 }
 
 *,
@@ -61,11 +118,12 @@ html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
   background: var(--bg-canvas);
   color: var(--ink-primary);
   font-family: var(--font-sans);
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 

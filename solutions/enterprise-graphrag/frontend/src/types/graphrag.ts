@@ -266,3 +266,29 @@ export interface TcoEstimateResponse {
   net_monthly_savings_usd: number;
   roi_multiple: number;
 }
+
+export interface ReleaseEntry {
+  version: string;
+  phase: string;
+  date: string;
+  pr: string;
+  status: string;
+  title: string;
+  summary: string;
+  categories: string[];
+  highlights: string[];
+  verification: {
+    backend_tests: number;
+    frontend_suites: number;
+    gcp_live: string;
+  };
+}
+
+export interface ReleasesResponse {
+  solution_id: string;
+  solution_name: string;
+  current_version: string;
+  releases: ReleaseEntry[];
+}
+
+export type ThemePreference = "system" | "light" | "dark";

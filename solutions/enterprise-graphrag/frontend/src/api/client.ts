@@ -6,6 +6,7 @@ import type {
   MetaResponse,
   PackGraphResponse,
   PackSummary,
+  ReleasesResponse,
   StageEvent,
   TcoEstimateResponse,
   TraversalDirection,
@@ -29,6 +30,10 @@ async function jsonRequest<T>(path: string, init?: RequestInit): Promise<T> {
 
 export function fetchMeta(): Promise<MetaResponse> {
   return jsonRequest<MetaResponse>("/api/v1/meta");
+}
+
+export function fetchReleases(): Promise<ReleasesResponse> {
+  return jsonRequest<ReleasesResponse>("/api/v1/releases");
 }
 
 export async function fetchPacks(): Promise<PackSummary[]> {

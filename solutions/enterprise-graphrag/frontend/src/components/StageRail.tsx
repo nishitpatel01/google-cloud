@@ -19,6 +19,42 @@ interface MergedStage {
   reason?: string;
 }
 
+const BUSINESS_STAGE_LABELS: Record<string, string> = {
+  query_prep: "Prepare Investigation Scope",
+  model_armor_input: "Screen Prompt for Safety",
+  embed_query: "Interpret Business Question",
+  vector_seed: "Locate Starting Entities",
+  gql_traverse: "Trace Multi-Tier Risk Chains",
+  spanner_traverse: "Trace Real-Time Risk Chains",
+  retrieve_chunks: "Search Filing Excerpts",
+  rerank: "Prioritize Highest-Relevance Evidence",
+  adk_coordinate: "Run Autonomous Multi-Tool Investigation",
+  synthesize: "Draft Cited Executive Brief",
+  verify_provenance: "Audit Every Source Citation",
+  model_armor_output: "Verify Output Safety",
+};
+
+const BUSINESS_SERVICE_LABELS: Record<string, string> = {
+  bigquery_property_graph: "BigQuery Property Graph",
+  bigquery_vector: "BigQuery Vector Search",
+  vertex_embeddings: "Vertex AI Embeddings",
+  vertex_gemini: "Vertex AI Gemini",
+  discovery_engine_rerank: "Discovery Engine Semantic Reranker",
+  google_adk: "Google ADK 2.15 Agent",
+  model_armor: "Google Cloud Model Armor",
+  spanner_graph: "Spanner Graph",
+  provenance_verifier: "Deterministic Citation Auditor",
+  replay_fixture: "Verified Replay Cache",
+};
+
+function friendlyStageLabel(stage: string, fallback: string): string {
+  return BUSINESS_STAGE_LABELS[stage] ?? fallback;
+}
+
+function friendlyServiceLabel(service: string): string {
+  return BUSINESS_SERVICE_LABELS[service] ?? service;
+}
+
 function mergeStageEvents(events: StageEvent[]): MergedStage[] {
   const order: string[] = [];
   const map = new Map<string, MergedStage>();
@@ -28,14 +64,14 @@ function mergeStageEvents(events: StageEvent[]): MergedStage[] {
       order.push(ev.stage);
       map.set(ev.stage, {
         stage: ev.stage,
-        label: ev.label || ev.stage,
+        label: friendlyStageLabel(ev.stage, ev.label || ev.stage),
         service: ev.service || ev.service_used || "runtime",
         status: "running",
       });
     }
     const item = map.get(ev.stage)!;
     if (ev.event_type === "stage_started") {
-      item.label = ev.label || item.label;
+      item.label = friendlyStageLabel(ev.stage, ev.label || item.label);
       item.service = ev.service || item.service;
       item.status = "running";
     } else if (ev.event_type === "stage_completed") {
@@ -49,7 +85,7 @@ function mergeStageEvents(events: StageEvent[]): MergedStage[] {
     } else if (ev.event_type === "stage_failed") {
       item.status = "failed";
       item.duration_ms = ev.duration_ms;
-      item.error_message = ev.error_message || ev.error_type || "Stage failed";
+      item.error_message = ev.error_message || ev.error_type || "Step failed";
     } else if (ev.event_type === "stage_skipped") {
       item.status = "skipped";
       item.reason = ev.reason;
@@ -58,7 +94,11 @@ function mergeStageEvents(events: StageEvent[]): MergedStage[] {
   return order.map((k) => map.get(k)!);
 }
 
-export function StageRail({ title = "Measured Pipeline Telemetry", events, isRunning }: StageRailProps) {
+export function StageRail({
+  title = "Live Investigation Steps",
+  events,
+  isRunning,
+}: StageRailProps) {
   const stages = mergeStageEvents(events);
 
   return (
@@ -66,15 +106,16 @@ export function StageRail({ title = "Measured Pipeline Telemetry", events, isRun
       <div className="panel-header">
         <h2 className="panel-title">{title}</h2>
         <span className={`badge ${isRunning ? "badge-upload" : ""}`}>
-          {isRunning ? "Streaming SSE…" : `${stages.length} stages`}
+          {isRunning ? "Running live…" : `${stages.length} steps`}
         </span>
       </div>
 
       <div className="panel-body" aria-live="polite">
         {stages.length === 0 ? (
           <div className="muted-copy">
-            Run an investigation to stream live BigQuery Property Graph ISO GQL, Discovery Engine
-            reranking, Vertex AI synthesis, and provenance audit timings.
+            Click <strong>Run Investigation</strong> to watch each step complete in real time —
+            from locating connected entities and tracing multi-tier risk chains to auditing every
+            citation against source filings.
           </div>
         ) : (
           <ol className="stage-list">
@@ -94,16 +135,32 @@ export function StageRail({ title = "Measured Pipeline Telemetry", events, isRun
                   <div className="row-between">
                     <div className="row-wrap gap-6">
                       {st.status === "completed" && (
-                        <CheckCircle2 size={14} color="#065f46" aria-hidden="true" />
+                        <CheckCircle2
+                          size={14}
+                          color="var(--status-verified-ink)"
+                          aria-hidden="true"
+                        />
                       )}
                       {st.status === "failed" && (
-                        <AlertCircle size={14} color="#991b1b" aria-hidden="true" />
+                        <AlertCircle
+                          size={14}
+                          color="var(--status-danger-ink)"
+                          aria-hidden="true"
+                        />
                       )}
                       {st.status === "skipped" && (
-                        <MinusCircle size={14} color="#64748b" aria-hidden="true" />
+                        <MinusCircle
+                          size={14}
+                          color="var(--ink-muted)"
+                          aria-hidden="true"
+                        />
                       )}
                       {st.status === "running" && (
-                        <Clock size={14} color="#1a56db" aria-hidden="true" />
+                        <Clock
+                          size={14}
+                          color="var(--accent-primary)"
+                          aria-hidden="true"
+                        />
                       )}
                       <strong className="stage-label">{st.label}</strong>
                     </div>
@@ -113,21 +170,23 @@ export function StageRail({ title = "Measured Pipeline Telemetry", events, isRun
                   </div>
 
                   <div className="row-wrap stage-meta">
-                    <span>{st.service}</span>
+                    <span>{friendlyServiceLabel(st.service)}</span>
                     {typeof st.payload?.paths_found === "number" && (
                       <span className="badge badge-verified">
-                        {st.payload.paths_found} paths
+                        {st.payload.paths_found} risk chains found
                       </span>
                     )}
                     {typeof st.payload?.rows_returned === "number" && (
-                      <span className="badge">{st.payload.rows_returned} rows</span>
+                      <span className="badge">{st.payload.rows_returned} records</span>
                     )}
                     {typeof st.payload?.turns === "number" && (
-                      <span className="badge badge-upload">{st.payload.turns} ADK turns</span>
+                      <span className="badge badge-upload">
+                        {st.payload.turns} agent steps
+                      </span>
                     )}
                     {Array.isArray(st.payload?.tool_calls) && (
                       <span className="badge">
-                        {st.payload.tool_calls.length} tool call(s)
+                        {st.payload.tool_calls.length} tool checks
                       </span>
                     )}
                     {st.reason && <span>· {st.reason}</span>}
@@ -138,7 +197,8 @@ export function StageRail({ title = "Measured Pipeline Telemetry", events, isRun
                   {gqlOrSql && (
                     <details className="stage-details">
                       <summary className="stage-summary">
-                        Inspect parameterized {st.payload?.gql ? "ISO GQL" : "BigQuery SQL"}
+                        Technical detail · View parameterized{" "}
+                        {st.payload?.gql ? "ISO GQL" : "BigQuery SQL"}
                       </summary>
                       <pre className="stage-code">{gqlOrSql}</pre>
                     </details>

@@ -114,12 +114,17 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    app_version: str = "0.1.0"
+    app_version: str = "0.4.0"
+    portfolio_id: str = "gcp_ai_accelerators"
+    solution_id: str = "acc05"
+    solution_slug: str = "enterprise_graphrag"
+    app_env: str = "demo"
+
     gcp_project_id: str = ""
     gcp_region: str = "us-central1"
-    bq_dataset: str = "graphrag"
+    bq_dataset: str = "acc05_enterprise_graphrag"
     bq_location: str = "US"
-    bq_reservation_id: str = "graphrag-enterprise-0slot"
+    bq_reservation_id: str = "acc05-graphrag-0slot"
     gcs_bucket: str = ""
 
     demo_mode: Literal["replay", "record", "live"] = "replay"
@@ -127,7 +132,7 @@ class Settings(BaseSettings):
 
     graph_backend: Literal["bigquery", "spanner"] = "bigquery"
     spanner_instance_id: str = ""
-    spanner_database_id: str = "graphrag-db"
+    spanner_database_id: str = "acc05-graphrag-db"
 
     vertex_location: str = "global"
     vertex_model_synthesis: str = "gemini-2.5-flash"

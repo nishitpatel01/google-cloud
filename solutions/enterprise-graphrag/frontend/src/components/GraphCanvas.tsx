@@ -45,7 +45,7 @@ function computeForceLayout(
 ): { layoutNodes: LayoutNode[]; layoutLinks: LayoutLink[] } {
   if (nodes.length === 0) return { layoutNodes: [], layoutLinks: [] };
 
-  // Deterministic circular initial seeding so layout never flickers between renders
+  // Deterministic circular initial seeding so layout stays calm between renders
   const simNodes: LayoutNode[] = nodes.map((node, idx) => {
     const angle = (2 * Math.PI * idx) / Math.max(1, nodes.length);
     const radius = Math.min(VIEW_W, VIEW_H) * 0.32;
@@ -68,9 +68,10 @@ function computeForceLayout(
   const simulation = forceSimulation<LayoutNode>(simNodes)
     .force(
       "link",
-      forceLink<LayoutNode, { source: string | LayoutNode; target: string | LayoutNode; edge: GraphEdge }>(
-        simLinks
-      )
+      forceLink<
+        LayoutNode,
+        { source: string | LayoutNode; target: string | LayoutNode; edge: GraphEdge }
+      >(simLinks)
         .id((d) => d.id)
         .distance(88)
         .strength(0.55)
@@ -84,7 +85,6 @@ function computeForceLayout(
     simulation.tick();
   }
 
-  // Fit inside safe viewport padding
   let minX = Infinity;
   let maxX = -Infinity;
   let minY = Infinity;
@@ -184,13 +184,13 @@ export function GraphCanvas({
     <div className="panel">
       <div className="panel-header">
         <div className="row-wrap">
-          <h2 className="panel-title">Knowledge Graph Topology</h2>
+          <h2 className="panel-title">Connected Risk Network</h2>
           <span className="badge">
-            {nodes.length} nodes · {edges.length} edges
+            {nodes.length} entities · {edges.length} connections
           </span>
           {hasHighlight && (
             <span className="badge badge-verified">
-              {highlightedNodeIds?.size ?? 0} nodes on contagion path
+              {highlightedNodeIds?.size ?? 0} in active risk chain
             </span>
           )}
         </div>
@@ -200,8 +200,8 @@ export function GraphCanvas({
             <Search size={13} aria-hidden="true" className="search-icon" />
             <input
               type="search"
-              aria-label="Filter graph nodes"
-              placeholder="Find entity..."
+              aria-label="Filter network entities"
+              placeholder="Find company, facility, or clause..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="text-input search-input"
@@ -237,7 +237,7 @@ export function GraphCanvas({
         </div>
       </div>
 
-      <div className="graph-legend" aria-label="Ontology legend">
+      <div className="graph-legend" aria-label="Entity categories">
         {ontology.node_types.map((nt) => (
           <span key={nt.type} className="legend-item">
             <svg width={10} height={10} aria-hidden="true">
@@ -253,7 +253,7 @@ export function GraphCanvas({
           className="graph-svg"
           viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
           role="img"
-          aria-label={`Interactive knowledge graph with ${nodes.length} entities and ${edges.length} relationships`}
+          aria-label={`Interactive risk network with ${nodes.length} entities and ${edges.length} relationships`}
         >
           <defs>
             <marker
@@ -265,7 +265,7 @@ export function GraphCanvas({
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#94a3b8" />
+              <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="var(--graph-edge)" />
             </marker>
             <marker
               id="arrow-active"
@@ -276,7 +276,18 @@ export function GraphCanvas({
               markerHeight="7"
               orient="auto-start-reverse"
             >
-              <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#dc2626" />
+              <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="var(--graph-edge-active)" />
+            </marker>
+            <marker
+              id="arrow-selected"
+              viewBox="0 0 10 10"
+              refX="22"
+              refY="5"
+              markerWidth="7"
+              markerHeight="7"
+              orient="auto-start-reverse"
+            >
+              <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="var(--accent-primary)" />
             </marker>
           </defs>
 
@@ -294,7 +305,7 @@ export function GraphCanvas({
                   key={eid}
                   role="button"
                   tabIndex={0}
-                  aria-label={`Relationship ${link.edge.relation_type} from ${link.source.node.canonical_name} to ${link.target.node.canonical_name}`}
+                  aria-label={`Connection ${link.edge.relation_type} from ${link.source.node.canonical_name} to ${link.target.node.canonical_name}`}
                   onClick={() => onSelectEdge(link.edge)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
@@ -304,7 +315,6 @@ export function GraphCanvas({
                   }}
                   className="clickable-svg"
                 >
-                  {/* Wider transparent hit target for crisp clicking */}
                   <line
                     x1={link.source.x}
                     y1={link.source.y}
@@ -320,18 +330,22 @@ export function GraphCanvas({
                     y2={link.target.y}
                     stroke={
                       isSelected
-                        ? "#1a56db"
+                        ? "var(--accent-primary)"
                         : isHighlighted
-                          ? "#dc2626"
-                          : "#cbd5e1"
+                          ? "var(--graph-edge-active)"
+                          : "var(--graph-edge)"
                     }
-                    strokeWidth={isSelected || isHighlighted ? 2.6 : 1.3}
-                    strokeOpacity={dimmed ? 0.22 : 0.92}
+                    strokeWidth={isSelected || isHighlighted ? 2.5 : 1.35}
+                    strokeOpacity={dimmed ? 0.22 : 0.9}
                     strokeDasharray={
                       link.edge.data_origin === "MODELED_BRIDGE" ? "5 3" : undefined
                     }
                     markerEnd={
-                      isHighlighted || isSelected ? "url(#arrow-active)" : "url(#arrow-default)"
+                      isSelected
+                        ? "url(#arrow-selected)"
+                        : isHighlighted
+                          ? "url(#arrow-active)"
+                          : "url(#arrow-default)"
                     }
                   />
                 </g>
@@ -341,7 +355,7 @@ export function GraphCanvas({
             {layoutNodes.map((ln) => {
               const n = ln.node;
               const meta = typeMeta.get(n.entity_type) ?? {
-                color: "#475569",
+                color: "var(--ink-muted)",
                 shape: "circle",
                 label: n.entity_type,
               };
@@ -366,7 +380,7 @@ export function GraphCanvas({
                   transform={`translate(${ln.x}, ${ln.y})`}
                   role="button"
                   tabIndex={0}
-                  aria-label={`${n.canonical_name} (${meta.label}, risk ${n.risk_tier}, ${n.data_origin})`}
+                  aria-label={`${n.canonical_name} (${meta.label}, risk ${n.risk_tier})`}
                   onClick={() => onSelectNode(n)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
@@ -375,13 +389,17 @@ export function GraphCanvas({
                     }
                   }}
                   className="clickable-svg"
-                  opacity={dimmed ? 0.25 : 1}
+                  opacity={dimmed ? 0.26 : 1}
                 >
                   {renderShape(
                     meta.shape,
                     radius,
                     meta.color,
-                    isSelected ? "#0f172a" : isHighlighted ? "#dc2626" : "#ffffff",
+                    isSelected
+                      ? "var(--graph-node-selected)"
+                      : isHighlighted
+                        ? "var(--graph-edge-active)"
+                        : "var(--graph-node-stroke)",
                     isSelected ? 3 : isHighlighted ? 2.4 : 1.8
                   )}
                   {(isHighlighted || isSelected || matchesSearch || nodes.length <= 36) && (

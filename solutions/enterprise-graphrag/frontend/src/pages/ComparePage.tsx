@@ -1,10 +1,11 @@
 import { GitCompare, Play, Square } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { streamCompare } from "../api/client";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { fetchPackGraph, streamCompare } from "../api/client";
 import { CitedAnswer } from "../components/CitedAnswer";
 import { StageRail } from "../components/StageRail";
 import type {
   ComparisonPayload,
+  PackGraphResponse,
   PackSummary,
   StageEvent,
 } from "../types/graphrag";
@@ -14,48 +15,121 @@ interface ComparePageProps {
   pack: PackSummary;
   mode: "replay" | "live";
   synthesisModel: string;
+  onRunningChange?: (running: boolean) => void;
 }
 
-export function ComparePage({ pack, mode, synthesisModel }: ComparePageProps) {
-  const [questionIdx, setQuestionIdx] = useState(0);
-  const [graphEngine, setGraphEngine] = useState<"bq_graphrag" | "adk_graph_coordinator">(
-    "bq_graphrag"
-  );
-  const [isRunning, setIsRunning] = useState(false);
-  const [flatStages, setFlatStages] = useState<StageEvent[]>([]);
-  const [graphStages, setGraphStages] = useState<StageEvent[]>([]);
-  const [comparison, setComparison] = useState<ComparisonPayload | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const abortRef = useRef<AbortController | null>(null);
+interface ComparePackState {
+  questionIdx: number;
+  graphEngine: "bq_graphrag" | "adk_graph_coordinator";
+  isRunning: boolean;
+  flatStages: StageEvent[];
+  graphStages: StageEvent[];
+  comparison: ComparisonPayload | null;
+  error: string | null;
+}
+
+function createInitialCompareState(): ComparePackState {
+  return {
+    questionIdx: 0,
+    graphEngine: "bq_graphrag",
+    isRunning: false,
+    flatStages: [],
+    graphStages: [],
+    comparison: null,
+    error: null,
+  };
+}
+
+export function ComparePage({
+  pack,
+  mode,
+  synthesisModel,
+  onRunningChange,
+}: ComparePageProps) {
+  const [stateByPack, setStateByPack] = useState<Record<string, ComparePackState>>(() => ({
+    [pack.pack_id]: createInitialCompareState(),
+  }));
+  const [graphCache, setGraphCache] = useState<Record<string, PackGraphResponse>>({});
+  const abortRefs = useRef<Record<string, AbortController>>({});
 
   useEffect(() => {
-    setQuestionIdx(0);
-    setComparison(null);
-    setFlatStages([]);
-    setGraphStages([]);
-    setError(null);
-  }, [pack.pack_id]);
+    setStateByPack((prev) =>
+      prev[pack.pack_id] ? prev : { ...prev, [pack.pack_id]: createInitialCompareState() }
+    );
+    if (graphCache[pack.pack_id]) return;
+    let cancelled = false;
+    fetchPackGraph(pack.pack_id)
+      .then((g) => {
+        if (!cancelled) setGraphCache((prev) => ({ ...prev, [pack.pack_id]: g }));
+      })
+      .catch(() => {
+        // Non-blocking: citation chips degrade gracefully to raw IDs if graph cache isn't ready
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [pack.pack_id, graphCache]);
 
-  const activeQ = pack.questions[questionIdx] ?? pack.questions[0];
+  const anyRunning = useMemo(
+    () => Object.values(stateByPack).some((s) => s.isRunning),
+    [stateByPack]
+  );
+
+  useEffect(() => {
+    onRunningChange?.(anyRunning);
+  }, [anyRunning, onRunningChange]);
+
+  const state = stateByPack[pack.pack_id] ?? createInitialCompareState();
+  const activeQ = pack.questions[state.questionIdx] ?? pack.questions[0];
+  const graph = graphCache[pack.pack_id] ?? null;
+
+  const nodesById = useMemo(
+    () => new Map((graph?.nodes ?? []).map((n) => [n.entity_id, n])),
+    [graph]
+  );
+  const edgesById = useMemo(
+    () => new Map((graph?.edges ?? []).map((e) => [e.edge_id, e])),
+    [graph]
+  );
+  const chunksById = useMemo(
+    () => new Map((graph?.chunks ?? []).map((c) => [c.chunk_id, c])),
+    [graph]
+  );
+
+  const patchState = (
+    targetPackId: string,
+    updater: (prev: ComparePackState) => ComparePackState
+  ) => {
+    setStateByPack((prev) => {
+      const base = prev[targetPackId] ?? createInitialCompareState();
+      return { ...prev, [targetPackId]: updater(base) };
+    });
+  };
 
   const handleRunCompare = async () => {
     if (!activeQ) return;
-    abortRef.current?.abort();
-    const ctrl = new AbortController();
-    abortRef.current = ctrl;
+    const pid = pack.pack_id;
+    const current = stateByPack[pid] ?? createInitialCompareState();
 
-    setIsRunning(true);
-    setFlatStages([]);
-    setGraphStages([]);
-    setComparison(null);
-    setError(null);
+    abortRefs.current[pid]?.abort();
+    const ctrl = new AbortController();
+    abortRefs.current[pid] = ctrl;
+
+    patchState(pid, (s) => ({
+      ...s,
+      isRunning: true,
+      flatStages: [],
+      graphStages: [],
+      comparison: null,
+      error: null,
+    }));
 
     try {
       await streamCompare(
         {
-          pack_id: pack.pack_id,
+          pack_id: pid,
           query: activeQ.question,
-          graph_engine_id: graphEngine,
+          graph_engine_id: current.graphEngine,
           synthesis_model: synthesisModel,
           question_id: activeQ.question_id,
           max_hops: activeQ.hop_depth,
@@ -66,22 +140,22 @@ export function ComparePage({ pack, mode, synthesisModel }: ComparePageProps) {
         {
           onStage: (ev) => {
             if (ev.arm === "flat_vector_rag") {
-              setFlatStages((prev) => [...prev, ev]);
+              patchState(pid, (s) => ({ ...s, flatStages: [...s.flatStages, ev] }));
             } else {
-              setGraphStages((prev) => [...prev, ev]);
+              patchState(pid, (s) => ({ ...s, graphStages: [...s.graphStages, ev] }));
             }
           },
-          onComparison: (res) => setComparison(res),
-          onError: (msg) => setError(msg),
+          onComparison: (res) => patchState(pid, (s) => ({ ...s, comparison: res })),
+          onError: (msg) => patchState(pid, (s) => ({ ...s, error: msg })),
         },
         ctrl.signal
       );
     } catch (err) {
       if ((err as Error).name !== "AbortError") {
-        setError((err as Error).message);
+        patchState(pid, (s) => ({ ...s, error: (err as Error).message }));
       }
     } finally {
-      setIsRunning(false);
+      patchState(pid, (s) => ({ ...s, isRunning: false }));
     }
   };
 
@@ -89,10 +163,10 @@ export function ComparePage({ pack, mode, synthesisModel }: ComparePageProps) {
     <div className="stack-md">
       <div className="page-header">
         <div>
-          <h1>Flat Vector RAG vs. Hybrid GraphRAG Battle Lab</h1>
+          <h1>Standard AI Search vs. Graph Intelligence</h1>
           <p className="page-subtitle">
-            Execute both architectures side by side on the exact same multi-hop question to
-            measure structural entity/edge recall, citation provenance, latency, and unit cost.
+            Run the exact same multi-tier business question through both approaches side by side
+            to see what standard document search misses — and compare accuracy, speed, and cost.
           </p>
         </div>
         <span className="badge">{pack.title}</span>
@@ -103,17 +177,22 @@ export function ComparePage({ pack, mode, synthesisModel }: ComparePageProps) {
           <div className="grid-compare-bar">
             <div>
               <label className="field-label" htmlFor="compare-question-select">
-                Golden Multi-Hop Benchmark Question
+                Select a Multi-Tier Business Scenario
               </label>
               <select
                 id="compare-question-select"
                 className="select-control w-full"
-                value={questionIdx}
-                onChange={(e) => setQuestionIdx(Number(e.target.value))}
+                value={state.questionIdx}
+                onChange={(e) =>
+                  patchState(pack.pack_id, (s) => ({
+                    ...s,
+                    questionIdx: Number(e.target.value),
+                  }))
+                }
               >
                 {pack.questions.map((q, idx) => (
                   <option key={q.question_id} value={idx}>
-                    [{q.question_id} · {q.hop_depth}-hop {q.direction}] {q.question}
+                    [Scenario {idx + 1} · {q.hop_depth}-tier] {q.question}
                   </option>
                 ))}
               </select>
@@ -121,18 +200,23 @@ export function ComparePage({ pack, mode, synthesisModel }: ComparePageProps) {
 
             <div>
               <label className="field-label" htmlFor="compare-graph-engine">
-                GraphRAG Arm
+                Graph Intelligence Engine
               </label>
               <select
                 id="compare-graph-engine"
                 className="select-control w-full"
-                value={graphEngine}
+                value={state.graphEngine}
                 onChange={(e) =>
-                  setGraphEngine(e.target.value as "bq_graphrag" | "adk_graph_coordinator")
+                  patchState(pack.pack_id, (s) => ({
+                    ...s,
+                    graphEngine: e.target.value as "bq_graphrag" | "adk_graph_coordinator",
+                  }))
                 }
               >
-                <option value="bq_graphrag">BigQuery Property Graph (ISO GQL)</option>
-                <option value="adk_graph_coordinator">Google ADK 2.15 Coordinator</option>
+                <option value="bq_graphrag">Graph Intelligence (BigQuery Property Graph)</option>
+                <option value="adk_graph_coordinator">
+                  Autonomous Risk Agent (Google ADK 2.15)
+                </option>
               </select>
             </div>
 
@@ -141,19 +225,19 @@ export function ComparePage({ pack, mode, synthesisModel }: ComparePageProps) {
                 type="button"
                 id="run-compare-btn"
                 className="btn btn-primary"
-                disabled={isRunning || !activeQ}
+                disabled={state.isRunning || !activeQ}
                 onClick={handleRunCompare}
               >
                 <Play size={14} aria-hidden="true" />
-                {isRunning ? "Comparing…" : "Run Side-by-Side"}
+                {state.isRunning ? "Comparing…" : "Compare Side by Side"}
               </button>
-              {isRunning && (
+              {state.isRunning && (
                 <button
                   type="button"
                   className="btn"
                   onClick={() => {
-                    abortRef.current?.abort();
-                    setIsRunning(false);
+                    abortRefs.current[pack.pack_id]?.abort();
+                    patchState(pack.pack_id, (s) => ({ ...s, isRunning: false }));
                   }}
                 >
                   <Square size={13} aria-hidden="true" />
@@ -165,37 +249,37 @@ export function ComparePage({ pack, mode, synthesisModel }: ComparePageProps) {
 
           {activeQ && (
             <div className="info-banner">
-              <strong>Why single-hop vector search struggles here:</strong>{" "}
+              <strong>Why standard document search misses hidden links here:</strong>{" "}
               {activeQ.why_flat_vector_misses}
             </div>
           )}
 
-          {error && (
+          {state.error && (
             <div role="alert" className="error-banner">
-              {error}
+              {state.error}
             </div>
           )}
         </div>
       </section>
 
-      {comparison && (
+      {state.comparison && (
         <div className="recall-banner" role="status">
           <div className="row-wrap gap-10">
             <GitCompare size={18} aria-hidden="true" />
             <div>
-              <strong>Measured Multi-Hop Path Recall Lift:</strong> Flat Vector RAG{" "}
+              <strong>Multi-Tier Accuracy Comparison:</strong> Standard AI Search{" "}
               <span className="mono">
-                {formatPercent(comparison.flat_vector_rag.recall?.path_recall)}
+                {formatPercent(state.comparison.flat_vector_rag.recall?.path_recall)}
               </span>{" "}
-              vs. Hybrid GraphRAG{" "}
+              vs. Graph Intelligence{" "}
               <span className="mono">
-                {formatPercent(comparison.graphrag.recall?.path_recall)}
+                {formatPercent(state.comparison.graphrag.recall?.path_recall)}
               </span>
             </div>
           </div>
-          {comparison.path_recall_delta !== null && (
+          {state.comparison.path_recall_delta !== null && (
             <span className="badge badge-verified badge-lg">
-              +{Math.round(comparison.path_recall_delta * 100)} pts GraphRAG advantage
+              +{Math.round(state.comparison.path_recall_delta * 100)} pts Graph Advantage
             </span>
           )}
         </div>
@@ -204,24 +288,38 @@ export function ComparePage({ pack, mode, synthesisModel }: ComparePageProps) {
       <div className="compare-grid">
         <div className="stack-md">
           <StageRail
-            title="Arm A · Flat Vector RAG (Chunks Only)"
-            events={flatStages}
-            isRunning={isRunning && !comparison}
+            title="Baseline · Standard AI Search (Documents Only)"
+            events={state.flatStages}
+            isRunning={state.isRunning && !state.comparison}
           />
-          {comparison && <CitedAnswer result={comparison.flat_vector_rag} />}
+          {state.comparison && (
+            <CitedAnswer
+              result={state.comparison.flat_vector_rag}
+              nodesById={nodesById}
+              edgesById={edgesById}
+              chunksById={chunksById}
+            />
+          )}
         </div>
 
         <div className="stack-md">
           <StageRail
-            title={`Arm B · ${
-              graphEngine === "adk_graph_coordinator"
-                ? "Google ADK 2.15 Graph Coordinator"
-                : "BigQuery Property Graph (ISO GQL)"
+            title={`Recommended · ${
+              state.graphEngine === "adk_graph_coordinator"
+                ? "Autonomous Risk Agent (Google ADK 2.15)"
+                : "Graph Intelligence (BigQuery)"
             }`}
-            events={graphStages}
-            isRunning={isRunning && !comparison}
+            events={state.graphStages}
+            isRunning={state.isRunning && !state.comparison}
           />
-          {comparison && <CitedAnswer result={comparison.graphrag} />}
+          {state.comparison && (
+            <CitedAnswer
+              result={state.comparison.graphrag}
+              nodesById={nodesById}
+              edgesById={edgesById}
+              chunksById={chunksById}
+            />
+          )}
         </div>
       </div>
     </div>

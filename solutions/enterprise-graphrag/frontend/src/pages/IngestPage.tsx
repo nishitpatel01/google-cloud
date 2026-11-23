@@ -1,4 +1,4 @@
-import { ShieldCheck, Upload } from "lucide-react";
+import { RotateCcw, ShieldCheck, Upload } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { uploadDocument } from "../api/client";
 import { EvidenceInspector } from "../components/EvidenceInspector";
@@ -16,6 +16,18 @@ interface IngestPageProps {
   pack: PackSummary;
   mode: "replay" | "live";
   synthesisModel: string;
+  onRunningChange?: (running: boolean) => void;
+}
+
+interface IngestPackState {
+  ontologyYaml: string;
+  selectedFile: File | null;
+  persistToBq: boolean;
+  isUploading: boolean;
+  response: IngestUploadResponse | null;
+  error: string | null;
+  selectedNode: EntityNode | null;
+  selectedEdge: GraphEdge | null;
 }
 
 function ontologyToYamlPreview(ontology: OntologySpec): string {
@@ -35,52 +47,89 @@ function ontologyToYamlPreview(ontology: OntologySpec): string {
   return `node_types:\n${nodes}\nedge_types:\n${edges}\ndlp_info_types:\n${dlp}\n`;
 }
 
-export function IngestPage({ pack, mode, synthesisModel }: IngestPageProps) {
-  const [ontologyYaml, setOntologyYaml] = useState(() =>
-    ontologyToYamlPreview(pack.ontology)
-  );
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [persistToBq, setPersistToBq] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
-  const [response, setResponse] = useState<IngestUploadResponse | null>(null);
-  const [error, setError] = useState<string | null>(null);
+function createInitialIngestState(pack: PackSummary): IngestPackState {
+  return {
+    ontologyYaml: ontologyToYamlPreview(pack.ontology),
+    selectedFile: null,
+    persistToBq: false,
+    isUploading: false,
+    response: null,
+    error: null,
+    selectedNode: null,
+    selectedEdge: null,
+  };
+}
 
-  const [selectedNode, setSelectedNode] = useState<EntityNode | null>(null);
-  const [selectedEdge, setSelectedEdge] = useState<GraphEdge | null>(null);
+export function IngestPage({
+  pack,
+  mode,
+  synthesisModel,
+  onRunningChange,
+}: IngestPageProps) {
+  const [stateByPack, setStateByPack] = useState<Record<string, IngestPackState>>(() => ({
+    [pack.pack_id]: createInitialIngestState(pack),
+  }));
 
   useEffect(() => {
-    setOntologyYaml(ontologyToYamlPreview(pack.ontology));
-    setResponse(null);
-    setError(null);
-    setSelectedNode(null);
-    setSelectedEdge(null);
-  }, [pack.pack_id, pack.ontology]);
+    setStateByPack((prev) =>
+      prev[pack.pack_id]
+        ? prev
+        : { ...prev, [pack.pack_id]: createInitialIngestState(pack) }
+    );
+  }, [pack]);
+
+  const anyUploading = useMemo(
+    () => Object.values(stateByPack).some((s) => s.isUploading),
+    [stateByPack]
+  );
+
+  useEffect(() => {
+    onRunningChange?.(anyUploading);
+  }, [anyUploading, onRunningChange]);
+
+  const state = stateByPack[pack.pack_id] ?? createInitialIngestState(pack);
+
+  const patchState = (
+    targetPackId: string,
+    updater: (prev: IngestPackState) => IngestPackState
+  ) => {
+    setStateByPack((prev) => {
+      const base = prev[targetPackId] ?? createInitialIngestState(pack);
+      return { ...prev, [targetPackId]: updater(base) };
+    });
+  };
 
   const nodesById = useMemo(
-    () => new Map((response?.entities ?? []).map((n) => [n.entity_id, n])),
-    [response]
+    () => new Map((state.response?.entities ?? []).map((n) => [n.entity_id, n])),
+    [state.response]
   );
 
   const handleUpload = async () => {
-    if (!selectedFile) return;
-    setIsUploading(true);
-    setError(null);
-    setResponse(null);
-    setSelectedNode(null);
-    setSelectedEdge(null);
+    const pid = pack.pack_id;
+    const current = stateByPack[pid] ?? createInitialIngestState(pack);
+    if (!current.selectedFile) return;
+
+    patchState(pid, (s) => ({
+      ...s,
+      isUploading: true,
+      error: null,
+      response: null,
+      selectedNode: null,
+      selectedEdge: null,
+    }));
     try {
       const res = await uploadDocument({
-        packId: pack.pack_id,
-        file: selectedFile,
-        customOntologyYaml: ontologyYaml,
-        persistToBigquery: persistToBq,
+        packId: pid,
+        file: current.selectedFile,
+        customOntologyYaml: current.ontologyYaml,
+        persistToBigquery: current.persistToBq,
         extractionModel: synthesisModel,
       });
-      setResponse(res);
+      patchState(pid, (s) => ({ ...s, response: res }));
     } catch (err) {
-      setError((err as Error).message);
+      patchState(pid, (s) => ({ ...s, error: (err as Error).message }));
     } finally {
-      setIsUploading(false);
+      patchState(pid, (s) => ({ ...s, isUploading: false }));
     }
   };
 
@@ -88,46 +137,51 @@ export function IngestPage({ pack, mode, synthesisModel }: IngestPageProps) {
     <div className="stack-md">
       <div className="page-header">
         <div>
-          <h1>BYO-Ontology &amp; Multimodal Document Ingestion</h1>
+          <h1>Upload Your Own Filings, Contracts &amp; Diagrams</h1>
           <p className="page-subtitle">
-            Upload your own PDF, PNG/JPEG diagram, TXT, CSV, or Markdown filing (max 10 MB)
-            to extract ontology-constrained entities &amp; directed edges with O(N) canonical
-            deduplication, Cloud DLP PII safety, and optional atomic BigQuery MERGE.
+            Upload a PDF, PNG/JPEG diagram, CSV, TXT, or Markdown filing (up to 10 MB) to
+            automatically map entities and hidden connections, screen for sensitive PII, and
+            optionally merge them into your live risk graph.
           </p>
         </div>
-        <span className="badge">Target Pack: {pack.pack_id}</span>
+        <span className="badge">Target Scenario: {pack.title}</span>
       </div>
 
       <div className="compare-grid">
         <section className="panel" aria-label="Upload configuration">
           <div className="panel-header">
-            <h2 className="panel-title">1. Document Upload &amp; Security Controls</h2>
+            <h2 className="panel-title">1. Select Document &amp; Governance Options</h2>
             <span className="badge badge-verified">
               <ShieldCheck size={12} aria-hidden="true" />
-              Magic-Byte + 10 MB Guard
+              File Safety &amp; 10 MB Check
             </span>
           </div>
           <div className="panel-body stack-md">
             <div className="dropzone">
               <Upload size={24} color="var(--accent-primary)" aria-hidden="true" />
               <div className="dropzone-title">
-                {selectedFile
-                  ? `${selectedFile.name} (${(selectedFile.size / 1024).toFixed(1)} KB)`
-                  : "Choose a PDF, PNG, JPEG, TXT, MD, or CSV document"}
+                {state.selectedFile
+                  ? `${state.selectedFile.name} (${(state.selectedFile.size / 1024).toFixed(1)} KB)`
+                  : "Choose a PDF, PNG, JPEG, TXT, MD, or CSV file"}
               </div>
               <div className="dropzone-sub">
-                Validated server-side via binary headers + randomized UUID GCS object key
+                Verified server-side for file authenticity with randomized secure cloud storage keys
               </div>
               <div className="dropzone-actions">
                 <label htmlFor="ingest-file-input" className="btn btn-sm">
-                  Select File
+                  Choose File
                 </label>
                 <input
                   id="ingest-file-input"
                   type="file"
                   accept=".pdf,.png,.jpg,.jpeg,.txt,.md,.csv,.yaml,.yml"
                   className="hidden-input"
-                  onChange={(e) => setSelectedFile(e.target.files?.[0] ?? null)}
+                  onChange={(e) =>
+                    patchState(pack.pack_id, (s) => ({
+                      ...s,
+                      selectedFile: e.target.files?.[0] ?? null,
+                    }))
+                  }
                 />
               </div>
             </div>
@@ -135,18 +189,23 @@ export function IngestPage({ pack, mode, synthesisModel }: IngestPageProps) {
             <label className="row-wrap clickable-label">
               <input
                 type="checkbox"
-                checked={persistToBq}
+                checked={state.persistToBq}
                 disabled={mode !== "live"}
-                onChange={(e) => setPersistToBq(e.target.checked)}
+                onChange={(e) =>
+                  patchState(pack.pack_id, (s) => ({
+                    ...s,
+                    persistToBq: e.target.checked,
+                  }))
+                }
               />
-              Persist extracted entities &amp; edges atomically into BigQuery Property Graph (MERGE)
+              Save extracted entities &amp; connections to live BigQuery Graph
             </label>
 
             {mode === "replay" && (
               <div className="info-banner">
-                Currently in <strong>Replay</strong> mode: uploads run strict validation,
-                chunking, and DLP preview without calling live Gemini or BigQuery. Switch to{" "}
-                <strong>Live</strong> mode in the header for full multimodal extraction.
+                Currently in <strong>Replay</strong> mode: uploads run file validation, chunking,
+                and privacy preview without incurring cloud AI charges. Switch to{" "}
+                <strong>Live Cloud</strong> in the header for full multimodal extraction.
               </div>
             )}
 
@@ -154,108 +213,139 @@ export function IngestPage({ pack, mode, synthesisModel }: IngestPageProps) {
               type="button"
               id="run-ingest-btn"
               className="btn btn-primary"
-              disabled={!selectedFile || isUploading}
+              disabled={!state.selectedFile || state.isUploading}
               onClick={handleUpload}
             >
               <Upload size={14} aria-hidden="true" />
-              {isUploading ? "Validating & Extracting…" : "Validate & Extract Knowledge Graph"}
+              {state.isUploading ? "Validating & Extracting…" : "Analyze & Map Document"}
             </button>
 
-            {error && (
+            {state.error && (
               <div role="alert" className="error-banner">
-                {error}
+                {state.error}
               </div>
             )}
           </div>
         </section>
 
-        <section className="panel" aria-label="Ontology editor">
+        <section className="panel" aria-label="Entity and relationship rules">
           <div className="panel-header">
-            <h2 className="panel-title">2. Editable Target Ontology (YAML)</h2>
-            <span className="badge">yaml.safe_load validated</span>
+            <h2 className="panel-title">2. Custom Entity &amp; Relationship Rules (YAML)</h2>
+            <button
+              type="button"
+              className="btn btn-sm"
+              onClick={() =>
+                patchState(pack.pack_id, (s) => ({
+                  ...s,
+                  ontologyYaml: ontologyToYamlPreview(pack.ontology),
+                }))
+              }
+            >
+              <RotateCcw size={12} aria-hidden="true" />
+              Reset Defaults
+            </button>
           </div>
           <div className="panel-body stack-sm">
             <label className="field-label" htmlFor="ontology-yaml-editor">
-              Customize allowed node_types, edge_types, and Cloud DLP info_types
+              Customize entity types, risk relationships, and sensitive PII checks
             </label>
             <textarea
               id="ontology-yaml-editor"
               className="code-editor"
-              value={ontologyYaml}
-              onChange={(e) => setOntologyYaml(e.target.value)}
+              value={state.ontologyYaml}
+              onChange={(e) =>
+                patchState(pack.pack_id, (s) => ({ ...s, ontologyYaml: e.target.value }))
+              }
             />
           </div>
         </section>
       </div>
 
-      {response && (
+      {state.response && (
         <div className="stack-md">
-          <section className="panel" aria-label="Ingestion results summary">
+          <section className="panel" aria-label="Extraction results summary">
             <div className="panel-header">
-              <h2 className="panel-title">Extraction &amp; Governance Summary</h2>
-              <span className="badge badge-upload">{response.extraction_mode}</span>
+              <h2 className="panel-title">Extraction &amp; Privacy Summary</h2>
+              <span className="badge badge-upload">{state.response.extraction_mode}</span>
             </div>
             <div className="panel-body stack-md">
-              {response.message && <div className="info-banner">{response.message}</div>}
+              {state.response.message && (
+                <div className="info-banner">{state.response.message}</div>
+              )}
               <div className="kpi-grid">
                 <div className="kpi-box">
-                  <div className="kpi-label">Chunks</div>
-                  <div className="kpi-value">{response.chunks_count}</div>
+                  <div className="kpi-label">Document Excerpts</div>
+                  <div className="kpi-value">{state.response.chunks_count}</div>
                 </div>
                 <div className="kpi-box">
-                  <div className="kpi-label">Entities Extracted</div>
-                  <div className="kpi-value">{response.entities.length}</div>
+                  <div className="kpi-label">Entities Found</div>
+                  <div className="kpi-value">{state.response.entities.length}</div>
                 </div>
                 <div className="kpi-box">
-                  <div className="kpi-label">Edges Extracted</div>
-                  <div className="kpi-value">{response.edges.length}</div>
+                  <div className="kpi-label">Connections Found</div>
+                  <div className="kpi-value">{state.response.edges.length}</div>
                 </div>
                 <div className="kpi-box">
-                  <div className="kpi-label">Canonical Merges</div>
-                  <div className="kpi-value">{response.merged_entities_count ?? 0}</div>
+                  <div className="kpi-label">Duplicates Merged</div>
+                  <div className="kpi-value">{state.response.merged_entities_count ?? 0}</div>
                 </div>
                 <div className="kpi-box">
-                  <div className="kpi-label">Cloud DLP Findings</div>
+                  <div className="kpi-label">Sensitive PII Alerts</div>
                   <div className="kpi-value">
-                    {response.dlp.enabled ? response.dlp.findings_count : "Off"}
+                    {state.response.dlp.enabled ? state.response.dlp.findings_count : "Off"}
                   </div>
                 </div>
                 <div className="kpi-box">
-                  <div className="kpi-label">Extraction Cost</div>
+                  <div className="kpi-label">Processing Cost</div>
                   <div className="kpi-value">
-                    {formatUsd(response.extraction_cost_usd ?? 0)}
+                    {formatUsd(state.response.extraction_cost_usd ?? 0)}
                   </div>
                 </div>
               </div>
 
-              <div className="row-wrap">
-                <span className="badge mono">GCS Key: {response.upload.gcs_object_key}</span>
-                <span className="badge mono">SHA-256: {response.upload.sha256.slice(0, 16)}…</span>
-                <span className="badge">{response.dlp.reason}</span>
-              </div>
+              <details className="stage-details">
+                <summary className="stage-summary">
+                  Technical storage &amp; privacy audit receipt
+                </summary>
+                <div className="row-wrap stage-meta">
+                  <span className="badge mono">
+                    Storage Key: {state.response.upload.gcs_object_key}
+                  </span>
+                  <span className="badge mono">
+                    SHA-256: {state.response.upload.sha256.slice(0, 16)}…
+                  </span>
+                  <span className="badge">{state.response.dlp.reason}</span>
+                </div>
+              </details>
             </div>
           </section>
 
-          {response.entities.length > 0 && (
+          {state.response.entities.length > 0 && (
             <div className="compare-grid">
               <GraphCanvas
-                nodes={response.entities}
-                edges={response.edges}
+                nodes={state.response.entities}
+                edges={state.response.edges}
                 ontology={pack.ontology}
-                selectedNodeId={selectedNode?.entity_id ?? null}
-                selectedEdgeId={selectedEdge?.edge_id ?? null}
-                onSelectNode={(n) => {
-                  setSelectedNode(n);
-                  setSelectedEdge(null);
-                }}
-                onSelectEdge={(e) => {
-                  setSelectedEdge(e);
-                  setSelectedNode(null);
-                }}
+                selectedNodeId={state.selectedNode?.entity_id ?? null}
+                selectedEdgeId={state.selectedEdge?.edge_id ?? null}
+                onSelectNode={(n) =>
+                  patchState(pack.pack_id, (s) => ({
+                    ...s,
+                    selectedNode: n,
+                    selectedEdge: null,
+                  }))
+                }
+                onSelectEdge={(e) =>
+                  patchState(pack.pack_id, (s) => ({
+                    ...s,
+                    selectedEdge: e,
+                    selectedNode: null,
+                  }))
+                }
               />
               <EvidenceInspector
-                selectedNode={selectedNode}
-                selectedEdge={selectedEdge}
+                selectedNode={state.selectedNode}
+                selectedEdge={state.selectedEdge}
                 selectedChunk={null}
                 chunksById={new Map()}
                 nodesById={nodesById}

@@ -1,0 +1,92 @@
+{
+  "solution_id": "acc05",
+  "solution_name": "Risk & Contagion Intelligence (Enterprise GraphRAG)",
+  "current_version": "0.4.0",
+  "releases": [
+    {
+      "version": "0.4.0",
+      "phase": "Phase 3",
+      "date": "2026-11-23",
+      "pr": "#5",
+      "status": "In Review",
+      "title": "Executive UI Experience, Persistent Workspaces, Releases & GCP Resource Governance",
+      "summary": "Delivered the full-width React 19 interactive workspace with low-glare Light/Dark/System theming, business-friendly executive briefs, tab-state preservation across live analyses, an in-app Releases changelog, and the 4-layer GCP resource naming & 6-key FinOps label standard.",
+      "categories": ["UI/UX", "FinOps & Governance", "Security"],
+      "highlights": [
+        "Full-width React 19 + d3-force interactive Contagion Explorer with ontology shapes, entity search, zoom controls, and click-to-audit SEC/OFAC/CUAD evidence.",
+        "Subtle, low-glare Light / Dark / System theme switcher with zero inline styles (strict style-src 'self' CSP compliance).",
+        "Persistent background tab state: switching between Explorer, Compare Lab, BYO Ingest, Benchmark & TCO, and Releases preserves active SSE streams, prompts, and results.",
+        "4-layer GCP Resource Attribution Standard (`acc05_` / `acc05-` naming prefix + 6 mandatory FinOps labels on BigQuery datasets/tables/jobs, Vertex AI calls, GCS metadata, dedicated `$0/mo` Model Armor template, and 1-command Cloud Asset Inventory script).",
+        "In-app Releases timeline backed by `GET /api/v1/releases` and formula-safe CSV Executive Brief export."
+      ],
+      "verification": {
+        "backend_tests": 53,
+        "frontend_suites": 6,
+        "gcp_live": "BigQuery dataset acc05_enterprise_graphrag + 5 tables labeled; dedicated acc05-enterprise-graphrag-guardrail Model Armor active; live smoke GQL 1.00 path recall"
+      }
+    },
+    {
+      "version": "0.3.0",
+      "phase": "Phase 2",
+      "date": "2026-11-23",
+      "pr": "#4",
+      "status": "Merged",
+      "title": "Google ADK 2.15 Autonomous Coordinator, Multimodal BYO Ingestion & Enterprise Security",
+      "summary": "Added multi-tool agent orchestration on Google ADK 2.15.0, customer document & custom ontology ingestion (PDF, images, CSV, TXT, YAML), Google Cloud Model Armor prompt screening, Cloud DLP PII-safe previews, and Cloud IAP ES256 JWT hardening.",
+      "categories": ["AI Engines", "Ingestion", "Security"],
+      "highlights": [
+        "Google ADK 2.15.0 LlmAgent + InMemoryRunner + BuiltInPlanner orchestrating graph traversal, chunk lookup, ontology inspection, and mandatory citation self-verification.",
+        "Multimodal BYO-Ontology /ingest pipeline: magic-byte validation (%PDF-, PNG, JPEG, UTF-8), 10 MB cap, UUID GCS keys, PyMuPDF + Gemini vision extraction, O(N) canonical entity merging, and atomic BigQuery staging MERGE.",
+        "Google Cloud Model Armor REST v1 screening + opt-in Cloud DLP inspection (include_quote=false so raw PII never enters logs or UI).",
+        "FastAPI SSE streaming API (/api/v1/query/stream, /api/v1/compare/stream, /api/v1/ingest/upload, /api/v1/tco/estimate) with strict CSP, non-wildcard CORS, sliding-window rate limits, and hardcoded ES256 IAP JWT checks."
+      ],
+      "verification": {
+        "backend_tests": 50,
+        "frontend_suites": 0,
+        "gcp_live": "Live ADK 2.15 + Model Armor verified on sc_q01: 1.00 multi-hop recall, 100% self-verified citations ($0.0070)"
+      }
+    },
+    {
+      "version": "0.2.0",
+      "phase": "Phase 1",
+      "date": "2026-11-19",
+      "pr": "#3",
+      "status": "Merged",
+      "title": "Core BigQuery Property Graph (ISO GQL), Flat Vector Baseline & Live Seeder",
+      "summary": "Built the Tier-1 serverless BigQuery Property Graph ISO GQL traversal engine, Flat Vector RAG comparison baseline, Tier-2 Spanner Graph adapter, Discovery Engine reranking, deterministic provenance audit, and zero-credential Replay runner.",
+      "categories": ["AI Engines", "Data Platform"],
+      "highlights": [
+        "Strictly parameterized BigQuery ISO/IEC 39075 GQL traversals (MATCH p = ANY SHORTEST, explicit directed edges, UNION ALL GRAPH_TABLE for bidirectional search, zero Cypher).",
+        "Hybrid vector + canonical-name anchor entity seeding on 3072-d gemini-embedding-2 (Vertex global) + Discovery Engine Ranking API reranking.",
+        "Measured-not-simulated StageEmitter SSE telemetry, deterministic [ENTITY:]/[EDGE:]/[CHUNK:] provenance verifier, and path-traversal-safe Replay fixture recorder/runner.",
+        "Idempotent BigQuery seeder (scripts/seed_data.py) reusing existing 0-slot Enterprise reservations and swapping pack tables atomically via staging load jobs."
+      ],
+      "verification": {
+        "backend_tests": 39,
+        "frontend_suites": 0,
+        "gcp_live": "Live 3-pack verification across outgoing/incoming/both: 0.00 Flat Vector vs 1.00 BigQuery GraphRAG path recall, 100% provenance verified ($0.0024-$0.0039)"
+      }
+    },
+    {
+      "version": "0.1.0",
+      "phase": "Phase 0",
+      "date": "2026-11-19",
+      "pr": "#2",
+      "status": "Merged",
+      "title": "Foundation, ISO GQL Schemas & Three Real Public Industry Data Packs",
+      "summary": "Established strict Pydantic domain contracts, BigQuery & Spanner ISO GQL DDL, O(N) canonical entity resolution, Monthly GCP TCO math, and three real publicly sourced industry benchmark packs.",
+      "categories": ["Data Platform", "Foundation"],
+      "highlights": [
+        "Supply Chain Sub-Tier Risk pack (97.8% real public data: 2026 SEC EDGAR Form SD filings for Intel, NVIDIA, AMD, QUALCOMM + USGS 2025 Mineral Commodity Summaries).",
+        "Banking AML & Sanctions Contagion pack (92.5% real public data: US Treasury OFAC SDN/ALT/ADD multi-hop Linked To graph + GLEIF LEI CC0).",
+        "Legal M&A Clause Diligence pack (92.5% real public data: CUAD v1 CC-BY 4.0 real SEC Exhibit 10 commercial contracts with Change of Control & IP triggers).",
+        "Deterministic O(N) entity resolver and 15 path-verified multi-hop golden benchmark questions."
+      ],
+      "verification": {
+        "backend_tests": 24,
+        "frontend_suites": 0,
+        "gcp_live": "Offline schema, pack referential integrity, and entity resolution scale verified"
+      }
+    }
+  ]
+}

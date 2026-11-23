@@ -10,6 +10,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any
 
+from app.core.attribution import gcp_job_labels, gcp_resource_labels
 from app.core.config import Settings
 from app.core.gcp_clients import embed_texts_threaded, get_bigquery_client
 from app.ingestion.multimodal_extractor import ExtractionOutcome
@@ -34,6 +35,7 @@ def upload_raw_to_gcs(
     blob = bucket.blob(upload.gcs_object_key)
     blob.content_disposition = f'attachment; filename="{upload.display_name}"'
     blob.metadata = {
+        **gcp_resource_labels(settings, managed_by="app_runtime"),
         "pack_id": upload.pack_id,
         "sha256": upload.sha256,
         "display_name": upload.display_name,
@@ -45,9 +47,7 @@ def upload_raw_to_gcs(
 def _merge_via_staging(
     client: Any,
     *,
-    project_id: str,
-    dataset: str,
-    location: str,
+    settings: Settings,
     table_name: str,
     key_col: str,
     run_id: str,
@@ -58,6 +58,11 @@ def _merge_via_staging(
     if not rows:
         return
     from google.cloud import bigquery
+
+    project_id = settings.gcp_project_id
+    dataset = settings.bq_dataset
+    location = settings.bq_location
+    labels = gcp_job_labels(settings, component="ingest_merge")
 
     stg_ref = f"{project_id}.{dataset}._stg_upl_{table_name}_{run_id[:10]}"
     target_ref = f"{project_id}.{dataset}.{table_name}"
@@ -70,7 +75,7 @@ def _merge_via_staging(
         schema=schema,
         write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
         source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
-        labels={"solution": "enterprise_graphrag"},
+        labels=labels,
     )
     try:
         client.load_table_from_json(rows, stg_ref, job_config=load_cfg, location=location).result()
@@ -83,7 +88,7 @@ WHEN NOT MATCHED THEN INSERT ({insert_cols}) VALUES ({insert_vals})
 """.strip()
         client.query(
             merge_sql,
-            job_config=bigquery.QueryJobConfig(labels={"solution": "enterprise_graphrag"}),
+            job_config=bigquery.QueryJobConfig(labels=labels),
             location=location,
         ).result()
     finally:
@@ -248,9 +253,7 @@ def persist_extracted_graph(
     client = bq_client or get_bigquery_client(settings.gcp_project_id)
     _merge_via_staging(
         client,
-        project_id=settings.gcp_project_id,
-        dataset=settings.bq_dataset,
-        location=settings.bq_location,
+        settings=settings,
         table_name="entities",
         key_col="entity_id",
         run_id=run_id,
@@ -259,9 +262,7 @@ def persist_extracted_graph(
     )
     _merge_via_staging(
         client,
-        project_id=settings.gcp_project_id,
-        dataset=settings.bq_dataset,
-        location=settings.bq_location,
+        settings=settings,
         table_name="edges",
         key_col="edge_id",
         run_id=run_id,
@@ -270,9 +271,7 @@ def persist_extracted_graph(
     )
     _merge_via_staging(
         client,
-        project_id=settings.gcp_project_id,
-        dataset=settings.bq_dataset,
-        location=settings.bq_location,
+        settings=settings,
         table_name="source_chunks",
         key_col="chunk_id",
         run_id=run_id,
@@ -320,7 +319,7 @@ def persist_extracted_graph(
             schema=audit_schema,
             write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
             source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
-            labels={"solution": "enterprise_graphrag"},
+            labels=gcp_job_labels(settings, component="ingest_audit"),
         ),
         location=settings.bq_location,
     ).result()

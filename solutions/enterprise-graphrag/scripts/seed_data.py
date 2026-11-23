@@ -31,6 +31,7 @@ BACKEND_DIR = SOLUTION_ROOT / "backend"
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
+from app.core.attribution import gcp_job_labels, gcp_resource_labels  # noqa: E402
 from app.core.config import Settings  # noqa: E402
 from app.core.gcp_clients import embed_texts_threaded, get_bigquery_client  # noqa: E402
 from app.core.models import EntityNode, GraphEdge, SourceChunk  # noqa: E402
@@ -210,16 +211,35 @@ def _ingest_run_schema() -> list[Any]:
     ]
 
 
+def apply_bigquery_resource_labels(client: Any, *, settings: Settings) -> dict[str, str]:
+    """Apply the mandatory 6-key GCP label schema to the BigQuery dataset and all 5 tables."""
+    labels = gcp_resource_labels(settings, managed_by="seed_script")
+    ds_ref = f"{settings.gcp_project_id}.{settings.bq_dataset}"
+    ds = client.get_dataset(ds_ref)
+    ds.labels = {**(ds.labels or {}), **labels}
+    client.update_dataset(ds, ["labels"])
+
+    for table_name in ("entities", "edges", "source_chunks", "ingest_runs", "query_runs"):
+        tbl = client.get_table(f"{ds_ref}.{table_name}")
+        tbl.labels = {**(tbl.labels or {}), **labels}
+        client.update_table(tbl, ["labels"])
+    print(f"[labels] Applied 6-key GCP labels to dataset {settings.bq_dataset} + 5 tables: {labels}")
+    return labels
+
+
 def ensure_enterprise_reservation(
     client: Any,
     *,
-    project_id: str,
-    location: str,
-    reservation_id: str,
+    settings: Settings,
     dry_run: bool = False,
 ) -> str:
     """Reuse an existing QUERY reservation assignment or create a $0-idle 0-slot Enterprise one."""
     from google.cloud import bigquery
+
+    project_id = settings.gcp_project_id
+    location = settings.bq_location
+    reservation_id = settings.bq_reservation_id
+    labels = gcp_job_labels(settings, component="reservation_check", managed_by="seed_script")
 
     loc_lower = location.lower()
     check_sql = (
@@ -228,7 +248,7 @@ def ensure_enterprise_reservation(
     )
     cfg = bigquery.QueryJobConfig(
         query_parameters=[bigquery.ScalarQueryParameter("project_id", "STRING", project_id)],
-        labels={"solution": "enterprise_graphrag"},
+        labels=labels,
     )
     rows = list(client.query(check_sql, job_config=cfg, location=location).result())
     if rows:
@@ -250,7 +270,7 @@ def ensure_enterprise_reservation(
     try:
         client.query(
             create_res_sql,
-            job_config=bigquery.QueryJobConfig(labels={"solution": "enterprise_graphrag"}),
+            job_config=bigquery.QueryJobConfig(labels=labels),
             location=location,
         ).result()
         print(f"[reservation] Created 0-slot Enterprise reservation: {reservation_id}")
@@ -266,7 +286,7 @@ def ensure_enterprise_reservation(
     try:
         client.query(
             create_asgn_sql,
-            job_config=bigquery.QueryJobConfig(labels={"solution": "enterprise_graphrag"}),
+            job_config=bigquery.QueryJobConfig(labels=labels),
             location=location,
         ).result()
         print(f"[reservation] Assigned QUERY jobs for project to {reservation_id}")
@@ -280,9 +300,7 @@ def ensure_enterprise_reservation(
 def _load_and_swap_table(
     client: Any,
     *,
-    project_id: str,
-    dataset: str,
-    location: str,
+    settings: Settings,
     table_name: str,
     pack_id: str,
     run_id: str,
@@ -292,6 +310,11 @@ def _load_and_swap_table(
     """Load rows into an ephemeral staging table and swap atomically scoped to pack_id."""
     from google.cloud import bigquery
 
+    project_id = settings.gcp_project_id
+    dataset = settings.bq_dataset
+    location = settings.bq_location
+    labels = gcp_job_labels(settings, component="seed_data", managed_by="seed_script")
+
     stg_name = f"_stg_{table_name}_{run_id.replace('-', '_')[:12]}"
     stg_ref = f"{project_id}.{dataset}.{stg_name}"
     target_ref = f"{project_id}.{dataset}.{table_name}"
@@ -300,7 +323,7 @@ def _load_and_swap_table(
         schema=schema,
         write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
         source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
-        labels={"solution": "enterprise_graphrag"},
+        labels=labels,
     )
     try:
         load_job = client.load_table_from_json(rows, stg_ref, job_config=load_cfg, location=location)
@@ -314,7 +337,7 @@ COMMIT TRANSACTION;
 """.strip()
         swap_cfg = bigquery.QueryJobConfig(
             query_parameters=[bigquery.ScalarQueryParameter("pack_id", "STRING", pack_id)],
-            labels={"solution": "enterprise_graphrag"},
+            labels=labels,
         )
         client.query(swap_sql, job_config=swap_cfg, location=location).result()
     finally:
@@ -416,9 +439,7 @@ def seed_pack(
     t_load = time.perf_counter()
     _load_and_swap_table(
         client,
-        project_id=settings.gcp_project_id,
-        dataset=settings.bq_dataset,
-        location=settings.bq_location,
+        settings=settings,
         table_name="entities",
         pack_id=pack.pack_id,
         run_id=run_id,
@@ -427,9 +448,7 @@ def seed_pack(
     )
     _load_and_swap_table(
         client,
-        project_id=settings.gcp_project_id,
-        dataset=settings.bq_dataset,
-        location=settings.bq_location,
+        settings=settings,
         table_name="edges",
         pack_id=pack.pack_id,
         run_id=run_id,
@@ -438,9 +457,7 @@ def seed_pack(
     )
     _load_and_swap_table(
         client,
-        project_id=settings.gcp_project_id,
-        dataset=settings.bq_dataset,
-        location=settings.bq_location,
+        settings=settings,
         table_name="source_chunks",
         pack_id=pack.pack_id,
         run_id=run_id,
@@ -489,7 +506,7 @@ def seed_pack(
             schema=_ingest_run_schema(),
             write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
             source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
-            labels={"solution": "enterprise_graphrag"},
+            labels=gcp_job_labels(settings, component="seed_audit", managed_by="seed_script"),
         ),
         location=settings.bq_location,
     ).result()
@@ -503,7 +520,7 @@ SELECT
 """.strip()
     verify_cfg = bigquery.QueryJobConfig(
         query_parameters=[bigquery.ScalarQueryParameter("pack_id", "STRING", pack.pack_id)],
-        labels={"solution": "enterprise_graphrag"},
+        labels=gcp_job_labels(settings, component="seed_verify", managed_by="seed_script"),
     )
     counts = dict(next(iter(client.query(verify_sql, job_config=verify_cfg, location=settings.bq_location).result())))
     if (
@@ -657,9 +674,7 @@ def main() -> int:
     if not args.skip_reservation:
         ensure_enterprise_reservation(
             client,
-            project_id=settings.gcp_project_id,
-            location=settings.bq_location,
-            reservation_id=settings.bq_reservation_id,
+            settings=settings,
             dry_run=args.dry_run,
         )
 
@@ -669,10 +684,14 @@ def main() -> int:
 
     from google.cloud import bigquery
 
-    ddl_cfg = bigquery.QueryJobConfig(labels={"solution": "enterprise_graphrag"})
+    ddl_cfg = bigquery.QueryJobConfig(
+        labels=gcp_job_labels(settings, component="seed_ddl", managed_by="seed_script")
+    )
     for stmt in table_ddls:
         client.query(stmt, job_config=ddl_cfg, location=settings.bq_location).result()
     print(f"[ddl] Ensured BigQuery dataset & {len(table_ddls) - 1} tables in {settings.bq_dataset}")
+
+    apply_bigquery_resource_labels(client, settings=settings)
 
     for pack in selected:
         seed_pack(client, settings=settings, pack=pack)

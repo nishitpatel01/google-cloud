@@ -18,9 +18,16 @@ function originBadgeClass(origin: DataOrigin): string {
 }
 
 function originLabel(origin: DataOrigin): string {
-  if (origin === "REAL_PUBLIC") return "REAL PUBLIC DATA";
-  if (origin === "CUSTOMER_UPLOAD") return "CUSTOMER UPLOAD";
-  return "MODELED BRIDGE";
+  if (origin === "REAL_PUBLIC") return "Verified Public Filing";
+  if (origin === "CUSTOMER_UPLOAD") return "Your Uploaded Document";
+  return "Modeled Connection";
+}
+
+function formatRelation(relation: string): string {
+  return relation
+    .toLowerCase()
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 export function EvidenceInspector({
@@ -36,29 +43,34 @@ export function EvidenceInspector({
       <section className="panel" aria-label="Evidence inspector">
         <div className="panel-header">
           <h2 className="panel-title">Source Evidence Inspector</h2>
-          <span className="badge">Click any node, edge, or citation</span>
+          <span className="badge">Click any item to verify</span>
         </div>
         <div className="panel-body muted-copy">
-          Select a vertex or directed relationship on the knowledge graph — or click any{" "}
-          <span className="mono">[ENTITY]</span>, <span className="mono">[EDGE]</span>, or{" "}
-          <span className="mono">[CHUNK]</span> citation chip in the contagion brief — to
-          audit exact SEC Form SD, OFAC SDN, USGS, or CUAD contract provenance.
+          Click any entity or connection on the risk network — or any verified citation pill
+          inside the Executive Risk Brief — to read the exact verbatim regulatory filing,
+          sanctions record, or contract clause behind it.
         </div>
       </section>
     );
   }
 
   if (selectedEdge) {
-    const srcName = nodesById.get(selectedEdge.source_entity_id)?.canonical_name ?? selectedEdge.source_entity_id;
-    const dstName = nodesById.get(selectedEdge.target_entity_id)?.canonical_name ?? selectedEdge.target_entity_id;
+    const srcName =
+      nodesById.get(selectedEdge.source_entity_id)?.canonical_name ??
+      selectedEdge.source_entity_id;
+    const dstName =
+      nodesById.get(selectedEdge.target_entity_id)?.canonical_name ??
+      selectedEdge.target_entity_id;
     const linkedChunk = chunksById.get(selectedEdge.source_chunk_id);
 
     return (
-      <section className="panel" aria-label="Selected edge evidence">
+      <section className="panel" aria-label="Selected connection evidence">
         <div className="panel-header">
           <div className="row-wrap">
             <GitBranch size={15} aria-hidden="true" />
-            <h2 className="panel-title">Edge Provenance · {selectedEdge.relation_type}</h2>
+            <h2 className="panel-title">
+              Relationship Evidence · {formatRelation(selectedEdge.relation_type)}
+            </h2>
           </div>
           <span className={originBadgeClass(selectedEdge.data_origin)}>
             {originLabel(selectedEdge.data_origin)}
@@ -69,20 +81,26 @@ export function EvidenceInspector({
             {srcName} → {dstName}
           </div>
           <div className="row-wrap">
-            <span className="badge mono">{selectedEdge.edge_id}</span>
-            <span className="badge">Confidence: {Math.round(selectedEdge.confidence * 100)}%</span>
+            <span className="badge">
+              Confidence: {Math.round(selectedEdge.confidence * 100)}%
+            </span>
             {selectedEdge.exposure_usd > 0 && (
-              <span className="badge">Exposure: {formatUsd(selectedEdge.exposure_usd)}</span>
+              <span className="badge">
+                Exposure: {formatUsd(selectedEdge.exposure_usd)}
+              </span>
             )}
             <span className="badge">{selectedEdge.source_license}</span>
+            <span className="badge mono">{selectedEdge.edge_id}</span>
           </div>
           <div>
-            <div className="field-label">Verbatim Evidence Excerpt</div>
-            <blockquote className="evidence-quote">{selectedEdge.evidence_excerpt}</blockquote>
+            <div className="field-label">Verbatim Source Excerpt</div>
+            <blockquote className="evidence-quote">
+              {selectedEdge.evidence_excerpt}
+            </blockquote>
           </div>
           <div className="row-between">
             <span className="muted-copy">
-              Document: <strong>{selectedEdge.source_doc_name}</strong>
+              Source Document: <strong>{selectedEdge.source_doc_name}</strong>
             </span>
             <div className="row-wrap">
               {linkedChunk && (
@@ -92,7 +110,7 @@ export function EvidenceInspector({
                   onClick={() => onSelectChunk(linkedChunk)}
                 >
                   <FileText size={13} aria-hidden="true" />
-                  Read Full Chunk ({linkedChunk.chunk_id})
+                  Read Full Filing Excerpt
                 </button>
               )}
               {selectedEdge.source_url && (
@@ -103,7 +121,7 @@ export function EvidenceInspector({
                   className="btn btn-sm"
                 >
                   <ExternalLink size={13} aria-hidden="true" />
-                  Primary Source
+                  Open Original Source
                 </a>
               )}
             </div>
@@ -123,7 +141,9 @@ export function EvidenceInspector({
         <div className="panel-header">
           <div className="row-wrap">
             <Layers size={15} aria-hidden="true" />
-            <h2 className="panel-title">Entity · {selectedNode.entity_type}</h2>
+            <h2 className="panel-title">
+              Entity Profile · {formatRelation(selectedNode.entity_type)}
+            </h2>
           </div>
           <span className={originBadgeClass(selectedNode.data_origin)}>
             {originLabel(selectedNode.data_origin)}
@@ -132,8 +152,7 @@ export function EvidenceInspector({
         <div className="panel-body stack-sm">
           <div className="node-title">{selectedNode.canonical_name}</div>
           <div className="row-wrap">
-            <span className="badge mono">{selectedNode.entity_id}</span>
-            <span className="badge">Jurisdiction: {selectedNode.jurisdiction}</span>
+            <span className="badge">Region: {selectedNode.jurisdiction}</span>
             <span
               className={`badge ${
                 selectedNode.risk_tier === "CRITICAL"
@@ -143,21 +162,24 @@ export function EvidenceInspector({
                     : ""
               }`}
             >
-              Risk: {selectedNode.risk_tier}
+              Risk Level: {selectedNode.risk_tier}
             </span>
             {selectedNode.exposure_usd > 0 && (
-              <span className="badge">Exposure: {formatUsd(selectedNode.exposure_usd)}</span>
+              <span className="badge">
+                Exposure: {formatUsd(selectedNode.exposure_usd)}
+              </span>
             )}
             <span className="badge">{selectedNode.source_license}</span>
+            <span className="badge mono">{selectedNode.entity_id}</span>
           </div>
 
           {Object.keys(selectedNode.attributes || {}).length > 0 && (
             <div>
-              <div className="field-label">Structured Attributes</div>
+              <div className="field-label">Key Details</div>
               <div className="row-wrap">
                 {Object.entries(selectedNode.attributes).map(([k, v]) => (
-                  <span key={k} className="badge mono">
-                    {k}: {String(v)}
+                  <span key={k} className="badge">
+                    {formatRelation(k)}: {String(v)}
                   </span>
                 ))}
               </div>
@@ -166,7 +188,9 @@ export function EvidenceInspector({
 
           {linkedChunks.length > 0 && (
             <div className="stack-sm">
-              <div className="field-label">Linked Source Chunks ({linkedChunks.length})</div>
+              <div className="field-label">
+                Supporting Filing Excerpts ({linkedChunks.length})
+              </div>
               <div className="row-wrap">
                 {linkedChunks.map((ch) => (
                   <button
@@ -176,7 +200,7 @@ export function EvidenceInspector({
                     onClick={() => onSelectChunk(ch)}
                   >
                     <FileText size={12} aria-hidden="true" />
-                    {ch.chunk_id} · {ch.doc_name.slice(0, 28)}
+                    {ch.doc_name.slice(0, 32)} · p.{ch.page_number}
                   </button>
                 ))}
               </div>
@@ -202,11 +226,11 @@ export function EvidenceInspector({
   }
 
   return (
-    <section className="panel" aria-label="Source chunk viewer">
+    <section className="panel" aria-label="Source filing excerpt viewer">
       <div className="panel-header">
         <div className="row-wrap">
           <FileText size={15} aria-hidden="true" />
-          <h2 className="panel-title">Source Document Chunk · {selectedChunk?.chunk_id}</h2>
+          <h2 className="panel-title">Source Filing Excerpt</h2>
         </div>
         {selectedChunk && (
           <span className={originBadgeClass(selectedChunk.data_origin)}>
@@ -220,6 +244,7 @@ export function EvidenceInspector({
             <span className="badge">{selectedChunk.doc_name}</span>
             <span className="badge">Page {selectedChunk.page_number}</span>
             <span className="badge">{selectedChunk.source_license}</span>
+            <span className="badge mono">{selectedChunk.chunk_id}</span>
           </div>
           <div className="chunk-viewer">{selectedChunk.content}</div>
         </div>

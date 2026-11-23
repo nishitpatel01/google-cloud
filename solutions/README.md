@@ -12,7 +12,7 @@ Solutions are added here incrementally as each standalone app is implemented, te
 
 | Solution | Category | Industries | Core GCP AI Stack | Status |
 | :--- | :--- | :--- | :--- | :---: |
-| [**Enterprise GraphRAG & Contagion Explorer**](enterprise-graphrag/README.md) (`enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2`, Google ADK `2.15`, Model Armor, React 19, Cloud Run | Phase 3 Complete (`50` backend + `5` frontend suites passing · React 19 UI + Live ADK/BQ Verified) |
+| [**Enterprise GraphRAG & Contagion Explorer**](enterprise-graphrag/README.md) (`enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2`, Google ADK `2.15`, Model Armor, React 19, Cloud Run | Phase 3 Complete (`53` backend + `6` frontend suites passing · Full-Width React 19 UI + Releases + 6-Key GCP Attribution Live Verified) |
 
 ---
 
@@ -25,6 +25,7 @@ Every solution under `solutions/<slug>/` is designed to be **100% standalone-dep
    - **Tier 1 (Default — `< 15 min` deploy, `≈ \$0–\$3/mo` idle)**: Cloud Run (`min-instances=0`) + BigQuery / Firestore + Vertex AI Serverless APIs + dedicated least-privilege runtime SA (zero JSON keys).
    - **Tier 2 (`enable_enterprise_scale=true`)**: Optional production upgrade path for AlloyDB ScaNN, Spanner Graph, Vertex Vector Search, Cloud Healthcare FHIR, Dataflow, Cloud IAP, and Shared VPC / Private Service Connect.
 3. **Built-In Trust, Eval & ROI**: Ships with Model Armor + Cloud DLP guardrails, self-service BYO-data `/ingest`, and Vertex AI GenAI Evaluation + Monthly GCP TCO telemetry.
+4. **4-Layer GCP Resource Naming & FinOps Attribution**: Every solution stamps deterministic resource prefixes (`acc<nn>_` / `acc<nn>-` or `str<nn>_` / `str<nn>-`) and a 6-key GCP label schema (`portfolio=gcp_ai_accelerators`, `solution_id`, `solution`, `tier`, `managed_by`, `env`) across datasets, tables, jobs, Vertex AI calls, and guardrails, paired with `./scripts/inventory_resources.sh` for 1-command discovery and cleanup audits.
 
 ```bash
 # Quickstart inside any published solution directory:

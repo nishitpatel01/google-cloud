@@ -2,13 +2,23 @@ import {
   Activity,
   BarChart3,
   GitCompare,
+  History,
+  Monitor,
+  Moon,
   Network,
   ShieldCheck,
+  Sun,
   Upload,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
-import type { MetaResponse, PackSummary } from "../types/graphrag";
+import type { MetaResponse, PackSummary, ThemePreference } from "../types/graphrag";
+
+export interface ActiveJobsMap {
+  explorer: boolean;
+  compare: boolean;
+  ingest: boolean;
+}
 
 interface ShellProps {
   meta: MetaResponse | null;
@@ -19,6 +29,9 @@ interface ShellProps {
   onChangeMode: (mode: "replay" | "live") => void;
   synthesisModel: string;
   onChangeModel: (modelId: string) => void;
+  theme: ThemePreference;
+  onChangeTheme: (theme: ThemePreference) => void;
+  activeJobs: ActiveJobsMap;
   children: ReactNode;
 }
 
@@ -31,6 +44,9 @@ export function Shell({
   onChangeMode,
   synthesisModel,
   onChangeModel,
+  theme,
+  onChangeTheme,
+  activeJobs,
   children,
 }: ShellProps) {
   const liveAllowed = Boolean(meta?.live_capable);
@@ -45,9 +61,9 @@ export function Shell({
               <Network size={18} />
             </span>
             <div>
-              <div className="brand-title">Enterprise GraphRAG</div>
+              <div className="brand-title">Risk &amp; Contagion Intelligence</div>
               <div className="brand-sub">
-                BigQuery Property Graph (ISO GQL) · Google ADK 2.15
+                Uncover hidden multi-tier risk across suppliers, sanctions, and contracts
               </div>
             </div>
           </div>
@@ -59,38 +75,66 @@ export function Shell({
               className={({ isActive }) => `nav-tab${isActive ? " active" : ""}`}
             >
               <Activity size={15} aria-hidden="true" />
-              Explorer
+              Risk Explorer
+              {activeJobs.explorer && (
+                <span
+                  className="tab-running-dot"
+                  title="Investigation running in background"
+                  aria-label="Running"
+                />
+              )}
             </NavLink>
             <NavLink
               to="/compare"
               className={({ isActive }) => `nav-tab${isActive ? " active" : ""}`}
             >
               <GitCompare size={15} aria-hidden="true" />
-              Compare Lab
+              AI Comparison
+              {activeJobs.compare && (
+                <span
+                  className="tab-running-dot"
+                  title="Comparison running in background"
+                  aria-label="Running"
+                />
+              )}
             </NavLink>
             <NavLink
               to="/ingest"
               className={({ isActive }) => `nav-tab${isActive ? " active" : ""}`}
             >
               <Upload size={15} aria-hidden="true" />
-              BYO Ingest
+              Upload Documents
+              {activeJobs.ingest && (
+                <span
+                  className="tab-running-dot"
+                  title="Document extraction running in background"
+                  aria-label="Running"
+                />
+              )}
             </NavLink>
             <NavLink
               to="/benchmark"
               className={({ isActive }) => `nav-tab${isActive ? " active" : ""}`}
             >
               <BarChart3 size={15} aria-hidden="true" />
-              Benchmark &amp; TCO
+              ROI &amp; Benchmarks
+            </NavLink>
+            <NavLink
+              to="/releases"
+              className={({ isActive }) => `nav-tab${isActive ? " active" : ""}`}
+            >
+              <History size={15} aria-hidden="true" />
+              Releases
             </NavLink>
           </nav>
 
           <div className="header-controls">
             <label className="sr-only" htmlFor="pack-select">
-              Industry Pack
+              Industry Scenario
             </label>
             <select
               id="pack-select"
-              aria-label="Select industry pack"
+              aria-label="Select industry scenario"
               className="select-control"
               value={activePackId}
               onChange={(e) => onSelectPack(e.target.value)}
@@ -103,11 +147,11 @@ export function Shell({
             </select>
 
             <label className="sr-only" htmlFor="model-select">
-              Synthesis Model
+              AI Reasoning Model
             </label>
             <select
               id="model-select"
-              aria-label="Select synthesis model"
+              aria-label="Select AI reasoning model"
               className="select-control"
               value={synthesisModel}
               onChange={(e) => onChangeModel(e.target.value)}
@@ -119,28 +163,62 @@ export function Shell({
               ))}
             </select>
 
-            <div className="mode-switch" role="group" aria-label="Execution mode">
+            <div className="segmented-group" role="group" aria-label="Execution mode">
               <button
                 type="button"
-                className="mode-btn"
+                className="segmented-btn"
                 aria-pressed={mode === "live"}
                 disabled={!liveAllowed}
                 title={
                   liveAllowed
-                    ? "Execute live against BigQuery Property Graph & Vertex AI"
-                    : "Configure GCP_PROJECT_ID to enable Live mode"
+                    ? "Run live queries against BigQuery Property Graph and Vertex AI"
+                    : "Configure GCP_PROJECT_ID to enable Live Cloud mode"
                 }
                 onClick={() => onChangeMode("live")}
               >
-                Live
+                Live Cloud
               </button>
               <button
                 type="button"
-                className="mode-btn"
+                className="segmented-btn"
                 aria-pressed={mode === "replay"}
+                title="Replay verified cached benchmarks without cloud charges"
                 onClick={() => onChangeMode("replay")}
               >
                 Replay
+              </button>
+            </div>
+
+            <div className="segmented-group" role="group" aria-label="Color theme">
+              <button
+                type="button"
+                className="segmented-btn"
+                aria-pressed={theme === "system"}
+                title="Match operating system theme"
+                onClick={() => onChangeTheme("system")}
+              >
+                <Monitor size={13} aria-hidden="true" />
+                System
+              </button>
+              <button
+                type="button"
+                className="segmented-btn"
+                aria-pressed={theme === "light"}
+                title="Switch to soft light theme"
+                onClick={() => onChangeTheme("light")}
+              >
+                <Sun size={13} aria-hidden="true" />
+                Light
+              </button>
+              <button
+                type="button"
+                className="segmented-btn"
+                aria-pressed={theme === "dark"}
+                title="Switch to low-glare dark theme"
+                onClick={() => onChangeTheme("dark")}
+              >
+                <Moon size={13} aria-hidden="true" />
+                Dark
               </button>
             </div>
 
@@ -150,12 +228,14 @@ export function Shell({
               }`}
               title={
                 meta?.model_armor_configured
-                  ? "Google Cloud Model Armor prompt screening active"
-                  : "Set MODEL_ARMOR_TEMPLATE_ID to enable Model Armor screening"
+                  ? "Google Cloud Model Armor prompt & safety screening active"
+                  : "Set MODEL_ARMOR_TEMPLATE_ID to enable Google Cloud Model Armor screening"
               }
             >
               <ShieldCheck size={13} aria-hidden="true" />
-              {meta?.model_armor_configured ? "Model Armor On" : "Model Armor Optional"}
+              {meta?.model_armor_configured
+                ? "Safety Guardrails Active"
+                : "Guardrails Optional"}
             </span>
           </div>
         </div>

@@ -13,6 +13,7 @@ from contextlib import aclosing
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
+from app.core.attribution import gcp_job_labels
 from app.core.config import MODEL_CATALOG, Settings
 from app.core.gcp_clients import (
     embed_single_text,
@@ -215,10 +216,11 @@ class ADKGraphCoordinatorEngine(BaseGraphEngine):
                 bigquery.ScalarQueryParameter("query_text", "STRING", clean_q),
                 bigquery.ArrayQueryParameter("query_embedding", "FLOAT64", q_vec),
             ]
+            seed_labels = gcp_job_labels(settings, component="adk_vector_seed")
             dry_job = client.query(
                 seed_pq.statement,
                 job_config=bigquery.QueryJobConfig(
-                    query_parameters=seed_params, dry_run=True, use_query_cache=False
+                    query_parameters=seed_params, dry_run=True, use_query_cache=False, labels=seed_labels
                 ),
                 location=settings.bq_location,
             )
@@ -230,6 +232,7 @@ class ADKGraphCoordinatorEngine(BaseGraphEngine):
                 job_config=bigquery.QueryJobConfig(
                     query_parameters=seed_params,
                     maximum_bytes_billed=settings.max_bq_bytes_billed,
+                    labels=seed_labels,
                 ),
                 location=settings.bq_location,
             )
@@ -253,6 +256,7 @@ class ADKGraphCoordinatorEngine(BaseGraphEngine):
                         bigquery.ScalarQueryParameter("min_confidence", "FLOAT64", req.min_confidence),
                     ],
                     maximum_bytes_billed=settings.max_bq_bytes_billed,
+                    labels=gcp_job_labels(settings, component="adk_gql_traverse"),
                 ),
                 location=settings.bq_location,
             )
@@ -300,6 +304,7 @@ class ADKGraphCoordinatorEngine(BaseGraphEngine):
                             bigquery.ArrayQueryParameter("chunk_ids", "STRING", chunk_ids),
                         ],
                         maximum_bytes_billed=settings.max_bq_bytes_billed,
+                        labels=gcp_job_labels(settings, component="adk_chunk_fetch"),
                     ),
                     location=settings.bq_location,
                 )
@@ -366,10 +371,11 @@ class ADKGraphCoordinatorEngine(BaseGraphEngine):
                 bigquery.ScalarQueryParameter("pack_id", "STRING", req.pack_id),
                 bigquery.ArrayQueryParameter("query_embedding", "FLOAT64", q_vec),
             ]
+            chunk_labels = gcp_job_labels(settings, component="adk_chunk_search")
             dry_job = client.query(
                 pq.statement,
                 job_config=bigquery.QueryJobConfig(
-                    query_parameters=params, dry_run=True, use_query_cache=False
+                    query_parameters=params, dry_run=True, use_query_cache=False, labels=chunk_labels
                 ),
                 location=settings.bq_location,
             )
@@ -381,6 +387,7 @@ class ADKGraphCoordinatorEngine(BaseGraphEngine):
                 job_config=bigquery.QueryJobConfig(
                     query_parameters=params,
                     maximum_bytes_billed=settings.max_bq_bytes_billed,
+                    labels=chunk_labels,
                 ),
                 location=settings.bq_location,
             )
@@ -477,6 +484,7 @@ class ADKGraphCoordinatorEngine(BaseGraphEngine):
             generate_content_config=types.GenerateContentConfig(
                 temperature=0.1,
                 max_output_tokens=2048,
+                labels=gcp_job_labels(self._settings, component="adk_coordinator"),
             ),
         )
 

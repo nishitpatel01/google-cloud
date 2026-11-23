@@ -12,7 +12,7 @@ The [`solutions/`](solutions/README.md) directory houses turnkey, self-contained
 
 | Solution | Category | Industries | Core GCP AI Capabilities | Status |
 | :--- | :--- | :--- | :--- | :---: |
-| [**Enterprise GraphRAG & Contagion Explorer**](solutions/enterprise-graphrag/README.md) (`solutions/enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2`, Google ADK `2.15`, Model Armor, React 19, Cloud Run | Phase 3 Complete (`50` backend + `5` frontend suites passing · React 19 UI + Live ADK/BQ Verified) |
+| [**Enterprise GraphRAG & Contagion Explorer**](solutions/enterprise-graphrag/README.md) (`solutions/enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2`, Google ADK `2.15`, Model Armor, React 19, Cloud Run | Phase 3 Complete (`53` backend + `6` frontend suites passing · Full-Width React 19 UI + Releases + 6-Key GCP Attribution Live Verified) |
 
 ---
 

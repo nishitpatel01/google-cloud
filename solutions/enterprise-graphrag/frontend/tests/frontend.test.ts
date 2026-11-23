@@ -69,7 +69,7 @@ import {
   assert.equal(formatPercent(null), "—");
 }
 
-// 5. Static XSS & strict CSP guardrail across frontend/src/**
+// 5. Static XSS, strict CSP & theme/persistence guardrails across frontend/src/**
 {
   const srcRoot = path.resolve("src");
   const walk = (dir: string): string[] =>
@@ -86,4 +86,19 @@ import {
   }
 }
 
-console.log("ALL FRONTEND UNIT & SECURITY GUARDRAIL TESTS PASSED (5/5 suites)");
+// 6. Verify persistent tab mounting, System/Light/Dark theming & full-width layout CSS
+{
+  const appSrc = fs.readFileSync(path.resolve("src/App.tsx"), "utf-8");
+  assert.ok(appSrc.includes("tab-pane-hidden"), "App.tsx must keep tab panes mounted across switches");
+  assert.ok(appSrc.includes("prefers-color-scheme: dark"), "App.tsx must honor System dark/light theme");
+  assert.ok(appSrc.includes("ReleasesPage"), "App.tsx must mount ReleasesPage");
+
+  const tokensCss = fs.readFileSync(path.resolve("src/styles/tokens.css"), "utf-8");
+  assert.ok(tokensCss.includes('[data-theme="light"]'), "tokens.css must define light theme");
+  assert.ok(tokensCss.includes('[data-theme="dark"]'), "tokens.css must define dark theme");
+
+  const appCss = fs.readFileSync(path.resolve("src/styles/app.css"), "utf-8");
+  assert.ok(appCss.includes("max-width: none"), "app.css must allow 100% full screen width");
+}
+
+console.log("ALL FRONTEND UNIT & SECURITY GUARDRAIL TESTS PASSED (6/6 suites)");
