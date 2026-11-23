@@ -1,60 +1,60 @@
-/* Design System Tokens — Subtle Modern Editorial Light & Dark Themes (WCAG 2.1 AA) */
+/* Design System Tokens — Warm Modern Bohemian Light & Dark Themes (WCAG 2.1 AA) */
 
 :root,
 [data-theme="light"] {
   color-scheme: light;
 
-  /* Soft, low-glare neutral surfaces */
-  --bg-canvas: #f3f5f8;
-  --bg-surface: #fafbfc;
-  --bg-subtle: #eaeef4;
-  --bg-hover: #e4e9f1;
-  --bg-graph: #f7f9fc;
+  /* Warm woven linen, parchment & raw cotton surfaces (never stark white) */
+  --bg-canvas: #efe7dc;
+  --bg-surface: #f9f4ec;
+  --bg-subtle: #e5daca;
+  --bg-hover: #dcd0be;
+  --bg-graph: #ece3d5;
 
-  /* Refined low-glare slate ink (avoids harsh pure black on bright white) */
-  --ink-primary: #243042;
-  --ink-secondary: #4a586e;
-  --ink-muted: #66748a;
-  --ink-inverse: #f8fafc;
+  /* Rich roasted espresso & warm walnut inks */
+  --ink-primary: #2f251e;
+  --ink-secondary: #59493d;
+  --ink-muted: #736152;
+  --ink-inverse: #fbf7f0;
 
-  /* Quiet hairline dividers */
-  --border-subtle: #dfe4ec;
-  --border-strong: #c8d1de;
+  /* Quiet sandstone & clay dividers */
+  --border-subtle: #ddd0be;
+  --border-strong: #c4b39d;
 
-  /* Calm steel-indigo primary accent */
-  --accent-primary: #3b6cc9;
-  --accent-primary-hover: #2f5cb3;
-  --accent-primary-soft: #eaf0fb;
+  /* Signature Bohemian terracotta / burnt sienna primary accent */
+  --accent-primary: #a34d30;
+  --accent-primary-hover: #893e25;
+  --accent-primary-soft: #f2e1d7;
 
-  /* Muted semantic states */
-  --status-verified-bg: #ecf6f2;
-  --status-verified-ink: #1e6b52;
-  --status-verified-border: #bce2d3;
+  /* Earthy botanical & mineral semantic states */
+  --status-verified-bg: #e4ede6;
+  --status-verified-ink: #2c5942;
+  --status-verified-border: #bad1c0;
 
-  --status-modeled-bg: #faf4e8;
-  --status-modeled-ink: #8a5a18;
-  --status-modeled-border: #ebd4ab;
+  --status-modeled-bg: #f5e9d5;
+  --status-modeled-ink: #825016;
+  --status-modeled-border: #dec395;
 
-  --status-upload-bg: #edf3fc;
-  --status-upload-ink: #2c559e;
-  --status-upload-border: #c4d7f4;
+  --status-upload-bg: #e2eced;
+  --status-upload-ink: #275a63;
+  --status-upload-border: #b4cfd4;
 
-  --status-danger-bg: #fbf0f0;
-  --status-danger-ink: #9c3434;
-  --status-danger-border: #ecc4c4;
+  --status-danger-bg: #f4e2df;
+  --status-danger-ink: #8c3029;
+  --status-danger-border: #dcb2ac;
 
-  /* Graph canvas tokens */
-  --graph-edge: #bcc7d6;
-  --graph-edge-active: #c84b4b;
-  --graph-node-stroke: #fafbfc;
-  --graph-node-selected: #243042;
-  --code-bg: #1c2430;
-  --code-ink: #dde5f0;
+  /* Graph canvas & technical disclosure tokens */
+  --graph-edge: #b4a390;
+  --graph-edge-active: #a83e2d;
+  --graph-node-stroke: #f9f4ec;
+  --graph-node-selected: #2f251e;
+  --code-bg: #26201b;
+  --code-ink: #ece2d6;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --shadow-sm: 0 1px 2px rgba(24, 34, 48, 0.04);
+  --radius-sm: 7px;
+  --radius-md: 11px;
+  --radius-lg: 15px;
+  --shadow-sm: 0 1px 3px rgba(47, 37, 30, 0.06);
 
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -63,49 +63,54 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  /* Soothing charcoal-graphite surfaces (zero harsh neon or purple-on-dark) */
-  --bg-canvas: #12161c;
-  --bg-surface: #191f27;
-  --bg-subtle: #222a35;
-  --bg-hover: #2a3442;
-  --bg-graph: #151a22;
+  /* Cozy deep espresso, toasted walnut & warm umber surfaces */
+  --bg-canvas: #1a1613;
+  --bg-surface: #231e19;
+  --bg-subtle: #2e2721;
+  --bg-hover: #383029;
+  --bg-graph: #1f1a16;
 
-  --ink-primary: #e2e8f0;
-  --ink-secondary: #b1bdd0;
-  --ink-muted: #8494aa;
-  --ink-inverse: #12161c;
+  /* Soft parchment & warm sand inks */
+  --ink-primary: #efe6da;
+  --ink-secondary: #c7b8a6;
+  --ink-muted: #9e8d7c;
+  --ink-inverse: #1b1612;
 
-  --border-subtle: #28313e;
-  --border-strong: #394657;
+  /* Warm cedar & umber dividers */
+  --border-subtle: #372f28;
+  --border-strong: #4d4238;
 
-  --accent-primary: #6b99ee;
-  --accent-primary-hover: #81abf2;
-  --accent-primary-soft: #1d2b42;
+  /* Sun-warmed terracotta glow accent */
+  --accent-primary: #dc8565;
+  --accent-primary-hover: #e7997c;
+  --accent-primary-soft: #3a271f;
 
-  --status-verified-bg: #162a24;
-  --status-verified-ink: #72cca9;
-  --status-verified-border: #254a3e;
+  /* Muted earthy dark semantic states */
+  --status-verified-bg: #1e2d24;
+  --status-verified-ink: #89c49f;
+  --status-verified-border: #314b3b;
 
-  --status-modeled-bg: #2b2418;
-  --status-modeled-ink: #e4b66a;
-  --status-modeled-border: #4d3d23;
+  --status-modeled-bg: #322618;
+  --status-modeled-ink: #e2b56e;
+  --status-modeled-border: #523f25;
 
-  --status-upload-bg: #1a273c;
-  --status-upload-ink: #8bb4f7;
-  --status-upload-border: #2c4368;
+  --status-upload-bg: #1c2b2e;
+  --status-upload-ink: #82bec7;
+  --status-upload-border: #2f4b50;
 
-  --status-danger-bg: #2e1b1d;
-  --status-danger-ink: #ea9191;
-  --status-danger-border: #532c30;
+  --status-danger-bg: #36201e;
+  --status-danger-ink: #e4948c;
+  --status-danger-border: #5a3430;
 
-  --graph-edge: #465468;
-  --graph-edge-active: #e06c6c;
-  --graph-node-stroke: #191f27;
-  --graph-node-selected: #f1f5f9;
-  --code-bg: #0e1218;
-  --code-ink: #d6e0ee;
+  /* Graph canvas & technical disclosure tokens */
+  --graph-edge: #625346;
+  --graph-edge-active: #e07864;
+  --graph-node-stroke: #231e19;
+  --graph-node-selected: #f5ede2;
+  --code-bg: #14110e;
+  --code-ink: #e8ddd0;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.28);
+  --shadow-sm: 0 2px 4px rgba(10, 7, 5, 0.34);
 }
 
 *,

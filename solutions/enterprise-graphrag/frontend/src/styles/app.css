@@ -29,6 +29,7 @@
   z-index: 30;
   width: 100%;
   background: var(--bg-surface);
+  border-top: 2px solid var(--accent-primary);
   border-bottom: 1px solid var(--border-subtle);
   padding: 0 24px;
 }
@@ -561,7 +562,7 @@
   font-size: 11.5px;
   font-weight: 600;
   cursor: pointer;
-  border: 1px solid var(--status-upload-border);
+  border: 1px solid var(--border-strong);
   background: var(--accent-primary-soft);
   color: var(--accent-primary);
   vertical-align: baseline;

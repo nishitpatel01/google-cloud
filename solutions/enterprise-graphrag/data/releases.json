@@ -14,7 +14,7 @@
       "categories": ["UI/UX", "FinOps & Governance", "Security"],
       "highlights": [
         "Full-width React 19 + d3-force interactive Contagion Explorer with ontology shapes, entity search, zoom controls, and click-to-audit SEC/OFAC/CUAD evidence.",
-        "Subtle, low-glare Light / Dark / System theme switcher with zero inline styles (strict style-src 'self' CSP compliance).",
+        "Warm editorial Bohemian Light / Dark / System theme switcher (linen parchment, terracotta, sage, and roasted espresso tones) with zero inline styles (strict style-src 'self' CSP compliance).",
         "Persistent background tab state: switching between Explorer, Compare Lab, BYO Ingest, Benchmark & TCO, and Releases preserves active SSE streams, prompts, and results.",
         "4-layer GCP Resource Attribution Standard (`acc05_` / `acc05-` naming prefix + 6 mandatory FinOps labels on BigQuery datasets/tables/jobs, Vertex AI calls, GCS metadata, dedicated `$0/mo` Model Armor template, and 1-command Cloud Asset Inventory script).",
         "In-app Releases timeline backed by `GET /api/v1/releases` and formula-safe CSV Executive Brief export."

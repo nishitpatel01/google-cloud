@@ -39,6 +39,20 @@ interface GraphCanvasProps {
 const VIEW_W = 860;
 const VIEW_H = 510;
 
+// Harmonize default high-saturation ontology hexes into earthy Bohemian mineral tones
+// while passing any custom user-defined ontology hexes through unchanged.
+const BOHEMIAN_NODE_TONES: Record<string, string> = {
+  "#2563EB": "#4d6b7d", // Slate Indigo / Denim
+  "#0891B2": "#4d7d74", // Eucalyptus Teal
+  "#7C3AED": "#885f74", // Dusty Fig / Plum Clay
+  "#D97706": "#c08036", // Warm Spiced Ochre
+  "#DC2626": "#b24a38", // Sun-Baked Terracotta Rust
+};
+
+function resolveNodeTone(rawColor: string): string {
+  return BOHEMIAN_NODE_TONES[rawColor.toUpperCase()] ?? rawColor;
+}
+
 function computeForceLayout(
   nodes: EntityNode[],
   edges: GraphEdge[]
@@ -164,7 +178,7 @@ export function GraphCanvas({
   const typeMeta = useMemo(() => {
     const m = new Map<string, { color: string; shape: string; label: string }>();
     for (const nt of ontology.node_types) {
-      m.set(nt.type, { color: nt.color, shape: nt.shape, label: nt.label });
+      m.set(nt.type, { color: resolveNodeTone(nt.color), shape: nt.shape, label: nt.label });
     }
     return m;
   }, [ontology]);
@@ -241,7 +255,7 @@ export function GraphCanvas({
         {ontology.node_types.map((nt) => (
           <span key={nt.type} className="legend-item">
             <svg width={10} height={10} aria-hidden="true">
-              <rect width={10} height={10} rx={3} fill={nt.color} />
+              <rect width={10} height={10} rx={3} fill={resolveNodeTone(nt.color)} />
             </svg>
             {nt.label}
           </span>
