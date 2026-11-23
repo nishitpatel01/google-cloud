@@ -1,0 +1,291 @@
+{
+  "provenance_header": {
+    "recorded_at": "2026-11-23T20:45:21.230029+00:00",
+    "engine_id": "flat_vector_rag",
+    "pack_id": "legal_ma_clause_graph",
+    "synthesis_model": "gemini-2.5-flash",
+    "judge_model": "vertex-genai-eval",
+    "question_id": "ma_q04",
+    "git_sha": "e034066"
+  },
+  "result": {
+    "engine_id": "flat_vector_rag",
+    "engine_label": "Flat Vector RAG (Baseline \u2014 Chunks Only)",
+    "pack_id": "legal_ma_clause_graph",
+    "query": "Starting from the Change-of-Control clause node, traverse upstream 3 hops to list impacted commercial contracts, contracting parties, and M&A scenarios.",
+    "synthesis_model": "gemini-2.5-flash",
+    "answer": "Starting from the Change-of-Control clause node:\n\n**Hop 1 Upstream:** The commercial contracts containing the Change-of-Control clause and their respective contracting parties are:\n*   **Commercial Contracts:**\n    *   `INTELLECTUAL PROPERTY AGREEMENT` [CHUNK:CHK-CUAD-09]\n    *   `JOINT DEVELOPMENT AGREEMENT` [CHUNK:CHK-CUAD-07]\n    *   `INTELLECTUAL PROPERTY AGREEMENT` [CHUNK:CHK-CUAD-10]\n    *   `WEBSITE CONTENT LICENSE AGREEMENT` [CHUNK:CHK-CUAD-01]\n*   **Contracting Parties:**\n    *   `NUANCE COMMUNICATIONS, INC ; CERENCE INC` [CHUNK:CHK-CUAD-09]\n    *   `ExxonMobil Research and Engineering Company ; FuelCell Energy, Inc` [CHUNK:CHK-CUAD-07]\n    *   `HONEYWELL INTERNATIONAL INC ; GARRETT MOTION INC` [CHUNK:CHK-CUAD-10]\n    *   `PSiTech Corporation ; Empirical Ventures, Inc` [CHUNK:CHK-CUAD-01]\n\n**Hop 2 Upstream:** The M&A scenario that involves tracing Change-of-Control triggers across CUAD agreements (which include the contracts from Hop 1) is:\n*   **M&A Scenario:**\n    *   `Hypothetical private-equity acquisition of 3 real SEC-filed contracting parties to trace cascading Change-of-Control, Anti-Assignment, and IP encumbrance triggers across their CUAD agreements.` [CHUNK:CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA]\n\n**Hop 3 Upstream:** The M&A scenario identified in Hop 2 is described as a \"MODELED_BRIDGE M&A diligence scenario\" [CHUNK:CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA]. \"MODELED_BRIDGE\" is an origin or classification of the scenario. The provided document chunks do not explicitly define another upstream commercial contract, contracting party, or M&A scenario from \"MODELED_BRIDGE\". Therefore, no further entities of the requested types are found at the third hop upstream.",
+    "paths": [],
+    "retrieved_entity_ids": [],
+    "retrieved_edge_ids": [],
+    "retrieved_chunk_ids": [
+      "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+      "CHK-DEAL-MOD-DEAL-PORTFOLIO-BETA",
+      "CHK-CUAD-09",
+      "CHK-CUAD-07",
+      "CHK-CUAD-10",
+      "CHK-CUAD-01"
+    ],
+    "retrieved_nodes": [],
+    "retrieved_edges": [],
+    "retrieved_chunks": [
+      {
+        "chunk_id": "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+        "doc_name": "MODELED_MA_SCENARIO_MOD-DEAL-PORTFOLIO-ALPHA.txt",
+        "doc_type": "modeled_ma_scenario",
+        "page_number": 1,
+        "content": "MODELED_BRIDGE M&A diligence scenario: Hypothetical private-equity acquisition of 3 real SEC-filed contracting parties to trace cascading Change-of-Control, Anti-Assignment, and IP encumbrance triggers across their CUAD agreements.",
+        "data_origin": "MODELED_BRIDGE",
+        "source_license": "MODELED",
+        "source_url": "",
+        "distance": 0.21395181111891304
+      },
+      {
+        "chunk_id": "CHK-DEAL-MOD-DEAL-PORTFOLIO-BETA",
+        "doc_name": "MODELED_MA_SCENARIO_MOD-DEAL-PORTFOLIO-BETA.txt",
+        "doc_type": "modeled_ma_scenario",
+        "page_number": 1,
+        "content": "MODELED_BRIDGE M&A diligence scenario: Hypothetical strategic carve-out targeting 3 commercial operating entities to audit exclusivity and governing-law consent obligations prior to closing.",
+        "data_origin": "MODELED_BRIDGE",
+        "source_license": "MODELED",
+        "source_url": "",
+        "distance": 0.25291558134783965
+      },
+      {
+        "chunk_id": "CHK-CUAD-09",
+        "doc_name": "CerenceInc_20191002_8-K_EX-10.4_11827494_EX-10.4_Intellectual Property Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): CerenceInc_20191002_8-K_EX-10.4_11827494_EX-10.4_Intellectual Property Agreement.pdf\nAgreement Title: INTELLECTUAL PROPERTY AGREEMENT, d | Parties: NUANCE COMMUNICATIONS, INC ; CERENCE INC | Governing Law: Delaware\n[Change of Control]: Notwithstanding the foregoing, if any Party to this Agreement (or any of its successors or permitted assigns) (a) shall enter into a consolidation or merger transaction in which such Party is not the surviving entity and the surviving entity acquires or assumes all or substantially all of such Party's assets, (b) shall transfer all or substantially all of such Party's assets to\n[Anti-Assignment]: Any purported assignment without such consent shall be void.\n[License Grant]: Subject to the terms and conditions of this Agreement, as of the Distribution Date, Nuance hereby grants to SpinCo and the members of the SpinCo Group a worldwide, non-exclusive, fully paid-up, perpetual and irrevocable, transferable (subject to ARTICLE VIII), sublicensable (subject to Section 3.01(g)) license under th\n[IP Ownership Assignment]: In order to carry out the intent of the Parties with respect to the recordation of the transfers of any registrations or applications of Nuance IP or SpinCo IP, as applicable, to the extent the ownership thereof has transferred from a member of the Nuance Group to a member of the SpinCo Group, or vice versa, pursuant t",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826",
+        "distance": 0.28327144578385954
+      },
+      {
+        "chunk_id": "CHK-CUAD-07",
+        "doc_name": "FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf\nAgreement Title: JOINT DEVELOPMENT AGREEMENT | Parties: ExxonMobil Research and Engineering Company ; FuelCell Energy, Inc | Governing Law: New York\n[Change of Control]: Subject to requirements of applicable law, FCE will provide notice to ExxonMobil prior to, or promptly after, it becomes aware of any such Change in Control, and if prior notice is prohibited by applicable Law, as soon as practicable or after such notice is no longer prohibited, but in no event later than one (1) business day after any public announcement with respect to any su\n[Anti-Assignment]: The Agreement is not assignable, including any assignment by operation of law (including but not limited to as a result of a merger or other corporate action), by either Party without the prior written consent of the other Party.\n[License Grant]: More particularly, said right and license to practice FCE Background Information and FCE Background Patents for Generation 2 Technology in any application outside of Carbon Capture Applications and Hydrogen Applications will include the right to use, reproduce, and create derivative works of FCE Background Information \n[IP Ownership Assignment]: FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826",
+        "distance": 0.3015558964909998
+      },
+      {
+        "chunk_id": "CHK-CUAD-10",
+        "doc_name": "GarrettMotionInc_20181001_8-K_EX-2.4_11364532_EX-2.4_Intellectual Property Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): GarrettMotionInc_20181001_8-K_EX-2.4_11364532_EX-2.4_Intellectual Property Agreement.pdf\nAgreement Title: INTELLECTUAL PROPERTY AGREEMENT, d | Parties: HONEYWELL INTERNATIONAL INC ; GARRETT MOTION INC | Governing Law: New York\n[Change of Control]: Without limiting ARTICLE VIII, the license granted to the SpinCo Group in Section 3.03(a) shall automatically terminate in the event (i) that any member of the SpinCo Group assigns, transfers, licenses or otherwise conveys any rights in or to the Honeywell Content to any third party or (ii) of (x) the sale of all or substantially all of the ownership interests<omitted>in, or th\n[Anti-Assignment]: No Party or any member of its Group may assign or grant a license in or to any of its Intellectual Property Rights licensed to the other Party or any member of its Group pursuant to ARTICLE III or ARTICLE IV, unless such assignment or grant is subject to the licenses, covenants and restrictions set forth herein.\n[License Grant]: Hence, as of the Distribution Date, Honeywell hereby grants, and agrees to cause the members of the Honeywell Group to hereby grant, to SpinCo and the members of the SpinCo Group a non-exclusive, royalty-free, fully-paid, perpetual, sublicenseable (solely to Subsidiaries and suppliers for \"have-made\" purposes), worldwi\n[IP Ownership Assignment]: In order to carry out the intent of the Parties with respect to the recordation of the transfers of any registrations or applications of Honeywell IP or SpinCo IP, as applicable, to the extent the ownership thereof has transferred from a member of the Honeywell Group to a member of the SpinCo Group, or vice versa, purs",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826",
+        "distance": 0.31313687771156296
+      },
+      {
+        "chunk_id": "CHK-CUAD-01",
+        "doc_name": "GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf\nAgreement Title: WEBSITE CONTENT LICENSE AGREEMENT | Parties: PSiTech Corporation ; Empirical Ventures, Inc | Governing Law: Nevada\n[Change of Control]: For purposes of the preceding sentence, and without limiting its generality, any merger, consolidation or reorganization involving Licensee (regardless of whether Licensee is a surviving or disappearing entity) will be deemed to be a transfer of rights, obligations or performance under this Agreement for which Licensor's prior written consent is required.\n[Anti-Assignment]: Any purported assignment, delegation or transfer in violation of this Section 11.7 is void from the outset and shall be of no force or effect.\n[License Grant]: Subject to Licensee's on\u00adgoing compliance with Section 3.2 and all other terms and conditions of this Agreement, Licensor grants to Licensee an exclusive (save for rights reserved to Licensor hereunder), non-transferable (except as provided in Section 11.7) and non- sublicensable license, during the License Term, to re\n[Exclusivity]: Subject to Licensee's on\u00adgoing compliance with Section 3.2 and all other terms and conditions of this Agreement, Licensor grants to Licensee an exclusive (save for rights reserved to Licensor hereunder), non-transferable (except as provided in Section 11.7) and non- sublicensable license, during the License Term, to re",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826",
+        "distance": 0.32170258102509386
+      }
+    ],
+    "provenance": {
+      "cited_entity_ids": [],
+      "verified_entity_ids": [],
+      "unverified_entity_ids": [],
+      "cited_edge_ids": [],
+      "verified_edge_ids": [],
+      "unverified_edge_ids": [],
+      "cited_chunk_ids": [
+        "CHK-CUAD-09",
+        "CHK-CUAD-07",
+        "CHK-CUAD-10",
+        "CHK-CUAD-01",
+        "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA"
+      ],
+      "verified_chunk_ids": [
+        "CHK-CUAD-09",
+        "CHK-CUAD-07",
+        "CHK-CUAD-10",
+        "CHK-CUAD-01",
+        "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA"
+      ],
+      "unverified_chunk_ids": []
+    },
+    "usage": {
+      "input_tokens": 2060,
+      "output_tokens": 479
+    },
+    "engine_cost_usd": 0.001816,
+    "total_duration_ms": 23471.33,
+    "flags": {
+      "graph_backend_used": "none",
+      "reranker_used": false,
+      "model_armor_checked": true,
+      "bq_cache_hit": false,
+      "bytes_processed": 1073852
+    }
+  },
+  "stage_events": [
+    {
+      "event_type": "stage_started",
+      "stage": "query_prep",
+      "label": "Prepare query & pack scope",
+      "service": "local",
+      "request": {
+        "pack_id": "legal_ma_clause_graph",
+        "query": "Starting from the Change-of-Control clause node, traverse upstream 3 hops to list impacted commercial contracts, contracting parties, and M&A scenarios."
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "query_prep",
+      "service_used": "local",
+      "duration_ms": 0.04,
+      "payload": {
+        "prepared_query": "Starting from the Change-of-Control clause node, traverse upstream 3 hops to list impacted commercial contracts, contracting parties, and M&A scenarios.",
+        "pack_id": "legal_ma_clause_graph"
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "embed_query",
+      "label": "Embed query (gemini-embedding-2)",
+      "service": "Vertex AI gemini-embedding-2",
+      "request": {
+        "model": "gemini-embedding-2",
+        "task_type": "RETRIEVAL_QUERY"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "embed_query",
+      "service_used": "Vertex AI gemini-embedding-2",
+      "duration_ms": 216.28,
+      "payload": {
+        "dimensions": 3072
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "retrieve_chunks",
+      "label": "BigQuery VECTOR_SEARCH (chunks only \u2014 no graph hops)",
+      "service": "BigQuery VECTOR_SEARCH",
+      "request": {
+        "pack_id": "legal_ma_clause_graph",
+        "top_k": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "retrieve_chunks",
+      "service_used": "BigQuery VECTOR_SEARCH",
+      "duration_ms": 2060.46,
+      "payload": {
+        "sql": "SELECT\n  base.chunk_id,\n  base.doc_name,\n  base.doc_type,\n  base.page_number,\n  base.content,\n  base.data_origin,\n  base.source_license,\n  base.source_url,\n  distance\nFROM VECTOR_SEARCH(\n  (SELECT * FROM `acc05_enterprise_graphrag.source_chunks` WHERE pack_id = @pack_id AND ARRAY_LENGTH(embedding) > 0),\n  'embedding',\n  (SELECT @query_embedding AS embedding),\n  top_k => 6,\n  distance_type => 'COSINE'\n)\nORDER BY distance ASC",
+        "rows_returned": 6,
+        "chunk_ids": [
+          "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+          "CHK-DEAL-MOD-DEAL-PORTFOLIO-BETA",
+          "CHK-CUAD-09",
+          "CHK-CUAD-07",
+          "CHK-CUAD-10",
+          "CHK-CUAD-01"
+        ],
+        "bytes_processed": 1073852,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "synthesize",
+      "label": "Synthesize answer (gemini-2.5-flash)",
+      "service": "Vertex AI gemini-2.5-flash",
+      "request": {
+        "model": "gemini-2.5-flash",
+        "chunks_in_context": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "synthesize",
+      "service_used": "Vertex AI gemini-2.5-flash",
+      "duration_ms": 21194.28,
+      "payload": {
+        "input_tokens": 2060,
+        "output_tokens": 479,
+        "engine_cost_usd": 0.001816
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "verify_provenance",
+      "label": "Verify chunk citation provenance",
+      "service": "Deterministic Provenance Verifier",
+      "request": {
+        "allowed_chunks": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "verify_provenance",
+      "service_used": "Deterministic Provenance Verifier",
+      "duration_ms": 0.08,
+      "payload": {
+        "is_fully_verified": true,
+        "verified_chunks": 5,
+        "unverified_chunks": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "evaluate",
+      "label": "Evaluate Answer (Vertex AI GenAI Evaluation (:evaluateInstances))",
+      "service": "vertex_eval",
+      "request": {
+        "judge_model": "vertex-genai-eval"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "evaluate",
+      "service_used": "vertex_genai_eval",
+      "duration_ms": 11958.19,
+      "payload": {
+        "judge_model": "vertex-genai-eval",
+        "groundedness": 1.0,
+        "qa_relevance": 0.5,
+        "context_precision": 1.0,
+        "composite_score": 0.55,
+        "judge_cost_usd": 0.007944
+      }
+    }
+  ],
+  "recall": {
+    "entity_recall": 0.0,
+    "edge_recall": 0.0,
+    "path_recall": 0.0
+  },
+  "evaluation": {
+    "judge_model": "vertex-genai-eval",
+    "judge_provider": "vertex_genai_eval",
+    "groundedness": 1.0,
+    "qa_relevance": 0.5,
+    "context_precision": 1.0,
+    "path_recall": 0.0,
+    "provenance_verified": true,
+    "composite_score": 0.55,
+    "rationale": "GROUNDEDNESS: Every factual claim in the response is directly and accurately supported by the provided context chunks, including the titles of the agreements, the contracting parties,  | QUESTION_ANSWERING_QUALITY: The response correctly identifies one path upstream, listing several contracts, parties, and the M&A scenario from Portfolio Alpha. However, it fails to identify the seco | FULFILLMENT: The retrieved chunks perfectly fulfill the 3-hop request: they provide the starting Change-of-Control clauses, identify the parent contracts and their respective contract",
+    "input_tokens": 4819,
+    "output_tokens": 192,
+    "judge_cost_usd": 0.007944,
+    "duration_ms": 11957.68
+  }
+}

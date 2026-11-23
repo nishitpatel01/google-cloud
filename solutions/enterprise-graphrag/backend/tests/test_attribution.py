@@ -66,4 +66,5 @@ def test_releases_endpoint_returns_structured_timeline() -> None:
     body = resp.json()
     assert body["solution_id"] == "acc05"
     assert len(body["releases"]) >= 4
-    assert body["releases"][0]["version"] == "0.4.0"
+    assert body["releases"][0]["version"] == body["current_version"]
+    assert body["current_version"] == Settings().app_version

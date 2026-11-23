@@ -1,0 +1,1159 @@
+{
+  "provenance_header": {
+    "recorded_at": "2026-11-23T20:47:50.091785+00:00",
+    "engine_id": "bq_graphrag",
+    "pack_id": "legal_ma_clause_graph",
+    "synthesis_model": "gemini-2.5-flash",
+    "judge_model": "vertex-genai-eval",
+    "question_id": "ma_q05",
+    "git_sha": "e034066"
+  },
+  "result": {
+    "engine_id": "bq_graphrag",
+    "engine_label": "Hybrid GraphRAG (Tier-1 BigQuery Property Graph ISO GQL)",
+    "pack_id": "legal_ma_clause_graph",
+    "query": "Map the governing-law jurisdictions applicable to Portfolio Alpha's commercial contracts across a 3-hop Deal -> Party -> Contract -> Jurisdiction traversal.",
+    "synthesis_model": "gemini-2.5-flash",
+    "answer": "The governing-law jurisdictions applicable to Portfolio Alpha's commercial contracts, traced across a 3-hop Deal -> Party -> Contract -> Jurisdiction traversal, are as follows:\n\n1.  **For WOMEN.COM NETWORKS, INC contracts:**\n    *   The [ENTITY:MOD-DEAL-PORTFOLIO-ALPHA] (Modeled M&A Scenario: Portfolio Roll-Up Acquisition Alpha) [origin=MODELED_BRIDGE] --[ACQUIRES_OR_TARGETS | EDGE:EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-02-1-WOM-97E98E76]--> [ENTITY:PARTY-02-1-WOMEN-COM-NETWORKS-INC] (WOMEN.COM NETWORKS, INC) [origin=MODELED_BRIDGE], as evidenced by [CHUNK:CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA].\n    *   [ENTITY:PARTY-02-1-WOMEN-COM-NETWORKS-INC] [origin=REAL_PUBLIC] --[PARTY_TO_CONTRACT | EDGE:EDGE-PTY-PARTY-02-1-WOMEN-COM-NETWORKS-INC-CTR-CUAD-02]--> [ENTITY:CTR-CUAD-02] (CO-BRANDING AGREEMENT (EdietsComInc)) [origin=REAL_PUBLIC], as evidenced by [CHUNK:CHK-CUAD-02].\n    *   This [ENTITY:CTR-CUAD-02] (CO-BRANDING AGREEMENT (EdietsComInc)) [origin=REAL_PUBLIC] --[GOVERNED_BY_LAW | EDGE:EDGE-LAW-CTR-CUAD-02-LAW-CALIFORNIA]--> [ENTITY:LAW-CALIFORNIA] (Governing Law: California) [origin=REAL_PUBLIC], as evidenced by [CHUNK:CHK-CUAD-02].\n\n2.  **For PSiTech Corporation contracts:**\n    *   The [ENTITY:MOD-DEAL-PORTFOLIO-ALPHA] (Modeled M&A Scenario: Portfolio Roll-Up Acquisition Alpha) [origin=MODELED_BRIDGE] --[ACQUIRES_OR_TARGETS | EDGE:EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-01-1-PSI-C3F0EE8B]--> [ENTITY:PARTY-01-1-PSITECH-CORPORATION] (PSiTech Corporation) [origin=MODELED_BRIDGE], as evidenced by [CHUNK:CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA].\n    *   [ENTITY:PARTY-01-1-PSITECH-CORPORATION] [origin=REAL_PUBLIC] --[PARTY_TO_CONTRACT | EDGE:EDGE-PTY-PARTY-01-1-PSITECH-CORPORATION-CTR-CUAD-01]--> [ENTITY:CTR-CUAD-01] (WEBSITE CONTENT LICENSE AGREEMENT (GopageCorp)) [origin=REAL_PUBLIC], as evidenced by [CHUNK:CHK-CUAD-01].\n    *   This [ENTITY:CTR-CUAD-01] (WEBSITE CONTENT LICENSE AGREEMENT (GopageCorp)) [origin=REAL_PUBLIC] --[GOVERNED_BY_LAW | EDGE:EDGE-LAW-CTR-CUAD-01-LAW-NEVADA]--> [ENTITY:LAW-NEVADA] (Governing Law: Nevada) [origin=REAL_PUBLIC], as evidenced by [CHUNK:CHK-CUAD-01].",
+    "paths": [
+      {
+        "path_id": "path-023",
+        "hop_count": 1,
+        "node_ids": [
+          "CTR-CUAD-07",
+          "LAW-NEW-YORK"
+        ],
+        "edge_ids": [
+          "EDGE-LAW-CTR-CUAD-07-LAW-NEW-YORK"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-022",
+        "hop_count": 1,
+        "node_ids": [
+          "CTR-CUAD-08",
+          "LAW-TEXAS"
+        ],
+        "edge_ids": [
+          "EDGE-LAW-CTR-CUAD-08-LAW-TEXAS"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-017",
+        "hop_count": 3,
+        "node_ids": [
+          "MOD-DEAL-PORTFOLIO-ALPHA",
+          "PARTY-02-1-WOMEN-COM-NETWORKS-INC",
+          "CTR-CUAD-02",
+          "LAW-CALIFORNIA"
+        ],
+        "edge_ids": [
+          "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-02-1-WOM-97E98E76",
+          "EDGE-PTY-PARTY-02-1-WOMEN-COM-NETWORKS-INC-CTR-CUAD-02",
+          "EDGE-LAW-CTR-CUAD-02-LAW-CALIFORNIA"
+        ],
+        "path_exposure_usd": 3600000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-001",
+        "hop_count": 1,
+        "node_ids": [
+          "MOD-DEAL-PORTFOLIO-ALPHA",
+          "PARTY-03-1-MARINE-MP-LLC"
+        ],
+        "edge_ids": [
+          "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-03-1-MAR-88BC93D8"
+        ],
+        "path_exposure_usd": 5100000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-011",
+        "hop_count": 3,
+        "node_ids": [
+          "MOD-DEAL-PORTFOLIO-ALPHA",
+          "PARTY-01-1-PSITECH-CORPORATION",
+          "CTR-CUAD-01",
+          "LAW-NEVADA"
+        ],
+        "edge_ids": [
+          "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-01-1-PSI-C3F0EE8B",
+          "EDGE-PTY-PARTY-01-1-PSITECH-CORPORATION-CTR-CUAD-01",
+          "EDGE-LAW-CTR-CUAD-01-LAW-NEVADA"
+        ],
+        "path_exposure_usd": 4200000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-015",
+        "hop_count": 1,
+        "node_ids": [
+          "MOD-DEAL-PORTFOLIO-ALPHA",
+          "PARTY-02-1-WOMEN-COM-NETWORKS-INC"
+        ],
+        "edge_ids": [
+          "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-02-1-WOM-97E98E76"
+        ],
+        "path_exposure_usd": 3600000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-008",
+        "hop_count": 1,
+        "node_ids": [
+          "MOD-DEAL-PORTFOLIO-ALPHA",
+          "PARTY-01-1-PSITECH-CORPORATION"
+        ],
+        "edge_ids": [
+          "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-01-1-PSI-C3F0EE8B"
+        ],
+        "path_exposure_usd": 4200000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-004",
+        "hop_count": 1,
+        "node_ids": [
+          "CTR-CUAD-07",
+          "CLAUSE-ANTI-ASSIGNMENT"
+        ],
+        "edge_ids": [
+          "EDGE-CL-CTR-CUAD-07-CLAUSE-ANTI-ASSIGNMENT"
+        ],
+        "path_exposure_usd": 4750000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-021",
+        "hop_count": 1,
+        "node_ids": [
+          "CTR-CUAD-08",
+          "CLAUSE-EXCLUSIVITY"
+        ],
+        "edge_ids": [
+          "EDGE-CL-CTR-CUAD-08-CLAUSE-EXCLUSIVITY"
+        ],
+        "path_exposure_usd": 2450000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-019",
+        "hop_count": 1,
+        "node_ids": [
+          "CTR-CUAD-08",
+          "CLAUSE-CHANGE-OF-CONTROL"
+        ],
+        "edge_ids": [
+          "EDGE-CL-CTR-CUAD-08-CLAUSE-CHANGE-OF-CONTROL"
+        ],
+        "path_exposure_usd": 2450000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-007",
+        "hop_count": 1,
+        "node_ids": [
+          "CTR-CUAD-07",
+          "CLAUSE-LICENSE-GRANT"
+        ],
+        "edge_ids": [
+          "EDGE-CL-CTR-CUAD-07-CLAUSE-LICENSE-GRANT"
+        ],
+        "path_exposure_usd": 4750000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-020",
+        "hop_count": 1,
+        "node_ids": [
+          "CTR-CUAD-08",
+          "CLAUSE-LICENSE-GRANT"
+        ],
+        "edge_ids": [
+          "EDGE-CL-CTR-CUAD-08-CLAUSE-LICENSE-GRANT"
+        ],
+        "path_exposure_usd": 2450000.0,
+        "min_confidence": 1.0
+      }
+    ],
+    "retrieved_entity_ids": [
+      "CLAUSE-ANTI-ASSIGNMENT",
+      "CLAUSE-CHANGE-OF-CONTROL",
+      "CLAUSE-EXCLUSIVITY",
+      "CLAUSE-IP-OWNERSHIP",
+      "CLAUSE-LICENSE-GRANT",
+      "CTR-CUAD-01",
+      "CTR-CUAD-02",
+      "CTR-CUAD-03",
+      "CTR-CUAD-07",
+      "CTR-CUAD-08",
+      "LAW-CALIFORNIA",
+      "LAW-DELAWARE",
+      "LAW-ENGLAND-UNITED-KINGDOM",
+      "LAW-NEVADA",
+      "LAW-NEW-YORK",
+      "LAW-TEXAS",
+      "MOD-DEAL-PORTFOLIO-ALPHA",
+      "PARTY-01-1-PSITECH-CORPORATION",
+      "PARTY-02-1-WOMEN-COM-NETWORKS-INC",
+      "PARTY-03-1-MARINE-MP-LLC"
+    ],
+    "retrieved_edge_ids": [
+      "EDGE-CL-CTR-CUAD-01-CLAUSE-ANTI-ASSIGNMENT",
+      "EDGE-CL-CTR-CUAD-01-CLAUSE-CHANGE-OF-CONTROL",
+      "EDGE-CL-CTR-CUAD-01-CLAUSE-EXCLUSIVITY",
+      "EDGE-CL-CTR-CUAD-01-CLAUSE-LICENSE-GRANT",
+      "EDGE-CL-CTR-CUAD-03-CLAUSE-IP-OWNERSHIP",
+      "EDGE-CL-CTR-CUAD-07-CLAUSE-ANTI-ASSIGNMENT",
+      "EDGE-CL-CTR-CUAD-07-CLAUSE-CHANGE-OF-CONTROL",
+      "EDGE-CL-CTR-CUAD-07-CLAUSE-IP-OWNERSHIP",
+      "EDGE-CL-CTR-CUAD-07-CLAUSE-LICENSE-GRANT",
+      "EDGE-CL-CTR-CUAD-08-CLAUSE-ANTI-ASSIGNMENT",
+      "EDGE-CL-CTR-CUAD-08-CLAUSE-CHANGE-OF-CONTROL",
+      "EDGE-CL-CTR-CUAD-08-CLAUSE-EXCLUSIVITY",
+      "EDGE-CL-CTR-CUAD-08-CLAUSE-LICENSE-GRANT",
+      "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-01-1-PSI-C3F0EE8B",
+      "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-02-1-WOM-97E98E76",
+      "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-03-1-MAR-88BC93D8",
+      "EDGE-LAW-CTR-CUAD-01-LAW-NEVADA",
+      "EDGE-LAW-CTR-CUAD-02-LAW-CALIFORNIA",
+      "EDGE-LAW-CTR-CUAD-07-LAW-NEW-YORK",
+      "EDGE-LAW-CTR-CUAD-08-LAW-TEXAS",
+      "EDGE-PTY-PARTY-01-1-PSITECH-CORPORATION-CTR-CUAD-01",
+      "EDGE-PTY-PARTY-02-1-WOMEN-COM-NETWORKS-INC-CTR-CUAD-02",
+      "EDGE-PTY-PARTY-03-1-MARINE-MP-LLC-CTR-CUAD-03"
+    ],
+    "retrieved_chunk_ids": [
+      "CHK-CUAD-01",
+      "CHK-CUAD-02",
+      "CHK-CUAD-03",
+      "CHK-CUAD-07",
+      "CHK-CUAD-08",
+      "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA"
+    ],
+    "retrieved_nodes": [
+      {
+        "canonical_name": "Modeled M&A Scenario: Portfolio Roll-Up Acquisition Alpha",
+        "data_origin": "MODELED_BRIDGE",
+        "entity_id": "MOD-DEAL-PORTFOLIO-ALPHA",
+        "entity_type": "DealScenario",
+        "exposure_usd": 12900000.0,
+        "jurisdiction": "DELAWARE",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "MODELED"
+      },
+      {
+        "canonical_name": "Marine MP, LLC",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "PARTY-03-1-MARINE-MP-LLC",
+        "entity_type": "CompanyOrParty",
+        "exposure_usd": 5100000.0,
+        "jurisdiction": "California",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "HIGH",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "ENDORSEMENT LICENSING AND CO-BRANDING AGREEMENT (MusclepharmCorp)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CTR-CUAD-03",
+        "entity_type": "MaterialContract",
+        "exposure_usd": 5100000.0,
+        "jurisdiction": "California",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "CRITICAL",
+        "single_source": true,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "IP Ownership Assignment Encumbrance",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CLAUSE-IP-OWNERSHIP",
+        "entity_type": "LegalClause",
+        "exposure_usd": 0.0,
+        "jurisdiction": "MULTI",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "JOINT DEVELOPMENT AGREEMENT (FuelcellEnergyInc)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CTR-CUAD-07",
+        "entity_type": "MaterialContract",
+        "exposure_usd": 4750000.0,
+        "jurisdiction": "New York",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "Anti-Assignment Restriction (Consent Required)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CLAUSE-ANTI-ASSIGNMENT",
+        "entity_type": "LegalClause",
+        "exposure_usd": 0.0,
+        "jurisdiction": "MULTI",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "HIGH",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "Change of Control Termination / Consent Trigger",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CLAUSE-CHANGE-OF-CONTROL",
+        "entity_type": "LegalClause",
+        "exposure_usd": 0.0,
+        "jurisdiction": "MULTI",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "Commercial IP / Technology License Grant",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CLAUSE-LICENSE-GRANT",
+        "entity_type": "LegalClause",
+        "exposure_usd": 0.0,
+        "jurisdiction": "MULTI",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "HIGH",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "PSiTech Corporation",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "PARTY-01-1-PSITECH-CORPORATION",
+        "entity_type": "CompanyOrParty",
+        "exposure_usd": 4200000.0,
+        "jurisdiction": "Nevada",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "HIGH",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "WEBSITE CONTENT LICENSE AGREEMENT (GopageCorp)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CTR-CUAD-01",
+        "entity_type": "MaterialContract",
+        "exposure_usd": 4200000.0,
+        "jurisdiction": "Nevada",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "HIGH",
+        "single_source": true,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "Governing Law: Nevada",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "LAW-NEVADA",
+        "entity_type": "Jurisdiction",
+        "exposure_usd": 0.0,
+        "jurisdiction": "Nevada",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "LOW",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "Commercial Exclusivity Commitment",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CLAUSE-EXCLUSIVITY",
+        "entity_type": "LegalClause",
+        "exposure_usd": 0.0,
+        "jurisdiction": "MULTI",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "HIGH",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "WOMEN.COM NETWORKS, INC",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "PARTY-02-1-WOMEN-COM-NETWORKS-INC",
+        "entity_type": "CompanyOrParty",
+        "exposure_usd": 3600000.0,
+        "jurisdiction": "California",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "HIGH",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "CO-BRANDING AGREEMENT (EdietsComInc)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CTR-CUAD-02",
+        "entity_type": "MaterialContract",
+        "exposure_usd": 3600000.0,
+        "jurisdiction": "California",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "HIGH",
+        "single_source": true,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "Governing Law: California",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "LAW-CALIFORNIA",
+        "entity_type": "Jurisdiction",
+        "exposure_usd": 0.0,
+        "jurisdiction": "California",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "LOW",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "EXCLUSIVE DISTRIBUTOR AGREEMENT (WaterNowInc)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "CTR-CUAD-08",
+        "entity_type": "MaterialContract",
+        "exposure_usd": 2450000.0,
+        "jurisdiction": "Texas",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "HIGH",
+        "single_source": true,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "Governing Law: Texas",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "LAW-TEXAS",
+        "entity_type": "Jurisdiction",
+        "exposure_usd": 0.0,
+        "jurisdiction": "Texas",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "LOW",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "canonical_name": "Governing Law: New York",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "LAW-NEW-YORK",
+        "entity_type": "Jurisdiction",
+        "exposure_usd": 0.0,
+        "jurisdiction": "New York",
+        "pack_id": "legal_ma_clause_graph",
+        "risk_tier": "LOW",
+        "single_source": false,
+        "source_license": "CC_BY_4_0"
+      },
+      {
+        "entity_id": "LAW-DELAWARE",
+        "canonical_name": "Governing Law: Delaware",
+        "entity_type": "Jurisdiction",
+        "jurisdiction": "Delaware",
+        "risk_tier": "LOW",
+        "exposure_usd": 0.0,
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "distance": 0.3116609455476975
+      },
+      {
+        "entity_id": "LAW-ENGLAND-UNITED-KINGDOM",
+        "canonical_name": "Governing Law: England, United Kingdom",
+        "entity_type": "Jurisdiction",
+        "jurisdiction": "England, United Kingdom",
+        "risk_tier": "LOW",
+        "exposure_usd": 0.0,
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "distance": 0.31728458806821846
+      }
+    ],
+    "retrieved_edges": [
+      {
+        "confidence": 1.0,
+        "data_origin": "MODELED_BRIDGE",
+        "edge_id": "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-03-1-MAR-88BC93D8",
+        "evidence_excerpt": "MODELED_BRIDGE M&A diligence scenario: Hypothetical private-equity acquisition of 3 real SEC-filed contracting parties to trace cascading Change-of-Control, Anti-Assignment, and IP encumbrance triggers across their CUAD agreements. Target party: Marine MP, LLC.",
+        "exposure_usd": 5100000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ACQUIRES_OR_TARGETS",
+        "source_chunk_id": "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+        "source_doc_name": "MODELED_MA_SCENARIO_MOD-DEAL-PORTFOLIO-ALPHA.txt",
+        "source_entity_id": "MOD-DEAL-PORTFOLIO-ALPHA",
+        "source_license": "MODELED",
+        "target_entity_id": "PARTY-03-1-MARINE-MP-LLC",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-PTY-PARTY-03-1-MARINE-MP-LLC-CTR-CUAD-03",
+        "evidence_excerpt": "Marine MP, LLC is an annotated contracting party to ENDORSEMENT LICENSING AND CO-BRANDING AGREEMENT (MusclepharmCorp_20170208_10-KA_EX-10.38_9893581_EX-10.38_Co-Branding Agreement.pdf).",
+        "exposure_usd": 5100000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "PARTY_TO_CONTRACT",
+        "source_chunk_id": "CHK-CUAD-03",
+        "source_doc_name": "MusclepharmCorp_20170208_10-KA_EX-10.38_9893581_EX-10.38_Co-Branding Agreement.pdf",
+        "source_entity_id": "PARTY-03-1-MARINE-MP-LLC",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CTR-CUAD-03",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-03-CLAUSE-IP-OWNERSHIP",
+        "evidence_excerpt": "All such works based upon the Trademarks and/or Name and Appearance Rights shall be prepared by an employee-for- hire of MusclePharm (under MusclePharms's sole supervision, responsibility, and monetary obligation) or as a work-for-hire by a third party who assigns to the AS Parties in writing and in perpetuity throughout the universe all right, title, and interest in the same provided however, nothing herein shall preclude MusclePharm from using any of the intellectual property to be retained by",
+        "exposure_usd": 5100000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ENCUMBERS_IP_OR_REVENUE",
+        "source_chunk_id": "CHK-CUAD-03",
+        "source_doc_name": "MusclepharmCorp_20170208_10-KA_EX-10.38_9893581_EX-10.38_Co-Branding Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-03",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-IP-OWNERSHIP",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-07-CLAUSE-ANTI-ASSIGNMENT",
+        "evidence_excerpt": "The Agreement is not assignable, including any assignment by operation of law (including but not limited to as a result of a merger or other corporate action), by either Party without the prior written consent of the other Party.",
+        "exposure_usd": 4750000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "CONTAINS_CLAUSE",
+        "source_chunk_id": "CHK-CUAD-07",
+        "source_doc_name": "FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-07",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-ANTI-ASSIGNMENT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-07-CLAUSE-CHANGE-OF-CONTROL",
+        "evidence_excerpt": "Subject to requirements of applicable law, FCE will provide notice to ExxonMobil prior to, or promptly after, it becomes aware of any such Change in Control, and if prior notice is prohibited by applicable Law, as soon as practicable or after such notice is no longer prohibited, but in no event later than one (1) business day after any public announcement with respect to any such asset transfer or Change in Control.",
+        "exposure_usd": 4750000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "CONTAINS_CLAUSE",
+        "source_chunk_id": "CHK-CUAD-07",
+        "source_doc_name": "FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-07",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-CHANGE-OF-CONTROL",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-07-CLAUSE-IP-OWNERSHIP",
+        "evidence_excerpt": "FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+        "exposure_usd": 4750000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ENCUMBERS_IP_OR_REVENUE",
+        "source_chunk_id": "CHK-CUAD-07",
+        "source_doc_name": "FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-07",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-IP-OWNERSHIP",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-07-CLAUSE-LICENSE-GRANT",
+        "evidence_excerpt": "More particularly, said right and license to practice FCE Background Information and FCE Background Patents for Generation 2 Technology in any application outside of Carbon Capture Applications and Hydrogen Applications will include the right to use, reproduce, and create derivative works of FCE Background Information under applicable copyrights and the right to make, use, import, and sell or offer to sell under the claims of FCE Background Patents.",
+        "exposure_usd": 4750000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ENCUMBERS_IP_OR_REVENUE",
+        "source_chunk_id": "CHK-CUAD-07",
+        "source_doc_name": "FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-07",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-LICENSE-GRANT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "MODELED_BRIDGE",
+        "edge_id": "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-01-1-PSI-C3F0EE8B",
+        "evidence_excerpt": "MODELED_BRIDGE M&A diligence scenario: Hypothetical private-equity acquisition of 3 real SEC-filed contracting parties to trace cascading Change-of-Control, Anti-Assignment, and IP encumbrance triggers across their CUAD agreements. Target party: PSiTech Corporation.",
+        "exposure_usd": 4200000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ACQUIRES_OR_TARGETS",
+        "source_chunk_id": "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+        "source_doc_name": "MODELED_MA_SCENARIO_MOD-DEAL-PORTFOLIO-ALPHA.txt",
+        "source_entity_id": "MOD-DEAL-PORTFOLIO-ALPHA",
+        "source_license": "MODELED",
+        "target_entity_id": "PARTY-01-1-PSITECH-CORPORATION",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-PTY-PARTY-01-1-PSITECH-CORPORATION-CTR-CUAD-01",
+        "evidence_excerpt": "PSiTech Corporation is an annotated contracting party to WEBSITE CONTENT LICENSE AGREEMENT (GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf).",
+        "exposure_usd": 4200000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "PARTY_TO_CONTRACT",
+        "source_chunk_id": "CHK-CUAD-01",
+        "source_doc_name": "GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf",
+        "source_entity_id": "PARTY-01-1-PSITECH-CORPORATION",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CTR-CUAD-01",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-01-CLAUSE-CHANGE-OF-CONTROL",
+        "evidence_excerpt": "For purposes of the preceding sentence, and without limiting its generality, any merger, consolidation or reorganization involving Licensee (regardless of whether Licensee is a surviving or disappearing entity) will be deemed to be a transfer of rights, obligations or performance under this Agreement for which Licensor's prior written consent is required.",
+        "exposure_usd": 4200000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "CONTAINS_CLAUSE",
+        "source_chunk_id": "CHK-CUAD-01",
+        "source_doc_name": "GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-01",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-CHANGE-OF-CONTROL",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LAW-CTR-CUAD-01-LAW-NEVADA",
+        "evidence_excerpt": "CUAD expert annotation identifies governing law of WEBSITE CONTENT LICENSE AGREEMENT as Nevada.",
+        "exposure_usd": 0.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "GOVERNED_BY_LAW",
+        "source_chunk_id": "CHK-CUAD-01",
+        "source_doc_name": "GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-01",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "LAW-NEVADA",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-01-CLAUSE-EXCLUSIVITY",
+        "evidence_excerpt": "Subject to Licensee's on\u00adgoing compliance with Section 3.2 and all other terms and conditions of this Agreement, Licensor grants to Licensee an exclusive (save for rights reserved to Licensor hereunder), non-transferable (except as provided in Section 11.7) and non- sublicensable license, during the License Term, to reproduce, perform, display, transmit and distribute the Licensed Content on the Licensee Siteand Related Media intended solely for use by End Usersin the Territory within the scope ",
+        "exposure_usd": 4200000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ENCUMBERS_IP_OR_REVENUE",
+        "source_chunk_id": "CHK-CUAD-01",
+        "source_doc_name": "GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-01",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-EXCLUSIVITY",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-01-CLAUSE-LICENSE-GRANT",
+        "evidence_excerpt": "Subject to Licensee's on\u00adgoing compliance with Section 3.2 and all other terms and conditions of this Agreement, Licensor grants to Licensee an exclusive (save for rights reserved to Licensor hereunder), non-transferable (except as provided in Section 11.7) and non- sublicensable license, during the License Term, to reproduce, perform, display, transmit and distribute the Licensed Content on the Licensee Siteand Related Media intended solely for use by End Usersin the Territory within the scope ",
+        "exposure_usd": 4200000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ENCUMBERS_IP_OR_REVENUE",
+        "source_chunk_id": "CHK-CUAD-01",
+        "source_doc_name": "GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-01",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-LICENSE-GRANT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-01-CLAUSE-ANTI-ASSIGNMENT",
+        "evidence_excerpt": "Any purported assignment, delegation or transfer in violation of this Section 11.7 is void from the outset and shall be of no force or effect.",
+        "exposure_usd": 4200000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "CONTAINS_CLAUSE",
+        "source_chunk_id": "CHK-CUAD-01",
+        "source_doc_name": "GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-01",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-ANTI-ASSIGNMENT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "MODELED_BRIDGE",
+        "edge_id": "EDGE-DEAL-MOD-DEAL-PORTFOLIO-ALPHA-PARTY-02-1-WOM-97E98E76",
+        "evidence_excerpt": "MODELED_BRIDGE M&A diligence scenario: Hypothetical private-equity acquisition of 3 real SEC-filed contracting parties to trace cascading Change-of-Control, Anti-Assignment, and IP encumbrance triggers across their CUAD agreements. Target party: WOMEN.COM NETWORKS, INC.",
+        "exposure_usd": 3600000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ACQUIRES_OR_TARGETS",
+        "source_chunk_id": "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+        "source_doc_name": "MODELED_MA_SCENARIO_MOD-DEAL-PORTFOLIO-ALPHA.txt",
+        "source_entity_id": "MOD-DEAL-PORTFOLIO-ALPHA",
+        "source_license": "MODELED",
+        "target_entity_id": "PARTY-02-1-WOMEN-COM-NETWORKS-INC",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-PTY-PARTY-02-1-WOMEN-COM-NETWORKS-INC-CTR-CUAD-02",
+        "evidence_excerpt": "WOMEN.COM NETWORKS, INC is an annotated contracting party to CO-BRANDING AGREEMENT (EdietsComInc_20001030_10QSB_EX-10.4_2606646_EX-10.4_Co-Branding Agreement.pdf).",
+        "exposure_usd": 3600000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "PARTY_TO_CONTRACT",
+        "source_chunk_id": "CHK-CUAD-02",
+        "source_doc_name": "EdietsComInc_20001030_10QSB_EX-10.4_2606646_EX-10.4_Co-Branding Agreement.pdf",
+        "source_entity_id": "PARTY-02-1-WOMEN-COM-NETWORKS-INC",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CTR-CUAD-02",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LAW-CTR-CUAD-02-LAW-CALIFORNIA",
+        "evidence_excerpt": "CUAD expert annotation identifies governing law of CO-BRANDING AGREEMENT as California.",
+        "exposure_usd": 0.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "GOVERNED_BY_LAW",
+        "source_chunk_id": "CHK-CUAD-02",
+        "source_doc_name": "EdietsComInc_20001030_10QSB_EX-10.4_2606646_EX-10.4_Co-Branding Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-02",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "LAW-CALIFORNIA",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-08-CLAUSE-ANTI-ASSIGNMENT",
+        "evidence_excerpt": "Notwithstanding anything contained in this Section to the contrary, Hydraspin may assign this Agreement upon written notice to Distributor to any entity which controls, is controlled by or under common control with Hydraspin or to any successor to or purchaser of all or substantially all of its assets or stock, by merger or otherwise.",
+        "exposure_usd": 2450000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "CONTAINS_CLAUSE",
+        "source_chunk_id": "CHK-CUAD-08",
+        "source_doc_name": "WaterNowInc_20191120_10-Q_EX-10.12_11900227_EX-10.12_Distributor Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-08",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-ANTI-ASSIGNMENT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-08-CLAUSE-CHANGE-OF-CONTROL",
+        "evidence_excerpt": "If termination is the result of a Change of Control, Distributor shall be entitled to receive a onetime payment, within three (3) business days of the effective date of the Change of Control, equal to the greater of the following 1) the aggregate amount of the Distributor Share received during the 18 months prior to the effective date of such Change of Control or 2) the aggregate amount of the Distributor Share received on the 30 days prior to the effective date of such Change of Control multipl",
+        "exposure_usd": 2450000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "CONTAINS_CLAUSE",
+        "source_chunk_id": "CHK-CUAD-08",
+        "source_doc_name": "WaterNowInc_20191120_10-Q_EX-10.12_11900227_EX-10.12_Distributor Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-08",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-CHANGE-OF-CONTROL",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-08-CLAUSE-LICENSE-GRANT",
+        "evidence_excerpt": "Hydraspin hereby grants to Distributor an exclusive non-transferable and royalty-free right and license to use Hydraspin's Marks in connection with the advertising, promotion, marketing, distribution and sale of the Products in the Territory in accordance with Hydraspin's standards and instructions.",
+        "exposure_usd": 2450000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ENCUMBERS_IP_OR_REVENUE",
+        "source_chunk_id": "CHK-CUAD-08",
+        "source_doc_name": "WaterNowInc_20191120_10-Q_EX-10.12_11900227_EX-10.12_Distributor Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-08",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-LICENSE-GRANT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-CL-CTR-CUAD-08-CLAUSE-EXCLUSIVITY",
+        "evidence_excerpt": "Hydraspin hereby grants to Distributor an exclusive non-transferable and royalty-free right and license to use Hydraspin's Marks in connection with the advertising, promotion, marketing, distribution and sale of the Products in the Territory in accordance with Hydraspin's standards and instructions",
+        "exposure_usd": 2450000.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "ENCUMBERS_IP_OR_REVENUE",
+        "source_chunk_id": "CHK-CUAD-08",
+        "source_doc_name": "WaterNowInc_20191120_10-Q_EX-10.12_11900227_EX-10.12_Distributor Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-08",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "CLAUSE-EXCLUSIVITY",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LAW-CTR-CUAD-08-LAW-TEXAS",
+        "evidence_excerpt": "CUAD expert annotation identifies governing law of EXCLUSIVE DISTRIBUTOR AGREEMENT as Texas.",
+        "exposure_usd": 0.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "GOVERNED_BY_LAW",
+        "source_chunk_id": "CHK-CUAD-08",
+        "source_doc_name": "WaterNowInc_20191120_10-Q_EX-10.12_11900227_EX-10.12_Distributor Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-08",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "LAW-TEXAS",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LAW-CTR-CUAD-07-LAW-NEW-YORK",
+        "evidence_excerpt": "CUAD expert annotation identifies governing law of JOINT DEVELOPMENT AGREEMENT as New York.",
+        "exposure_usd": 0.0,
+        "pack_id": "legal_ma_clause_graph",
+        "relation_type": "GOVERNED_BY_LAW",
+        "source_chunk_id": "CHK-CUAD-07",
+        "source_doc_name": "FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf",
+        "source_entity_id": "CTR-CUAD-07",
+        "source_license": "CC_BY_4_0",
+        "target_entity_id": "LAW-NEW-YORK",
+        "weight": 1.0
+      }
+    ],
+    "retrieved_chunks": [
+      {
+        "chunk_id": "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+        "doc_name": "MODELED_MA_SCENARIO_MOD-DEAL-PORTFOLIO-ALPHA.txt",
+        "doc_type": "modeled_ma_scenario",
+        "page_number": 1,
+        "content": "MODELED_BRIDGE M&A diligence scenario: Hypothetical private-equity acquisition of 3 real SEC-filed contracting parties to trace cascading Change-of-Control, Anti-Assignment, and IP encumbrance triggers across their CUAD agreements.",
+        "data_origin": "MODELED_BRIDGE",
+        "source_license": "MODELED",
+        "source_url": ""
+      },
+      {
+        "chunk_id": "CHK-CUAD-02",
+        "doc_name": "EdietsComInc_20001030_10QSB_EX-10.4_2606646_EX-10.4_Co-Branding Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): EdietsComInc_20001030_10QSB_EX-10.4_2606646_EX-10.4_Co-Branding Agreement.pdf\nAgreement Title: CO-BRANDING AGREEMENT | Parties: WOMEN.COM NETWORKS, INC ; EDIETS.COM, INC | Governing Law: California\n[Change of Control]: For purposes of this Agreement, \"Change in Control\" means a merger or consolidation of the party with, or any sale of all or substantially all of the assets of such party to, any other person, corporation or entity, unless as a result of such merger, consolidation or sale of assets the holders of such party's voting securities prior thereto hold at least fifty percent (50%) of \n[Anti-Assignment]: Any attempt to assign this Agreement other than as permitted above will be null and void.\n[License Grant]: Women.com hereby grants eDiets a non-exclusive, non-transferable, royalty-free worldwide right and license without the right to sublicense to use the Women.com Marks during the Term solely in connection with (i) the fulfillment of eDiets' obligations under this Agreement, and (ii) in advertising and marketing collatera\n[Exclusivity]: During the Term, eDiets will not buy, sell, display or distribute advertising from (including, but not limited to, banner ads, buttons, badges, text links, hyperlinks or editorial mentions) or otherwise promote any Women.com Compettive Company on any page of the eDiets Site that is within two clicks from the Gateway Pa",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826"
+      },
+      {
+        "chunk_id": "CHK-CUAD-07",
+        "doc_name": "FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): FuelcellEnergyInc_20191106_8-K_EX-10.1_11868007_EX-10.1_Development Agreement.pdf\nAgreement Title: JOINT DEVELOPMENT AGREEMENT | Parties: ExxonMobil Research and Engineering Company ; FuelCell Energy, Inc | Governing Law: New York\n[Change of Control]: Subject to requirements of applicable law, FCE will provide notice to ExxonMobil prior to, or promptly after, it becomes aware of any such Change in Control, and if prior notice is prohibited by applicable Law, as soon as practicable or after such notice is no longer prohibited, but in no event later than one (1) business day after any public announcement with respect to any su\n[Anti-Assignment]: The Agreement is not assignable, including any assignment by operation of law (including but not limited to as a result of a merger or other corporate action), by either Party without the prior written consent of the other Party.\n[License Grant]: More particularly, said right and license to practice FCE Background Information and FCE Background Patents for Generation 2 Technology in any application outside of Carbon Capture Applications and Hydrogen Applications will include the right to use, reproduce, and create derivative works of FCE Background Information \n[IP Ownership Assignment]: FCE will assign, and hereby assigns, to ExxonMobil ownership of Program Results.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826"
+      },
+      {
+        "chunk_id": "CHK-CUAD-01",
+        "doc_name": "GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): GopageCorp_20140221_10-K_EX-10.1_8432966_EX-10.1_Content License Agreement.pdf\nAgreement Title: WEBSITE CONTENT LICENSE AGREEMENT | Parties: PSiTech Corporation ; Empirical Ventures, Inc | Governing Law: Nevada\n[Change of Control]: For purposes of the preceding sentence, and without limiting its generality, any merger, consolidation or reorganization involving Licensee (regardless of whether Licensee is a surviving or disappearing entity) will be deemed to be a transfer of rights, obligations or performance under this Agreement for which Licensor's prior written consent is required.\n[Anti-Assignment]: Any purported assignment, delegation or transfer in violation of this Section 11.7 is void from the outset and shall be of no force or effect.\n[License Grant]: Subject to Licensee's on\u00adgoing compliance with Section 3.2 and all other terms and conditions of this Agreement, Licensor grants to Licensee an exclusive (save for rights reserved to Licensor hereunder), non-transferable (except as provided in Section 11.7) and non- sublicensable license, during the License Term, to re\n[Exclusivity]: Subject to Licensee's on\u00adgoing compliance with Section 3.2 and all other terms and conditions of this Agreement, Licensor grants to Licensee an exclusive (save for rights reserved to Licensor hereunder), non-transferable (except as provided in Section 11.7) and non- sublicensable license, during the License Term, to re",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826"
+      },
+      {
+        "chunk_id": "CHK-CUAD-03",
+        "doc_name": "MusclepharmCorp_20170208_10-KA_EX-10.38_9893581_EX-10.38_Co-Branding Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): MusclepharmCorp_20170208_10-KA_EX-10.38_9893581_EX-10.38_Co-Branding Agreement.pdf\nAgreement Title: ENDORSEMENT LICENSING AND CO-BRANDING AGREEMENT | Parties: Marine MP, LLC ; Arnold Schwarzenegger | Governing Law: California\n[Change of Control]: Nothwithstanding the foregoing, this Agreement may be assigned without the AS Parties' consent by MusclePharm in connection with a change of control transaction; provided that the acquirer of MusclePharm shall have financial resources substantially similar or greater than MusclePharm and shall specifically assume the obligations of MusclePharm under this Agreement in writing pr\n[Anti-Assignment]: Any attempted assignment or transfer by a party of their rights and/or obligations without such consent shall be void.\n[License Grant]: Endorser also grants to MusclePharm and consents to MusclePharm's editorial use world-wide of Endorser's Name and Appearance in MusclePharm published materials approved by Endorser. For purposes of this Agreement, MusclePharm's editorial use of Endorser's Name and Appearance shall mean a use that does not directly prom\n[IP Ownership Assignment]: All such works based upon the Trademarks and/or Name and Appearance Rights shall be prepared by an employee-for- hire of MusclePharm (under MusclePharms's sole supervision, responsibility, and monetary obligation) or as a work-for-hire by a third party who assigns to the AS Parties in writing and in perpetuity througho\n[Exclusivity]: During the term of this Agreement, or any extensions of this Agreement, Endorser and the Lender hereby agree and warrant that it will not enter into any other endorsement agreement for the use of Endorser's name, image and/or likeness for advertising, marketing and/or endorsement of any other dietary supplements during",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826"
+      },
+      {
+        "chunk_id": "CHK-CUAD-08",
+        "doc_name": "WaterNowInc_20191120_10-Q_EX-10.12_11900227_EX-10.12_Distributor Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): WaterNowInc_20191120_10-Q_EX-10.12_11900227_EX-10.12_Distributor Agreement.pdf\nAgreement Title: EXCLUSIVE DISTRIBUTOR AGREEMENT | Parties: WATER NOW, INC ; Hydraspin USA, Inc | Governing Law: Texas\n[Change of Control]: If termination is the result of a Change of Control, Distributor shall be entitled to receive a onetime payment, within three (3) business days of the effective date of the Change of Control, equal to the greater of the following 1) the aggregate amount of the Distributor Share received during the 18 months prior to the effective date of such Change of Control or 2) the aggrega\n[Anti-Assignment]: Notwithstanding anything contained in this Section to the contrary, Hydraspin may assign this Agreement upon written notice to Distributor to any entity which controls, is controlled by or under common control with Hydraspin or to any successor to or purchaser of all or substantially all of its assets or stock, by merger or otherwise.\n[License Grant]: Hydraspin hereby grants to Distributor an exclusive non-transferable and royalty-free right and license to use Hydraspin's Marks in connection with the advertising, promotion, marketing, distribution and sale of the Products in the Territory in accordance with Hydraspin's standards and instructions.\n[Exclusivity]: Hydraspin hereby grants to Distributor an exclusive non-transferable and royalty-free right and license to use Hydraspin's Marks in connection with the advertising, promotion, marketing, distribution and sale of the Products in the Territory in accordance with Hydraspin's standards and instructions",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826"
+      }
+    ],
+    "provenance": {
+      "cited_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-ALPHA",
+        "PARTY-02-1-WOMEN-COM-NETWORKS-INC",
+        "CTR-CUAD-02",
+        "LAW-CALIFORNIA",
+        "PARTY-01-1-PSITECH-CORPORATION",
+        "CTR-CUAD-01",
+        "LAW-NEVADA"
+      ],
+      "verified_entity_ids": [
+        "MOD-DEAL-PORTFOLIO-ALPHA",
+        "PARTY-02-1-WOMEN-COM-NETWORKS-INC",
+        "CTR-CUAD-02",
+        "LAW-CALIFORNIA",
+        "PARTY-01-1-PSITECH-CORPORATION",
+        "CTR-CUAD-01",
+        "LAW-NEVADA"
+      ],
+      "unverified_entity_ids": [],
+      "cited_edge_ids": [],
+      "verified_edge_ids": [],
+      "unverified_edge_ids": [],
+      "cited_chunk_ids": [
+        "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+        "CHK-CUAD-02",
+        "CHK-CUAD-01"
+      ],
+      "verified_chunk_ids": [
+        "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+        "CHK-CUAD-02",
+        "CHK-CUAD-01"
+      ],
+      "unverified_chunk_ids": []
+    },
+    "usage": {
+      "input_tokens": 4496,
+      "output_tokens": 783
+    },
+    "engine_cost_usd": 0.003306,
+    "total_duration_ms": 16263.37,
+    "flags": {
+      "graph_backend_used": "bigquery_property_graph",
+      "reranker_used": true,
+      "model_armor_checked": true,
+      "bq_cache_hit": false,
+      "bytes_processed": 2658380
+    }
+  },
+  "stage_events": [
+    {
+      "event_type": "stage_started",
+      "stage": "query_prep",
+      "label": "Prepare multi-hop graph query",
+      "service": "local",
+      "request": {
+        "pack_id": "legal_ma_clause_graph",
+        "max_hops": 3,
+        "direction": "outgoing"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "query_prep",
+      "service_used": "local",
+      "duration_ms": 0.08,
+      "payload": {
+        "prepared_query": "Map the governing-law jurisdictions applicable to Portfolio Alpha's commercial contracts across a 3-hop Deal -> Party -> Contract -> Jurisdiction traversal.",
+        "max_hops": 3,
+        "direction": "outgoing"
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "embed_query",
+      "label": "Embed query (gemini-embedding-2)",
+      "service": "Vertex AI gemini-embedding-2",
+      "request": {
+        "model": "gemini-embedding-2"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "embed_query",
+      "service_used": "Vertex AI gemini-embedding-2",
+      "duration_ms": 256.28,
+      "payload": {
+        "dimensions": 3072
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "vector_seed",
+      "label": "Resolve anchor seed entities (BigQuery VECTOR_SEARCH)",
+      "service": "BigQuery VECTOR_SEARCH",
+      "request": {
+        "pack_id": "legal_ma_clause_graph",
+        "top_k_seeds": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "vector_seed",
+      "service_used": "BigQuery VECTOR_SEARCH",
+      "duration_ms": 2544.1,
+      "payload": {
+        "sql": "WITH vector_hits AS (\n  SELECT\n    base.entity_id,\n    base.canonical_name,\n    base.entity_type,\n    base.jurisdiction,\n    base.risk_tier,\n    base.exposure_usd,\n    base.data_origin,\n    base.source_license,\n    distance\n  FROM VECTOR_SEARCH(\n    (SELECT * FROM `acc05_enterprise_graphrag.entities` WHERE pack_id = @pack_id AND ARRAY_LENGTH(embedding) > 0),\n    'embedding',\n    (SELECT @query_embedding AS embedding),\n    top_k => 6,\n    distance_type => 'COSINE'\n  )\n),\nlexical_hits AS (\n  SELECT\n    entity_id,\n    canonical_name,\n    entity_type,\n    jurisdiction,\n    risk_tier,\n    exposure_usd,\n    data_origin,\n    source_license,\n    0.05 AS distance\n  FROM `acc05_enterprise_graphrag.entities`\n  WHERE pack_id = @pack_id\n    AND (\n      (LENGTH(canonical_name) >= 3 AND STRPOS(LOWER(@query_text), LOWER(canonical_name)) > 0)\n      OR (\n        LENGTH(REGEXP_REPLACE(LOWER(canonical_name), r'\\s+(corporation|corp|inc|ltd|llc|co|limited|group|holdings)\\.?$', '')) >= 4\n        AND STRPOS(\n          LOWER(@query_text),\n          REGEXP_REPLACE(LOWER(canonical_name), r'\\s+(corporation|corp|inc|ltd|llc|co|limited|group|holdings)\\.?$', '')\n        ) > 0\n      )\n    )\n  LIMIT 6\n)\nSELECT\n  entity_id,\n  canonical_name,\n  entity_type,\n  jurisdiction,\n  risk_tier,\n  exposure_usd,\n  data_origin,\n  source_license,\n  distance\nFROM (\n  SELECT * FROM vector_hits\n  UNION ALL\n  SELECT * FROM lexical_hits\n)\nQUALIFY ROW_NUMBER() OVER (PARTITION BY entity_id ORDER BY distance ASC) = 1\nORDER BY distance ASC\nLIMIT 6",
+        "seed_ids": [
+          "MOD-DEAL-PORTFOLIO-ALPHA",
+          "LAW-DELAWARE",
+          "LAW-ENGLAND-UNITED-KINGDOM",
+          "CTR-CUAD-07",
+          "LAW-NEW-YORK",
+          "CTR-CUAD-08"
+        ],
+        "rows_returned": 6,
+        "bytes_processed": 2546985,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "gql_traverse",
+      "label": "Traverse BigQuery Property Graph (ISO GQL, up to 3 hops)",
+      "service": "BigQuery Property Graph (ISO GQL)",
+      "request": {
+        "seed_ids": [
+          "MOD-DEAL-PORTFOLIO-ALPHA",
+          "LAW-DELAWARE",
+          "LAW-ENGLAND-UNITED-KINGDOM",
+          "CTR-CUAD-07",
+          "LAW-NEW-YORK",
+          "CTR-CUAD-08"
+        ],
+        "max_hops": 3,
+        "direction": "outgoing"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "gql_traverse",
+      "service_used": "BigQuery Property Graph (ISO GQL)",
+      "duration_ms": 5683.17,
+      "payload": {
+        "gql": "GRAPH acc05_enterprise_graphrag.EnterpriseGraph\nMATCH p = ANY SHORTEST (src:Entity)-[hops:Rel]->{1,3}(dst:Entity)\nWHERE src.pack_id = @pack_id AND dst.pack_id = @pack_id AND src.entity_id IN UNNEST(@seed_ids)\nLET hop_count = PATH_LENGTH(p),\n    min_confidence = MIN(hops.confidence),\n    path_exposure_usd = MAX(hops.exposure_usd)\nFILTER min_confidence >= @min_confidence\nRETURN\n  src.entity_id AS start_id,\n  dst.entity_id AS end_id,\n  dst.entity_type AS end_type,\n  dst.risk_tier AS end_risk_tier,\n  hop_count,\n  path_exposure_usd,\n  min_confidence,\n  TO_JSON(NODES(p)) AS path_nodes_json,\n  TO_JSON(EDGES(p)) AS path_edges_json\nORDER BY path_exposure_usd DESC, hop_count ASC\nLIMIT 120",
+        "paths_found": 23,
+        "unique_nodes": 20,
+        "unique_edges": 23,
+        "linked_chunks": 6,
+        "bytes_processed": 111395,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "rerank",
+      "label": "Rerank candidate paths (Discovery Engine Ranking API)",
+      "service": "Discovery Engine Ranking API",
+      "request": {
+        "candidates_in": 23,
+        "top_n": 12
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "rerank",
+      "service_used": "Discovery Engine Ranking API",
+      "duration_ms": 112.7,
+      "payload": {
+        "candidates_in": 23,
+        "candidates_out": 12,
+        "top_scores": [
+          0.399,
+          0.3728,
+          0.3264,
+          0.3258,
+          0.3182
+        ]
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "synthesize",
+      "label": "Synthesize grounded contagion brief (gemini-2.5-flash)",
+      "service": "Vertex AI gemini-2.5-flash",
+      "request": {
+        "model": "gemini-2.5-flash",
+        "paths_in_context": 12
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "synthesize",
+      "service_used": "Vertex AI gemini-2.5-flash",
+      "duration_ms": 7666.36,
+      "payload": {
+        "input_tokens": 4496,
+        "output_tokens": 783,
+        "engine_cost_usd": 0.003306
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "verify_provenance",
+      "label": "Deterministic Edge-ID & Entity-ID Provenance Audit",
+      "service": "Deterministic Provenance Verifier",
+      "request": {
+        "allowed_entities": 20,
+        "allowed_edges": 23,
+        "allowed_chunks": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "verify_provenance",
+      "service_used": "Deterministic Provenance Verifier",
+      "duration_ms": 0.07,
+      "payload": {
+        "is_fully_verified": true,
+        "verified_entities": 7,
+        "unverified_entities": 0,
+        "verified_edges": 0,
+        "unverified_edges": 0,
+        "verified_chunks": 3,
+        "unverified_chunks": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "evaluate",
+      "label": "Evaluate Answer (Vertex AI GenAI Evaluation (:evaluateInstances))",
+      "service": "vertex_eval",
+      "request": {
+        "judge_model": "vertex-genai-eval"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "evaluate",
+      "service_used": "vertex_genai_eval",
+      "duration_ms": 21316.86,
+      "payload": {
+        "judge_model": "vertex-genai-eval",
+        "groundedness": 1.0,
+        "qa_relevance": 1.0,
+        "context_precision": 1.0,
+        "composite_score": 1.0,
+        "judge_cost_usd": 0.019607
+      }
+    }
+  ],
+  "recall": {
+    "entity_recall": 1.0,
+    "edge_recall": 1.0,
+    "path_recall": 1.0
+  },
+  "evaluation": {
+    "judge_model": "vertex-genai-eval",
+    "judge_provider": "vertex_genai_eval",
+    "groundedness": 1.0,
+    "qa_relevance": 1.0,
+    "context_precision": 1.0,
+    "path_recall": 1.0,
+    "provenance_verified": true,
+    "composite_score": 1.0,
+    "rationale": "GROUNDEDNESS: Every factual claim in the response is strictly and accurately supported by the provided graph paths, edges, and source chunks, correctly tracing the relationships from t | QUESTION_ANSWERING_QUALITY: The response perfectly executes the 3-hop traversal (Deal -> Party -> Contract -> Jurisdiction), correctly identifying both relevant parties and mapping their respective  | FULFILLMENT: The retrieved context is a perfect 5, as it includes two explicit 3-hop graph paths (path-011 and path-017) that exactly match the requested Deal -> Party -> Contract -> ",
+    "input_tokens": 13966,
+    "output_tokens": 215,
+    "judge_cost_usd": 0.019607,
+    "duration_ms": 21316.35
+  }
+}

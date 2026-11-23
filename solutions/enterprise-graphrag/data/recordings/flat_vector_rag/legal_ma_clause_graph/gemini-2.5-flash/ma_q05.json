@@ -1,0 +1,283 @@
+{
+  "provenance_header": {
+    "recorded_at": "2026-11-23T20:47:11.404385+00:00",
+    "engine_id": "flat_vector_rag",
+    "pack_id": "legal_ma_clause_graph",
+    "synthesis_model": "gemini-2.5-flash",
+    "judge_model": "vertex-genai-eval",
+    "question_id": "ma_q05",
+    "git_sha": "e034066"
+  },
+  "result": {
+    "engine_id": "flat_vector_rag",
+    "engine_label": "Flat Vector RAG (Baseline \u2014 Chunks Only)",
+    "pack_id": "legal_ma_clause_graph",
+    "query": "Map the governing-law jurisdictions applicable to Portfolio Alpha's commercial contracts across a 3-hop Deal -> Party -> Contract -> Jurisdiction traversal.",
+    "synthesis_model": "gemini-2.5-flash",
+    "answer": "The provided documents describe \"Portfolio Alpha\" as a \"Hypothetical private-equity acquisition of 3 real SEC-filed contracting parties\" [CHUNK:CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA]. However, the specific names of these 3 contracting parties are not provided in the given chunks.\n\nTherefore, a direct mapping from \"Portfolio Alpha\" (Deal) to specific \"Parties\" cannot be established. Without identifying the parties, it is not possible to then identify their \"Contracts\" and subsequently their \"Governing Law\" jurisdictions. The necessary intermediate hop from \"Deal\" to \"Party\" is missing from the provided information.",
+    "paths": [],
+    "retrieved_entity_ids": [],
+    "retrieved_edge_ids": [],
+    "retrieved_chunk_ids": [
+      "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+      "CHK-DEAL-MOD-DEAL-PORTFOLIO-BETA",
+      "CHK-CUAD-10",
+      "CHK-CUAD-09",
+      "CHK-CUAD-03",
+      "CHK-CUAD-05"
+    ],
+    "retrieved_nodes": [],
+    "retrieved_edges": [],
+    "retrieved_chunks": [
+      {
+        "chunk_id": "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+        "doc_name": "MODELED_MA_SCENARIO_MOD-DEAL-PORTFOLIO-ALPHA.txt",
+        "doc_type": "modeled_ma_scenario",
+        "page_number": 1,
+        "content": "MODELED_BRIDGE M&A diligence scenario: Hypothetical private-equity acquisition of 3 real SEC-filed contracting parties to trace cascading Change-of-Control, Anti-Assignment, and IP encumbrance triggers across their CUAD agreements.",
+        "data_origin": "MODELED_BRIDGE",
+        "source_license": "MODELED",
+        "source_url": "",
+        "distance": 0.2820819197874438
+      },
+      {
+        "chunk_id": "CHK-DEAL-MOD-DEAL-PORTFOLIO-BETA",
+        "doc_name": "MODELED_MA_SCENARIO_MOD-DEAL-PORTFOLIO-BETA.txt",
+        "doc_type": "modeled_ma_scenario",
+        "page_number": 1,
+        "content": "MODELED_BRIDGE M&A diligence scenario: Hypothetical strategic carve-out targeting 3 commercial operating entities to audit exclusivity and governing-law consent obligations prior to closing.",
+        "data_origin": "MODELED_BRIDGE",
+        "source_license": "MODELED",
+        "source_url": "",
+        "distance": 0.3005018073729304
+      },
+      {
+        "chunk_id": "CHK-CUAD-10",
+        "doc_name": "GarrettMotionInc_20181001_8-K_EX-2.4_11364532_EX-2.4_Intellectual Property Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): GarrettMotionInc_20181001_8-K_EX-2.4_11364532_EX-2.4_Intellectual Property Agreement.pdf\nAgreement Title: INTELLECTUAL PROPERTY AGREEMENT, d | Parties: HONEYWELL INTERNATIONAL INC ; GARRETT MOTION INC | Governing Law: New York\n[Change of Control]: Without limiting ARTICLE VIII, the license granted to the SpinCo Group in Section 3.03(a) shall automatically terminate in the event (i) that any member of the SpinCo Group assigns, transfers, licenses or otherwise conveys any rights in or to the Honeywell Content to any third party or (ii) of (x) the sale of all or substantially all of the ownership interests<omitted>in, or th\n[Anti-Assignment]: No Party or any member of its Group may assign or grant a license in or to any of its Intellectual Property Rights licensed to the other Party or any member of its Group pursuant to ARTICLE III or ARTICLE IV, unless such assignment or grant is subject to the licenses, covenants and restrictions set forth herein.\n[License Grant]: Hence, as of the Distribution Date, Honeywell hereby grants, and agrees to cause the members of the Honeywell Group to hereby grant, to SpinCo and the members of the SpinCo Group a non-exclusive, royalty-free, fully-paid, perpetual, sublicenseable (solely to Subsidiaries and suppliers for \"have-made\" purposes), worldwi\n[IP Ownership Assignment]: In order to carry out the intent of the Parties with respect to the recordation of the transfers of any registrations or applications of Honeywell IP or SpinCo IP, as applicable, to the extent the ownership thereof has transferred from a member of the Honeywell Group to a member of the SpinCo Group, or vice versa, purs",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826",
+        "distance": 0.3761037407122382
+      },
+      {
+        "chunk_id": "CHK-CUAD-09",
+        "doc_name": "CerenceInc_20191002_8-K_EX-10.4_11827494_EX-10.4_Intellectual Property Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): CerenceInc_20191002_8-K_EX-10.4_11827494_EX-10.4_Intellectual Property Agreement.pdf\nAgreement Title: INTELLECTUAL PROPERTY AGREEMENT, d | Parties: NUANCE COMMUNICATIONS, INC ; CERENCE INC | Governing Law: Delaware\n[Change of Control]: Notwithstanding the foregoing, if any Party to this Agreement (or any of its successors or permitted assigns) (a) shall enter into a consolidation or merger transaction in which such Party is not the surviving entity and the surviving entity acquires or assumes all or substantially all of such Party's assets, (b) shall transfer all or substantially all of such Party's assets to\n[Anti-Assignment]: Any purported assignment without such consent shall be void.\n[License Grant]: Subject to the terms and conditions of this Agreement, as of the Distribution Date, Nuance hereby grants to SpinCo and the members of the SpinCo Group a worldwide, non-exclusive, fully paid-up, perpetual and irrevocable, transferable (subject to ARTICLE VIII), sublicensable (subject to Section 3.01(g)) license under th\n[IP Ownership Assignment]: In order to carry out the intent of the Parties with respect to the recordation of the transfers of any registrations or applications of Nuance IP or SpinCo IP, as applicable, to the extent the ownership thereof has transferred from a member of the Nuance Group to a member of the SpinCo Group, or vice versa, pursuant t",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826",
+        "distance": 0.3768156174113054
+      },
+      {
+        "chunk_id": "CHK-CUAD-03",
+        "doc_name": "MusclepharmCorp_20170208_10-KA_EX-10.38_9893581_EX-10.38_Co-Branding Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): MusclepharmCorp_20170208_10-KA_EX-10.38_9893581_EX-10.38_Co-Branding Agreement.pdf\nAgreement Title: ENDORSEMENT LICENSING AND CO-BRANDING AGREEMENT | Parties: Marine MP, LLC ; Arnold Schwarzenegger | Governing Law: California\n[Change of Control]: Nothwithstanding the foregoing, this Agreement may be assigned without the AS Parties' consent by MusclePharm in connection with a change of control transaction; provided that the acquirer of MusclePharm shall have financial resources substantially similar or greater than MusclePharm and shall specifically assume the obligations of MusclePharm under this Agreement in writing pr\n[Anti-Assignment]: Any attempted assignment or transfer by a party of their rights and/or obligations without such consent shall be void.\n[License Grant]: Endorser also grants to MusclePharm and consents to MusclePharm's editorial use world-wide of Endorser's Name and Appearance in MusclePharm published materials approved by Endorser. For purposes of this Agreement, MusclePharm's editorial use of Endorser's Name and Appearance shall mean a use that does not directly prom\n[IP Ownership Assignment]: All such works based upon the Trademarks and/or Name and Appearance Rights shall be prepared by an employee-for- hire of MusclePharm (under MusclePharms's sole supervision, responsibility, and monetary obligation) or as a work-for-hire by a third party who assigns to the AS Parties in writing and in perpetuity througho\n[Exclusivity]: During the term of this Agreement, or any extensions of this Agreement, Endorser and the Lender hereby agree and warrant that it will not enter into any other endorsement agreement for the use of Endorser's name, image and/or likeness for advertising, marketing and/or endorsement of any other dietary supplements during",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826",
+        "distance": 0.383791034737738
+      },
+      {
+        "chunk_id": "CHK-CUAD-05",
+        "doc_name": "ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement.pdf",
+        "doc_type": "cuad_sec_exhibit10",
+        "page_number": 1,
+        "content": "CUAD v1 Real SEC Exhibit 10 Contract (CC-BY 4.0): ConformisInc_20191101_10-Q_EX-10.6_11861402_EX-10.6_Development Agreement.pdf\nAgreement Title: DEVELOPMENT AGREEMENT | Parties: Howmedica Ostenonics Corp ; Conformis, Inc | Governing Law: New York\n[Change of Control]: Except as otherwise provided herein, a Party shall not have the right to   assign any of its rights or obligations under this Agreement (whether through a merger, sale of stock, or otherwise) without the   prior written consent of the other Party; except that, either Party shall be permitted, without any need for the other Party's   consent, to assign this Agreement (a) in whol\n[Anti-Assignment]: To the extent working with Agents or other Third Parties is permitted under the R&D Work   Plan, should a Party wish to engage an Agent or any other Third Party in connection with the R&D Work Plan or any other work   under this Agreement, such Party must obtain in advance a written agreement by such Agent or other Third Party (i) to assign to   the Party all Inventions conceiv\n[License Grant]: To the extent required and for the avoidance of doubt, Stryker hereby grants Conformis, and Conformis hereby   accepts, a non-exclusive license to the Stryker Background IP and Improved Stryker Background IP solely for purposes of   performing any obligations under this Agreement and the Distribution Agreement.\n[IP Ownership Assignment]: Conformis agrees   to assign and hereby assigns to Stryker all right, title and interest in and to all Improved Stryker Background IP in which ownership   in same has vested in<omitted>Conformis by operation of law or by assignment by its employees or consultants; and to facilitate such assignment to Stryker,   Conform\n[Exclusivity]: Except as specifically provided in the Distribution Agreement, Conformis shall be prohibited from   developing or assisting another in developing, or causing another to develop, Patient-Specific Instrumentation for Off-The-Shelf   Knee Implants for any Third Party in the field of orthopedics until January 1, 2032 (or e",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "CC_BY_4_0",
+        "source_url": "https://doi.org/10.5281/zenodo.4595826",
+        "distance": 0.38979119704246734
+      }
+    ],
+    "provenance": {
+      "cited_entity_ids": [],
+      "verified_entity_ids": [],
+      "unverified_entity_ids": [],
+      "cited_edge_ids": [],
+      "verified_edge_ids": [],
+      "unverified_edge_ids": [],
+      "cited_chunk_ids": [
+        "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA"
+      ],
+      "verified_chunk_ids": [
+        "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA"
+      ],
+      "unverified_chunk_ids": []
+    },
+    "usage": {
+      "input_tokens": 2290,
+      "output_tokens": 135
+    },
+    "engine_cost_usd": 0.001025,
+    "total_duration_ms": 5792.78,
+    "flags": {
+      "graph_backend_used": "none",
+      "reranker_used": false,
+      "model_armor_checked": true,
+      "bq_cache_hit": false,
+      "bytes_processed": 1073852
+    }
+  },
+  "stage_events": [
+    {
+      "event_type": "stage_started",
+      "stage": "query_prep",
+      "label": "Prepare query & pack scope",
+      "service": "local",
+      "request": {
+        "pack_id": "legal_ma_clause_graph",
+        "query": "Map the governing-law jurisdictions applicable to Portfolio Alpha's commercial contracts across a 3-hop Deal -> Party -> Contract -> Jurisdiction traversal."
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "query_prep",
+      "service_used": "local",
+      "duration_ms": 0.05,
+      "payload": {
+        "prepared_query": "Map the governing-law jurisdictions applicable to Portfolio Alpha's commercial contracts across a 3-hop Deal -> Party -> Contract -> Jurisdiction traversal.",
+        "pack_id": "legal_ma_clause_graph"
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "embed_query",
+      "label": "Embed query (gemini-embedding-2)",
+      "service": "Vertex AI gemini-embedding-2",
+      "request": {
+        "model": "gemini-embedding-2",
+        "task_type": "RETRIEVAL_QUERY"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "embed_query",
+      "service_used": "Vertex AI gemini-embedding-2",
+      "duration_ms": 227.89,
+      "payload": {
+        "dimensions": 3072
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "retrieve_chunks",
+      "label": "BigQuery VECTOR_SEARCH (chunks only \u2014 no graph hops)",
+      "service": "BigQuery VECTOR_SEARCH",
+      "request": {
+        "pack_id": "legal_ma_clause_graph",
+        "top_k": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "retrieve_chunks",
+      "service_used": "BigQuery VECTOR_SEARCH",
+      "duration_ms": 2131.93,
+      "payload": {
+        "sql": "SELECT\n  base.chunk_id,\n  base.doc_name,\n  base.doc_type,\n  base.page_number,\n  base.content,\n  base.data_origin,\n  base.source_license,\n  base.source_url,\n  distance\nFROM VECTOR_SEARCH(\n  (SELECT * FROM `acc05_enterprise_graphrag.source_chunks` WHERE pack_id = @pack_id AND ARRAY_LENGTH(embedding) > 0),\n  'embedding',\n  (SELECT @query_embedding AS embedding),\n  top_k => 6,\n  distance_type => 'COSINE'\n)\nORDER BY distance ASC",
+        "rows_returned": 6,
+        "chunk_ids": [
+          "CHK-DEAL-MOD-DEAL-PORTFOLIO-ALPHA",
+          "CHK-DEAL-MOD-DEAL-PORTFOLIO-BETA",
+          "CHK-CUAD-10",
+          "CHK-CUAD-09",
+          "CHK-CUAD-03",
+          "CHK-CUAD-05"
+        ],
+        "bytes_processed": 1073852,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "synthesize",
+      "label": "Synthesize answer (gemini-2.5-flash)",
+      "service": "Vertex AI gemini-2.5-flash",
+      "request": {
+        "model": "gemini-2.5-flash",
+        "chunks_in_context": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "synthesize",
+      "service_used": "Vertex AI gemini-2.5-flash",
+      "duration_ms": 3432.68,
+      "payload": {
+        "input_tokens": 2290,
+        "output_tokens": 135,
+        "engine_cost_usd": 0.001025
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "verify_provenance",
+      "label": "Verify chunk citation provenance",
+      "service": "Deterministic Provenance Verifier",
+      "request": {
+        "allowed_chunks": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "verify_provenance",
+      "service_used": "Deterministic Provenance Verifier",
+      "duration_ms": 0.05,
+      "payload": {
+        "is_fully_verified": true,
+        "verified_chunks": 1,
+        "unverified_chunks": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "evaluate",
+      "label": "Evaluate Answer (Vertex AI GenAI Evaluation (:evaluateInstances))",
+      "service": "vertex_eval",
+      "request": {
+        "judge_model": "vertex-genai-eval"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "evaluate",
+      "service_used": "vertex_genai_eval",
+      "duration_ms": 31311.23,
+      "payload": {
+        "judge_model": "vertex-genai-eval",
+        "groundedness": 1.0,
+        "qa_relevance": 0.0,
+        "context_precision": 0.0,
+        "composite_score": 0.3,
+        "judge_cost_usd": 0.00744
+      }
+    }
+  ],
+  "recall": {
+    "entity_recall": 0.0,
+    "edge_recall": 0.0,
+    "path_recall": 0.0
+  },
+  "evaluation": {
+    "judge_model": "vertex-genai-eval",
+    "judge_provider": "vertex_genai_eval",
+    "groundedness": 1.0,
+    "qa_relevance": 0.0,
+    "context_precision": 0.0,
+    "path_recall": 0.0,
+    "provenance_verified": true,
+    "composite_score": 0.3,
+    "rationale": "GROUNDEDNESS: The response accurately quotes the description of 'Portfolio Alpha' and correctly states that the provided context does not explicitly name the three contracting parties  | QUESTION_ANSWERING_QUALITY: The response incorrectly refuses to answer the question, claiming the necessary information to traverse from Deal to Party is missing, and therefore completely misses the | FULFILLMENT: The retrieved context is missing the critical multi-hop link between the Deal (Portfolio Alpha) and the specific Parties involved in that deal, making it impossible to co",
+    "input_tokens": 4280,
+    "output_tokens": 209,
+    "judge_cost_usd": 0.00744,
+    "duration_ms": 31310.69
+  }
+}

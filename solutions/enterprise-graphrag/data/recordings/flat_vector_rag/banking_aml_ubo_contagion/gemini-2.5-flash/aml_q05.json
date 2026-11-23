@@ -1,0 +1,279 @@
+{
+  "provenance_header": {
+    "recorded_at": "2026-11-23T20:40:01.279638+00:00",
+    "engine_id": "flat_vector_rag",
+    "pack_id": "banking_aml_ubo_contagion",
+    "synthesis_model": "gemini-2.5-flash",
+    "judge_model": "vertex-genai-eval",
+    "question_id": "aml_q05",
+    "git_sha": "e034066"
+  },
+  "result": {
+    "engine_id": "flat_vector_rag",
+    "engine_label": "Flat Vector RAG (Baseline \u2014 Chunks Only)",
+    "pack_id": "banking_aml_ubo_contagion",
+    "query": "Trace the real OFAC SDN multi-hop network starting at IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY through MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS and ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE to its primary sanctions program.",
+    "synthesis_model": "gemini-2.5-flash",
+    "answer": "The multi-hop network starts with IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY [CHK-OFAC-11195], which is linked to MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS [CHK-OFAC-11195]. MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS is linked to ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE [CHK-OFAC-10392]. The primary sanctions program for ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE is [FTO] [CHK-OFAC-10465].",
+    "paths": [],
+    "retrieved_entity_ids": [],
+    "retrieved_edge_ids": [],
+    "retrieved_chunk_ids": [
+      "CHK-OFAC-10392",
+      "CHK-OFAC-11195",
+      "CHK-OFAC-11317",
+      "CHK-OFAC-10465",
+      "CHK-OFAC-29788",
+      "CHK-OFAC-41123"
+    ],
+    "retrieved_nodes": [],
+    "retrieved_edges": [],
+    "retrieved_chunks": [
+      {
+        "chunk_id": "CHK-OFAC-10392",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_10392.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #10392 (US Gov Public Domain): Name: MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS. Type: -0-. Programs: [SDGT] [NPWMD] [IFSR] [IRAN-CON-ARMS-EO] [RUSSIA-EO14024]. Jurisdiction/Address Country: IRAN. Aliases: MINISTRY OF DEFENSE AND SUPPORT FOR ARMED FORCES LOGISTICS, MODAFL, MODSAF. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: See Section 11 of Executive Order 14024.; alt. Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: ROSOBORONEKSPORT OAO.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.19685768068596343
+      },
+      {
+        "chunk_id": "CHK-OFAC-11195",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_11195.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #11195 (US Gov Public Domain): Name: IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY. Type: -0-. Programs: [NPWMD] [IFSR] [IRAN-CON-ARMS-EO]. Jurisdiction/Address Country: IRAN. Aliases: HESA TRADE CENTER, IRAN AIRCRAFT MANUFACTURING INDUSTRIES, IRAN AIRCRAFT MANUFACTURING COMPANY. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; National ID No. 10100722073 (Iran); Registration Number 26740 (Iran); a.k.a. 'HESA'; a.k.a. 'HTC'; a.k.a. 'IAMI'; a.k.a. 'IAMCO'; a.k.a. 'HAVA PEYMA SAZI-E IRAN'; a.k.a. 'HAVAPEYMA SAZI IRAN'; a.k.a. 'HAVAPEYMA SAZHRAN'; a.k.a. 'HEVAPEIMASAZI'; a.k.a. 'SHAHIN CO.'; a.k.a. 'FTP CO.'; Linked To: MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.20405258272845161
+      },
+      {
+        "chunk_id": "CHK-OFAC-11317",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_11317.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #11317 (US Gov Public Domain): Name: NATIONAL IRANIAN OIL COMPANY. Type: -0-. Programs: [IRAN] [SDGT] [IFSR] [IFCA]. Jurisdiction/Address Country: IRAN. Aliases: NIOC. Official Remarks: Website www.nioc.ir; IFCA Determination - Involved in Energy Sector; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; all offices worldwide; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: MINISTRY OF PETROLEUM.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.22621702203705452
+      },
+      {
+        "chunk_id": "CHK-OFAC-10465",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_10465.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #10465 (US Gov Public Domain): Name: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE. Type: -0-. Programs: [FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR] [ELECTION-EO13848]. Jurisdiction/Address Country: IRAN. Aliases: PASDARAN-E ENGHELAB-E ISLAMI (PASDARAN), SEPAH-E QODS (JERUSALEM FORCE), IRGC-QF. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.2283878920577419
+      },
+      {
+        "chunk_id": "CHK-OFAC-29788",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_29788.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #29788 (US Gov Public Domain): Name: MINISTRY OF PETROLEUM. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: IRANIAN MINISTRY OF PETROLEUM. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.23835413022285523
+      },
+      {
+        "chunk_id": "CHK-OFAC-41123",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_41123.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #41123 (US Gov Public Domain): Name: HANGZHOU FUYANG KOTO MACHINERY CO., LTD. Type: -0-. Programs: [NPWMD] [IFSR]. Jurisdiction/Address Country: CHINA. Aliases: KOTO MACHINERY CO., LTD, KOTO MACHINRY CO., LTD, HANGZHOU FUYANG KOTO MACHINERY. Official Remarks: Website https://kotomachinery.wixsite.com/kotomach/blank; Additional Sanctions Information - Subject to Secondary Sanctions; Linked To: IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.24608003774943032
+      }
+    ],
+    "provenance": {
+      "cited_entity_ids": [],
+      "verified_entity_ids": [],
+      "unverified_entity_ids": [],
+      "cited_edge_ids": [],
+      "verified_edge_ids": [],
+      "unverified_edge_ids": [],
+      "cited_chunk_ids": [],
+      "verified_chunk_ids": [],
+      "unverified_chunk_ids": []
+    },
+    "usage": {
+      "input_tokens": 1578,
+      "output_tokens": 138
+    },
+    "engine_cost_usd": 0.000818,
+    "total_duration_ms": 6312.06,
+    "flags": {
+      "graph_backend_used": "none",
+      "reranker_used": false,
+      "model_armor_checked": true,
+      "bq_cache_hit": false,
+      "bytes_processed": 1073852
+    }
+  },
+  "stage_events": [
+    {
+      "event_type": "stage_started",
+      "stage": "query_prep",
+      "label": "Prepare query & pack scope",
+      "service": "local",
+      "request": {
+        "pack_id": "banking_aml_ubo_contagion",
+        "query": "Trace the real OFAC SDN multi-hop network starting at IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY through MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS and ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE to its primary sanctions program."
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "query_prep",
+      "service_used": "local",
+      "duration_ms": 0.04,
+      "payload": {
+        "prepared_query": "Trace the real OFAC SDN multi-hop network starting at IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY through MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS and ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE to its primary sanctions program.",
+        "pack_id": "banking_aml_ubo_contagion"
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "embed_query",
+      "label": "Embed query (gemini-embedding-2)",
+      "service": "Vertex AI gemini-embedding-2",
+      "request": {
+        "model": "gemini-embedding-2",
+        "task_type": "RETRIEVAL_QUERY"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "embed_query",
+      "service_used": "Vertex AI gemini-embedding-2",
+      "duration_ms": 197.9,
+      "payload": {
+        "dimensions": 3072
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "retrieve_chunks",
+      "label": "BigQuery VECTOR_SEARCH (chunks only \u2014 no graph hops)",
+      "service": "BigQuery VECTOR_SEARCH",
+      "request": {
+        "pack_id": "banking_aml_ubo_contagion",
+        "top_k": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "retrieve_chunks",
+      "service_used": "BigQuery VECTOR_SEARCH",
+      "duration_ms": 2011.26,
+      "payload": {
+        "sql": "SELECT\n  base.chunk_id,\n  base.doc_name,\n  base.doc_type,\n  base.page_number,\n  base.content,\n  base.data_origin,\n  base.source_license,\n  base.source_url,\n  distance\nFROM VECTOR_SEARCH(\n  (SELECT * FROM `acc05_enterprise_graphrag.source_chunks` WHERE pack_id = @pack_id AND ARRAY_LENGTH(embedding) > 0),\n  'embedding',\n  (SELECT @query_embedding AS embedding),\n  top_k => 6,\n  distance_type => 'COSINE'\n)\nORDER BY distance ASC",
+        "rows_returned": 6,
+        "chunk_ids": [
+          "CHK-OFAC-10392",
+          "CHK-OFAC-11195",
+          "CHK-OFAC-11317",
+          "CHK-OFAC-10465",
+          "CHK-OFAC-29788",
+          "CHK-OFAC-41123"
+        ],
+        "bytes_processed": 1073852,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "synthesize",
+      "label": "Synthesize answer (gemini-2.5-flash)",
+      "service": "Vertex AI gemini-2.5-flash",
+      "request": {
+        "model": "gemini-2.5-flash",
+        "chunks_in_context": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "synthesize",
+      "service_used": "Vertex AI gemini-2.5-flash",
+      "duration_ms": 4102.67,
+      "payload": {
+        "input_tokens": 1578,
+        "output_tokens": 138,
+        "engine_cost_usd": 0.000818
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "verify_provenance",
+      "label": "Verify chunk citation provenance",
+      "service": "Deterministic Provenance Verifier",
+      "request": {
+        "allowed_chunks": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "verify_provenance",
+      "service_used": "Deterministic Provenance Verifier",
+      "duration_ms": 0.05,
+      "payload": {
+        "is_fully_verified": true,
+        "verified_chunks": 0,
+        "unverified_chunks": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "evaluate",
+      "label": "Evaluate Answer (Vertex AI GenAI Evaluation (:evaluateInstances))",
+      "service": "vertex_eval",
+      "request": {
+        "judge_model": "vertex-genai-eval"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "evaluate",
+      "service_used": "vertex_genai_eval",
+      "duration_ms": 13730.53,
+      "payload": {
+        "judge_model": "vertex-genai-eval",
+        "groundedness": 1.0,
+        "qa_relevance": 1.0,
+        "context_precision": 1.0,
+        "composite_score": 0.65,
+        "judge_cost_usd": 0.005803
+      }
+    }
+  ],
+  "recall": {
+    "entity_recall": 0.0,
+    "edge_recall": 0.0,
+    "path_recall": 0.0
+  },
+  "evaluation": {
+    "judge_model": "vertex-genai-eval",
+    "judge_provider": "vertex_genai_eval",
+    "groundedness": 1.0,
+    "qa_relevance": 1.0,
+    "context_precision": 1.0,
+    "path_recall": 0.0,
+    "provenance_verified": true,
+    "composite_score": 0.65,
+    "rationale": "GROUNDEDNESS: Every factual claim is strictly supported by the retrieved context. The links between IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY and MINISTRY OF DEFENSE AND ARMED FOR | QUESTION_ANSWERING_QUALITY: The candidate response accurately traces the complete multi-hop path specified in the question, correctly identifying all entities in the chain and the final sanctions pr | FULFILLMENT: The retrieved chunks provide the exact OFAC records that directly link IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY to MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS, t",
+    "input_tokens": 2818,
+    "output_tokens": 228,
+    "judge_cost_usd": 0.005803,
+    "duration_ms": 13730.0
+  }
+}

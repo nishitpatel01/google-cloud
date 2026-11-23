@@ -1,4 +1,5 @@
 import type {
+  BenchmarkSummaryResponse,
   ComparisonPayload,
   EngineId,
   EngineResultPayload,
@@ -34,6 +35,11 @@ export function fetchMeta(): Promise<MetaResponse> {
 
 export function fetchReleases(): Promise<ReleasesResponse> {
   return jsonRequest<ReleasesResponse>("/api/v1/releases");
+}
+
+export function fetchBenchmarkSummary(packId?: string): Promise<BenchmarkSummaryResponse> {
+  const qs = packId ? `?pack_id=${encodeURIComponent(packId)}` : "";
+  return jsonRequest<BenchmarkSummaryResponse>(`/api/v1/benchmarks/summary${qs}`);
 }
 
 export async function fetchPacks(): Promise<PackSummary[]> {
@@ -135,6 +141,7 @@ export async function streamQuery(
     query: string;
     engine_id: EngineId;
     synthesis_model: string;
+    judge_model?: string | null;
     question_id?: string | null;
     max_hops: number;
     direction: TraversalDirection;
@@ -171,6 +178,7 @@ export async function streamCompare(
     query: string;
     graph_engine_id: "bq_graphrag" | "adk_graph_coordinator" | "spanner_graphrag";
     synthesis_model: string;
+    judge_model?: string | null;
     question_id?: string | null;
     max_hops: number;
     direction: TraversalDirection;

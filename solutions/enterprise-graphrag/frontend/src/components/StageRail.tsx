@@ -31,6 +31,7 @@ const BUSINESS_STAGE_LABELS: Record<string, string> = {
   adk_coordinate: "Run Autonomous Multi-Tool Investigation",
   synthesize: "Draft Cited Executive Brief",
   verify_provenance: "Audit Every Source Citation",
+  evaluate: "Evaluate Groundedness & Answer Quality",
   model_armor_output: "Verify Output Safety",
 };
 
@@ -44,6 +45,10 @@ const BUSINESS_SERVICE_LABELS: Record<string, string> = {
   model_armor: "Google Cloud Model Armor",
   spanner_graph: "Spanner Graph",
   provenance_verifier: "Deterministic Citation Auditor",
+  vertex_genai_eval: "Vertex AI GenAI Evaluation",
+  vertex_eval: "Vertex AI GenAI Evaluation",
+  anthropic_vertex: "Claude Cross-Family Judge (Vertex)",
+  claude: "Claude Cross-Family Judge (Vertex)",
   replay_fixture: "Verified Replay Cache",
 };
 

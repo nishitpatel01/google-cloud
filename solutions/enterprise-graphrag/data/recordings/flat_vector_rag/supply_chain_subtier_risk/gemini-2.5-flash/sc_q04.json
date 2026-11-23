@@ -1,0 +1,291 @@
+{
+  "provenance_header": {
+    "recorded_at": "2026-11-23T20:52:22.848662+00:00",
+    "engine_id": "flat_vector_rag",
+    "pack_id": "supply_chain_subtier_risk",
+    "synthesis_model": "gemini-2.5-flash",
+    "judge_model": "vertex-genai-eval",
+    "question_id": "sc_q04",
+    "git_sha": "e034066"
+  },
+  "result": {
+    "engine_id": "flat_vector_rag",
+    "engine_label": "Flat Vector RAG (Baseline \u2014 Chunks Only)",
+    "pack_id": "supply_chain_subtier_risk",
+    "query": "Starting from the modeled China export-control disruption event, trace upstream 3 hops to identify which public semiconductor issuers share exposure via the same Tier-2 smelter.",
+    "synthesis_model": "gemini-2.5-flash",
+    "answer": "Starting from the modeled China export-control disruption event [CHUNK:CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL]:\n\n1.  **Hop 1 (Upstream from event):** The event is a hypothetical 90-day export licensing delay affecting tungsten and tin refining facilities located in China [CHUNK:CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL].\n2.  **Hop 2 (Upstream from affected facilities):**\n    *   For tungsten, \"China Molybdenum Tungsten Co., Ltd. (CHINA)\" is identified as a Tier-2/3 tungsten smelter [CHUNK:CHK-SEC-SD-ISSUER-INTEL], [CHUNK:CHK-SEC-SD-ISSUER-NVIDIA], [CHUNK:CHK-SEC-SD-ISSUER-QUALCOMM], [CHUNK:CHK-SEC-SD-ISSUER-AMD].\n    *   For tin, the provided chunks do not explicitly list any Tier-2/3 tin smelters located in China. The listed tin smelters are in Australia, Belgium, Bolivia, and Brazil [CHUNK:CHK-SEC-SD-ISSUER-INTEL], [CHUNK:CHK-SEC-SD-ISSUER-NVIDIA], [CHUNK:CHK-SEC-SD-ISSUER-QUALCOMM], [CHUNK:CHK-SEC-SD-ISSUER-AMD]. Therefore, the specific Tier-2 tin smelter in China is not identified in the provided documents.\n3.  **Hop 3 (Upstream from smelter):** The public semiconductor issuers that share exposure via the Tier-2 tungsten smelter \"China Molybdenum Tungsten Co., Ltd. (CHINA)\" are:\n    *   Intel Corporation [CHUNK:CHK-SEC-SD-ISSUER-INTEL]\n    *   NVIDIA Corporation [CHUNK:CHK-SEC-SD-ISSUER-NVIDIA]\n    *   QUALCOMM Incorporated [CHUNK:CHK-SEC-SD-ISSUER-QUALCOMM]\n    *   Advanced Micro Devices, Inc. [CHUNK:CHK-SEC-SD-ISSUER-AMD]",
+    "paths": [],
+    "retrieved_entity_ids": [],
+    "retrieved_edge_ids": [],
+    "retrieved_chunk_ids": [
+      "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-QUALCOMM",
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-USGS-TIN"
+    ],
+    "retrieved_nodes": [],
+    "retrieved_edges": [],
+    "retrieved_chunks": [
+      {
+        "chunk_id": "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL",
+        "doc_name": "MODELED_SCENARIO_MOD-EVENT-CHINA-EXPORT-CTRL.txt",
+        "doc_type": "modeled_disruption_scenario",
+        "page_number": 1,
+        "content": "MODELED_BRIDGE what-if scenario: Hypothetical 90-day export licensing delay affecting tungsten and tin refining facilities located in China, modeled to stress-test multi-tier semiconductor supply exposure.",
+        "data_origin": "MODELED_BRIDGE",
+        "source_license": "MODELED",
+        "source_url": "",
+        "distance": 0.18870402393206154
+      },
+      {
+        "chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "doc_type": "sec_form_sd_cmr",
+        "page_number": 1,
+        "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0000050863-26-000132, US Gov Public Domain) filed by Intel Corporation (CIK 50863). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+        "distance": 0.25923405311841463
+      },
+      {
+        "chunk_id": "CHK-SEC-SD-ISSUER-NVIDIA",
+        "doc_name": "SEC_FormSD_2026_ISSUER-NVIDIA_a2026conflictmineralsrepor.htm",
+        "doc_type": "sec_form_sd_cmr",
+        "page_number": 1,
+        "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0001045810-26-000043, US Gov Public Domain) filed by NVIDIA Corporation (CIK 1045810). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000043/a2026conflictmineralsrepor.htm",
+        "distance": 0.26271306678777084
+      },
+      {
+        "chunk_id": "CHK-SEC-SD-ISSUER-QUALCOMM",
+        "doc_name": "SEC_FormSD_2026_ISSUER-QUALCOMM_ex101-conflictmineralsrepo.htm",
+        "doc_type": "sec_form_sd_cmr",
+        "page_number": 1,
+        "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0000804328-26-000069, US Gov Public Domain) filed by QUALCOMM Incorporated (CIK 804328). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/804328/000080432826000069/ex101-conflictmineralsrepo.htm",
+        "distance": 0.26339789630908506
+      },
+      {
+        "chunk_id": "CHK-SEC-SD-ISSUER-AMD",
+        "doc_name": "SEC_FormSD_2026_ISSUER-AMD_fy2025cmr.htm",
+        "doc_type": "sec_form_sd_cmr",
+        "page_number": 1,
+        "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0000002488-26-000103, US Gov Public Domain) filed by Advanced Micro Devices, Inc. (CIK 2488). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000103/fy2025cmr.htm",
+        "distance": 0.26393887360145685
+      },
+      {
+        "chunk_id": "CHK-USGS-TIN",
+        "doc_name": "USGS_MCS_2025_Tin.txt",
+        "doc_type": "usgs_mineral_summary",
+        "page_number": 1,
+        "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): China and Indonesia together account for nearly half of global refined tin supply critical for lead-free electronics solder across server boards, GPUs, and mobile SoCs; U.S. net import reliance is ~77%.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/",
+        "distance": 0.29214995221235074
+      }
+    ],
+    "provenance": {
+      "cited_entity_ids": [],
+      "verified_entity_ids": [],
+      "unverified_entity_ids": [],
+      "cited_edge_ids": [],
+      "verified_edge_ids": [],
+      "unverified_edge_ids": [],
+      "cited_chunk_ids": [
+        "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL",
+        "CHK-SEC-SD-ISSUER-INTEL",
+        "CHK-SEC-SD-ISSUER-NVIDIA",
+        "CHK-SEC-SD-ISSUER-QUALCOMM",
+        "CHK-SEC-SD-ISSUER-AMD"
+      ],
+      "verified_chunk_ids": [
+        "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL",
+        "CHK-SEC-SD-ISSUER-INTEL",
+        "CHK-SEC-SD-ISSUER-NVIDIA",
+        "CHK-SEC-SD-ISSUER-QUALCOMM",
+        "CHK-SEC-SD-ISSUER-AMD"
+      ],
+      "unverified_chunk_ids": []
+    },
+    "usage": {
+      "input_tokens": 1984,
+      "output_tokens": 444
+    },
+    "engine_cost_usd": 0.001705,
+    "total_duration_ms": 8701.68,
+    "flags": {
+      "graph_backend_used": "none",
+      "reranker_used": false,
+      "model_armor_checked": true,
+      "bq_cache_hit": false,
+      "bytes_processed": 1073852
+    }
+  },
+  "stage_events": [
+    {
+      "event_type": "stage_started",
+      "stage": "query_prep",
+      "label": "Prepare query & pack scope",
+      "service": "local",
+      "request": {
+        "pack_id": "supply_chain_subtier_risk",
+        "query": "Starting from the modeled China export-control disruption event, trace upstream 3 hops to identify which public semiconductor issuers share exposure via the same Tier-2 smelter."
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "query_prep",
+      "service_used": "local",
+      "duration_ms": 0.04,
+      "payload": {
+        "prepared_query": "Starting from the modeled China export-control disruption event, trace upstream 3 hops to identify which public semiconductor issuers share exposure via the same Tier-2 smelter.",
+        "pack_id": "supply_chain_subtier_risk"
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "embed_query",
+      "label": "Embed query (gemini-embedding-2)",
+      "service": "Vertex AI gemini-embedding-2",
+      "request": {
+        "model": "gemini-embedding-2",
+        "task_type": "RETRIEVAL_QUERY"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "embed_query",
+      "service_used": "Vertex AI gemini-embedding-2",
+      "duration_ms": 236.25,
+      "payload": {
+        "dimensions": 3072
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "retrieve_chunks",
+      "label": "BigQuery VECTOR_SEARCH (chunks only \u2014 no graph hops)",
+      "service": "BigQuery VECTOR_SEARCH",
+      "request": {
+        "pack_id": "supply_chain_subtier_risk",
+        "top_k": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "retrieve_chunks",
+      "service_used": "BigQuery VECTOR_SEARCH",
+      "duration_ms": 2033.63,
+      "payload": {
+        "sql": "SELECT\n  base.chunk_id,\n  base.doc_name,\n  base.doc_type,\n  base.page_number,\n  base.content,\n  base.data_origin,\n  base.source_license,\n  base.source_url,\n  distance\nFROM VECTOR_SEARCH(\n  (SELECT * FROM `acc05_enterprise_graphrag.source_chunks` WHERE pack_id = @pack_id AND ARRAY_LENGTH(embedding) > 0),\n  'embedding',\n  (SELECT @query_embedding AS embedding),\n  top_k => 6,\n  distance_type => 'COSINE'\n)\nORDER BY distance ASC",
+        "rows_returned": 6,
+        "chunk_ids": [
+          "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL",
+          "CHK-SEC-SD-ISSUER-INTEL",
+          "CHK-SEC-SD-ISSUER-NVIDIA",
+          "CHK-SEC-SD-ISSUER-QUALCOMM",
+          "CHK-SEC-SD-ISSUER-AMD",
+          "CHK-USGS-TIN"
+        ],
+        "bytes_processed": 1073852,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "synthesize",
+      "label": "Synthesize answer (gemini-2.5-flash)",
+      "service": "Vertex AI gemini-2.5-flash",
+      "request": {
+        "model": "gemini-2.5-flash",
+        "chunks_in_context": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "synthesize",
+      "service_used": "Vertex AI gemini-2.5-flash",
+      "duration_ms": 6431.53,
+      "payload": {
+        "input_tokens": 1984,
+        "output_tokens": 444,
+        "engine_cost_usd": 0.001705
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "verify_provenance",
+      "label": "Verify chunk citation provenance",
+      "service": "Deterministic Provenance Verifier",
+      "request": {
+        "allowed_chunks": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "verify_provenance",
+      "service_used": "Deterministic Provenance Verifier",
+      "duration_ms": 0.06,
+      "payload": {
+        "is_fully_verified": true,
+        "verified_chunks": 5,
+        "unverified_chunks": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "evaluate",
+      "label": "Evaluate Answer (Vertex AI GenAI Evaluation (:evaluateInstances))",
+      "service": "vertex_eval",
+      "request": {
+        "judge_model": "vertex-genai-eval"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "evaluate",
+      "service_used": "vertex_genai_eval",
+      "duration_ms": 15754.09,
+      "payload": {
+        "judge_model": "vertex-genai-eval",
+        "groundedness": 1.0,
+        "qa_relevance": 1.0,
+        "context_precision": 1.0,
+        "composite_score": 0.65,
+        "judge_cost_usd": 0.00733
+      }
+    }
+  ],
+  "recall": {
+    "entity_recall": 0.0,
+    "edge_recall": 0.0,
+    "path_recall": 0.0
+  },
+  "evaluation": {
+    "judge_model": "vertex-genai-eval",
+    "judge_provider": "vertex_genai_eval",
+    "groundedness": 1.0,
+    "qa_relevance": 1.0,
+    "context_precision": 1.0,
+    "path_recall": 0.0,
+    "provenance_verified": true,
+    "composite_score": 0.65,
+    "rationale": "GROUNDEDNESS: Every factual claim in the response is directly and accurately supported by the provided context chunks. The response correctly identifies the hypothetical event, the spe | QUESTION_ANSWERING_QUALITY: The response accurately traces the 3 hops upstream from the event, correctly identifies the shared Tier-2 smelter (China Molybdenum Tungsten Co., Ltd.), and lists all the | FULFILLMENT: The retrieved chunks perfectly connect the modeled event (China export disruption of Tungsten/Tin) to a specific Chinese Tier-2 Tungsten smelter (`China Molybdenum Tungst",
+    "input_tokens": 3904,
+    "output_tokens": 245,
+    "judge_cost_usd": 0.00733,
+    "duration_ms": 15753.54
+  }
+}

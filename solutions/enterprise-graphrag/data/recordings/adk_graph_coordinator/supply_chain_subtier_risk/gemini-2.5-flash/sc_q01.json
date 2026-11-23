@@ -1,0 +1,1352 @@
+{
+  "provenance_header": {
+    "recorded_at": "2026-11-23T20:54:35.998270+00:00",
+    "engine_id": "adk_graph_coordinator",
+    "pack_id": "supply_chain_subtier_risk",
+    "synthesis_model": "gemini-2.5-flash",
+    "judge_model": "vertex-genai-eval",
+    "question_id": "sc_q01",
+    "git_sha": "e034066"
+  },
+  "result": {
+    "engine_id": "adk_graph_coordinator",
+    "engine_label": "Google ADK Graph Coordinator (ADK 2.15 + ISO GQL Tools)",
+    "pack_id": "supply_chain_subtier_risk",
+    "query": "Trace the 3-hop contagion chain from Intel Corporation through disclosed Tungsten smelters in China to the modeled export-control disruption scenario.",
+    "synthesis_model": "gemini-2.5-flash",
+    "answer": "The requested 3-hop contagion chain from Intel Corporation through disclosed Tungsten smelters in China to the modeled export-control disruption scenario could not be fully traced within the provided `traverse_knowledge_graph` output.\n\nHowever, a 1-hop path from Intel Corporation to a disclosed Tungsten smelter in China is identified:\nIntel Corporation [ENTITY:ISSUER-INTEL] sources from [EDGE:EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CHINA-MOL-748BD926] China Molybdenum Tungsten Co., Ltd. [ENTITY:SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD] (a REAL_PUBLIC Tungsten smelter in China) [CHUNK:CHK-SEC-SD-ISSUER-INTEL].\n\nA 3-hop MODELED_BRIDGE scenario exists from Intel Corporation to a critical mineral export licensing delay in China, but it involves a Tantalum smelter, not a Tungsten smelter:\nIntel Corporation [ENTITY:ISSUER-INTEL] sources from [EDGE:EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-F-X-ELECT-542E9B03] F&X Electro-Materials Ltd. [ENTITY:SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD] (a REAL_PUBLIC Tantalum smelter in China) [CHUNK:CHK-SEC-SD-ISSUER-INTEL], which is located in [EDGE:EDGE-LOC-SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS--21F9112D] China [ENTITY:COUNTRY-CHINA], which is exposed to [EDGE:EDGE-MOD-COUNTRY-CHINA-MOD-EVENT-CHINA-EXPORT-CTRL] a Modeled Scenario: Critical Mineral Export Licensing Delay (China) [ENTITY:MOD-EVENT-CHINA-EXPORT-CTRL] [CHUNK:CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL].\n\nNo direct 3-hop path was found that specifically links Intel Corporation to a *Tungsten* smelter in China and then to the modeled export-control disruption scenario.",
+    "paths": [
+      {
+        "path_id": "path-004",
+        "hop_count": 1,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CHINA-MOL-748BD926"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-024",
+        "hop_count": 2,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+          "MINERAL-TUNGSTEN"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CHINA-MOL-748BD926",
+          "EDGE-REF-SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGS-C427F3F0"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-002",
+        "hop_count": 1,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GMBH"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-H-C-STARC-15C0E8CF"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-015",
+        "hop_count": 1,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HUTTEN-AG"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-WOLFRAM-B-EB7BD338"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-030",
+        "hop_count": 3,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD",
+          "COUNTRY-CHINA",
+          "MOD-EVENT-CHINA-EXPORT-CTRL"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-F-X-ELECT-542E9B03",
+          "EDGE-LOC-SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS--21F9112D",
+          "EDGE-MOD-COUNTRY-CHINA-MOD-EVENT-CHINA-EXPORT-CTRL"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-003",
+        "hop_count": 1,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TUNGSTEN-CRONIMET-BRASIL-LTDA"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CRONIMET--3CD40CE3"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-014",
+        "hop_count": 1,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-F-X-ELECT-542E9B03"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-028",
+        "hop_count": 2,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GMBH",
+          "COUNTRY-GERMANY"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-H-C-STARC-15C0E8CF",
+          "EDGE-LOC-SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GM-5B929AF5"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-017",
+        "hop_count": 2,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HUTTEN-AG",
+          "COUNTRY-AUSTRIA"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-WOLFRAM-B-EB7BD338",
+          "EDGE-LOC-SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HU-7489B63A"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-027",
+        "hop_count": 2,
+        "node_ids": [
+          "ISSUER-INTEL",
+          "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD",
+          "COUNTRY-CHINA"
+        ],
+        "edge_ids": [
+          "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-F-X-ELECT-542E9B03",
+          "EDGE-LOC-SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS--21F9112D"
+        ],
+        "path_exposure_usd": 4336000000.0,
+        "min_confidence": 1.0
+      }
+    ],
+    "retrieved_entity_ids": [
+      "COUNTRY-ANDORRA",
+      "COUNTRY-AUSTRALIA",
+      "COUNTRY-AUSTRIA",
+      "COUNTRY-BELGIUM",
+      "COUNTRY-BOLIVIA-PLURINATIONAL-STATE-OF",
+      "COUNTRY-BRAZIL",
+      "COUNTRY-CHINA",
+      "COUNTRY-DR-CONGO",
+      "COUNTRY-ESTONIA",
+      "COUNTRY-GERMANY",
+      "ISSUER-INTEL",
+      "MINERAL-GOLD",
+      "MINERAL-TANTALUM",
+      "MINERAL-TIN",
+      "MINERAL-TUNGSTEN",
+      "MOD-EVENT-CHINA-EXPORT-CTRL",
+      "SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO-DO-SITIO-EA5AB97D",
+      "SMELTER-GOLD-L-ORFEBRE-S-A",
+      "SMELTER-GOLD-UMICORE-S-A-BUSINESS-UNIT-PRECIOUS-AAA93ADE",
+      "SMELTER-TANTALUM-AMG-BRASIL",
+      "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD",
+      "SMELTER-TANTALUM-MINERACAO-TABOCA-S-A",
+      "SMELTER-TANTALUM-NPM-SILMET-AS",
+      "SMELTER-TIN-AURUBIS-BEERSE",
+      "SMELTER-TIN-CRM-FUNDICAO-DE-METAIS-E-COMERCIO-D-A2DEA2C0",
+      "SMELTER-TIN-GLOBAL-ADVANCED-METALS-GREENBUSHES-PTY-LTD",
+      "SMELTER-TIN-OPERACIONES-METALURGICAS-S-A",
+      "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+      "SMELTER-TUNGSTEN-CRONIMET-BRASIL-LTDA",
+      "SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GMBH",
+      "SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HUTTEN-AG"
+    ],
+    "retrieved_edge_ids": [
+      "EDGE-LOC-SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO--9B6A73FD",
+      "EDGE-LOC-SMELTER-GOLD-L-ORFEBRE-S-A-COUNTRY-ANDORRA",
+      "EDGE-LOC-SMELTER-GOLD-UMICORE-S-A-BUSINESS-UNIT--74EA4D83",
+      "EDGE-LOC-SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS--21F9112D",
+      "EDGE-LOC-SMELTER-TANTALUM-NPM-SILMET-AS-COUNTRY-ESTONIA",
+      "EDGE-LOC-SMELTER-TIN-GLOBAL-ADVANCED-METALS-GREE-8D9ED521",
+      "EDGE-LOC-SMELTER-TIN-OPERACIONES-METALURGICAS-S--A416D29E",
+      "EDGE-LOC-SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGS-64D61CA7",
+      "EDGE-LOC-SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GM-5B929AF5",
+      "EDGE-LOC-SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HU-7489B63A",
+      "EDGE-MOD-COUNTRY-CHINA-MOD-EVENT-CHINA-EXPORT-CTRL",
+      "EDGE-REF-SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO--11B34348",
+      "EDGE-REF-SMELTER-TANTALUM-AMG-BRASIL-MINERAL-TANTALUM",
+      "EDGE-REF-SMELTER-TIN-AURUBIS-BEERSE-MINERAL-TIN",
+      "EDGE-REF-SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGS-C427F3F0",
+      "EDGE-REF-SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GM-BA38CBF8",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-GOLD-ANGLOGOLD-ASH-983F67C0",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-GOLD-L-ORFEBRE-S-A",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-GOLD-UMICORE-S-A-B-E71E3F7F",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-AMG-BRASIL",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-F-X-ELECT-542E9B03",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-MINERACAO-BF7A36E1",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-NPM-SILMET-AS",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TIN-AURUBIS-BEERSE",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TIN-CRM-FUNDICAO-D-C3917E8A",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TIN-GLOBAL-ADVANCE-1CC6E724",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TIN-OPERACIONES-ME-8CDFDB74",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CHINA-MOL-748BD926",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CRONIMET--3CD40CE3",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-H-C-STARC-15C0E8CF",
+      "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-WOLFRAM-B-EB7BD338",
+      "EDGE-USGS-TANTALUM-DR-CONGO",
+      "EDGE-USGS-TUNGSTEN-CHINA"
+    ],
+    "retrieved_chunk_ids": [
+      "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-USGS-TANTALUM",
+      "CHK-USGS-TUNGSTEN"
+    ],
+    "retrieved_nodes": [
+      {
+        "canonical_name": "Intel Corporation",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "ISSUER-INTEL",
+        "entity_type": "Issuer",
+        "exposure_usd": 54200000000.0,
+        "jurisdiction": "UNITED STATES",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "HIGH",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "NPM Silmet AS",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TANTALUM-NPM-SILMET-AS",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "ESTONIA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "H.C. Starck Tungsten GmbH",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GMBH",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "GERMANY",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Cronimet Brasil Ltda",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TUNGSTEN-CRONIMET-BRASIL-LTDA",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BRAZIL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "China Molybdenum Tungsten Co., Ltd.",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "CHINA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "HIGH",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Mineracao Taboca S.A.",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TANTALUM-MINERACAO-TABOCA-S-A",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BRAZIL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "AMG Brasil",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TANTALUM-AMG-BRASIL",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BRAZIL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Aurubis Beerse",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TIN-AURUBIS-BEERSE",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BELGIUM",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Umicore S.A. Business Unit Precious Metals Refining",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-GOLD-UMICORE-S-A-BUSINESS-UNIT-PRECIOUS-AAA93ADE",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BELGIUM",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "L'Orfebre S.A.",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-GOLD-L-ORFEBRE-S-A",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "ANDORRA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Global Advanced Metals Greenbushes Pty Ltd.",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TIN-GLOBAL-ADVANCED-METALS-GREENBUSHES-PTY-LTD",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "AUSTRALIA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TIN-CRM-FUNDICAO-DE-METAIS-E-COMERCIO-D-A2DEA2C0",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BRAZIL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Operaciones Metalurgicas S.A.",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TIN-OPERACIONES-METALURGICAS-S-A",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BOLIVIA (PLURINATIONAL STATE OF)",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "AngloGold Ashanti Corrego do Sitio Mineracao",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO-DO-SITIO-EA5AB97D",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BRAZIL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "F&X Electro-Materials Ltd.",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "CHINA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "HIGH",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Wolfram Bergbau und Hutten AG",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HUTTEN-AG",
+        "entity_type": "SmelterOrSupplier",
+        "exposure_usd": 0.0,
+        "jurisdiction": "AUSTRIA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Brazil",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-BRAZIL",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BRAZIL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Austria",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-AUSTRIA",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "AUSTRIA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Bolivia (Plurinational State Of)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-BOLIVIA-PLURINATIONAL-STATE-OF",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BOLIVIA (PLURINATIONAL STATE OF)",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Gold (3TG Critical Mineral)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "MINERAL-GOLD",
+        "entity_type": "ComponentOrMetal",
+        "exposure_usd": 0.0,
+        "jurisdiction": "GLOBAL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "HIGH",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Australia",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-AUSTRALIA",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "AUSTRALIA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Estonia",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-ESTONIA",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "ESTONIA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Tin (3TG Critical Mineral)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "MINERAL-TIN",
+        "entity_type": "ComponentOrMetal",
+        "exposure_usd": 0.0,
+        "jurisdiction": "GLOBAL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "HIGH",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Andorra",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-ANDORRA",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "ANDORRA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Tungsten (3TG Critical Mineral)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "MINERAL-TUNGSTEN",
+        "entity_type": "ComponentOrMetal",
+        "exposure_usd": 0.0,
+        "jurisdiction": "GLOBAL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "CRITICAL",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Belgium",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-BELGIUM",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "BELGIUM",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Tantalum (3TG Critical Mineral)",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "MINERAL-TANTALUM",
+        "entity_type": "ComponentOrMetal",
+        "exposure_usd": 0.0,
+        "jurisdiction": "GLOBAL",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "CRITICAL",
+        "single_source": true,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "China",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-CHINA",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "CHINA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Germany",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-GERMANY",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "GERMANY",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "MEDIUM",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Dr Congo",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "COUNTRY-DR-CONGO",
+        "entity_type": "CountryOrHub",
+        "exposure_usd": 0.0,
+        "jurisdiction": "DR CONGO",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "Modeled Scenario: Critical Mineral Export Licensing Delay (China)",
+        "data_origin": "MODELED_BRIDGE",
+        "entity_id": "MOD-EVENT-CHINA-EXPORT-CTRL",
+        "entity_type": "DisruptionEvent",
+        "exposure_usd": 0.0,
+        "jurisdiction": "CHINA",
+        "pack_id": "supply_chain_subtier_risk",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "MODELED"
+      }
+    ],
+    "retrieved_edges": [
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-NPM-SILMET-AS",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tantalum smelter NPM Silmet AS located in ESTONIA.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TANTALUM-NPM-SILMET-AS",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-H-C-STARC-15C0E8CF",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tungsten smelter H.C. Starck Tungsten GmbH located in GERMANY.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GMBH",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CRONIMET--3CD40CE3",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tungsten smelter Cronimet Brasil Ltda located in BRAZIL.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TUNGSTEN-CRONIMET-BRASIL-LTDA",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CHINA-MOL-748BD926",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tungsten smelter China Molybdenum Tungsten Co., Ltd. located in CHINA.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-MINERACAO-BF7A36E1",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tantalum smelter Mineracao Taboca S.A. located in BRAZIL.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TANTALUM-MINERACAO-TABOCA-S-A",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-AMG-BRASIL",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tantalum smelter AMG Brasil located in BRAZIL.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TANTALUM-AMG-BRASIL",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TIN-AURUBIS-BEERSE",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tin smelter Aurubis Beerse located in BELGIUM.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TIN-AURUBIS-BEERSE",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-GOLD-UMICORE-S-A-B-E71E3F7F",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Gold smelter Umicore S.A. Business Unit Precious Metals Refining located in BELGIUM.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-GOLD-UMICORE-S-A-BUSINESS-UNIT-PRECIOUS-AAA93ADE",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-GOLD-L-ORFEBRE-S-A",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Gold smelter L'Orfebre S.A. located in ANDORRA.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-GOLD-L-ORFEBRE-S-A",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TIN-GLOBAL-ADVANCE-1CC6E724",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tin smelter Global Advanced Metals Greenbushes Pty Ltd. located in AUSTRALIA.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TIN-GLOBAL-ADVANCED-METALS-GREENBUSHES-PTY-LTD",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TIN-CRM-FUNDICAO-D-C3917E8A",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tin smelter CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda located in BRAZIL.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TIN-CRM-FUNDICAO-DE-METAIS-E-COMERCIO-D-A2DEA2C0",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TIN-OPERACIONES-ME-8CDFDB74",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tin smelter Operaciones Metalurgicas S.A. located in BOLIVIA (PLURINATIONAL STATE OF).",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TIN-OPERACIONES-METALURGICAS-S-A",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-GOLD-ANGLOGOLD-ASH-983F67C0",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Gold smelter AngloGold Ashanti Corrego do Sitio Mineracao located in BRAZIL.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO-DO-SITIO-EA5AB97D",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-F-X-ELECT-542E9B03",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tantalum smelter F&X Electro-Materials Ltd. located in CHINA.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-WOLFRAM-B-EB7BD338",
+        "evidence_excerpt": "Intel Corporation 2026 Form SD (0000050863-26-000132) discloses Tungsten smelter Wolfram Bergbau und Hutten AG located in AUSTRIA.",
+        "exposure_usd": 4336000000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "SOURCED_FROM_SMELTER",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "ISSUER-INTEL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HUTTEN-AG",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO--9B6A73FD",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for AngloGold Ashanti Corrego do Sitio Mineracao as BRAZIL.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO-DO-SITIO-EA5AB97D",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-BRAZIL",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HU-7489B63A",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for Wolfram Bergbau und Hutten AG as AUSTRIA.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TUNGSTEN-WOLFRAM-BERGBAU-UND-HUTTEN-AG",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-AUSTRIA",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-TIN-OPERACIONES-METALURGICAS-S--A416D29E",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for Operaciones Metalurgicas S.A. as BOLIVIA (PLURINATIONAL STATE OF).",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TIN-OPERACIONES-METALURGICAS-S-A",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-BOLIVIA-PLURINATIONAL-STATE-OF",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-REF-SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO--11B34348",
+        "evidence_excerpt": "SEC Form SD CMR table classifies AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL) as an active Gold refiner/smelter.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "REFINES_MINERAL",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-GOLD-ANGLOGOLD-ASHANTI-CORREGO-DO-SITIO-EA5AB97D",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "MINERAL-GOLD",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-TIN-GLOBAL-ADVANCED-METALS-GREE-8D9ED521",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for Global Advanced Metals Greenbushes Pty Ltd. as AUSTRALIA.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TIN-GLOBAL-ADVANCED-METALS-GREENBUSHES-PTY-LTD",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-AUSTRALIA",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-TANTALUM-NPM-SILMET-AS-COUNTRY-ESTONIA",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for NPM Silmet AS as ESTONIA.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TANTALUM-NPM-SILMET-AS",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-ESTONIA",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-REF-SMELTER-TIN-AURUBIS-BEERSE-MINERAL-TIN",
+        "evidence_excerpt": "SEC Form SD CMR table classifies Aurubis Beerse (BELGIUM) as an active Tin refiner/smelter.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "REFINES_MINERAL",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TIN-AURUBIS-BEERSE",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "MINERAL-TIN",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-GOLD-L-ORFEBRE-S-A-COUNTRY-ANDORRA",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for L'Orfebre S.A. as ANDORRA.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-GOLD-L-ORFEBRE-S-A",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-ANDORRA",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-REF-SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGS-C427F3F0",
+        "evidence_excerpt": "SEC Form SD CMR table classifies China Molybdenum Tungsten Co., Ltd. (CHINA) as an active Tungsten refiner/smelter.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "REFINES_MINERAL",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "MINERAL-TUNGSTEN",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-GOLD-UMICORE-S-A-BUSINESS-UNIT--74EA4D83",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for Umicore S.A. Business Unit Precious Metals Refining as BELGIUM.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-GOLD-UMICORE-S-A-BUSINESS-UNIT-PRECIOUS-AAA93ADE",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-BELGIUM",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-REF-SMELTER-TANTALUM-AMG-BRASIL-MINERAL-TANTALUM",
+        "evidence_excerpt": "SEC Form SD CMR table classifies AMG Brasil (BRAZIL) as an active Tantalum refiner/smelter.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "REFINES_MINERAL",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TANTALUM-AMG-BRASIL",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "MINERAL-TANTALUM",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS--21F9112D",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for F&X Electro-Materials Ltd. as CHINA.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-CHINA",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GM-5B929AF5",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for H.C. Starck Tungsten GmbH as GERMANY.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GMBH",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-GERMANY",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-USGS-TANTALUM-DR-CONGO",
+        "evidence_excerpt": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): The Democratic Republic of the Congo and Rwanda together supply over 60% of global primary tantalum ore used in high-capacitance electronic capacitors and semiconductor barrier layers; U.S. net import reliance is 100% for primary tantalum.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "DOMINATED_BY_COUNTRY",
+        "source_chunk_id": "CHK-USGS-TANTALUM",
+        "source_doc_name": "USGS_MCS_2025_Tantalum.txt",
+        "source_entity_id": "MINERAL-TANTALUM",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-DR-CONGO",
+        "weight": 0.62
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "MODELED_BRIDGE",
+        "edge_id": "EDGE-MOD-COUNTRY-CHINA-MOD-EVENT-CHINA-EXPORT-CTRL",
+        "evidence_excerpt": "MODELED_BRIDGE what-if scenario: Hypothetical 90-day export licensing delay affecting tungsten and tin refining facilities located in China, modeled to stress-test multi-tier semiconductor supply exposure.",
+        "exposure_usd": 48500000.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "EXPOSED_TO_DISRUPTION",
+        "source_chunk_id": "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL",
+        "source_doc_name": "MODELED_SCENARIO_MOD-EVENT-CHINA-EXPORT-CTRL.txt",
+        "source_entity_id": "COUNTRY-CHINA",
+        "source_license": "MODELED",
+        "target_entity_id": "MOD-EVENT-CHINA-EXPORT-CTRL",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-LOC-SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGS-64D61CA7",
+        "evidence_excerpt": "SEC Form SD CMR lists facility jurisdiction for China Molybdenum Tungsten Co., Ltd. as CHINA.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "LOCATED_IN",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-CHINA",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-USGS-TUNGSTEN-CHINA",
+        "evidence_excerpt": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): China accounts for approximately 81% of global primary tungsten mine production and dominates ammonium paratungstate (APT) refining used in semiconductor metallization, aerospace tooling, and high-density contacts; U.S. net import reliance exceeds 50%.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "DOMINATED_BY_COUNTRY",
+        "source_chunk_id": "CHK-USGS-TUNGSTEN",
+        "source_doc_name": "USGS_MCS_2025_Tungsten.txt",
+        "source_entity_id": "MINERAL-TUNGSTEN",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "COUNTRY-CHINA",
+        "weight": 0.81
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-REF-SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GM-BA38CBF8",
+        "evidence_excerpt": "SEC Form SD CMR table classifies H.C. Starck Tungsten GmbH (GERMANY) as an active Tungsten refiner/smelter.",
+        "exposure_usd": 0.0,
+        "pack_id": "supply_chain_subtier_risk",
+        "relation_type": "REFINES_MINERAL",
+        "source_chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "source_doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "source_entity_id": "SMELTER-TUNGSTEN-H-C-STARCK-TUNGSTEN-GMBH",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "MINERAL-TUNGSTEN",
+        "weight": 1.0
+      }
+    ],
+    "retrieved_chunks": [
+      {
+        "chunk_id": "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL",
+        "doc_name": "MODELED_SCENARIO_MOD-EVENT-CHINA-EXPORT-CTRL.txt",
+        "doc_type": "modeled_disruption_scenario",
+        "page_number": 1,
+        "content": "MODELED_BRIDGE what-if scenario: Hypothetical 90-day export licensing delay affecting tungsten and tin refining facilities located in China, modeled to stress-test multi-tier semiconductor supply exposure.",
+        "data_origin": "MODELED_BRIDGE",
+        "source_license": "MODELED",
+        "source_url": ""
+      },
+      {
+        "chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "doc_type": "sec_form_sd_cmr",
+        "page_number": 1,
+        "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0000050863-26-000132, US Gov Public Domain) filed by Intel Corporation (CIK 50863). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm"
+      },
+      {
+        "chunk_id": "CHK-USGS-TANTALUM",
+        "doc_name": "USGS_MCS_2025_Tantalum.txt",
+        "doc_type": "usgs_mineral_summary",
+        "page_number": 1,
+        "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): The Democratic Republic of the Congo and Rwanda together supply over 60% of global primary tantalum ore used in high-capacitance electronic capacitors and semiconductor barrier layers; U.S. net import reliance is 100% for primary tantalum.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/"
+      },
+      {
+        "chunk_id": "CHK-USGS-TUNGSTEN",
+        "doc_name": "USGS_MCS_2025_Tungsten.txt",
+        "doc_type": "usgs_mineral_summary",
+        "page_number": 1,
+        "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): China accounts for approximately 81% of global primary tungsten mine production and dominates ammonium paratungstate (APT) refining used in semiconductor metallization, aerospace tooling, and high-density contacts; U.S. net import reliance exceeds 50%.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sciencebase.gov/catalog/item/6798f5d9d34ea8c18376e88d"
+      }
+    ],
+    "provenance": {
+      "cited_entity_ids": [
+        "ISSUER-INTEL",
+        "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+        "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD",
+        "COUNTRY-CHINA",
+        "MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "verified_entity_ids": [
+        "ISSUER-INTEL",
+        "SMELTER-TUNGSTEN-CHINA-MOLYBDENUM-TUNGSTEN-CO-LTD",
+        "SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS-LTD",
+        "COUNTRY-CHINA",
+        "MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "unverified_entity_ids": [],
+      "cited_edge_ids": [
+        "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CHINA-MOL-748BD926",
+        "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-F-X-ELECT-542E9B03",
+        "EDGE-LOC-SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS--21F9112D",
+        "EDGE-MOD-COUNTRY-CHINA-MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "verified_edge_ids": [
+        "EDGE-SRC-ISSUER-INTEL-SMELTER-TUNGSTEN-CHINA-MOL-748BD926",
+        "EDGE-SRC-ISSUER-INTEL-SMELTER-TANTALUM-F-X-ELECT-542E9B03",
+        "EDGE-LOC-SMELTER-TANTALUM-F-X-ELECTRO-MATERIALS--21F9112D",
+        "EDGE-MOD-COUNTRY-CHINA-MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "unverified_edge_ids": [],
+      "cited_chunk_ids": [
+        "CHK-SEC-SD-ISSUER-INTEL",
+        "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "verified_chunk_ids": [
+        "CHK-SEC-SD-ISSUER-INTEL",
+        "CHK-MOD-MOD-EVENT-CHINA-EXPORT-CTRL"
+      ],
+      "unverified_chunk_ids": []
+    },
+    "usage": {
+      "input_tokens": 4689,
+      "output_tokens": 523
+    },
+    "engine_cost_usd": 0.002714,
+    "total_duration_ms": 14080.83,
+    "flags": {
+      "graph_backend_used": "bigquery_property_graph",
+      "reranker_used": true,
+      "model_armor_checked": true,
+      "bq_cache_hit": true,
+      "bytes_processed": 0
+    }
+  },
+  "stage_events": [
+    {
+      "event_type": "stage_started",
+      "stage": "query_prep",
+      "label": "Validate ADK coordinator model & query parameters",
+      "service": "Google ADK 2.15",
+      "request": {
+        "pack_id": "supply_chain_subtier_risk",
+        "model": "gemini-2.5-flash",
+        "max_hops": 3
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "query_prep",
+      "service_used": "Google ADK 2.15",
+      "duration_ms": 0.03,
+      "payload": {
+        "prepared_query": "Trace the 3-hop contagion chain from Intel Corporation through disclosed Tungsten smelters in China to the modeled export-control disruption scenario.",
+        "model": "gemini-2.5-flash"
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "model_armor_input",
+      "label": "Screen prompt via Google Cloud Model Armor",
+      "service": "Google Cloud Model Armor",
+      "request": {
+        "location": "us-central1"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "model_armor_input",
+      "service_used": "Google Cloud Model Armor",
+      "duration_ms": 1072.99,
+      "payload": {
+        "match_state": "NO_MATCH_FOUND",
+        "checked": true
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "adk_coordinate",
+      "label": "Execute Google ADK 2.15 coordinator (gemini-2.5-flash)",
+      "service": "Google ADK 2.15 + Vertex AI gemini-2.5-flash",
+      "request": {
+        "pack_id": "supply_chain_subtier_risk",
+        "max_hops": 3,
+        "direction": "outgoing",
+        "max_llm_calls": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "adk_coordinate",
+      "service_used": "Google ADK 2.15 + Vertex AI gemini-2.5-flash",
+      "duration_ms": 13007.65,
+      "payload": {
+        "turns": 3,
+        "tool_calls": [
+          {
+            "tool": "traverse_knowledge_graph",
+            "direction": "outgoing",
+            "max_hops": 3,
+            "seed_count": 6,
+            "paths_found": 10,
+            "duration_ms": 5649.76,
+            "status": "success"
+          }
+        ],
+        "paths_found": 10,
+        "unique_nodes": 31,
+        "unique_edges": 33,
+        "input_tokens": 4689,
+        "output_tokens": 523,
+        "engine_cost_usd": 0.002714,
+        "bytes_processed": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "verify_provenance",
+      "label": "Deterministic Edge-ID & Entity-ID Provenance Audit",
+      "service": "Deterministic Provenance Verifier",
+      "request": {
+        "allowed_entities": 31,
+        "allowed_edges": 33,
+        "allowed_chunks": 4
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "verify_provenance",
+      "service_used": "Deterministic Provenance Verifier",
+      "duration_ms": 0.07,
+      "payload": {
+        "is_fully_verified": true,
+        "verified_entities": 5,
+        "unverified_entities": 0,
+        "verified_edges": 4,
+        "unverified_edges": 0,
+        "verified_chunks": 2,
+        "unverified_chunks": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "evaluate",
+      "label": "Evaluate Answer (Vertex AI GenAI Evaluation (:evaluateInstances))",
+      "service": "vertex_eval",
+      "request": {
+        "judge_model": "vertex-genai-eval"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "evaluate",
+      "service_used": "vertex_genai_eval",
+      "duration_ms": 23373.87,
+      "payload": {
+        "judge_model": "vertex-genai-eval",
+        "groundedness": 1.0,
+        "qa_relevance": 0.0,
+        "context_precision": 0.5,
+        "composite_score": 0.725,
+        "judge_cost_usd": 0.018191
+      }
+    }
+  ],
+  "recall": {
+    "entity_recall": 1.0,
+    "edge_recall": 1.0,
+    "path_recall": 1.0
+  },
+  "evaluation": {
+    "judge_model": "vertex-genai-eval",
+    "judge_provider": "vertex_genai_eval",
+    "groundedness": 1.0,
+    "qa_relevance": 0.0,
+    "context_precision": 0.5,
+    "path_recall": 1.0,
+    "provenance_verified": true,
+    "composite_score": 0.725,
+    "rationale": "GROUNDEDNESS: Every factual claim made in the response is directly and accurately supported by the provided context, including the paths, entities, edges, and chunk data. The response  | QUESTION_ANSWERING_QUALITY: The response fails to trace the requested 3-hop path, explicitly stating it could not be found, even though the Reference Key Points confirm the path exists. It only iden | FULFILLMENT: The retrieved context contains all the individual edges needed to construct the correct 3-hop path (Intel -> China Molybdenum Tungsten -> China -> Export Control), but fa",
+    "input_tokens": 12553,
+    "output_tokens": 250,
+    "judge_cost_usd": 0.018191,
+    "duration_ms": 23373.12
+  }
+}

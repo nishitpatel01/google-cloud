@@ -137,6 +137,28 @@ export function CitedAnswer({
               <div className="kpi-value">{formatPercent(result.recall.path_recall)}</div>
             </div>
           )}
+          {result.evaluation && (
+            <>
+              <div className="kpi-box">
+                <div className="kpi-label">Groundedness</div>
+                <div className="kpi-value">
+                  {formatPercent(result.evaluation.groundedness)}
+                </div>
+              </div>
+              <div className="kpi-box">
+                <div className="kpi-label">Answer Quality</div>
+                <div className="kpi-value">
+                  {formatPercent(result.evaluation.qa_relevance)}
+                </div>
+              </div>
+              <div className="kpi-box">
+                <div className="kpi-label">Judge Cost</div>
+                <div className="kpi-value">
+                  {formatUsd(result.evaluation.judge_cost_usd)}
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         <div className="answer-prose">
@@ -173,6 +195,35 @@ export function CitedAnswer({
             );
           })}
         </div>
+
+        {result.evaluation && (
+          <details className="stage-details">
+            <summary className="stage-summary">
+              Independent Evaluation · {result.evaluation.judge_model} (Composite{" "}
+              {formatPercent(result.evaluation.composite_score)})
+            </summary>
+            <div className="stack-sm stage-meta">
+              <div className="row-wrap">
+                <span className="badge badge-verified">
+                  Groundedness: {formatPercent(result.evaluation.groundedness)}
+                </span>
+                <span className="badge badge-verified">
+                  Answer Quality: {formatPercent(result.evaluation.qa_relevance)}
+                </span>
+                <span className="badge">
+                  Evidence Precision: {formatPercent(result.evaluation.context_precision)}
+                </span>
+                <span className="badge mono">
+                  Engine {formatUsd(result.engine_cost_usd)} · Judge{" "}
+                  {formatUsd(result.evaluation.judge_cost_usd)}
+                </span>
+              </div>
+              {result.evaluation.rationale && (
+                <div className="evidence-quote">{result.evaluation.rationale}</div>
+              )}
+            </div>
+          </details>
+        )}
 
         <details className="stage-details">
           <summary className="stage-summary">

@@ -12,7 +12,7 @@ Solutions are added here incrementally as each standalone app is implemented, te
 
 | Solution | Category | Industries | Core GCP AI Stack | Status |
 | :--- | :--- | :--- | :--- | :---: |
-| [**Enterprise GraphRAG & Contagion Explorer**](enterprise-graphrag/README.md) (`enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2`, Google ADK `2.15`, Model Armor, React 19, Cloud Run | Phase 3 Complete (`53` backend + `6` frontend suites passing · Full-Width React 19 UI + Releases + 6-Key GCP Attribution Live Verified) |
+| [**Enterprise GraphRAG & Contagion Explorer**](enterprise-graphrag/README.md) (`enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2` & GenAI Eval, Google ADK `2.15`, Model Armor, React 19, Cloud Run | Phase 4 Complete (`61` backend + `7` frontend suites passing · 33 Live-Recorded Replay Fixtures + Evaluation Leaderboard Verified) |
 
 ---
 
