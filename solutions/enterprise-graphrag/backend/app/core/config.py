@@ -135,7 +135,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    app_version: str = "0.5.0"
+    app_version: str = "0.6.0"
     portfolio_id: str = "gcp_ai_accelerators"
     solution_id: str = "acc05"
     solution_slug: str = "enterprise_graphrag"

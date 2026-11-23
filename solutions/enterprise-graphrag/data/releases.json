@@ -1,14 +1,35 @@
 {
   "solution_id": "acc05",
   "solution_name": "Risk & Contagion Intelligence (Enterprise GraphRAG)",
-  "current_version": "0.5.0",
+  "current_version": "0.6.0",
   "releases": [
+    {
+      "version": "0.6.0",
+      "phase": "Phase 5",
+      "date": "2026-11-23",
+      "pr": "#7",
+      "status": "In Review",
+      "title": "Production Cloud Run Deployment, Multi-Stage Container & Tier-1/Tier-2 Terraform IaC",
+      "summary": "Shipped the production multi-stage Dockerfile (non-root UID 10001 + pinned requirements.lock), full Tier-1 Serverless ($0-$3/mo idle) + Tier-2 Spanner Graph Terraform IaC with mandatory 6-key GCP FinOps labels across every resource, 1-command deploy/teardown scripts, and live Cloud Run verification.",
+      "categories": ["Deployment", "FinOps & Governance", "Security"],
+      "highlights": [
+        "Multi-stage Node 22 + Python 3.12 production Dockerfile running as unprivileged user (UID 10001) with deterministic backend/requirements.lock and embedded 33-fixture Replay suite.",
+        "Complete Tier-1 Serverless + Tier-2 Spanner Graph Terraform stack (infra/terraform/) stamping all 6 mandatory GCP FinOps labels (portfolio, solution_id, solution, tier, managed_by, env) onto Artifact Registry, private UBLA+PAP GCS upload bucket, BigQuery dataset, Cloud Run services, and optional Spanner instance.",
+        "Idempotent 1-command scripts/deploy.sh (--dry-run | --yes) and scripts/teardown.sh provisioning dedicated least-privilege runtime SA (acc05-graphrag-run), role-less Replay SA (acc05-graphrag-replay), Cloud Run Live (IAP-protected), and Cloud Run Replay (public zero-credential demo).",
+        "Live Cloud Run deployment and end-to-end verification across Cloud Asset Inventory, IAP enforcement, Replay SSE streaming, and zero-leak hygiene gates."
+      ],
+      "verification": {
+        "backend_tests": 65,
+        "frontend_suites": 7,
+        "gcp_live": "Live Cloud Run acc05-graphrag-ui (IAP) + acc05-graphrag-replay (public zero-credential) deployed and verified via Cloud Asset Inventory"
+      }
+    },
     {
       "version": "0.5.0",
       "phase": "Phase 4",
       "date": "2026-11-23",
       "pr": "#6",
-      "status": "In Review",
+      "status": "Merged",
       "title": "Vertex AI GenAI Evaluation, Cross-Family Judges & Full Live-Recorded Replay Suite",
       "summary": "Added independent Vertex AI GenAI Evaluation Service (:evaluateInstances with PointwiseMetric rubrics), Anthropic Claude Opus 5.5 cross-family judging, a live-measured Evaluation Leaderboard on ROI & Benchmarks, and genuine recorded Replay fixtures across all 15 golden multi-tier scenarios.",
       "categories": ["Evaluation", "AI Engines", "UI/UX"],

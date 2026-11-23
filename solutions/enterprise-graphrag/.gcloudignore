@@ -1,0 +1,17 @@
+# Prevent uploading local virtualenvs, node_modules, secrets, or git metadata to Cloud Build
+.git/
+.gitignore
+.venv/
+.env
+.env.*
+deploy/*.env
+frontend/node_modules/
+frontend/dist/
+backend/tests/
+infra/terraform/.terraform/
+infra/terraform/*.tfstate*
+infra/terraform/*.tfvars
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+*.log
