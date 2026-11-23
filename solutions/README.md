@@ -1,8 +1,8 @@
-# Customer-Facing Google Cloud AI Solutions (`solutions/`)
+# Google Cloud Enterprise AI Accelerators (`solutions/`)
 
 ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-Vertex%20AI%20%C2%B7%20ADK%20%C2%B7%20BigQuery%20%C2%B7%20Cloud%20Run-4285F4.svg) ![Deploy Standard](https://img.shields.io/badge/deploy-Terraform%20%2B%20Cloud%20Run%20(%3C15m)-FBBC04.svg) ![Tier-1 Idle](https://img.shields.io/badge/tier--1%20idle-%240--%243%2Fmo-34A853.svg)
 
-Production-oriented, customer-deployable Google Cloud AI **Accelerators** and **Vertical Starters** built on Google Cloud's official [Agentic AI](https://docs.cloud.google.com/architecture/agentic-ai-overview), [Generative AI](https://docs.cloud.google.com/architecture/genai-overview), and [ML Applications & Operations](https://docs.cloud.google.com/architecture/ai-ml/ml-application-operations-architecture-guides) reference architectures.
+Production-oriented, turnkey Google Cloud **Enterprise AI Accelerators** and **Vertical Starters** built on Google Cloud's official [Agentic AI](https://docs.cloud.google.com/architecture/agentic-ai-overview), [Generative AI](https://docs.cloud.google.com/architecture/genai-overview), and [ML Applications & Operations](https://docs.cloud.google.com/architecture/ai-ml/ml-application-operations-architecture-guides) reference architectures.
 
 ---
 
@@ -12,7 +12,7 @@ Solutions are added here incrementally as each standalone app is implemented, te
 
 | Solution | Category | Industries | Core GCP AI Stack | Status |
 | :--- | :--- | :--- | :--- | :---: |
-| [**Enterprise GraphRAG & Contagion Explorer**](enterprise-graphrag/README.md) (`enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2`, Google ADK `2.15`, Model Armor, Cloud Run | Phase 2 Complete (`50` tests passing · Live ADK `2.15` + BQ ISO GQL + Model Armor Verified) |
+| [**Enterprise GraphRAG & Contagion Explorer**](enterprise-graphrag/README.md) (`enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2`, Google ADK `2.15`, Model Armor, React 19, Cloud Run | Phase 3 Complete (`50` backend + `5` frontend suites passing · React 19 UI + Live ADK/BQ Verified) |
 
 ---
 

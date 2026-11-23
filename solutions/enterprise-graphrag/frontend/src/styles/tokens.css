@@ -1,0 +1,92 @@
+/* Design System Tokens — Executive Light-First Editorial Palette (WCAG 2.1 AA >= 4.5:1) */
+
+:root {
+  --bg-canvas: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-elevated: #ffffff;
+
+  --ink-primary: #0f172a;
+  --ink-secondary: #334155;
+  --ink-muted: #526074;
+  --ink-inverse: #ffffff;
+
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --accent-primary: #1a56db;
+  --accent-primary-hover: #1443b0;
+  --accent-primary-soft: #eff6ff;
+
+  --status-verified-bg: #ecfdf5;
+  --status-verified-ink: #065f46;
+  --status-verified-border: #a7f3d0;
+
+  --status-modeled-bg: #fffbeb;
+  --status-modeled-ink: #92400e;
+  --status-modeled-border: #fde68a;
+
+  --status-upload-bg: #eff6ff;
+  --status-upload-ink: #1e40af;
+  --status-upload-border: #bfdbfe;
+
+  --status-danger-bg: #fef2f2;
+  --status-danger-ink: #991b1b;
+  --status-danger-border: #fecaca;
+
+  --risk-critical: #dc2626;
+  --risk-high: #d97706;
+  --risk-medium: #2563eb;
+  --risk-low: #475569;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.06);
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --focus-ring: 0 0 0 3px rgba(26, 86, 219, 0.35);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-canvas);
+  color: var(--ink-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
