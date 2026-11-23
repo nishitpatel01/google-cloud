@@ -308,6 +308,16 @@ async def metadata(request: Request) -> dict[str, Any]:
     }
 
 
+@router.get("/api/v1/releases")
+async def list_releases(request: Request) -> dict[str, Any]:
+    """Serve structured release history & verification milestones from data/releases.json."""
+    s = _settings(request)
+    releases_path = s.solution_root / "data" / "releases.json"
+    if not releases_path.is_file():
+        return {"solution_id": s.solution_id, "current_version": s.app_version, "releases": []}
+    return json.loads(releases_path.read_text(encoding="utf-8"))
+
+
 @router.get("/api/v1/packs")
 async def list_packs(request: Request) -> dict[str, Any]:
     packs_out = []

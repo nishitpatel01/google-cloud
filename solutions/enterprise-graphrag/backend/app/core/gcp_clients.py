@@ -174,6 +174,7 @@ def generate_grounded_text(
     system_instruction: str,
     location: str = "global",
     temperature: float = 0.1,
+    labels: dict[str, str] | None = None,
 ) -> tuple[str, TokenUsage]:
     """Invoke a verified Gemini model on Vertex AI and return (answer, TokenUsage)."""
     spec = MODEL_CATALOG.get(model_id)
@@ -191,6 +192,8 @@ def generate_grounded_text(
     cfg_kwargs: dict[str, Any] = {"system_instruction": system_instruction}
     if spec.supports_temperature:
         cfg_kwargs["temperature"] = temperature
+    if labels:
+        cfg_kwargs["labels"] = dict(labels)
 
     def _call() -> tuple[str, TokenUsage]:
         resp = client.models.generate_content(

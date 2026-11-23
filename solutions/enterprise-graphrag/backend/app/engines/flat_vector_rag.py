@@ -9,6 +9,7 @@ from __future__ import annotations
 import time
 from typing import Any
 
+from app.core.attribution import gcp_job_labels
 from app.core.config import Settings
 from app.core.gcp_clients import (
     embed_single_text,
@@ -57,8 +58,11 @@ class FlatVectorRAGEngine(BaseGraphEngine):
             bigquery.ArrayQueryParameter("query_embedding", "FLOAT64", query_embedding),
         ]
 
+        labels = gcp_job_labels(self._settings, component="flat_vector_search")
         # Mandatory dry-run byte cap guard
-        dry_cfg = bigquery.QueryJobConfig(query_parameters=params, dry_run=True, use_query_cache=False)
+        dry_cfg = bigquery.QueryJobConfig(
+            query_parameters=params, dry_run=True, use_query_cache=False, labels=labels
+        )
         dry_job = client.query(pq.statement, job_config=dry_cfg, location=self._settings.bq_location)
         est_bytes = int(dry_job.total_bytes_processed or 0)
         if est_bytes > self._settings.max_bq_bytes_billed:
@@ -69,6 +73,7 @@ class FlatVectorRAGEngine(BaseGraphEngine):
         run_cfg = bigquery.QueryJobConfig(
             query_parameters=params,
             maximum_bytes_billed=self._settings.max_bq_bytes_billed,
+            labels=labels,
         )
         job = client.query(pq.statement, job_config=run_cfg, location=self._settings.bq_location)
         rows = [dict(r) for r in job.result()]
@@ -183,6 +188,7 @@ class FlatVectorRAGEngine(BaseGraphEngine):
                 prompt=prompt,
                 system_instruction=FLAT_SYSTEM_INSTRUCTION,
                 location=self._settings.vertex_location,
+                labels=gcp_job_labels(self._settings, component="flat_vector_synthesis"),
             )
         except Exception as exc:
             await emitter.failed(h_syn, error=exc)

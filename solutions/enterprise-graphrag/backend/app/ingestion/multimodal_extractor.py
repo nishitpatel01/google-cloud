@@ -11,6 +11,7 @@ from typing import Any, Sequence
 import yaml
 from pydantic import ValidationError
 
+from app.core.attribution import gcp_job_labels
 from app.core.config import MODEL_CATALOG, Settings
 from app.core.gcp_clients import get_genai_client, retry_with_backoff
 from app.core.models import (
@@ -190,6 +191,7 @@ def _invoke_gemini_json_extractor(
                 temperature=0.0,
                 response_mime_type="application/json",
                 max_output_tokens=4096,
+                labels=gcp_job_labels(settings, component="multimodal_extractor"),
             ),
         )
         raw_text = (resp.text or "").strip()

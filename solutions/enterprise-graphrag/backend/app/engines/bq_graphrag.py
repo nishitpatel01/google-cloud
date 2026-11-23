@@ -5,6 +5,7 @@ from __future__ import annotations
 import time
 from typing import Any
 
+from app.core.attribution import gcp_job_labels
 from app.core.config import Settings
 from app.core.gcp_clients import (
     embed_single_text,
@@ -74,7 +75,10 @@ class BigQueryGraphRAGEngine(BaseGraphEngine):
             bigquery.ScalarQueryParameter("query_text", "STRING", query_text),
             bigquery.ArrayQueryParameter("query_embedding", "FLOAT64", query_embedding),
         ]
-        dry_cfg = bigquery.QueryJobConfig(query_parameters=params, dry_run=True, use_query_cache=False)
+        labels = gcp_job_labels(self._settings, component="vector_seed")
+        dry_cfg = bigquery.QueryJobConfig(
+            query_parameters=params, dry_run=True, use_query_cache=False, labels=labels
+        )
         dry_job = client.query(pq.statement, job_config=dry_cfg, location=self._settings.bq_location)
         est_bytes = int(dry_job.total_bytes_processed or 0)
         if est_bytes > self._settings.max_bq_bytes_billed:
@@ -84,6 +88,7 @@ class BigQueryGraphRAGEngine(BaseGraphEngine):
         run_cfg = bigquery.QueryJobConfig(
             query_parameters=params,
             maximum_bytes_billed=self._settings.max_bq_bytes_billed,
+            labels=labels,
         )
         job = client.query(pq.statement, job_config=run_cfg, location=self._settings.bq_location)
         return [dict(r) for r in job.result()], int(job.total_bytes_processed or 0), bool(job.cache_hit), pq.statement
@@ -112,6 +117,7 @@ class BigQueryGraphRAGEngine(BaseGraphEngine):
         run_cfg = bigquery.QueryJobConfig(
             query_parameters=params,
             maximum_bytes_billed=self._settings.max_bq_bytes_billed,
+            labels=gcp_job_labels(self._settings, component="gql_traverse"),
         )
         job = client.query(pq.statement, job_config=run_cfg, location=self._settings.bq_location)
         return [dict(r) for r in job.result()], int(job.total_bytes_processed or 0), bool(job.cache_hit), pq.statement
@@ -134,6 +140,7 @@ class BigQueryGraphRAGEngine(BaseGraphEngine):
                 bigquery.ArrayQueryParameter("chunk_ids", "STRING", chunk_ids),
             ],
             maximum_bytes_billed=self._settings.max_bq_bytes_billed,
+            labels=gcp_job_labels(self._settings, component="chunk_fetch"),
         )
         return [
             dict(r)
@@ -351,6 +358,7 @@ class BigQueryGraphRAGEngine(BaseGraphEngine):
                 prompt=prompt,
                 system_instruction=GRAPHRAG_SYSTEM_INSTRUCTION,
                 location=self._settings.vertex_location,
+                labels=gcp_job_labels(self._settings, component="graphrag_synthesis"),
             )
         except Exception as exc:
             await emitter.failed(h_syn, error=exc)

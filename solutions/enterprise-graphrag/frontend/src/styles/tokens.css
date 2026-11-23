@@ -1,0 +1,155 @@
+/* Design System Tokens — Warm Modern Bohemian Light & Dark Themes (WCAG 2.1 AA) */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Warm woven linen, parchment & raw cotton surfaces (never stark white) */
+  --bg-canvas: #efe7dc;
+  --bg-surface: #f9f4ec;
+  --bg-subtle: #e5daca;
+  --bg-hover: #dcd0be;
+  --bg-graph: #ece3d5;
+
+  /* Rich roasted espresso & warm walnut inks */
+  --ink-primary: #2f251e;
+  --ink-secondary: #59493d;
+  --ink-muted: #736152;
+  --ink-inverse: #fbf7f0;
+
+  /* Quiet sandstone & clay dividers */
+  --border-subtle: #ddd0be;
+  --border-strong: #c4b39d;
+
+  /* Signature Bohemian terracotta / burnt sienna primary accent */
+  --accent-primary: #a34d30;
+  --accent-primary-hover: #893e25;
+  --accent-primary-soft: #f2e1d7;
+
+  /* Earthy botanical & mineral semantic states */
+  --status-verified-bg: #e4ede6;
+  --status-verified-ink: #2c5942;
+  --status-verified-border: #bad1c0;
+
+  --status-modeled-bg: #f5e9d5;
+  --status-modeled-ink: #825016;
+  --status-modeled-border: #dec395;
+
+  --status-upload-bg: #e2eced;
+  --status-upload-ink: #275a63;
+  --status-upload-border: #b4cfd4;
+
+  --status-danger-bg: #f4e2df;
+  --status-danger-ink: #8c3029;
+  --status-danger-border: #dcb2ac;
+
+  /* Graph canvas & technical disclosure tokens */
+  --graph-edge: #b4a390;
+  --graph-edge-active: #a83e2d;
+  --graph-node-stroke: #f9f4ec;
+  --graph-node-selected: #2f251e;
+  --code-bg: #26201b;
+  --code-ink: #ece2d6;
+
+  --radius-sm: 7px;
+  --radius-md: 11px;
+  --radius-lg: 15px;
+  --shadow-sm: 0 1px 3px rgba(47, 37, 30, 0.06);
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Cozy deep espresso, toasted walnut & warm umber surfaces */
+  --bg-canvas: #1a1613;
+  --bg-surface: #231e19;
+  --bg-subtle: #2e2721;
+  --bg-hover: #383029;
+  --bg-graph: #1f1a16;
+
+  /* Soft parchment & warm sand inks */
+  --ink-primary: #efe6da;
+  --ink-secondary: #c7b8a6;
+  --ink-muted: #9e8d7c;
+  --ink-inverse: #1b1612;
+
+  /* Warm cedar & umber dividers */
+  --border-subtle: #372f28;
+  --border-strong: #4d4238;
+
+  /* Sun-warmed terracotta glow accent */
+  --accent-primary: #dc8565;
+  --accent-primary-hover: #e7997c;
+  --accent-primary-soft: #3a271f;
+
+  /* Muted earthy dark semantic states */
+  --status-verified-bg: #1e2d24;
+  --status-verified-ink: #89c49f;
+  --status-verified-border: #314b3b;
+
+  --status-modeled-bg: #322618;
+  --status-modeled-ink: #e2b56e;
+  --status-modeled-border: #523f25;
+
+  --status-upload-bg: #1c2b2e;
+  --status-upload-ink: #82bec7;
+  --status-upload-border: #2f4b50;
+
+  --status-danger-bg: #36201e;
+  --status-danger-ink: #e4948c;
+  --status-danger-border: #5a3430;
+
+  /* Graph canvas & technical disclosure tokens */
+  --graph-edge: #625346;
+  --graph-edge-active: #e07864;
+  --graph-node-stroke: #231e19;
+  --graph-node-selected: #f5ede2;
+  --code-bg: #14110e;
+  --code-ink: #e8ddd0;
+
+  --shadow-sm: 0 2px 4px rgba(10, 7, 5, 0.34);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: var(--bg-canvas);
+  color: var(--ink-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
