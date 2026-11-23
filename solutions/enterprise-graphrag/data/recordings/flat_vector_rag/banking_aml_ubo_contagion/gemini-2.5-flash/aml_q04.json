@@ -1,0 +1,279 @@
+{
+  "provenance_header": {
+    "recorded_at": "2026-11-23T20:39:00.034837+00:00",
+    "engine_id": "flat_vector_rag",
+    "pack_id": "banking_aml_ubo_contagion",
+    "synthesis_model": "gemini-2.5-flash",
+    "judge_model": "vertex-genai-eval",
+    "question_id": "aml_q04",
+    "git_sha": "e034066"
+  },
+  "result": {
+    "engine_id": "flat_vector_rag",
+    "engine_label": "Flat Vector RAG (Baseline \u2014 Chunks Only)",
+    "pack_id": "banking_aml_ubo_contagion",
+    "query": "Starting from OFAC-designated hub BONYAD TAAVON BASIJ, trace upstream 3 hops to uncover which onboarding applicants and intermediaries inherit indirect sanctions risk.",
+    "synthesis_model": "gemini-2.5-flash",
+    "answer": "To trace upstream 3 hops from OFAC-designated hub BONYAD TAAVON BASIJ, we need to identify a chain of relationships in the format: Applicant/Intermediary -> Entity A -> Entity B -> BONYAD TAAVON BASIJ.\n\n1.  **Hop 1 (Entity B, linked to BONYAD TAAVON BASIJ):**\n    *   The OFAC record for MEHR EQTESAD BANK states it is \"Linked To: BONYAD TAAVON BASIJ\" [CHK-OFAC-25018].\n    *   Therefore, **MEHR EQTESAD BANK** is the first entity upstream from BONYAD TAAVON BASIJ.\n\n2.  **Hop 2 (Entity A, linked to MEHR EQTESAD BANK):**\n    *   To identify an entity A that is linked to MEHR EQTESAD BANK, we would need a record explicitly stating \"Entity A Linked To: MEHR EQTESAD BANK\".\n    *   The provided document chunks do not contain any such explicit link [Missing Link].\n\nSince the necessary intermediate link (Entity A) to MEHR EQTESAD BANK is not provided in the document chunks, a complete 3-hop upstream trace to an onboarding applicant or intermediary cannot be established. The connection required for the second hop in the upstream chain is missing.",
+    "paths": [],
+    "retrieved_entity_ids": [],
+    "retrieved_edge_ids": [],
+    "retrieved_chunk_ids": [
+      "CHK-SYN-SYN-APPLICANT-TRADE-01",
+      "CHK-OFAC-25017",
+      "CHK-SYN-SYN-APPLICANT-ENERGY-02",
+      "CHK-OFAC-12727",
+      "CHK-OFAC-25018",
+      "CHK-OFAC-25037"
+    ],
+    "retrieved_nodes": [],
+    "retrieved_edges": [],
+    "retrieved_chunks": [
+      {
+        "chunk_id": "CHK-SYN-SYN-APPLICANT-TRADE-01",
+        "doc_name": "MODELED_KYC_DOSSIER_SYN-APPLICANT-TRADE-01.txt",
+        "doc_type": "modeled_kyc_application",
+        "page_number": 1,
+        "content": "MODELED_BRIDGE fictional bank onboarding dossier: SYN-APPLICANT-TRADE-01 requests an $18.5M trade-finance credit line; KYC beneficial-ownership disclosure reveals a minority intermediary link to OFAC-listed entity MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY.",
+        "data_origin": "MODELED_BRIDGE",
+        "source_license": "MODELED",
+        "source_url": "",
+        "distance": 0.217493115558693
+      },
+      {
+        "chunk_id": "CHK-OFAC-25017",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_25017.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #25017 (US Gov Public Domain): Name: BONYAD TAAVON BASIJ. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: BASIJ COOPERATIVE FOUNDATION. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: BASIJ RESISTANCE FORCE.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.23018244037534574
+      },
+      {
+        "chunk_id": "CHK-SYN-SYN-APPLICANT-ENERGY-02",
+        "doc_name": "MODELED_KYC_DOSSIER_SYN-APPLICANT-ENERGY-02.txt",
+        "doc_type": "modeled_kyc_application",
+        "page_number": 1,
+        "content": "MODELED_BRIDGE fictional bank onboarding dossier: SYN-APPLICANT-ENERGY-02 requests a $12.0M correspondent settlement facility; wire counterparties include OFAC-listed MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS.",
+        "data_origin": "MODELED_BRIDGE",
+        "source_license": "MODELED",
+        "source_url": "",
+        "distance": 0.2565867232604889
+      },
+      {
+        "chunk_id": "CHK-OFAC-12727",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_12727.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #12727 (US Gov Public Domain): Name: BASIJ RESISTANCE FORCE. Type: -0-. Programs: [FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR]. Jurisdiction/Address Country: IRAN. Aliases: SAZMAN-E MOGHAVEMAT-E BASIJ, BASIJ-E MELLI, BASEEJ. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; a.k.a. 'NATIONAL RESISTANCE MOBILIZATION'; a.k.a. 'RESISTANCE MOBILIZATION FORCE'; f.k.a. 'NATIONAL MOBILIZATION ORGANIZATION'; a.k.a. 'MOBILIZATION OF THE OPPRESSED'; a.k.a. 'MOBILIZATION OF THE OPPRESSED UNIT'; a.k.a. 'ORGANIZATION OF THE MOBILISATION OF THE OPPRESSED'; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.26320129234065437
+      },
+      {
+        "chunk_id": "CHK-OFAC-25018",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_25018.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #25018 (US Gov Public Domain): Name: MEHR EQTESAD BANK. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: MEHR INTEREST-FREE BANK. Official Remarks: Website www.mebank.ir; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: BONYAD TAAVON BASIJ; Linked To: BASIJ RESISTANCE FORCE.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.2721211959826423
+      },
+      {
+        "chunk_id": "CHK-OFAC-25037",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_25037.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #25037 (US Gov Public Domain): Name: MEHR EQTESAD FINANCIAL GROUP. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: None listed. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; National ID No. 10101471388 (Iran); Linked To: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+        "distance": 0.2960407041992682
+      }
+    ],
+    "provenance": {
+      "cited_entity_ids": [],
+      "verified_entity_ids": [],
+      "unverified_entity_ids": [],
+      "cited_edge_ids": [],
+      "verified_edge_ids": [],
+      "unverified_edge_ids": [],
+      "cited_chunk_ids": [],
+      "verified_chunk_ids": [],
+      "unverified_chunk_ids": []
+    },
+    "usage": {
+      "input_tokens": 1251,
+      "output_tokens": 294
+    },
+    "engine_cost_usd": 0.00111,
+    "total_duration_ms": 71336.51,
+    "flags": {
+      "graph_backend_used": "none",
+      "reranker_used": false,
+      "model_armor_checked": true,
+      "bq_cache_hit": false,
+      "bytes_processed": 1073852
+    }
+  },
+  "stage_events": [
+    {
+      "event_type": "stage_started",
+      "stage": "query_prep",
+      "label": "Prepare query & pack scope",
+      "service": "local",
+      "request": {
+        "pack_id": "banking_aml_ubo_contagion",
+        "query": "Starting from OFAC-designated hub BONYAD TAAVON BASIJ, trace upstream 3 hops to uncover which onboarding applicants and intermediaries inherit indirect sanctions risk."
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "query_prep",
+      "service_used": "local",
+      "duration_ms": 0.04,
+      "payload": {
+        "prepared_query": "Starting from OFAC-designated hub BONYAD TAAVON BASIJ, trace upstream 3 hops to uncover which onboarding applicants and intermediaries inherit indirect sanctions risk.",
+        "pack_id": "banking_aml_ubo_contagion"
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "embed_query",
+      "label": "Embed query (gemini-embedding-2)",
+      "service": "Vertex AI gemini-embedding-2",
+      "request": {
+        "model": "gemini-embedding-2",
+        "task_type": "RETRIEVAL_QUERY"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "embed_query",
+      "service_used": "Vertex AI gemini-embedding-2",
+      "duration_ms": 222.35,
+      "payload": {
+        "dimensions": 3072
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "retrieve_chunks",
+      "label": "BigQuery VECTOR_SEARCH (chunks only \u2014 no graph hops)",
+      "service": "BigQuery VECTOR_SEARCH",
+      "request": {
+        "pack_id": "banking_aml_ubo_contagion",
+        "top_k": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "retrieve_chunks",
+      "service_used": "BigQuery VECTOR_SEARCH",
+      "duration_ms": 1888.25,
+      "payload": {
+        "sql": "SELECT\n  base.chunk_id,\n  base.doc_name,\n  base.doc_type,\n  base.page_number,\n  base.content,\n  base.data_origin,\n  base.source_license,\n  base.source_url,\n  distance\nFROM VECTOR_SEARCH(\n  (SELECT * FROM `acc05_enterprise_graphrag.source_chunks` WHERE pack_id = @pack_id AND ARRAY_LENGTH(embedding) > 0),\n  'embedding',\n  (SELECT @query_embedding AS embedding),\n  top_k => 6,\n  distance_type => 'COSINE'\n)\nORDER BY distance ASC",
+        "rows_returned": 6,
+        "chunk_ids": [
+          "CHK-SYN-SYN-APPLICANT-TRADE-01",
+          "CHK-OFAC-25017",
+          "CHK-SYN-SYN-APPLICANT-ENERGY-02",
+          "CHK-OFAC-12727",
+          "CHK-OFAC-25018",
+          "CHK-OFAC-25037"
+        ],
+        "bytes_processed": 1073852,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "synthesize",
+      "label": "Synthesize answer (gemini-2.5-flash)",
+      "service": "Vertex AI gemini-2.5-flash",
+      "request": {
+        "model": "gemini-2.5-flash",
+        "chunks_in_context": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "synthesize",
+      "service_used": "Vertex AI gemini-2.5-flash",
+      "duration_ms": 69225.62,
+      "payload": {
+        "input_tokens": 1251,
+        "output_tokens": 294,
+        "engine_cost_usd": 0.00111
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "verify_provenance",
+      "label": "Verify chunk citation provenance",
+      "service": "Deterministic Provenance Verifier",
+      "request": {
+        "allowed_chunks": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "verify_provenance",
+      "service_used": "Deterministic Provenance Verifier",
+      "duration_ms": 0.06,
+      "payload": {
+        "is_fully_verified": true,
+        "verified_chunks": 0,
+        "unverified_chunks": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "evaluate",
+      "label": "Evaluate Answer (Vertex AI GenAI Evaluation (:evaluateInstances))",
+      "service": "vertex_eval",
+      "request": {
+        "judge_model": "vertex-genai-eval"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "evaluate",
+      "service_used": "vertex_genai_eval",
+      "duration_ms": 48970.01,
+      "payload": {
+        "judge_model": "vertex-genai-eval",
+        "groundedness": 1.0,
+        "qa_relevance": 0.0,
+        "context_precision": 0.25,
+        "composite_score": 0.337,
+        "judge_cost_usd": 0.005434
+      }
+    }
+  ],
+  "recall": {
+    "entity_recall": 0.0,
+    "edge_recall": 0.0,
+    "path_recall": 0.0
+  },
+  "evaluation": {
+    "judge_model": "vertex-genai-eval",
+    "judge_provider": "vertex_genai_eval",
+    "groundedness": 1.0,
+    "qa_relevance": 0.0,
+    "context_precision": 0.25,
+    "path_recall": 0.0,
+    "provenance_verified": true,
+    "composite_score": 0.337,
+    "rationale": "GROUNDEDNESS: Every factual claim and conclusion in the response is strictly supported by the provided context. The response correctly identifies the link from MEHR EQTESAD BANK to BON | QUESTION_ANSWERING_QUALITY: The response correctly identifies the first hop but then incorrectly states the link for the second hop is missing, thereby failing to complete the required 3-hop trace a | FULFILLMENT: The retrieved context is partially relevant, identifying the correct applicant, the target SDN, and key intermediaries in the ownership chain, but it is missing the cruci",
+    "input_tokens": 2707,
+    "output_tokens": 205,
+    "judge_cost_usd": 0.005434,
+    "duration_ms": 48968.98
+  }
+}

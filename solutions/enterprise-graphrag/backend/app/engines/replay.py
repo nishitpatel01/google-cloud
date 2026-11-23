@@ -24,8 +24,22 @@ from app.core.models import (
 from app.core.pricing import TokenUsage
 from app.core.stage_emitter import StageEmitter
 from app.engines.base import EngineFlags, EngineResult
+from app.evaluation.judge import JudgeEvaluation
 
 _SAFE_SEGMENT_RE = re.compile(r"^[A-Za-z0-9._-]{1,80}$")
+_PROJECT_NUM_RE = re.compile(r"projects/\d{6,}")
+
+
+def _scrub_identifiers(obj: Any, project_id: str) -> Any:
+    """Recursively scrub live GCP project IDs & numeric project numbers before saving fixtures."""
+    if isinstance(obj, str):
+        cleaned = obj.replace(project_id, "<project_id>") if project_id else obj
+        return _PROJECT_NUM_RE.sub("projects/<project_number>", cleaned)
+    if isinstance(obj, list):
+        return [_scrub_identifiers(item, project_id) for item in obj]
+    if isinstance(obj, dict):
+        return {k: _scrub_identifiers(v, project_id) for k, v in obj.items()}
+    return obj
 
 
 def _safe_segment(val: str) -> str:
@@ -63,8 +77,11 @@ def save_recording(
     stage_events: tuple[StageEvent, ...],
     question_id: str,
     git_sha: str = "dev",
+    evaluation: JudgeEvaluation | None = None,
+    recall: dict[str, float] | None = None,
+    redact_project_id: str = "",
 ) -> Path:
-    """Persist a verified live run as a zero-credential replay fixture."""
+    """Persist a verified live run (and optional judge evaluation) as a sanitized replay fixture."""
     path = recording_path(
         recordings_root,
         engine_id=result.engine_id,
@@ -73,12 +90,13 @@ def save_recording(
         question_id=question_id,
     )
     path.parent.mkdir(parents=True, exist_ok=True)
-    payload = {
+    payload: dict[str, Any] = {
         "provenance_header": {
             "recorded_at": datetime.now(timezone.utc).isoformat(),
             "engine_id": result.engine_id,
             "pack_id": result.pack_id,
             "synthesis_model": result.synthesis_model,
+            "judge_model": evaluation.judge_model if evaluation else None,
             "question_id": question_id,
             "git_sha": git_sha,
         },
@@ -104,8 +122,38 @@ def save_recording(
         },
         "stage_events": [ev.model_dump(mode="json") for ev in stage_events],
     }
-    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    if recall is not None:
+        payload["recall"] = dict(recall)
+    if evaluation is not None:
+        payload["evaluation"] = evaluation.model_dump(mode="json")
+    sanitized = _scrub_identifiers(payload, redact_project_id.strip())
+    path.write_text(json.dumps(sanitized, indent=2) + "\n", encoding="utf-8")
     return path
+
+
+def load_recording_evaluation(
+    recordings_root: Path,
+    *,
+    engine_id: str,
+    pack_id: str,
+    synthesis_model: str,
+    question_id: str,
+) -> JudgeEvaluation | None:
+    """Return the recorded JudgeEvaluation for a fixture if present."""
+    path = recording_path(
+        recordings_root,
+        engine_id=engine_id,
+        pack_id=pack_id,
+        synthesis_model=synthesis_model,
+        question_id=question_id,
+    )
+    if not path.is_file():
+        return None
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    ev_raw = raw.get("evaluation")
+    if not isinstance(ev_raw, dict):
+        return None
+    return JudgeEvaluation.model_validate(ev_raw)
 
 
 async def replay_recording(

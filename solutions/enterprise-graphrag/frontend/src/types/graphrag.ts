@@ -10,11 +10,13 @@ export type EngineId =
 export interface ModelSpec {
   model_id: string;
   display_name: string;
-  family: "gemini" | "claude";
+  family: "gemini" | "claude" | "vertex_eval";
   tier: "ga_default" | "frontier_opt_in";
   input_per_1m_usd: number;
   output_per_1m_usd: number;
   supports_adk: boolean;
+  supports_synthesis?: boolean;
+  supports_judge?: boolean;
 }
 
 export interface MetaResponse {
@@ -183,6 +185,22 @@ export interface RecallMetrics {
   path_recall: number;
 }
 
+export interface JudgeEvaluation {
+  judge_model: string;
+  judge_provider: "vertex_genai_eval" | "anthropic_vertex" | "vertex_gemini";
+  groundedness: number;
+  qa_relevance: number;
+  context_precision: number;
+  path_recall: number | null;
+  provenance_verified: boolean;
+  composite_score: number;
+  rationale: string;
+  input_tokens: number;
+  output_tokens: number;
+  judge_cost_usd: number;
+  duration_ms: number;
+}
+
 export interface EngineResultPayload {
   engine_id: string;
   engine_label: string;
@@ -212,6 +230,61 @@ export interface EngineResultPayload {
     bytes_processed: number;
   };
   recall: RecallMetrics | null;
+  evaluation?: JudgeEvaluation | null;
+}
+
+export interface LeaderboardRow {
+  pack_id: string;
+  engine_id: string;
+  engine_label: string;
+  synthesis_model: string;
+  judge_model: string | null;
+  runs_count: number;
+  avg_path_recall: number | null;
+  avg_entity_recall: number | null;
+  avg_edge_recall: number | null;
+  avg_groundedness: number | null;
+  avg_qa_relevance: number | null;
+  avg_context_precision: number | null;
+  avg_composite_score: number | null;
+  provenance_pass_rate: number;
+  avg_duration_ms: number;
+  avg_engine_cost_usd: number;
+  avg_judge_cost_usd: number;
+}
+
+export interface QuestionArmMetrics {
+  engine_id: string;
+  engine_label: string;
+  synthesis_model: string;
+  judge_model: string | null;
+  path_recall: number | null;
+  entity_recall: number | null;
+  edge_recall: number | null;
+  groundedness: number | null;
+  qa_relevance: number | null;
+  context_precision: number | null;
+  composite_score: number | null;
+  provenance_verified: boolean;
+  paths_count: number;
+  duration_ms: number;
+  engine_cost_usd: number;
+  judge_cost_usd: number;
+  rationale: string;
+}
+
+export interface PerQuestionBenchmark {
+  pack_id: string;
+  question_id: string;
+  query: string;
+  arms: Record<string, QuestionArmMetrics>;
+}
+
+export interface BenchmarkSummaryResponse {
+  total_recordings: number;
+  pack_filter: string | null;
+  leaderboard: LeaderboardRow[];
+  per_question: PerQuestionBenchmark[];
 }
 
 export interface ComparisonPayload {

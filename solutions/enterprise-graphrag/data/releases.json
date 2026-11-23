@@ -1,14 +1,35 @@
 {
   "solution_id": "acc05",
   "solution_name": "Risk & Contagion Intelligence (Enterprise GraphRAG)",
-  "current_version": "0.4.0",
+  "current_version": "0.5.0",
   "releases": [
+    {
+      "version": "0.5.0",
+      "phase": "Phase 4",
+      "date": "2026-11-23",
+      "pr": "#6",
+      "status": "In Review",
+      "title": "Vertex AI GenAI Evaluation, Cross-Family Judges & Full Live-Recorded Replay Suite",
+      "summary": "Added independent Vertex AI GenAI Evaluation Service (:evaluateInstances with PointwiseMetric rubrics), Anthropic Claude Opus 5.5 cross-family judging, a live-measured Evaluation Leaderboard on ROI & Benchmarks, and genuine recorded Replay fixtures across all 15 golden multi-tier scenarios.",
+      "categories": ["Evaluation", "AI Engines", "UI/UX"],
+      "highlights": [
+        "Vertex AI GenAI Evaluation (:evaluateInstances PointwiseMetric + autoraterConfig) and cross-family Claude Opus 5.5 (:rawPredict) / Gemini 2.5 Pro judges with strict server-side and UI enforcement that judge_model != synthesis_model.",
+        "Transparent split Engine Cost vs. Judge Cost accounting surfaced in both Executive Risk Briefs and the Measured Evaluation Leaderboard (GET /api/v1/benchmarks/summary — zero hardcoded scores).",
+        "Genuine live-recorded Replay fixtures across all 3 industry packs (all 15 multi-hop questions across Flat Vector RAG & BigQuery GraphRAG plus Google ADK 2.15 hero runs), scrubbed of all live GCP project identifiers for zero-credential offline demos.",
+        "Interactive Evaluation Leaderboard and per-question Flat Vector vs. GraphRAG accuracy badges added to ROI & Benchmarks and included in the formula-safe CSV Executive Brief export."
+      ],
+      "verification": {
+        "backend_tests": 61,
+        "frontend_suites": 7,
+        "gcp_live": "Live 33-run recorded benchmark suite across Supply Chain, Banking AML & Legal M&A scored by Vertex AI GenAI Evaluation (:evaluateInstances)"
+      }
+    },
     {
       "version": "0.4.0",
       "phase": "Phase 3",
       "date": "2026-11-23",
       "pr": "#5",
-      "status": "In Review",
+      "status": "Merged",
       "title": "Executive UI Experience, Persistent Workspaces, Releases & GCP Resource Governance",
       "summary": "Delivered the full-width React 19 interactive workspace with low-glare Light/Dark/System theming, business-friendly executive briefs, tab-state preservation across live analyses, an in-app Releases changelog, and the 4-layer GCP resource naming & 6-key FinOps label standard.",
       "categories": ["UI/UX", "FinOps & Governance", "Security"],

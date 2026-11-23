@@ -50,7 +50,7 @@ export function Shell({
   children,
 }: ShellProps) {
   const liveAllowed = Boolean(meta?.live_capable);
-  const models = meta?.models ?? [];
+  const models = (meta?.models ?? []).filter((m) => m.supports_synthesis !== false);
 
   return (
     <div className="app-shell">

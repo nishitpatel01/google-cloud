@@ -47,6 +47,7 @@ def create_app(
     app.state.iap_certs_override = None
     app.state.extractor_override = None
     app.state.persist_override = None
+    app.state.judge_override = None
 
     # Strict CORS allowlist (Settings.allowed_origins_list rejects wildcard '*')
     app.add_middleware(

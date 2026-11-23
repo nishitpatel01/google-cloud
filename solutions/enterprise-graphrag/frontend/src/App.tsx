@@ -122,6 +122,7 @@ function WorkspaceRouter({
               pack={activePack}
               mode={mode}
               synthesisModel={synthesisModel}
+              models={meta?.models ?? []}
               onRunningChange={handleCompareRunning}
             />
           </div>

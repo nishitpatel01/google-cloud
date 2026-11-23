@@ -20,13 +20,15 @@ class ModelSpec:
 
     model_id: str
     display_name: str
-    family: Literal["gemini", "claude"]
+    family: Literal["gemini", "claude", "vertex_eval"]
     tier: Literal["ga_default", "frontier_opt_in"]
     input_per_1m_usd: float
     output_per_1m_usd: float
     location: str = "global"
     supports_adk: bool = True
     supports_temperature: bool = True
+    supports_synthesis: bool = True
+    supports_judge: bool = True
 
 
 MODEL_CATALOG: dict[str, ModelSpec] = {
@@ -89,20 +91,39 @@ MODEL_CATALOG: dict[str, ModelSpec] = {
         supports_adk=False,
         supports_temperature=False,
     ),
+    "vertex-genai-eval": ModelSpec(
+        model_id="vertex-genai-eval",
+        display_name="Vertex AI GenAI Evaluation (:evaluateInstances)",
+        family="vertex_eval",
+        tier="ga_default",
+        input_per_1m_usd=0.30,
+        output_per_1m_usd=2.50,
+        location="us-central1",
+        supports_adk=False,
+        supports_temperature=False,
+        supports_synthesis=False,
+        supports_judge=True,
+    ),
 }
 
 
 def validate_model_pair(synthesis_model: str, judge_model: str) -> tuple[ModelSpec, ModelSpec]:
-    """Validate both models exist in catalog and enforce judge != synthesis."""
+    """Validate both models exist in catalog, check capabilities, and enforce judge != synthesis."""
     if synthesis_model not in MODEL_CATALOG:
         raise ValueError(f"Unsupported synthesis model: {synthesis_model!r}")
     if judge_model not in MODEL_CATALOG:
         raise ValueError(f"Unsupported judge model: {judge_model!r}")
+    synth_spec = MODEL_CATALOG[synthesis_model]
+    judge_spec = MODEL_CATALOG[judge_model]
+    if not synth_spec.supports_synthesis:
+        raise ValueError(f"Model {synthesis_model!r} is judge-only and cannot synthesize answers.")
+    if not judge_spec.supports_judge:
+        raise ValueError(f"Model {judge_model!r} does not support evaluation judging.")
     if synthesis_model == judge_model:
         raise ValueError(
             "Judge model must differ from synthesis model to avoid self-evaluation bias."
         )
-    return MODEL_CATALOG[synthesis_model], MODEL_CATALOG[judge_model]
+    return synth_spec, judge_spec
 
 
 class Settings(BaseSettings):
@@ -114,7 +135,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    app_version: str = "0.4.0"
+    app_version: str = "0.5.0"
     portfolio_id: str = "gcp_ai_accelerators"
     solution_id: str = "acc05"
     solution_slug: str = "enterprise_graphrag"

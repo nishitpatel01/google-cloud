@@ -101,4 +101,13 @@ import {
   assert.ok(appCss.includes("max-width: none"), "app.css must allow 100% full screen width");
 }
 
-console.log("ALL FRONTEND UNIT & SECURITY GUARDRAIL TESTS PASSED (6/6 suites)");
+// 7. Verify Evaluation Leaderboard & Judge != Synthesis guardrails
+{
+  const benchSrc = fs.readFileSync(path.resolve("src/pages/BenchmarkPage.tsx"), "utf-8");
+  assert.ok(benchSrc.includes("fetchBenchmarkSummary"), "BenchmarkPage must load real measured scores from API");
+
+  const cmpSrc = fs.readFileSync(path.resolve("src/pages/ComparePage.tsx"), "utf-8");
+  assert.ok(cmpSrc.includes("m.model_id !== synthesisModel"), "ComparePage must prevent judge === synthesis");
+}
+
+console.log("ALL FRONTEND UNIT & SECURITY GUARDRAIL TESTS PASSED (7/7 suites)");

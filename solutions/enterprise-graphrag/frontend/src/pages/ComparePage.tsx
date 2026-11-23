@@ -5,6 +5,7 @@ import { CitedAnswer } from "../components/CitedAnswer";
 import { StageRail } from "../components/StageRail";
 import type {
   ComparisonPayload,
+  ModelSpec,
   PackGraphResponse,
   PackSummary,
   StageEvent,
@@ -15,12 +16,14 @@ interface ComparePageProps {
   pack: PackSummary;
   mode: "replay" | "live";
   synthesisModel: string;
+  models: ModelSpec[];
   onRunningChange?: (running: boolean) => void;
 }
 
 interface ComparePackState {
   questionIdx: number;
   graphEngine: "bq_graphrag" | "adk_graph_coordinator";
+  judgeModel: string;
   isRunning: boolean;
   flatStages: StageEvent[];
   graphStages: StageEvent[];
@@ -32,6 +35,7 @@ function createInitialCompareState(): ComparePackState {
   return {
     questionIdx: 0,
     graphEngine: "bq_graphrag",
+    judgeModel: "vertex-genai-eval",
     isRunning: false,
     flatStages: [],
     graphStages: [],
@@ -44,6 +48,7 @@ export function ComparePage({
   pack,
   mode,
   synthesisModel,
+  models,
   onRunningChange,
 }: ComparePageProps) {
   const [stateByPack, setStateByPack] = useState<Record<string, ComparePackState>>(() => ({
@@ -51,6 +56,12 @@ export function ComparePage({
   }));
   const [graphCache, setGraphCache] = useState<Record<string, PackGraphResponse>>({});
   const abortRefs = useRef<Record<string, AbortController>>({});
+
+  // Strictly enforce judge_model != synthesis_model in the UI picker too
+  const judgeOptions = useMemo(
+    () => models.filter((m) => m.supports_judge !== false && m.model_id !== synthesisModel),
+    [models, synthesisModel]
+  );
 
   useEffect(() => {
     setStateByPack((prev) =>
@@ -63,7 +74,7 @@ export function ComparePage({
         if (!cancelled) setGraphCache((prev) => ({ ...prev, [pack.pack_id]: g }));
       })
       .catch(() => {
-        // Non-blocking: citation chips degrade gracefully to raw IDs if graph cache isn't ready
+        // Non-blocking: citation chips degrade gracefully to raw IDs
       });
     return () => {
       cancelled = true;
@@ -80,6 +91,8 @@ export function ComparePage({
   }, [anyRunning, onRunningChange]);
 
   const state = stateByPack[pack.pack_id] ?? createInitialCompareState();
+  const effectiveJudgeModel =
+    state.judgeModel && state.judgeModel !== synthesisModel ? state.judgeModel : "";
   const activeQ = pack.questions[state.questionIdx] ?? pack.questions[0];
   const graph = graphCache[pack.pack_id] ?? null;
 
@@ -110,6 +123,8 @@ export function ComparePage({
     if (!activeQ) return;
     const pid = pack.pack_id;
     const current = stateByPack[pid] ?? createInitialCompareState();
+    const chosenJudge =
+      current.judgeModel && current.judgeModel !== synthesisModel ? current.judgeModel : null;
 
     abortRefs.current[pid]?.abort();
     const ctrl = new AbortController();
@@ -131,6 +146,7 @@ export function ComparePage({
           query: activeQ.question,
           graph_engine_id: current.graphEngine,
           synthesis_model: synthesisModel,
+          judge_model: chosenJudge,
           question_id: activeQ.question_id,
           max_hops: activeQ.hop_depth,
           direction: activeQ.direction,
@@ -166,7 +182,7 @@ export function ComparePage({
           <h1>Standard AI Search vs. Graph Intelligence</h1>
           <p className="page-subtitle">
             Run the exact same multi-tier business question through both approaches side by side
-            to see what standard document search misses — and compare accuracy, speed, and cost.
+            to see what standard document search misses — scored by an independent evaluator.
           </p>
         </div>
         <span className="badge">{pack.title}</span>
@@ -198,26 +214,49 @@ export function ComparePage({
               </select>
             </div>
 
-            <div>
-              <label className="field-label" htmlFor="compare-graph-engine">
-                Graph Intelligence Engine
-              </label>
-              <select
-                id="compare-graph-engine"
-                className="select-control w-full"
-                value={state.graphEngine}
-                onChange={(e) =>
-                  patchState(pack.pack_id, (s) => ({
-                    ...s,
-                    graphEngine: e.target.value as "bq_graphrag" | "adk_graph_coordinator",
-                  }))
-                }
-              >
-                <option value="bq_graphrag">Graph Intelligence (BigQuery Property Graph)</option>
-                <option value="adk_graph_coordinator">
-                  Autonomous Risk Agent (Google ADK 2.15)
-                </option>
-              </select>
+            <div className="grid-2">
+              <div>
+                <label className="field-label" htmlFor="compare-graph-engine">
+                  Graph Intelligence Engine
+                </label>
+                <select
+                  id="compare-graph-engine"
+                  className="select-control w-full"
+                  value={state.graphEngine}
+                  onChange={(e) =>
+                    patchState(pack.pack_id, (s) => ({
+                      ...s,
+                      graphEngine: e.target.value as "bq_graphrag" | "adk_graph_coordinator",
+                    }))
+                  }
+                >
+                  <option value="bq_graphrag">Graph Intelligence (BigQuery)</option>
+                  <option value="adk_graph_coordinator">
+                    Autonomous Risk Agent (ADK 2.15)
+                  </option>
+                </select>
+              </div>
+
+              <div>
+                <label className="field-label" htmlFor="compare-judge-model">
+                  Independent Evaluator (≠ Synthesis)
+                </label>
+                <select
+                  id="compare-judge-model"
+                  className="select-control w-full"
+                  value={effectiveJudgeModel}
+                  onChange={(e) =>
+                    patchState(pack.pack_id, (s) => ({ ...s, judgeModel: e.target.value }))
+                  }
+                >
+                  <option value="">Off (Skip Judge)</option>
+                  {judgeOptions.map((m) => (
+                    <option key={m.model_id} value={m.model_id}>
+                      {m.display_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             <div className="row-wrap">
@@ -275,6 +314,22 @@ export function ComparePage({
               <span className="mono">
                 {formatPercent(state.comparison.graphrag.recall?.path_recall)}
               </span>
+              {state.comparison.flat_vector_rag.evaluation &&
+                state.comparison.graphrag.evaluation && (
+                  <>
+                    {" "}
+                    · <strong>Composite Quality:</strong>{" "}
+                    <span className="mono">
+                      {formatPercent(
+                        state.comparison.flat_vector_rag.evaluation.composite_score
+                      )}
+                    </span>{" "}
+                    vs.{" "}
+                    <span className="mono">
+                      {formatPercent(state.comparison.graphrag.evaluation.composite_score)}
+                    </span>
+                  </>
+                )}
             </div>
           </div>
           {state.comparison.path_recall_delta !== null && (

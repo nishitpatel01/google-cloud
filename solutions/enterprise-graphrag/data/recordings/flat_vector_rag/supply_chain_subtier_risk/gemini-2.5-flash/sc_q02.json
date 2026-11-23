@@ -1,0 +1,285 @@
+{
+  "provenance_header": {
+    "recorded_at": "2026-11-23T20:49:43.843114+00:00",
+    "engine_id": "flat_vector_rag",
+    "pack_id": "supply_chain_subtier_risk",
+    "synthesis_model": "gemini-2.5-flash",
+    "judge_model": "vertex-genai-eval",
+    "question_id": "sc_q02",
+    "git_sha": "e034066"
+  },
+  "result": {
+    "engine_id": "flat_vector_rag",
+    "engine_label": "Flat Vector RAG (Baseline \u2014 Chunks Only)",
+    "pack_id": "supply_chain_subtier_risk",
+    "query": "Which USGS-tracked country dominates the global mineral refined by NVIDIA's disclosed Tin smelters across a 3-hop path?",
+    "synthesis_model": "gemini-2.5-flash",
+    "answer": "NVIDIA's disclosed Tin smelters are located in Australia, Belgium, Bolivia (Plurinational State of), and Brazil [CHUNK:CHK-SEC-SD-ISSUER-NVIDIA]. The global refined tin supply, which these smelters contribute to, is dominated by China and Indonesia, which together account for nearly half of the supply [CHUNK:CHK-USGS-TIN]. The provided chunks do not specify which of these two countries, China or Indonesia, individually dominates the global refined tin supply.",
+    "paths": [],
+    "retrieved_entity_ids": [],
+    "retrieved_edge_ids": [],
+    "retrieved_chunk_ids": [
+      "CHK-USGS-TIN",
+      "CHK-SEC-SD-ISSUER-NVIDIA",
+      "CHK-SEC-SD-ISSUER-AMD",
+      "CHK-SEC-SD-ISSUER-INTEL",
+      "CHK-USGS-TUNGSTEN",
+      "CHK-USGS-GOLD"
+    ],
+    "retrieved_nodes": [],
+    "retrieved_edges": [],
+    "retrieved_chunks": [
+      {
+        "chunk_id": "CHK-USGS-TIN",
+        "doc_name": "USGS_MCS_2025_Tin.txt",
+        "doc_type": "usgs_mineral_summary",
+        "page_number": 1,
+        "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): China and Indonesia together account for nearly half of global refined tin supply critical for lead-free electronics solder across server boards, GPUs, and mobile SoCs; U.S. net import reliance is ~77%.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/",
+        "distance": 0.1733731399838413
+      },
+      {
+        "chunk_id": "CHK-SEC-SD-ISSUER-NVIDIA",
+        "doc_name": "SEC_FormSD_2026_ISSUER-NVIDIA_a2026conflictmineralsrepor.htm",
+        "doc_type": "sec_form_sd_cmr",
+        "page_number": 1,
+        "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0001045810-26-000043, US Gov Public Domain) filed by NVIDIA Corporation (CIK 1045810). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000043/a2026conflictmineralsrepor.htm",
+        "distance": 0.19608912289431413
+      },
+      {
+        "chunk_id": "CHK-SEC-SD-ISSUER-AMD",
+        "doc_name": "SEC_FormSD_2026_ISSUER-AMD_fy2025cmr.htm",
+        "doc_type": "sec_form_sd_cmr",
+        "page_number": 1,
+        "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0000002488-26-000103, US Gov Public Domain) filed by Advanced Micro Devices, Inc. (CIK 2488). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000103/fy2025cmr.htm",
+        "distance": 0.2519134006349143
+      },
+      {
+        "chunk_id": "CHK-SEC-SD-ISSUER-INTEL",
+        "doc_name": "SEC_FormSD_2026_ISSUER-INTEL_a05192026formsdex101.htm",
+        "doc_type": "sec_form_sd_cmr",
+        "page_number": 1,
+        "content": "SEC EDGAR Form SD / Exhibit 1.01 Conflict Minerals Report (Accession 0000050863-26-000132, US Gov Public Domain) filed by Intel Corporation (CIK 50863). Disclosed verified Tier-2/3 3TG smelters and refiners include:\n- Tungsten: Wolfram Bergbau und Hutten AG (AUSTRIA)\n- Tungsten: Cronimet Brasil Ltda (BRAZIL)\n- Tungsten: China Molybdenum Tungsten Co., Ltd. (CHINA)\n- Tungsten: H.C. Starck Tungsten GmbH (GERMANY)\n- Tantalum: AMG Brasil (BRAZIL)\n- Tantalum: Mineracao Taboca S.A. (BRAZIL)\n- Tantalum: F&X Electro-Materials Ltd. (CHINA)\n- Tantalum: NPM Silmet AS (ESTONIA)\n- Tin: Global Advanced Metals Greenbushes Pty Ltd. (AUSTRALIA)\n- Tin: Aurubis Beerse (BELGIUM)\n- Tin: Operaciones Metalurgicas S.A. (BOLIVIA (PLURINATIONAL STATE OF))\n- Tin: CRM Fundicao De Metais E Comercio De Equipamentos Eletronicos Do Brasil Ltda (BRAZIL)\n- Gold: L'Orfebre S.A. (ANDORRA)\n- Gold: Umicore S.A. Business Unit Precious Metals Refining (BELGIUM)\n- Gold: AngloGold Ashanti Corrego do Sitio Mineracao (BRAZIL)",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000132/a05192026formsdex101.htm",
+        "distance": 0.25253986585618216
+      },
+      {
+        "chunk_id": "CHK-USGS-TUNGSTEN",
+        "doc_name": "USGS_MCS_2025_Tungsten.txt",
+        "doc_type": "usgs_mineral_summary",
+        "page_number": 1,
+        "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): China accounts for approximately 81% of global primary tungsten mine production and dominates ammonium paratungstate (APT) refining used in semiconductor metallization, aerospace tooling, and high-density contacts; U.S. net import reliance exceeds 50%.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.sciencebase.gov/catalog/item/6798f5d9d34ea8c18376e88d",
+        "distance": 0.2575985576715907
+      },
+      {
+        "chunk_id": "CHK-USGS-GOLD",
+        "doc_name": "USGS_MCS_2025_Gold.txt",
+        "doc_type": "usgs_mineral_summary",
+        "page_number": 1,
+        "content": "USGS Mineral Commodity Summaries (2025, US Gov Public Domain): Gold is globally diversified across China (~12%), Australia, Canada, and Japan/Korea refining hubs, used extensively in semiconductor wire bonding and corrosion-resistant connectors.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://pubs.usgs.gov/periodicals/mcs2025/",
+        "distance": 0.26103479440349187
+      }
+    ],
+    "provenance": {
+      "cited_entity_ids": [],
+      "verified_entity_ids": [],
+      "unverified_entity_ids": [],
+      "cited_edge_ids": [],
+      "verified_edge_ids": [],
+      "unverified_edge_ids": [],
+      "cited_chunk_ids": [
+        "CHK-SEC-SD-ISSUER-NVIDIA",
+        "CHK-USGS-TIN"
+      ],
+      "verified_chunk_ids": [
+        "CHK-SEC-SD-ISSUER-NVIDIA",
+        "CHK-USGS-TIN"
+      ],
+      "unverified_chunk_ids": []
+    },
+    "usage": {
+      "input_tokens": 1677,
+      "output_tokens": 104
+    },
+    "engine_cost_usd": 0.000763,
+    "total_duration_ms": 19145.13,
+    "flags": {
+      "graph_backend_used": "none",
+      "reranker_used": false,
+      "model_armor_checked": true,
+      "bq_cache_hit": false,
+      "bytes_processed": 1073852
+    }
+  },
+  "stage_events": [
+    {
+      "event_type": "stage_started",
+      "stage": "query_prep",
+      "label": "Prepare query & pack scope",
+      "service": "local",
+      "request": {
+        "pack_id": "supply_chain_subtier_risk",
+        "query": "Which USGS-tracked country dominates the global mineral refined by NVIDIA's disclosed Tin smelters across a 3-hop path?"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "query_prep",
+      "service_used": "local",
+      "duration_ms": 0.06,
+      "payload": {
+        "prepared_query": "Which USGS-tracked country dominates the global mineral refined by NVIDIA's disclosed Tin smelters across a 3-hop path?",
+        "pack_id": "supply_chain_subtier_risk"
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "embed_query",
+      "label": "Embed query (gemini-embedding-2)",
+      "service": "Vertex AI gemini-embedding-2",
+      "request": {
+        "model": "gemini-embedding-2",
+        "task_type": "RETRIEVAL_QUERY"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "embed_query",
+      "service_used": "Vertex AI gemini-embedding-2",
+      "duration_ms": 520.34,
+      "payload": {
+        "dimensions": 3072
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "retrieve_chunks",
+      "label": "BigQuery VECTOR_SEARCH (chunks only \u2014 no graph hops)",
+      "service": "BigQuery VECTOR_SEARCH",
+      "request": {
+        "pack_id": "supply_chain_subtier_risk",
+        "top_k": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "retrieve_chunks",
+      "service_used": "BigQuery VECTOR_SEARCH",
+      "duration_ms": 1884.36,
+      "payload": {
+        "sql": "SELECT\n  base.chunk_id,\n  base.doc_name,\n  base.doc_type,\n  base.page_number,\n  base.content,\n  base.data_origin,\n  base.source_license,\n  base.source_url,\n  distance\nFROM VECTOR_SEARCH(\n  (SELECT * FROM `acc05_enterprise_graphrag.source_chunks` WHERE pack_id = @pack_id AND ARRAY_LENGTH(embedding) > 0),\n  'embedding',\n  (SELECT @query_embedding AS embedding),\n  top_k => 6,\n  distance_type => 'COSINE'\n)\nORDER BY distance ASC",
+        "rows_returned": 6,
+        "chunk_ids": [
+          "CHK-USGS-TIN",
+          "CHK-SEC-SD-ISSUER-NVIDIA",
+          "CHK-SEC-SD-ISSUER-AMD",
+          "CHK-SEC-SD-ISSUER-INTEL",
+          "CHK-USGS-TUNGSTEN",
+          "CHK-USGS-GOLD"
+        ],
+        "bytes_processed": 1073852,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "synthesize",
+      "label": "Synthesize answer (gemini-2.5-flash)",
+      "service": "Vertex AI gemini-2.5-flash",
+      "request": {
+        "model": "gemini-2.5-flash",
+        "chunks_in_context": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "synthesize",
+      "service_used": "Vertex AI gemini-2.5-flash",
+      "duration_ms": 16740.14,
+      "payload": {
+        "input_tokens": 1677,
+        "output_tokens": 104,
+        "engine_cost_usd": 0.000763
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "verify_provenance",
+      "label": "Verify chunk citation provenance",
+      "service": "Deterministic Provenance Verifier",
+      "request": {
+        "allowed_chunks": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "verify_provenance",
+      "service_used": "Deterministic Provenance Verifier",
+      "duration_ms": 0.05,
+      "payload": {
+        "is_fully_verified": true,
+        "verified_chunks": 2,
+        "unverified_chunks": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "evaluate",
+      "label": "Evaluate Answer (Vertex AI GenAI Evaluation (:evaluateInstances))",
+      "service": "vertex_eval",
+      "request": {
+        "judge_model": "vertex-genai-eval"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "evaluate",
+      "service_used": "vertex_genai_eval",
+      "duration_ms": 15758.68,
+      "payload": {
+        "judge_model": "vertex-genai-eval",
+        "groundedness": 1.0,
+        "qa_relevance": 0.5,
+        "context_precision": 1.0,
+        "composite_score": 0.55,
+        "judge_cost_usd": 0.006071
+      }
+    }
+  ],
+  "recall": {
+    "entity_recall": 0.0,
+    "edge_recall": 0.0,
+    "path_recall": 0.0
+  },
+  "evaluation": {
+    "judge_model": "vertex-genai-eval",
+    "judge_provider": "vertex_genai_eval",
+    "groundedness": 1.0,
+    "qa_relevance": 0.5,
+    "context_precision": 1.0,
+    "path_recall": 0.0,
+    "provenance_verified": true,
+    "composite_score": 0.55,
+    "rationale": "GROUNDEDNESS: Every factual claim in the response is strictly supported by the provided context. The locations of NVIDIA's tin smelters are listed in CHK-SEC-SD-ISSUER-NVIDIA, the deta | QUESTION_ANSWERING_QUALITY: The response correctly identifies the mineral (Tin) and the top two producing countries (China, Indonesia), but it fails to complete the final hop by explicitly naming Ch | FULFILLMENT: The retrieved context perfectly provides the 3-hop path: CHK-SEC-SD-ISSUER-NVIDIA links NVIDIA to its Tin smelters (hop 1) and identifies the mineral as Tin (hop 2), and ",
+    "input_tokens": 2985,
+    "output_tokens": 234,
+    "judge_cost_usd": 0.006071,
+    "duration_ms": 15758.18
+  }
+}

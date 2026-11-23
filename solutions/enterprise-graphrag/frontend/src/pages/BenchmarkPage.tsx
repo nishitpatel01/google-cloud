@@ -1,12 +1,29 @@
-import { Download } from "lucide-react";
-import { useEffect, useState } from "react";
-import { estimateTco } from "../api/client";
-import type { PackSummary, TcoEstimateResponse } from "../types/graphrag";
-import { buildExecutiveBriefCsv, formatUsd } from "../utils/format";
+import { Award, Download } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { estimateTco, fetchBenchmarkSummary } from "../api/client";
+import type {
+  BenchmarkSummaryResponse,
+  PackSummary,
+  TcoEstimateResponse,
+} from "../types/graphrag";
+import {
+  buildExecutiveBriefCsv,
+  formatMs,
+  formatPercent,
+  formatUsd,
+} from "../utils/format";
 
 interface BenchmarkPageProps {
   pack: PackSummary;
   synthesisModel: string;
+}
+
+function friendlyEngineName(engineId: string, fallback: string): string {
+  if (engineId === "bq_graphrag") return "Graph Intelligence (BigQuery)";
+  if (engineId === "adk_graph_coordinator") return "Autonomous Risk Agent (ADK 2.15)";
+  if (engineId === "flat_vector_rag") return "Standard AI Search (Baseline)";
+  if (engineId === "spanner_graphrag") return "Real-Time Graph (Spanner Tier-2)";
+  return fallback;
 }
 
 export function BenchmarkPage({ pack, synthesisModel }: BenchmarkPageProps) {
@@ -14,6 +31,7 @@ export function BenchmarkPage({ pack, synthesisModel }: BenchmarkPageProps) {
   const [spannerPu, setSpannerPu] = useState(100);
   const [tier1, setTier1] = useState<TcoEstimateResponse | null>(null);
   const [tier2, setTier2] = useState<TcoEstimateResponse | null>(null);
+  const [benchmarks, setBenchmarks] = useState<BenchmarkSummaryResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -48,9 +66,31 @@ export function BenchmarkPage({ pack, synthesisModel }: BenchmarkPageProps) {
     };
   }, [pack.pack_id, monthlyQueries, synthesisModel, spannerPu]);
 
+  useEffect(() => {
+    let cancelled = false;
+    fetchBenchmarkSummary(pack.pack_id)
+      .then((res) => {
+        if (!cancelled) setBenchmarks(res);
+      })
+      .catch(() => {
+        if (!cancelled) setBenchmarks(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [pack.pack_id]);
+
+  const perQuestionById = useMemo(() => {
+    const map = new Map<string, BenchmarkSummaryResponse["per_question"][number]>();
+    for (const row of benchmarks?.per_question ?? []) {
+      map.set(row.question_id, row);
+    }
+    return map;
+  }, [benchmarks]);
+
   const handleExportCsv = () => {
     if (!tier1 || !tier2) return;
-    const csv = buildExecutiveBriefCsv([
+    const rows: Array<{ metric: string; value: string | number; notes: string }> = [
       { metric: "Industry Scenario", value: pack.title, notes: pack.industry },
       { metric: "Target Executive Role", value: pack.persona, notes: pack.pack_id },
       {
@@ -84,7 +124,17 @@ export function BenchmarkPage({ pack, synthesisModel }: BenchmarkPageProps) {
         value: formatUsd(tier1.net_monthly_savings_usd * 12),
         notes: "12-month annualized projection",
       },
-    ]);
+    ];
+
+    for (const lb of benchmarks?.leaderboard ?? []) {
+      rows.push({
+        metric: `Measured Eval · ${friendlyEngineName(lb.engine_id, lb.engine_label)}`,
+        value: `Recall ${formatPercent(lb.avg_path_recall)} | Groundedness ${formatPercent(lb.avg_groundedness)} | Composite ${formatPercent(lb.avg_composite_score)}`,
+        notes: `${lb.runs_count} recorded live runs (${lb.synthesis_model} judged by ${lb.judge_model ?? "none"}); Engine ${formatUsd(lb.avg_engine_cost_usd)}, Judge ${formatUsd(lb.avg_judge_cost_usd)}`,
+      });
+    }
+
+    const csv = buildExecutiveBriefCsv(rows);
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -100,11 +150,11 @@ export function BenchmarkPage({ pack, synthesisModel }: BenchmarkPageProps) {
     <div className="stack-md">
       <div className="page-header">
         <div>
-          <h1>Business ROI, Cost Estimator &amp; Benchmark Suite</h1>
+          <h1>Business ROI, Evaluation Leaderboard &amp; Cost Estimator</h1>
           <p className="page-subtitle">
-            Estimate monthly and annual Google Cloud spend against manual analyst effort, compare
-            serverless vs. real-time enterprise deployment tiers, and export a spreadsheet-safe
-            executive brief.
+            Review real recorded Vertex AI evaluations across every multi-tier benchmark scenario,
+            model serverless vs. real-time cloud spend against manual analyst effort, and export a
+            spreadsheet-safe executive brief.
           </p>
         </div>
         <button
@@ -123,6 +173,79 @@ export function BenchmarkPage({ pack, synthesisModel }: BenchmarkPageProps) {
         <div role="alert" className="error-banner">
           {error}
         </div>
+      )}
+
+      {/* Measured Evaluation Leaderboard from Recorded Live Runs */}
+      {benchmarks && benchmarks.leaderboard.length > 0 && (
+        <section className="panel" aria-label="Measured evaluation leaderboard">
+          <div className="panel-header">
+            <div className="row-wrap">
+              <Award size={15} aria-hidden="true" />
+              <h2 className="panel-title">
+                Measured Evaluation Leaderboard · {pack.title}
+              </h2>
+            </div>
+            <span className="badge badge-verified">
+              {benchmarks.total_recordings} Real Recorded Live Runs (Zero Hardcoded Scores)
+            </span>
+          </div>
+          <div className="panel-body table-scroll">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Approach</th>
+                  <th>Runs</th>
+                  <th>Multi-Tier Recall</th>
+                  <th>Groundedness</th>
+                  <th>Answer Quality</th>
+                  <th>Evidence Precision</th>
+                  <th>Composite</th>
+                  <th>Citations Verified</th>
+                  <th>Avg Latency</th>
+                  <th>Engine Cost</th>
+                  <th>Judge Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                {benchmarks.leaderboard.map((row) => {
+                  const isBaseline = row.engine_id === "flat_vector_rag";
+                  return (
+                    <tr key={`${row.engine_id}-${row.synthesis_model}-${row.judge_model}`}>
+                      <td>
+                        <strong>{friendlyEngineName(row.engine_id, row.engine_label)}</strong>
+                        <div className="muted-copy mono">
+                          {row.synthesis_model} · judge: {row.judge_model ?? "none"}
+                        </div>
+                      </td>
+                      <td className="mono">{row.runs_count}</td>
+                      <td>
+                        <span
+                          className={`badge mono ${isBaseline ? "badge-danger" : "badge-verified"}`}
+                        >
+                          {formatPercent(row.avg_path_recall)}
+                        </span>
+                      </td>
+                      <td className="mono">{formatPercent(row.avg_groundedness)}</td>
+                      <td className="mono">{formatPercent(row.avg_qa_relevance)}</td>
+                      <td className="mono">{formatPercent(row.avg_context_precision)}</td>
+                      <td>
+                        <span
+                          className={`badge mono ${isBaseline ? "" : "badge-verified"}`}
+                        >
+                          {formatPercent(row.avg_composite_score)}
+                        </span>
+                      </td>
+                      <td className="mono">{formatPercent(row.provenance_pass_rate)}</td>
+                      <td className="mono">{formatMs(row.avg_duration_ms)}</td>
+                      <td className="mono">{formatUsd(row.avg_engine_cost_usd)}</td>
+                      <td className="mono">{formatUsd(row.avg_judge_cost_usd)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
       )}
 
       <section className="panel" aria-label="Workload sizing parameters">
@@ -295,24 +418,43 @@ export function BenchmarkPage({ pack, synthesisModel }: BenchmarkPageProps) {
                 <th>Scenario</th>
                 <th>Depth &amp; Scope</th>
                 <th>Business Question</th>
-                <th>Verified Path Coverage</th>
+                <th>Recorded Accuracy (Flat vs. Graph)</th>
                 <th>Why Standard Search Falls Short</th>
               </tr>
             </thead>
             <tbody>
-              {pack.questions.map((q, idx) => (
-                <tr key={q.question_id}>
-                  <td className="mono">#{idx + 1}</td>
-                  <td>
-                    {q.hop_depth}-tier ({q.direction})
-                  </td>
-                  <td>{q.question}</td>
-                  <td className="mono">
-                    {q.expected_entity_ids.length} entities · {q.expected_edge_ids.length} links
-                  </td>
-                  <td className="secondary-cell">{q.why_flat_vector_misses}</td>
-                </tr>
-              ))}
+              {pack.questions.map((q, idx) => {
+                const recorded = perQuestionById.get(q.question_id);
+                const flatArm = recorded?.arms.flat_vector_rag;
+                const graphArm = recorded?.arms.bq_graphrag;
+                return (
+                  <tr key={q.question_id}>
+                    <td className="mono">#{idx + 1}</td>
+                    <td>
+                      {q.hop_depth}-tier ({q.direction})
+                    </td>
+                    <td>{q.question}</td>
+                    <td>
+                      {flatArm && graphArm ? (
+                        <div className="row-wrap">
+                          <span className="badge badge-danger mono">
+                            Flat {formatPercent(flatArm.path_recall)}
+                          </span>
+                          <span className="badge badge-verified mono">
+                            Graph {formatPercent(graphArm.path_recall)}
+                          </span>
+                        </div>
+                      ) : (
+                        <span className="muted-copy mono">
+                          {q.expected_entity_ids.length} entities ·{" "}
+                          {q.expected_edge_ids.length} links
+                        </span>
+                      )}
+                    </td>
+                    <td className="secondary-cell">{q.why_flat_vector_misses}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

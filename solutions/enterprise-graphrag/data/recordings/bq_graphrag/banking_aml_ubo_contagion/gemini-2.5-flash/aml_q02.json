@@ -1,0 +1,833 @@
+{
+  "provenance_header": {
+    "recorded_at": "2026-11-23T20:36:02.292783+00:00",
+    "engine_id": "bq_graphrag",
+    "pack_id": "banking_aml_ubo_contagion",
+    "synthesis_model": "gemini-2.5-flash",
+    "judge_model": "vertex-genai-eval",
+    "question_id": "aml_q02",
+    "git_sha": "e034066"
+  },
+  "result": {
+    "engine_id": "bq_graphrag",
+    "engine_label": "Hybrid GraphRAG (Tier-1 BigQuery Property Graph ISO GQL)",
+    "pack_id": "banking_aml_ubo_contagion",
+    "query": "Using solely US Treasury OFAC SDN records, trace the 3-hop path from MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY through MEHR EQTESAD BANK to the sanctions program governing BONYAD TAAVON BASIJ.",
+    "synthesis_model": "gemini-2.5-flash",
+    "answer": "A 3-hop path from [ENTITY:OFAC-12802] (MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY) through [ENTITY:OFAC-25018] (MEHR EQTESAD BANK) to the sanctions program governing [ENTITY:OFAC-25017] (BONYAD TAAVON BASIJ) can be traced as follows, using solely US Treasury OFAC SDN records:\n\n1.  [ENTITY:OFAC-12802] (MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY) is linked to [ENTITY:OFAC-25018] (MEHR EQTESAD BANK). This is a REAL_PUBLIC record, evidenced by OFAC SDN remarks for MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY stating \"Linked To: MEHR EQTESAD BANK\" [EDGE:EDGE-OFAC-OFAC-12802-OFAC-25018] [CHUNK:CHK-OFAC-12802].\n2.  [ENTITY:OFAC-25018] (MEHR EQTESAD BANK) is linked to [ENTITY:OFAC-25017] (BONYAD TAAVON BASIJ). This is a REAL_PUBLIC record, evidenced by OFAC SDN remarks for MEHR EQTESAD BANK stating \"Linked To: BONYAD TAAVON BASIJ\" [EDGE:EDGE-OFAC-OFAC-25018-OFAC-25017] [CHUNK:CHK-OFAC-25018].\n3.  [ENTITY:OFAC-25017] (BONYAD TAAVON BASIJ) is designated under the OFAC Program: SDGT [ENTITY:PROG-SDGT]. This is a REAL_PUBLIC record, evidenced by US Treasury OFAC designating BONYAD TAAVON BASIJ (#25017) under program SDGT [EDGE:EDGE-PROG-OFAC-25017-PROG-SDGT] [CHUNK:CHK-OFAC-25017].",
+    "paths": [
+      {
+        "path_id": "path-020",
+        "hop_count": 3,
+        "node_ids": [
+          "OFAC-25037",
+          "OFAC-12802",
+          "OFAC-25018",
+          "OFAC-25017"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-25037-OFAC-12802",
+          "EDGE-OFAC-OFAC-12802-OFAC-25018",
+          "EDGE-OFAC-OFAC-25018-OFAC-25017"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-021",
+        "hop_count": 3,
+        "node_ids": [
+          "OFAC-12802",
+          "OFAC-25018",
+          "OFAC-12727",
+          "PROG-FTO"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-12802-OFAC-25018",
+          "EDGE-OFAC-OFAC-25018-OFAC-12727",
+          "EDGE-PROG-OFAC-12727-PROG-FTO"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-018",
+        "hop_count": 3,
+        "node_ids": [
+          "OFAC-25020",
+          "OFAC-12802",
+          "OFAC-25018",
+          "OFAC-25017"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-25020-OFAC-12802",
+          "EDGE-OFAC-OFAC-12802-OFAC-25018",
+          "EDGE-OFAC-OFAC-25018-OFAC-25017"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-017",
+        "hop_count": 3,
+        "node_ids": [
+          "OFAC-25020",
+          "OFAC-12802",
+          "OFAC-25018",
+          "OFAC-12727"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-25020-OFAC-12802",
+          "EDGE-OFAC-OFAC-12802-OFAC-25018",
+          "EDGE-OFAC-OFAC-25018-OFAC-12727"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-008",
+        "hop_count": 1,
+        "node_ids": [
+          "OFAC-25018",
+          "OFAC-25017"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-25018-OFAC-25017"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-019",
+        "hop_count": 3,
+        "node_ids": [
+          "OFAC-25037",
+          "OFAC-12802",
+          "OFAC-25018",
+          "OFAC-12727"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-25037-OFAC-12802",
+          "EDGE-OFAC-OFAC-12802-OFAC-25018",
+          "EDGE-OFAC-OFAC-25018-OFAC-12727"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-009",
+        "hop_count": 1,
+        "node_ids": [
+          "OFAC-25018",
+          "OFAC-12727"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-25018-OFAC-12727"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-001",
+        "hop_count": 1,
+        "node_ids": [
+          "OFAC-25017",
+          "PROG-SDGT"
+        ],
+        "edge_ids": [
+          "EDGE-PROG-OFAC-25017-PROG-SDGT"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-014",
+        "hop_count": 2,
+        "node_ids": [
+          "OFAC-12802",
+          "OFAC-25018",
+          "OFAC-25017"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-12802-OFAC-25018",
+          "EDGE-OFAC-OFAC-25018-OFAC-25017"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-015",
+        "hop_count": 2,
+        "node_ids": [
+          "OFAC-25018",
+          "OFAC-12727",
+          "PROG-FTO"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-25018-OFAC-12727",
+          "EDGE-PROG-OFAC-12727-PROG-FTO"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-002",
+        "hop_count": 1,
+        "node_ids": [
+          "OFAC-12727",
+          "PROG-FTO"
+        ],
+        "edge_ids": [
+          "EDGE-PROG-OFAC-12727-PROG-FTO"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      },
+      {
+        "path_id": "path-016",
+        "hop_count": 2,
+        "node_ids": [
+          "OFAC-12802",
+          "OFAC-25018",
+          "OFAC-12727"
+        ],
+        "edge_ids": [
+          "EDGE-OFAC-OFAC-12802-OFAC-25018",
+          "EDGE-OFAC-OFAC-25018-OFAC-12727"
+        ],
+        "path_exposure_usd": 0.0,
+        "min_confidence": 1.0
+      }
+    ],
+    "retrieved_entity_ids": [
+      "OFAC-12727",
+      "OFAC-12802",
+      "OFAC-25017",
+      "OFAC-25018",
+      "OFAC-25020",
+      "OFAC-25037",
+      "PROG-FTO",
+      "PROG-SDGT"
+    ],
+    "retrieved_edge_ids": [
+      "EDGE-OFAC-OFAC-12802-OFAC-25018",
+      "EDGE-OFAC-OFAC-25018-OFAC-12727",
+      "EDGE-OFAC-OFAC-25018-OFAC-25017",
+      "EDGE-OFAC-OFAC-25020-OFAC-12802",
+      "EDGE-OFAC-OFAC-25037-OFAC-12802",
+      "EDGE-PROG-OFAC-12727-PROG-FTO",
+      "EDGE-PROG-OFAC-12802-PROG-SDGT",
+      "EDGE-PROG-OFAC-25017-PROG-SDGT",
+      "EDGE-PROG-OFAC-25018-PROG-SDGT",
+      "EDGE-PROG-OFAC-25020-PROG-SDGT",
+      "EDGE-PROG-OFAC-25037-PROG-SDGT"
+    ],
+    "retrieved_chunk_ids": [
+      "CHK-OFAC-12727",
+      "CHK-OFAC-12802",
+      "CHK-OFAC-25017",
+      "CHK-OFAC-25018",
+      "CHK-OFAC-25020",
+      "CHK-OFAC-25037"
+    ],
+    "retrieved_nodes": [
+      {
+        "canonical_name": "BONYAD TAAVON BASIJ",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "OFAC-25017",
+        "entity_type": "SanctionedOrg",
+        "exposure_usd": 0.0,
+        "jurisdiction": "IRAN",
+        "pack_id": "banking_aml_ubo_contagion",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "OFAC Program: SDGT",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "PROG-SDGT",
+        "entity_type": "ProgramOrJurisdiction",
+        "exposure_usd": 0.0,
+        "jurisdiction": "UNITED STATES",
+        "pack_id": "banking_aml_ubo_contagion",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "BASIJ RESISTANCE FORCE",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "OFAC-12727",
+        "entity_type": "SanctionedOrg",
+        "exposure_usd": 0.0,
+        "jurisdiction": "IRAN",
+        "pack_id": "banking_aml_ubo_contagion",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "OFAC Program: FTO",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "PROG-FTO",
+        "entity_type": "ProgramOrJurisdiction",
+        "exposure_usd": 0.0,
+        "jurisdiction": "UNITED STATES",
+        "pack_id": "banking_aml_ubo_contagion",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "OFAC-12802",
+        "entity_type": "CorporateEntity",
+        "exposure_usd": 0.0,
+        "jurisdiction": "IRAN",
+        "pack_id": "banking_aml_ubo_contagion",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "MEHR EQTESAD FINANCIAL GROUP",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "OFAC-25037",
+        "entity_type": "CorporateEntity",
+        "exposure_usd": 0.0,
+        "jurisdiction": "IRAN",
+        "pack_id": "banking_aml_ubo_contagion",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "TADBIRGARAN ATIYEH IRANIAN INVESTMENT COMPANY",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "OFAC-25020",
+        "entity_type": "CorporateEntity",
+        "exposure_usd": 0.0,
+        "jurisdiction": "IRAN",
+        "pack_id": "banking_aml_ubo_contagion",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      },
+      {
+        "canonical_name": "MEHR EQTESAD BANK",
+        "data_origin": "REAL_PUBLIC",
+        "entity_id": "OFAC-25018",
+        "entity_type": "CorporateEntity",
+        "exposure_usd": 0.0,
+        "jurisdiction": "IRAN",
+        "pack_id": "banking_aml_ubo_contagion",
+        "risk_tier": "CRITICAL",
+        "single_source": false,
+        "source_license": "US_GOV_PUBLIC_DOMAIN"
+      }
+    ],
+    "retrieved_edges": [
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-PROG-OFAC-25017-PROG-SDGT",
+        "evidence_excerpt": "US Treasury OFAC designates BONYAD TAAVON BASIJ (#25017) under program SDGT.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "DESIGNATED_UNDER",
+        "source_chunk_id": "CHK-OFAC-25017",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_25017.txt",
+        "source_entity_id": "OFAC-25017",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "PROG-SDGT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-PROG-OFAC-12727-PROG-FTO",
+        "evidence_excerpt": "US Treasury OFAC designates BASIJ RESISTANCE FORCE (#12727) under program FTO.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "DESIGNATED_UNDER",
+        "source_chunk_id": "CHK-OFAC-12727",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_12727.txt",
+        "source_entity_id": "OFAC-12727",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "PROG-FTO",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-PROG-OFAC-12802-PROG-SDGT",
+        "evidence_excerpt": "US Treasury OFAC designates MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY (#12802) under program SDGT.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "DESIGNATED_UNDER",
+        "source_chunk_id": "CHK-OFAC-12802",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_12802.txt",
+        "source_entity_id": "OFAC-12802",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "PROG-SDGT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-OFAC-OFAC-25037-OFAC-12802",
+        "evidence_excerpt": "OFAC SDN remarks for MEHR EQTESAD FINANCIAL GROUP explicitly state: Linked To: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "LINKED_TO",
+        "source_chunk_id": "CHK-OFAC-25037",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_25037.txt",
+        "source_entity_id": "OFAC-25037",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "OFAC-12802",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-PROG-OFAC-25037-PROG-SDGT",
+        "evidence_excerpt": "US Treasury OFAC designates MEHR EQTESAD FINANCIAL GROUP (#25037) under program SDGT.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "DESIGNATED_UNDER",
+        "source_chunk_id": "CHK-OFAC-25037",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_25037.txt",
+        "source_entity_id": "OFAC-25037",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "PROG-SDGT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-PROG-OFAC-25020-PROG-SDGT",
+        "evidence_excerpt": "US Treasury OFAC designates TADBIRGARAN ATIYEH IRANIAN INVESTMENT COMPANY (#25020) under program SDGT.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "DESIGNATED_UNDER",
+        "source_chunk_id": "CHK-OFAC-25020",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_25020.txt",
+        "source_entity_id": "OFAC-25020",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "PROG-SDGT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-OFAC-OFAC-12802-OFAC-25018",
+        "evidence_excerpt": "OFAC SDN remarks for MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY explicitly state: Linked To: MEHR EQTESAD BANK.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "LINKED_TO",
+        "source_chunk_id": "CHK-OFAC-12802",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_12802.txt",
+        "source_entity_id": "OFAC-12802",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "OFAC-25018",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-OFAC-OFAC-25018-OFAC-25017",
+        "evidence_excerpt": "OFAC SDN remarks for MEHR EQTESAD BANK explicitly state: Linked To: BONYAD TAAVON BASIJ.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "LINKED_TO",
+        "source_chunk_id": "CHK-OFAC-25018",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_25018.txt",
+        "source_entity_id": "OFAC-25018",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "OFAC-25017",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-OFAC-OFAC-25018-OFAC-12727",
+        "evidence_excerpt": "OFAC SDN remarks for MEHR EQTESAD BANK explicitly state: Linked To: BASIJ RESISTANCE FORCE.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "LINKED_TO",
+        "source_chunk_id": "CHK-OFAC-25018",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_25018.txt",
+        "source_entity_id": "OFAC-25018",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "OFAC-12727",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-PROG-OFAC-25018-PROG-SDGT",
+        "evidence_excerpt": "US Treasury OFAC designates MEHR EQTESAD BANK (#25018) under program SDGT.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "DESIGNATED_UNDER",
+        "source_chunk_id": "CHK-OFAC-25018",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_25018.txt",
+        "source_entity_id": "OFAC-25018",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "PROG-SDGT",
+        "weight": 1.0
+      },
+      {
+        "confidence": 1.0,
+        "data_origin": "REAL_PUBLIC",
+        "edge_id": "EDGE-OFAC-OFAC-25020-OFAC-12802",
+        "evidence_excerpt": "OFAC SDN remarks for TADBIRGARAN ATIYEH IRANIAN INVESTMENT COMPANY explicitly state: Linked To: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY.",
+        "exposure_usd": 0.0,
+        "pack_id": "banking_aml_ubo_contagion",
+        "relation_type": "LINKED_TO",
+        "source_chunk_id": "CHK-OFAC-25020",
+        "source_doc_name": "US_Treasury_OFAC_SDN_Entry_25020.txt",
+        "source_entity_id": "OFAC-25020",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "target_entity_id": "OFAC-12802",
+        "weight": 1.0
+      }
+    ],
+    "retrieved_chunks": [
+      {
+        "chunk_id": "CHK-OFAC-25020",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_25020.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #25020 (US Gov Public Domain): Name: TADBIRGARAN ATIYEH IRANIAN INVESTMENT COMPANY. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: None listed. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; National ID No. 10102867151 (Iran); Registration Number 246077 (Iran); Linked To: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+      },
+      {
+        "chunk_id": "CHK-OFAC-12802",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_12802.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #12802 (US Gov Public Domain): Name: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY. Type: -0-. Programs: [SDGT] [NPWMD] [IRGC] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: MEHR EGHTESAD IRANIAN INVESTMENT COMPANY, MEHR IRANIAN ECONOMY COMPANY, MEHR IRANIAN ECONOMY INVESTMENTS. Official Remarks: Website www.mebank.ir; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Phone Number 982188526300; alt. Phone Number 982188526301; alt. Phone Number 982188526302; alt. Phone Number 982188526303; alt. Phone Number 9821227700019; Business Registration Document # 103222 (Iran); National ID No. 10101863528 (Iran); Fax: 982188526337; Alt. Fax: 9221227700019; Linked To: MEHR EQTESAD BANK.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+      },
+      {
+        "chunk_id": "CHK-OFAC-25018",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_25018.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #25018 (US Gov Public Domain): Name: MEHR EQTESAD BANK. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: MEHR INTEREST-FREE BANK. Official Remarks: Website www.mebank.ir; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: BONYAD TAAVON BASIJ; Linked To: BASIJ RESISTANCE FORCE.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+      },
+      {
+        "chunk_id": "CHK-OFAC-25017",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_25017.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #25017 (US Gov Public Domain): Name: BONYAD TAAVON BASIJ. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: BASIJ COOPERATIVE FOUNDATION. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: BASIJ RESISTANCE FORCE.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+      },
+      {
+        "chunk_id": "CHK-OFAC-12727",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_12727.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #12727 (US Gov Public Domain): Name: BASIJ RESISTANCE FORCE. Type: -0-. Programs: [FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR]. Jurisdiction/Address Country: IRAN. Aliases: SAZMAN-E MOGHAVEMAT-E BASIJ, BASIJ-E MELLI, BASEEJ. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; a.k.a. 'NATIONAL RESISTANCE MOBILIZATION'; a.k.a. 'RESISTANCE MOBILIZATION FORCE'; f.k.a. 'NATIONAL MOBILIZATION ORGANIZATION'; a.k.a. 'MOBILIZATION OF THE OPPRESSED'; a.k.a. 'MOBILIZATION OF THE OPPRESSED UNIT'; a.k.a. 'ORGANIZATION OF THE MOBILISATION OF THE OPPRESSED'; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+      },
+      {
+        "chunk_id": "CHK-OFAC-25037",
+        "doc_name": "US_Treasury_OFAC_SDN_Entry_25037.txt",
+        "doc_type": "ofac_sdn_record",
+        "page_number": 1,
+        "content": "US Treasury OFAC SDN Official Record #25037 (US Gov Public Domain): Name: MEHR EQTESAD FINANCIAL GROUP. Type: -0-. Programs: [SDGT] [IFSR]. Jurisdiction/Address Country: IRAN. Aliases: None listed. Official Remarks: Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; National ID No. 10101471388 (Iran); Linked To: MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY.",
+        "data_origin": "REAL_PUBLIC",
+        "source_license": "US_GOV_PUBLIC_DOMAIN",
+        "source_url": "https://www.treasury.gov/ofac/downloads/sdn.csv"
+      }
+    ],
+    "provenance": {
+      "cited_entity_ids": [
+        "OFAC-12802",
+        "OFAC-25018",
+        "OFAC-25017",
+        "PROG-SDGT"
+      ],
+      "verified_entity_ids": [
+        "OFAC-12802",
+        "OFAC-25018",
+        "OFAC-25017",
+        "PROG-SDGT"
+      ],
+      "unverified_entity_ids": [],
+      "cited_edge_ids": [
+        "EDGE-OFAC-OFAC-12802-OFAC-25018",
+        "EDGE-OFAC-OFAC-25018-OFAC-25017",
+        "EDGE-PROG-OFAC-25017-PROG-SDGT"
+      ],
+      "verified_edge_ids": [
+        "EDGE-OFAC-OFAC-12802-OFAC-25018",
+        "EDGE-OFAC-OFAC-25018-OFAC-25017",
+        "EDGE-PROG-OFAC-25017-PROG-SDGT"
+      ],
+      "unverified_edge_ids": [],
+      "cited_chunk_ids": [
+        "CHK-OFAC-12802",
+        "CHK-OFAC-25018",
+        "CHK-OFAC-25017"
+      ],
+      "verified_chunk_ids": [
+        "CHK-OFAC-12802",
+        "CHK-OFAC-25018",
+        "CHK-OFAC-25017"
+      ],
+      "unverified_chunk_ids": []
+    },
+    "usage": {
+      "input_tokens": 5125,
+      "output_tokens": 482
+    },
+    "engine_cost_usd": 0.002743,
+    "total_duration_ms": 23749.9,
+    "flags": {
+      "graph_backend_used": "bigquery_property_graph",
+      "reranker_used": true,
+      "model_armor_checked": true,
+      "bq_cache_hit": false,
+      "bytes_processed": 2658380
+    }
+  },
+  "stage_events": [
+    {
+      "event_type": "stage_started",
+      "stage": "query_prep",
+      "label": "Prepare multi-hop graph query",
+      "service": "local",
+      "request": {
+        "pack_id": "banking_aml_ubo_contagion",
+        "max_hops": 3,
+        "direction": "outgoing"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "query_prep",
+      "service_used": "local",
+      "duration_ms": 0.04,
+      "payload": {
+        "prepared_query": "Using solely US Treasury OFAC SDN records, trace the 3-hop path from MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY through MEHR EQTESAD BANK to the sanctions program governing BONYAD TAAVON BASIJ.",
+        "max_hops": 3,
+        "direction": "outgoing"
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "embed_query",
+      "label": "Embed query (gemini-embedding-2)",
+      "service": "Vertex AI gemini-embedding-2",
+      "request": {
+        "model": "gemini-embedding-2"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "embed_query",
+      "service_used": "Vertex AI gemini-embedding-2",
+      "duration_ms": 210.93,
+      "payload": {
+        "dimensions": 3072
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "vector_seed",
+      "label": "Resolve anchor seed entities (BigQuery VECTOR_SEARCH)",
+      "service": "BigQuery VECTOR_SEARCH",
+      "request": {
+        "pack_id": "banking_aml_ubo_contagion",
+        "top_k_seeds": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "vector_seed",
+      "service_used": "BigQuery VECTOR_SEARCH",
+      "duration_ms": 2068.89,
+      "payload": {
+        "sql": "WITH vector_hits AS (\n  SELECT\n    base.entity_id,\n    base.canonical_name,\n    base.entity_type,\n    base.jurisdiction,\n    base.risk_tier,\n    base.exposure_usd,\n    base.data_origin,\n    base.source_license,\n    distance\n  FROM VECTOR_SEARCH(\n    (SELECT * FROM `acc05_enterprise_graphrag.entities` WHERE pack_id = @pack_id AND ARRAY_LENGTH(embedding) > 0),\n    'embedding',\n    (SELECT @query_embedding AS embedding),\n    top_k => 6,\n    distance_type => 'COSINE'\n  )\n),\nlexical_hits AS (\n  SELECT\n    entity_id,\n    canonical_name,\n    entity_type,\n    jurisdiction,\n    risk_tier,\n    exposure_usd,\n    data_origin,\n    source_license,\n    0.05 AS distance\n  FROM `acc05_enterprise_graphrag.entities`\n  WHERE pack_id = @pack_id\n    AND (\n      (LENGTH(canonical_name) >= 3 AND STRPOS(LOWER(@query_text), LOWER(canonical_name)) > 0)\n      OR (\n        LENGTH(REGEXP_REPLACE(LOWER(canonical_name), r'\\s+(corporation|corp|inc|ltd|llc|co|limited|group|holdings)\\.?$', '')) >= 4\n        AND STRPOS(\n          LOWER(@query_text),\n          REGEXP_REPLACE(LOWER(canonical_name), r'\\s+(corporation|corp|inc|ltd|llc|co|limited|group|holdings)\\.?$', '')\n        ) > 0\n      )\n    )\n  LIMIT 6\n)\nSELECT\n  entity_id,\n  canonical_name,\n  entity_type,\n  jurisdiction,\n  risk_tier,\n  exposure_usd,\n  data_origin,\n  source_license,\n  distance\nFROM (\n  SELECT * FROM vector_hits\n  UNION ALL\n  SELECT * FROM lexical_hits\n)\nQUALIFY ROW_NUMBER() OVER (PARTITION BY entity_id ORDER BY distance ASC) = 1\nORDER BY distance ASC\nLIMIT 6",
+        "seed_ids": [
+          "OFAC-12802",
+          "OFAC-25017",
+          "OFAC-25018",
+          "OFAC-25037",
+          "OFAC-12727",
+          "OFAC-25020"
+        ],
+        "rows_returned": 6,
+        "bytes_processed": 2546985,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "gql_traverse",
+      "label": "Traverse BigQuery Property Graph (ISO GQL, up to 3 hops)",
+      "service": "BigQuery Property Graph (ISO GQL)",
+      "request": {
+        "seed_ids": [
+          "OFAC-12802",
+          "OFAC-25017",
+          "OFAC-25018",
+          "OFAC-25037",
+          "OFAC-12727",
+          "OFAC-25020"
+        ],
+        "max_hops": 3,
+        "direction": "outgoing"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "gql_traverse",
+      "service_used": "BigQuery Property Graph (ISO GQL)",
+      "duration_ms": 4968.64,
+      "payload": {
+        "gql": "GRAPH acc05_enterprise_graphrag.EnterpriseGraph\nMATCH p = ANY SHORTEST (src:Entity)-[hops:Rel]->{1,3}(dst:Entity)\nWHERE src.pack_id = @pack_id AND dst.pack_id = @pack_id AND src.entity_id IN UNNEST(@seed_ids)\nLET hop_count = PATH_LENGTH(p),\n    min_confidence = MIN(hops.confidence),\n    path_exposure_usd = MAX(hops.exposure_usd)\nFILTER min_confidence >= @min_confidence\nRETURN\n  src.entity_id AS start_id,\n  dst.entity_id AS end_id,\n  dst.entity_type AS end_type,\n  dst.risk_tier AS end_risk_tier,\n  hop_count,\n  path_exposure_usd,\n  min_confidence,\n  TO_JSON(NODES(p)) AS path_nodes_json,\n  TO_JSON(EDGES(p)) AS path_edges_json\nORDER BY path_exposure_usd DESC, hop_count ASC\nLIMIT 120",
+        "paths_found": 21,
+        "unique_nodes": 8,
+        "unique_edges": 11,
+        "linked_chunks": 6,
+        "bytes_processed": 111395,
+        "cache_hit": false
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "rerank",
+      "label": "Rerank candidate paths (Discovery Engine Ranking API)",
+      "service": "Discovery Engine Ranking API",
+      "request": {
+        "candidates_in": 21,
+        "top_n": 12
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "rerank",
+      "service_used": "Discovery Engine Ranking API",
+      "duration_ms": 124.48,
+      "payload": {
+        "candidates_in": 21,
+        "candidates_out": 12,
+        "top_scores": [
+          0.6323,
+          0.6293,
+          0.6148,
+          0.469,
+          0.4675
+        ]
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "synthesize",
+      "label": "Synthesize grounded contagion brief (gemini-2.5-flash)",
+      "service": "Vertex AI gemini-2.5-flash",
+      "request": {
+        "model": "gemini-2.5-flash",
+        "paths_in_context": 12
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "synthesize",
+      "service_used": "Vertex AI gemini-2.5-flash",
+      "duration_ms": 16376.21,
+      "payload": {
+        "input_tokens": 5125,
+        "output_tokens": 482,
+        "engine_cost_usd": 0.002743
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "verify_provenance",
+      "label": "Deterministic Edge-ID & Entity-ID Provenance Audit",
+      "service": "Deterministic Provenance Verifier",
+      "request": {
+        "allowed_entities": 8,
+        "allowed_edges": 11,
+        "allowed_chunks": 6
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "verify_provenance",
+      "service_used": "Deterministic Provenance Verifier",
+      "duration_ms": 0.1,
+      "payload": {
+        "is_fully_verified": true,
+        "verified_entities": 4,
+        "unverified_entities": 0,
+        "verified_edges": 3,
+        "unverified_edges": 0,
+        "verified_chunks": 3,
+        "unverified_chunks": 0
+      }
+    },
+    {
+      "event_type": "stage_started",
+      "stage": "evaluate",
+      "label": "Evaluate Answer (Vertex AI GenAI Evaluation (:evaluateInstances))",
+      "service": "vertex_eval",
+      "request": {
+        "judge_model": "vertex-genai-eval"
+      }
+    },
+    {
+      "event_type": "stage_completed",
+      "stage": "evaluate",
+      "service_used": "vertex_genai_eval",
+      "duration_ms": 25649.16,
+      "payload": {
+        "judge_model": "vertex-genai-eval",
+        "groundedness": 1.0,
+        "qa_relevance": 1.0,
+        "context_precision": 1.0,
+        "composite_score": 1.0,
+        "judge_cost_usd": 0.01005
+      }
+    }
+  ],
+  "recall": {
+    "entity_recall": 1.0,
+    "edge_recall": 1.0,
+    "path_recall": 1.0
+  },
+  "evaluation": {
+    "judge_model": "vertex-genai-eval",
+    "judge_provider": "vertex_genai_eval",
+    "groundedness": 1.0,
+    "qa_relevance": 1.0,
+    "context_precision": 1.0,
+    "path_recall": 1.0,
+    "provenance_verified": true,
+    "composite_score": 1.0,
+    "rationale": "GROUNDEDNESS: Every factual claim made in the response is explicitly and accurately supported by the provided context, including the three steps of the path and the evidence cited for  | QUESTION_ANSWERING_QUALITY: The candidate response accurately traces all three hops requested: from MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY to MEHR EQTESAD BANK, from MEHR EQTESAD BANK to BONYAD | FULFILLMENT: The retrieved context successfully provides all three links for the requested 3-hop path: CHK-OFAC-12802 links the investment company to the bank, CHK-OFAC-25018 links th",
+    "input_tokens": 6424,
+    "output_tokens": 202,
+    "judge_cost_usd": 0.01005,
+    "duration_ms": 25648.63
+  }
+}

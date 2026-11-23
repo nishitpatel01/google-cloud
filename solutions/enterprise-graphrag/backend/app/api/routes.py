@@ -11,7 +11,7 @@ from fastapi import APIRouter, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field, field_validator
 
-from app.core.config import MODEL_CATALOG, Settings
+from app.core.config import MODEL_CATALOG, Settings, validate_model_pair
 from app.core.gcp_clients import run_blocking
 from app.core.models import PACK_SLUG_RE, TraversalDirection
 from app.core.pricing import estimate_monthly_tco
@@ -22,8 +22,10 @@ from app.engines.base import BaseGraphEngine, EngineResult, QueryRequest
 from app.engines.bq_graphrag import BigQueryGraphRAGEngine
 from app.engines.flat_vector_rag import FlatVectorRAGEngine
 from app.engines.provenance_verifier import compute_multihop_recall
-from app.engines.replay import replay_recording, save_recording
+from app.engines.replay import load_recording_evaluation, replay_recording, save_recording
 from app.engines.spanner_graphrag import SpannerGraphRAGEngine
+from app.evaluation.judge import JudgeEvaluation, evaluate_engine_result
+from app.evaluation.leaderboard import summarize_recordings
 from app.ingestion.bq_loader import persist_extracted_graph
 from app.ingestion.dlp_guard import inspect_text_with_dlp
 from app.ingestion.multimodal_extractor import (
@@ -55,6 +57,7 @@ class QueryStreamRequest(BaseModel):
         "spanner_graphrag",
     ] = "bq_graphrag"
     synthesis_model: str = "gemini-2.5-flash"
+    judge_model: str | None = None
     question_id: str | None = Field(default=None, max_length=80)
     max_hops: int = Field(default=3, ge=1, le=4)
     direction: TraversalDirection = TraversalDirection.BOTH
@@ -73,8 +76,19 @@ class QueryStreamRequest(BaseModel):
     @field_validator("synthesis_model")
     @classmethod
     def _validate_model(cls, v: str) -> str:
-        if v not in MODEL_CATALOG:
+        spec = MODEL_CATALOG.get(v)
+        if spec is None or not spec.supports_synthesis:
             raise ValueError(f"Unsupported synthesis_model: {v!r}")
+        return v
+
+    @field_validator("judge_model")
+    @classmethod
+    def _validate_judge(cls, v: str | None) -> str | None:
+        if v is None or v == "":
+            return None
+        spec = MODEL_CATALOG.get(v)
+        if spec is None or not spec.supports_judge:
+            raise ValueError(f"Unsupported judge_model: {v!r}")
         return v
 
 
@@ -87,6 +101,7 @@ class CompareStreamRequest(BaseModel):
         "spanner_graphrag",
     ] = "bq_graphrag"
     synthesis_model: str = "gemini-2.5-flash"
+    judge_model: str | None = None
     question_id: str | None = Field(default=None, max_length=80)
     max_hops: int = Field(default=3, ge=1, le=4)
     direction: TraversalDirection = TraversalDirection.BOTH
@@ -105,8 +120,19 @@ class CompareStreamRequest(BaseModel):
     @field_validator("synthesis_model")
     @classmethod
     def _validate_model(cls, v: str) -> str:
-        if v not in MODEL_CATALOG:
+        spec = MODEL_CATALOG.get(v)
+        if spec is None or not spec.supports_synthesis:
             raise ValueError(f"Unsupported synthesis_model: {v!r}")
+        return v
+
+    @field_validator("judge_model")
+    @classmethod
+    def _validate_judge(cls, v: str | None) -> str | None:
+        if v is None or v == "":
+            return None
+        spec = MODEL_CATALOG.get(v)
+        if spec is None or not spec.supports_judge:
+            raise ValueError(f"Unsupported judge_model: {v!r}")
         return v
 
 
@@ -148,7 +174,12 @@ def _require_pack(request: Request, pack_id: str) -> LoadedPack:
     return pack
 
 
-def _serialize_engine_result(res: EngineResult, *, recall: dict[str, float] | None = None) -> dict[str, Any]:
+def _serialize_engine_result(
+    res: EngineResult,
+    *,
+    recall: dict[str, float] | None = None,
+    evaluation: JudgeEvaluation | None = None,
+) -> dict[str, Any]:
     return {
         "engine_id": res.engine_id,
         "engine_label": res.engine_label,
@@ -169,6 +200,7 @@ def _serialize_engine_result(res: EngineResult, *, recall: dict[str, float] | No
         "total_duration_ms": res.total_duration_ms,
         "flags": asdict(res.flags),
         "recall": recall,
+        "evaluation": evaluation.model_dump(mode="json") if evaluation is not None else None,
     }
 
 
@@ -210,19 +242,30 @@ def _golden_recall(pack: LoadedPack, question_id: str | None, res: EngineResult)
     return None
 
 
+def _golden_reference_answer(pack: LoadedPack, question_id: str | None) -> str | None:
+    if not question_id:
+        return None
+    for q in pack.benchmark.questions:
+        if q.question_id == question_id:
+            return " ".join(q.expected_answer_points)
+    return None
+
+
 async def _execute_arm(
     *,
     request: Request,
     settings: Settings,
+    pack: LoadedPack,
     engine_id: str,
     query_req: QueryRequest,
     mode: str,
     emitter: RecordingStageEmitter,
-) -> EngineResult:
+    judge_model: str | None = None,
+) -> tuple[EngineResult, JudgeEvaluation | None]:
     if mode == "replay":
         if not query_req.question_id:
             raise ValueError("question_id is required in replay mode")
-        return await replay_recording(
+        res = await replay_recording(
             settings.recordings_dir,
             engine_id=engine_id,
             pack_id=query_req.pack_id,
@@ -230,6 +273,14 @@ async def _execute_arm(
             question_id=query_req.question_id,
             emitter=emitter,
         )
+        ev = load_recording_evaluation(
+            settings.recordings_dir,
+            engine_id=engine_id,
+            pack_id=query_req.pack_id,
+            synthesis_model=query_req.synthesis_model,
+            question_id=query_req.question_id,
+        )
+        return res, ev
 
     if not settings.gcp_project_id and engine_id not in getattr(request.app.state, "engine_overrides", {}):
         raise ValueError("GCP_PROJECT_ID must be configured for live execution")
@@ -250,14 +301,38 @@ async def _execute_arm(
     if ma_checked and not result.flags.model_armor_checked:
         result = replace(result, flags=replace(result.flags, model_armor_checked=True))
 
+    recall = _golden_recall(pack, query_req.question_id, result)
+    evaluation: JudgeEvaluation | None = None
+    if judge_model:
+        judge_override = getattr(request.app.state, "judge_override", None)
+        if judge_override is not None:
+            evaluation = await judge_override(
+                result=result,
+                judge_model=judge_model,
+                path_recall=(recall or {}).get("path_recall"),
+                emitter=emitter,
+            )
+        else:
+            evaluation = await evaluate_engine_result(
+                settings=settings,
+                result=result,
+                judge_model=judge_model,
+                reference_answer=_golden_reference_answer(pack, query_req.question_id),
+                path_recall=(recall or {}).get("path_recall"),
+                emitter=emitter,
+            )
+
     if settings.demo_mode == "record" and query_req.question_id:
         save_recording(
             settings.recordings_dir,
             result=result,
             stage_events=emitter.events,
             question_id=query_req.question_id,
+            evaluation=evaluation,
+            recall=recall,
+            redact_project_id=settings.gcp_project_id,
         )
-    return result
+    return result, evaluation
 
 
 # ---------------------------------------------------------------------------
@@ -302,10 +377,21 @@ async def metadata(request: Request) -> dict[str, Any]:
                 "input_per_1m_usd": spec.input_per_1m_usd,
                 "output_per_1m_usd": spec.output_per_1m_usd,
                 "supports_adk": spec.supports_adk,
+                "supports_synthesis": spec.supports_synthesis,
+                "supports_judge": spec.supports_judge,
             }
             for spec in MODEL_CATALOG.values()
         ],
     }
+
+
+@router.get("/api/v1/benchmarks/summary")
+async def benchmarks_summary(request: Request, pack_id: str | None = None) -> dict[str, Any]:
+    """Return measured leaderboard & per-question scores aggregated from recorded live fixtures."""
+    if pack_id is not None:
+        _require_pack(request, pack_id)
+    s = _settings(request)
+    return summarize_recordings(s.recordings_dir, pack_id=pack_id)
 
 
 @router.get("/api/v1/releases")
@@ -386,6 +472,11 @@ async def query_stream(request: Request, body: QueryStreamRequest) -> StreamingR
         raise HTTPException(status_code=400, detail="Live mode requires GCP_PROJECT_ID to be configured.")
     if body.engine_id == "adk_graph_coordinator" and not MODEL_CATALOG[body.synthesis_model].supports_adk:
         raise HTTPException(status_code=422, detail="ADK Graph Coordinator requires a Gemini model.")
+    if body.judge_model:
+        try:
+            validate_model_pair(body.synthesis_model, body.judge_model)
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
 
     query_req = QueryRequest(
         pack_id=body.pack_id,
@@ -407,15 +498,18 @@ async def query_stream(request: Request, body: QueryStreamRequest) -> StreamingR
 
         async def _runner() -> None:
             try:
-                res = await _execute_arm(
+                res, ev = await _execute_arm(
                     request=request,
                     settings=s,
+                    pack=pack,
                     engine_id=body.engine_id,
                     query_req=query_req,
                     mode=eff_mode,
                     emitter=emitter,
+                    judge_model=body.judge_model,
                 )
                 result_box["result"] = res
+                result_box["evaluation"] = ev
             except PromptBlockedError as exc:
                 result_box["error"] = {"error_type": "PromptBlockedError", "message": str(exc), "status": 400}
             except FileNotFoundError as exc:
@@ -443,8 +537,9 @@ async def query_stream(request: Request, body: QueryStreamRequest) -> StreamingR
                 yield _sse_frame("error", result_box["error"])
             else:
                 res: EngineResult = result_box["result"]
+                ev: JudgeEvaluation | None = result_box.get("evaluation")
                 recall = _golden_recall(pack, body.question_id, res)
-                yield _sse_frame("result", _serialize_engine_result(res, recall=recall))
+                yield _sse_frame("result", _serialize_engine_result(res, recall=recall, evaluation=ev))
         finally:
             if not task.done():
                 task.cancel()
@@ -464,6 +559,11 @@ async def compare_stream(request: Request, body: CompareStreamRequest) -> Stream
     eff_mode = body.mode or ("replay" if s.demo_mode == "replay" else "live")
     if eff_mode == "live" and not s.gcp_project_id and not getattr(request.app.state, "engine_overrides", {}):
         raise HTTPException(status_code=400, detail="Live mode requires GCP_PROJECT_ID to be configured.")
+    if body.judge_model:
+        try:
+            validate_model_pair(body.synthesis_model, body.judge_model)
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
 
     query_req = QueryRequest(
         pack_id=body.pack_id,
@@ -489,14 +589,18 @@ async def compare_stream(request: Request, body: CompareStreamRequest) -> Stream
 
             async def _run_one(eid: str = eng_id, em: RecordingStageEmitter = emitter, b: dict[str, Any] = box) -> None:
                 try:
-                    b["result"] = await _execute_arm(
+                    res, ev = await _execute_arm(
                         request=request,
                         settings=s,
+                        pack=pack,
                         engine_id=eid,
                         query_req=query_req,
                         mode=eff_mode,
                         emitter=em,
+                        judge_model=body.judge_model,
                     )
+                    b["result"] = res
+                    b["evaluation"] = ev
                 except PromptBlockedError as exc:
                     b["error"] = {"arm": arm_label, "error_type": "PromptBlockedError", "message": str(exc)}
                 except FileNotFoundError as exc:
@@ -522,8 +626,9 @@ async def compare_stream(request: Request, body: CompareStreamRequest) -> Stream
                     yield _sse_frame("error", box["error"])
                     return
                 res: EngineResult = box["result"]
+                ev: JudgeEvaluation | None = box.get("evaluation")
                 recall = _golden_recall(pack, body.question_id, res)
-                arm_results[arm_label] = _serialize_engine_result(res, recall=recall)
+                arm_results[arm_label] = _serialize_engine_result(res, recall=recall, evaluation=ev)
             finally:
                 if not task.done():
                     task.cancel()

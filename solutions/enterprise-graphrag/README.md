@@ -2,7 +2,7 @@
 
 **Ontology-driven multi-hop GraphRAG on Google Cloud — combining Vertex AI `gemini-embedding-2` with ISO/IEC 39075 GQL traversals on BigQuery Property Graph (`$0/mo` idle Tier-1) and Spanner Graph (Tier-2 Enterprise toggle).**
 
-![Status: Phase 3](https://img.shields.io/badge/phase-Phase%203%20React%2019%20UI%20%26%20GCP%20Governance-4285F4.svg) ![Tests: 53 backend + 6 frontend](https://img.shields.io/badge/tests-53%20backend%20%2B%206%20frontend%20passed-brightgreen.svg) ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-BigQuery%20Graph%20%C2%B7%20Spanner%20Graph%20%C2%B7%20Vertex%20AI%20%C2%B7%20ADK%202.15%20%C2%B7%20Model%20Armor-4285F4.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status: Phase 4](https://img.shields.io/badge/phase-Phase%204%20Vertex%20Eval%20%26%2033%20Replay%20Fixtures-4285F4.svg) ![Tests: 61 backend + 7 frontend](https://img.shields.io/badge/tests-61%20backend%20%2B%207%20frontend%20passed-brightgreen.svg) ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-BigQuery%20Graph%20%C2%B7%20Spanner%20Graph%20%C2%B7%20Vertex%20AI%20%C2%B7%20ADK%202.15%20%C2%B7%20Model%20Armor-4285F4.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## The Problem
 
@@ -36,38 +36,43 @@ Every pack ships with a declarative `pack.yaml` ontology, curated real public ex
 
 *(Hypothetical disruption scenarios, fictional commercial bank onboarding applicants `SYN-APPLICANT-*`, and portfolio acquisition groupings are explicitly labeled `data_origin="MODELED_BRIDGE"` in every table and UI badge.)*
 
-## Live Verification Snapshot (Phases 1–2 — BigQuery Property Graph ISO GQL + Google ADK `2.15` + Model Armor)
+## Live Benchmark Snapshot (Phase 4 — 33 Recorded Live Runs, Vertex AI GenAI Eval `:evaluateInstances`)
 
-Verified end-to-end against live BigQuery Property Graph (`EnterpriseGraph`, `0`-baseline-slot Enterprise autoscale reservation), `gemini-embedding-2` (`3072`-d on Vertex AI `global`), Discovery Engine Ranking API, **Google ADK `2.15.0`** (`LlmAgent` + `InMemoryRunner` + `BuiltInPlanner`), **Google Cloud Model Armor**, and `gemini-2.5-flash` synthesis:
+Every metric below is aggregated directly from genuine recorded live runs under `data/recordings/` (`gemini-2.5-flash` synthesis evaluated independently by **Vertex AI GenAI Evaluation `:evaluateInstances` `PointwiseMetric`** with `autoraterConfig` pinned to `gemini-2.5-pro`; `judge_model != synthesis_model` enforced server-side, `100%` deterministic citation verification across all `33/33` runs):
 
-| Pack | Golden Q | Engine / Traversal | Flat Vector Path Recall | GraphRAG Path Recall | Provenance Verified | Synthesis Cost |
-| :--- | :---: | :--- | :---: | :---: | :---: | :---: |
-| `supply_chain_subtier_risk` | `sc_q01` | `bq_graphrag` · `outgoing` (3-hop) | `0.00` | **`1.00`** (`100%`) | `100%` (`0` unverified) | `$0.0024` |
-| `supply_chain_subtier_risk` | `sc_q01` | `adk_graph_coordinator` (`ADK 2.15` + Model Armor) | `0.00` | **`1.00`** (`100%`) | `100%` (self-verified) | `$0.0070` |
-| `supply_chain_subtier_risk` | `sc_q04` | `bq_graphrag` · `incoming` (3-hop) | `0.00` | **`1.00`** (`100%`) | `100%` (`0` unverified) | `$0.0039` |
-| `banking_aml_ubo_contagion` | `aml_q01` | `bq_graphrag` · `outgoing` (3-hop) | `0.00` | **`1.00`** (`100%`) | `100%` (`0` unverified) | `$0.0033` |
-| `legal_ma_clause_graph` | `ma_q01` | `bq_graphrag` · `both` (`UNION ALL GRAPH_TABLE`) | `0.00` | **`1.00`** (`100%`) | `100%` (`0` unverified) | `$0.0033` |
+| Industry Pack | Engine (`n` runs) | Multi-Tier Recall | Groundedness | Composite Score | Provenance Verified | Avg Engine Cost | Avg Judge Cost |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **`banking_aml_ubo_contagion`** | Flat Vector RAG (`n=5`) | `0.00` | `0.90` | `0.47` | `100%` | `$0.0011` | `$0.0057` |
+| **`banking_aml_ubo_contagion`** | **BigQuery GraphRAG (`n=5`)** | **`1.00`** | **`1.00`** | **`1.00`** | **`100%`** | `$0.0033` | `$0.0118` |
+| **`banking_aml_ubo_contagion`** | **Google ADK 2.15 (`aml_q01`)** | **`1.00`** | **`1.00`** | **`1.00`** | **`100%`** | `$0.0064` | `$0.0142` |
+| **`legal_ma_clause_graph`** | Flat Vector RAG (`n=5`) | `0.00` | `0.90` | `0.40` | `100%` | `$0.0017` | `$0.0083` |
+| **`legal_ma_clause_graph`** | **BigQuery GraphRAG (`n=5`)** | **`0.88`** | **`0.90`** | **`0.81`** | **`100%`** | `$0.0040` | `$0.0217` |
+| **`legal_ma_clause_graph`** | **Google ADK 2.15 (`ma_q01`)** | **`1.00`** | **`1.00`** | **`1.00`** | **`100%`** | `$0.0065` | `$0.0211` |
+| **`supply_chain_subtier_risk`** | Flat Vector RAG (`n=5`) | `0.00` | `1.00` | `0.63` | `100%` | `$0.0011` | `$0.0065` |
+| **`supply_chain_subtier_risk`** | **BigQuery GraphRAG (`n=5`)** | **`0.88`** | **`1.00`** | **`0.77`** | **`100%`** | `$0.0030` | `$0.0161` |
+| **`supply_chain_subtier_risk`** | **Google ADK 2.15 (`sc_q01`)** | **`1.00`** | **`1.00`** | **`0.73`** | **`100%`** | `$0.0027` | `$0.0182` |
 
-## Local Verification, UI Dev Server & Live Seeding (Phase 3)
+## Local Verification, UI Dev Server & Live Seeding (Phase 4)
 
 ```bash
 cd solutions/enterprise-graphrag
 uv venv .venv --python python3
 uv pip install --python .venv/bin/python -r backend/requirements.txt
 
-# 1. Offline backend unit, security, attribution, ADK 2.15 & static guardrail suite (53 tests)
+# 1. Offline backend unit, security, attribution, eval & 33-fixture Replay roundtrip suite (61 tests)
 PYTHONPATH=backend .venv/bin/pytest backend/tests -v
 
-# 2. Frontend tests & production React 19 + TypeScript build (strict CSP compliant, 6 suites)
+# 2. Frontend tests & production React 19 + TypeScript build (strict CSP compliant, 7 suites)
 cd frontend && npm install && npm test && npm run build && cd ..
 
-# 3. Launch single-server FastAPI + compiled React 19 SPA locally (localhost-only)
+# 3. Launch single-server FastAPI + compiled React 19 SPA locally (zero-credential Replay works out of the box!)
 PYTHONPATH=backend .venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
 
-# 4. Provision dedicated $0/mo Model Armor guardrail & seed labeled BigQuery Property Graph
+# 4. Optional Live Cloud setup: dedicated $0/mo Model Armor + labeled BigQuery Property Graph + live recording
 cp .env.example .env  # set GCP_PROJECT_ID and DEMO_MODE=live
 PYTHONPATH=backend .venv/bin/python scripts/provision_model_armor.py --apply
 PYTHONPATH=backend .venv/bin/python scripts/seed_data.py --pack all --smoke-gql
+PYTHONPATH=backend .venv/bin/python scripts/record_live_benchmarks.py --pack all --skip-existing
 
 # 5. Track or audit every GCP resource belonging to ACC-05 (Cloud Asset Inventory + Model Armor)
 ./scripts/inventory_resources.sh              # all ACC-05 resources
@@ -89,5 +94,5 @@ Every GCP resource, BigQuery job, and Vertex AI request created by this accelera
 - [x] **Phase 1**: `Flat Vector RAG` baseline, `BigQuery Property Graph` ISO GQL engine (hybrid vector + canonical-name seeding, `MATCH p = ANY SHORTEST`, Discovery Engine reranking), `Spanner Graph` Tier-2 adapter (parked at `$0/mo`), deterministic Edge-ID provenance verifier, `StageEmitter` SSE telemetry, Replay recorder/runner, idempotent BigQuery seeder (`scripts/seed_data.py`), live 3-pack ISO GQL verification, and `39` passing tests.
 - [x] **Phase 2**: **Google ADK `2.15.0`** Graph Coordinator (`LlmAgent` + `InMemoryRunner` + self-verifying citation loop), multimodal `/ingest` BYO-ontology pipeline (PyMuPDF + image vision + Cloud DLP PII-safe preview + canonical resolution + BigQuery staging `MERGE`), Google Cloud **Model Armor** REST screening, strict CSP/CORS/rate-limit/IAP `ES256` JWT security middleware, FastAPI SSE routes, live ADK + Model Armor verification, and `50` passing tests.
 - [x] **Phase 3**: Full-width **React 19 + TypeScript + `d3-force`** SPA (`/` Risk Explorer with executive value strip, connected network canvas & clickable SEC/OFAC/CUAD Evidence Inspector, `/compare` AI Comparison Lab, `/ingest` Upload Documents Wizard, `/benchmark` ROI & Benchmarks + formula-safe CSV Executive Brief export, `/releases` Product Delivery Log backed by `GET /api/v1/releases`), low-glare **System / Light / Dark** themes, persistent tab state across live SSE streams, 4-layer GCP resource naming & 6-key FinOps labeling (`acc05_*` + `inventory_resources.sh`), zero inline styles (strict `style-src 'self'` CSP verified), and `53` backend + `6` frontend suites passing.
-- [ ] **Phase 4**: Cross-family LLM judge + Vertex GenAI Eval (`:evaluateInstances`) + live `DEMO_MODE=record` Replay fixtures.
+- [x] **Phase 4**: Independent **Vertex AI GenAI Evaluation (`:evaluateInstances` `PointwiseMetric` + `autoraterConfig`)** & cross-family **Claude Opus 5.5 (`:rawPredict`) / Gemini 2.5 Pro** judges (`judge != synthesis` enforced server-side & UI), transparent split `Engine $` vs. `Judge $` accounting, **Measured Evaluation Leaderboard** (`GET /api/v1/benchmarks/summary` + ROI & Benchmarks UI + CSV export), **33 live-recorded, identifier-scrubbed Replay fixtures** across all 3 industry packs (`100%` offline zero-credential roundtrip verified), and `61` backend + `7` frontend suites passing.
 - [ ] **Phase 5**: Tier-1 + Tier-2 Terraform, `scripts/deploy.sh`, and live Cloud Run verification.
