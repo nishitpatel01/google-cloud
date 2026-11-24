@@ -2,7 +2,7 @@
 
 **Ontology-driven multi-hop GraphRAG on Google Cloud — combining Vertex AI `gemini-embedding-2` with ISO/IEC 39075 GQL traversals on BigQuery Property Graph (`$0/mo` idle Tier-1) and Spanner Graph (Tier-2 Enterprise toggle).**
 
-![Status: Phase 4](https://img.shields.io/badge/phase-Phase%204%20Vertex%20Eval%20%26%2033%20Replay%20Fixtures-4285F4.svg) ![Tests: 61 backend + 7 frontend](https://img.shields.io/badge/tests-61%20backend%20%2B%207%20frontend%20passed-brightgreen.svg) ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-BigQuery%20Graph%20%C2%B7%20Spanner%20Graph%20%C2%B7%20Vertex%20AI%20%C2%B7%20ADK%202.15%20%C2%B7%20Model%20Armor-4285F4.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status: Production Ready](https://img.shields.io/badge/status-Production%20Ready%20(v0.6.0)-34A853.svg) ![Tests: 65 backend + 7 frontend](https://img.shields.io/badge/tests-65%20backend%20%2B%207%20frontend%20passed-brightgreen.svg) ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-BigQuery%20Graph%20%C2%B7%20Spanner%20Graph%20%C2%B7%20Vertex%20AI%20%C2%B7%20ADK%202.15%20%C2%B7%20Model%20Armor%20%C2%B7%20Cloud%20Run-4285F4.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## The Problem
 
@@ -52,14 +52,42 @@ Every metric below is aggregated directly from genuine recorded live runs under 
 | **`supply_chain_subtier_risk`** | **BigQuery GraphRAG (`n=5`)** | **`0.88`** | **`1.00`** | **`0.77`** | **`100%`** | `$0.0030` | `$0.0161` |
 | **`supply_chain_subtier_risk`** | **Google ADK 2.15 (`sc_q01`)** | **`1.00`** | **`1.00`** | **`0.73`** | **`100%`** | `$0.0027` | `$0.0182` |
 
-## Local Verification, UI Dev Server & Live Seeding (Phase 4)
+## Deploy to Your Google Cloud Project (< 15 Minutes · Tier-1 `$0–$3/mo` Idle)
+
+### Option A · One-Command Cloud Run Deploy (No Local Docker Required)
+
+```bash
+cd solutions/enterprise-graphrag
+cp deploy/cloudrun.env.example deploy/cloudrun.env  # git-ignored; set GCP_PROJECT_ID & IAP_MEMBERS
+./scripts/deploy.sh --dry-run                       # validate config, acc05 names & 6-key labels
+./scripts/deploy.sh --yes                           # Cloud Build + IAM + GCS + Model Armor + Cloud Run (Live IAP + Public Replay)
+
+# Audit every GCP resource created for ACC-05 (Cloud Asset Inventory + Model Armor)
+GCP_PROJECT_ID=<your-project-id> ./scripts/inventory_resources.sh
+
+# Clean teardown when done (preserves BigQuery & uploads unless --purge-data is passed)
+./scripts/teardown.sh --dry-run
+./scripts/teardown.sh --yes
+```
+
+### Option B · Tier-1 + Tier-2 Terraform IaC (`infra/terraform/`)
+
+```bash
+cd solutions/enterprise-graphrag/infra/terraform
+cp terraform.tfvars.example terraform.tfvars  # set project_id, container_image & iap_members
+terraform init
+terraform plan                                # Tier-1 Serverless default ($0-$3/mo idle)
+terraform apply                               # Set enable_enterprise_scale=true for Tier-2 Spanner Graph
+```
+
+## Local Development & Verification (`v0.6.0`)
 
 ```bash
 cd solutions/enterprise-graphrag
 uv venv .venv --python python3
 uv pip install --python .venv/bin/python -r backend/requirements.txt
 
-# 1. Offline backend unit, security, attribution, eval & 33-fixture Replay roundtrip suite (61 tests)
+# 1. Offline backend, security, attribution, eval, deploy & 33-fixture Replay roundtrip suite (65 tests)
 PYTHONPATH=backend .venv/bin/pytest backend/tests -v
 
 # 2. Frontend tests & production React 19 + TypeScript build (strict CSP compliant, 7 suites)
@@ -67,16 +95,6 @@ cd frontend && npm install && npm test && npm run build && cd ..
 
 # 3. Launch single-server FastAPI + compiled React 19 SPA locally (zero-credential Replay works out of the box!)
 PYTHONPATH=backend .venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
-
-# 4. Optional Live Cloud setup: dedicated $0/mo Model Armor + labeled BigQuery Property Graph + live recording
-cp .env.example .env  # set GCP_PROJECT_ID and DEMO_MODE=live
-PYTHONPATH=backend .venv/bin/python scripts/provision_model_armor.py --apply
-PYTHONPATH=backend .venv/bin/python scripts/seed_data.py --pack all --smoke-gql
-PYTHONPATH=backend .venv/bin/python scripts/record_live_benchmarks.py --pack all --skip-existing
-
-# 5. Track or audit every GCP resource belonging to ACC-05 (Cloud Asset Inventory + Model Armor)
-./scripts/inventory_resources.sh              # all ACC-05 resources
-./scripts/inventory_resources.sh --portfolio  # entire gcp_ai_accelerators portfolio
 ```
 
 ## GCP Resource Naming, Labeling & FinOps Governance (`ACC-05`)
@@ -95,4 +113,4 @@ Every GCP resource, BigQuery job, and Vertex AI request created by this accelera
 - [x] **Phase 2**: **Google ADK `2.15.0`** Graph Coordinator (`LlmAgent` + `InMemoryRunner` + self-verifying citation loop), multimodal `/ingest` BYO-ontology pipeline (PyMuPDF + image vision + Cloud DLP PII-safe preview + canonical resolution + BigQuery staging `MERGE`), Google Cloud **Model Armor** REST screening, strict CSP/CORS/rate-limit/IAP `ES256` JWT security middleware, FastAPI SSE routes, live ADK + Model Armor verification, and `50` passing tests.
 - [x] **Phase 3**: Full-width **React 19 + TypeScript + `d3-force`** SPA (`/` Risk Explorer with executive value strip, connected network canvas & clickable SEC/OFAC/CUAD Evidence Inspector, `/compare` AI Comparison Lab, `/ingest` Upload Documents Wizard, `/benchmark` ROI & Benchmarks + formula-safe CSV Executive Brief export, `/releases` Product Delivery Log backed by `GET /api/v1/releases`), low-glare **System / Light / Dark** themes, persistent tab state across live SSE streams, 4-layer GCP resource naming & 6-key FinOps labeling (`acc05_*` + `inventory_resources.sh`), zero inline styles (strict `style-src 'self'` CSP verified), and `53` backend + `6` frontend suites passing.
 - [x] **Phase 4**: Independent **Vertex AI GenAI Evaluation (`:evaluateInstances` `PointwiseMetric` + `autoraterConfig`)** & cross-family **Claude Opus 5.5 (`:rawPredict`) / Gemini 2.5 Pro** judges (`judge != synthesis` enforced server-side & UI), transparent split `Engine $` vs. `Judge $` accounting, **Measured Evaluation Leaderboard** (`GET /api/v1/benchmarks/summary` + ROI & Benchmarks UI + CSV export), **33 live-recorded, identifier-scrubbed Replay fixtures** across all 3 industry packs (`100%` offline zero-credential roundtrip verified), and `61` backend + `7` frontend suites passing.
-- [ ] **Phase 5**: Tier-1 + Tier-2 Terraform, `scripts/deploy.sh`, and live Cloud Run verification.
+- [x] **Phase 5**: Multi-stage non-root `Dockerfile` (`UID 10001`, pinned `backend/requirements.lock`), Tier-1 Serverless + Tier-2 Spanner Graph Terraform IaC (`infra/terraform/`) stamping all 6 mandatory GCP FinOps labels across every resource, turnkey `scripts/deploy.sh` + `scripts/teardown.sh`, live Cloud Run deployment (`acc05-graphrag-ui` IAP + `acc05-graphrag-replay` public zero-credential), and `65` backend + `7` frontend suites passing.

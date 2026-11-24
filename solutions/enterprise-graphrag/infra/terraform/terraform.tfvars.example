@@ -1,0 +1,19 @@
+# Copy to terraform.tfvars (git-ignored) and fill in your project values.
+project_id      = "your-gcp-project-id"
+region          = "us-central1"
+bq_location     = "US"
+app_env         = "demo"
+container_image = "us-central1-docker.pkg.dev/your-gcp-project-id/acc05-graphrag/enterprise-graphrag:v0.6.0"
+
+# Tier-1 Serverless default ($0-$3/mo idle)
+enable_enterprise_scale = false
+
+# Access control: 'iap' (owner/team allowlist) or 'public'
+access_mode           = "iap"
+iap_members           = ["user:you@example.com"]
+deploy_replay_service = true
+
+# Security & attribution defaults
+bq_dataset              = "acc05_enterprise_graphrag"
+model_armor_template_id = "acc05-enterprise-graphrag-guardrail"
+enable_cloud_dlp        = false

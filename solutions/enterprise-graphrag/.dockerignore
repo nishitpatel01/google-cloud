@@ -1,0 +1,15 @@
+.venv/
+.env
+.env.*
+deploy/*.env
+frontend/node_modules/
+frontend/dist/
+backend/tests/
+infra/terraform/.terraform/
+infra/terraform/*.tfstate*
+infra/terraform/*.tfvars
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+.git/
+*.log
