@@ -1,8 +1,20 @@
 {
   "solution_id": "acc04",
   "solution_name": "Operations & Incident War Room",
-  "current_version": "0.2.0",
+  "current_version": "0.3.0",
   "releases": [
+    {
+      "version": "0.3.0",
+      "date": "2026-11-24",
+      "tag": "API, Security & Eval",
+      "title": "FastAPI SSE Runtime, Model Armor Guardrails, DLP BYO Log Ingest & Independent Judges",
+      "summary": "Delivered the full FastAPI HTTP/SSE War Room API, strict CSP/CORS/rate-limit/ES256 Cloud IAP middleware, dedicated Model Armor prompt-injection screening, Cloud DLP-scrubbed BYO log ingestion, and independent Vertex AI GenAI Evaluation & Claude Opus 5.5 judges.",
+      "highlights": [
+        "14 FastAPI endpoints including SSE /investigate/stream, side-by-side /compare/stream, two-click /remediate/{preview,approve,execute}, SSRF /mcp/validate-url, and DLP /ingest/upload",
+        "Live Google Cloud Model Armor (acc04-ops-war-room-guardrail) verified clean pass vs. injection block",
+        "Independent Vertex AI GenAI Evaluation (:evaluateInstances PointwiseMetric) & cross-family Claude Opus 5.5 (:rawPredict) verified live with judge != synthesis enforcement"
+      ]
+    },
     {
       "version": "0.2.0",
       "date": "2026-11-24",
