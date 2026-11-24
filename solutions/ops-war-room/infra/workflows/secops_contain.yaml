@@ -23,7 +23,12 @@ main:
 
     - step1_snapshot_iam_policy:
         assign:
-          - saga_steps: ${list.concat(saga_steps, [{"step_id":"step1_iam_snapshot","system":"Cloud IAM","status":"SUCCEEDED","detail":"Captured immutable pre-containment policy snapshot for " + target_resource}])}
+          - step1_rec:
+              step_id: "step1_iam_snapshot"
+              system: "Cloud IAM"
+              status: "SUCCEEDED"
+              detail: ${"Captured immutable pre-containment policy snapshot for " + target_resource}
+          - saga_steps: ${list.concat(saga_steps, step1_rec)}
 
     - step2_apply_containment:
         try:
@@ -36,10 +41,20 @@ main:
                       message: "IAM policy ETag conflict during containment (simulated fault)"
             - record_contained:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_contain","system":"Cloud IAM / GCS","status":"SUCCEEDED","detail":"Applied least-privilege containment diff (dry_run=" + string(dry_run) + ")"}])}
+                  - step2_rec:
+                      step_id: "step2_contain"
+                      system: "Cloud IAM / GCS"
+                      status: "SUCCEEDED"
+                      detail: ${"Applied least-privilege containment diff (dry_run=" + string(dry_run) + ")"}
+                  - saga_steps: ${list.concat(saga_steps, step2_rec)}
             - step3_notify_soc_ledger:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step3_audit","system":"Firestore Audit","status":"SUCCEEDED","detail":"Logged containment approval & SHA-256 digest"}])}
+                  - step3_rec:
+                      step_id: "step3_audit"
+                      system: "Firestore Audit"
+                      status: "SUCCEEDED"
+                      detail: "Logged containment approval and SHA-256 digest"
+                  - saga_steps: ${list.concat(saga_steps, step3_rec)}
             - return_completed:
                 return:
                   incident_id: ${incident_id}
@@ -53,10 +68,20 @@ main:
           steps:
             - record_failure:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_contain","system":"Cloud IAM / GCS","status":"FAILED","detail":text.decode(json.encode(err))}])}
+                  - fail_rec:
+                      step_id: "step2_contain"
+                      system: "Cloud IAM / GCS"
+                      status: "FAILED"
+                      detail: ${json.encode_to_string(err)}
+                  - saga_steps: ${list.concat(saga_steps, fail_rec)}
             - compensate_restore_snapshot:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"comp1_iam_restore","system":"Cloud IAM","status":"COMPENSATED","detail":"Restored pre-containment policy snapshot safely"}])}
+                  - comp_rec:
+                      step_id: "comp1_iam_restore"
+                      system: "Cloud IAM"
+                      status: "COMPENSATED"
+                      detail: "Restored pre-containment policy snapshot safely"
+                  - saga_steps: ${list.concat(saga_steps, comp_rec)}
             - return_rolled_back:
                 return:
                   incident_id: ${incident_id}

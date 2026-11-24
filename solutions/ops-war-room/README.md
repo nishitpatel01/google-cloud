@@ -2,7 +2,7 @@
 
 **Compress 45–75 minute swivel-chair incident triage into parallel multi-agent investigations with adversarial log-injection defense, deterministic citation verification, mandatory two-click lead approval, and atomic Cloud Workflows sagas.**
 
-![Status: Foundation Ready](https://img.shields.io/badge/status-Foundation%20(v0.1.0)-FBBC04.svg) ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-ADK%202.15%20%C2%B7%20BigQuery%20%C2%B7%20Cloud%20Workflows%20%C2%B7%20Firestore%20%C2%B7%20Model%20Armor%20%C2%B7%20Cloud%20Run-4285F4.svg) ![Tier-1 Idle](https://img.shields.io/badge/tier--1%20idle-%240--%243%2Fmo-34A853.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status: Engines Verified](https://img.shields.io/badge/status-Engines%20Verified%20(v0.2.0)-34A853.svg) ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-ADK%202.15%20%C2%B7%20BigQuery%20%C2%B7%20Cloud%20Workflows%20%C2%B7%20Firestore%20%C2%B7%20Model%20Armor%20%C2%B7%20Cloud%20Run-4285F4.svg) ![Tier-1 Idle](https://img.shields.io/badge/tier--1%20idle-%240--%243%2Fmo-34A853.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ---
 
@@ -87,7 +87,9 @@ flowchart TB
 | **Adversarial Defense** | `backend/app/core/log_sanitizer.py` | Deterministic Scanner + Model Armor | Detects direct and base64-encoded prompt injections inside raw log fields and wraps untrusted strings as inert data while preserving structured audit columns. |
 | **Provenance & Policy** | `backend/app/core/evidence_verifier.py` | Deterministic `O(C+R)` Verifier | Validates every `[EVENT:...]`, `[CVE:...]`, `[TECHNIQUE:...]`, and `[RUNBOOK:...]` citation against retrieved records and enforces the 65% supply-chain margin floor. |
 | **Public Data Packs** | `packs/` + `scripts/fetch_public_datasets.py` | MITRE STIX · CISA KEV · NWS · UN/LOCODE · GCP Status · OTel | Curates 3 declarative packs (`15` incidents, `72` real public intel records, SHA-256 `MANIFEST.json`). |
-| **Atomic Sagas** | `infra/workflows/*.yaml` | Google Cloud Workflows + Firestore | Executes multi-system Order-to-Cash, SecOps containment, and SRE traffic-split sagas with `try/except` automatic compensation rollback. |
+| **Multi-Agent Engines** | `backend/app/engines/{adk_war_room,serial_baseline}.py` | Google ADK `2.15` (`ParallelAgent` + `SequentialAgent`), Vertex AI Gemini | Fans out 3 specialist `LlmAgent`s concurrently into `ReviewAndCritiqueAgent` with self-verifying citations (paired against a single-agent serial baseline). |
+| **Telemetry & MCP Tools** | `backend/app/engines/{safe_bq_runner,mcp_registry}.py` | BigQuery (Parameterized Read-Only SQL), Declarative `mcp_registry.yaml` | Enforces `SELECT`-only parameterized queries (`100 MiB` byte cap) and SSRF-validated Tier-1/Tier-2 MCP tool adapters. |
+| **Atomic Sagas & Ledger** | `backend/app/engines/workflows_executor.py`, `infra/workflows/*.yaml` | Google Cloud Workflows + Dedicated Firestore Native DB | Enforces two-click SHA-256 approval digests, idempotency keys, and `try/except` automatic compensation rollback (`SAGA_COMPLETED` / `SAGA_ROLLED_BACK`). |
 | **Data & TCO** | `infra/sql/bigquery_schema.sql` + `core/pricing.py` | BigQuery (Partitioned/Clustered) | Stores telemetry, public intel, runbooks, and immutable remediation audit trails alongside Tier-1 vs. Tier-2 Monthly TCO modeling. |
 
 ---
@@ -117,12 +119,22 @@ solutions/ops-war-room/
 │   │   │   ├── models.py             # Domain contracts & Remediation/Saga FSM
 │   │   │   ├── log_sanitizer.py      # Adversarial log prompt-injection detector & quarantine
 │   │   │   ├── evidence_verifier.py  # O(C+R) citation verifier & deterministic policy gates
+│   │   │   ├── gcp_clients.py        # Lazy thread-safe BigQuery, Vertex AI, Firestore & Workflows pool
+│   │   │   ├── stage_emitter.py      # Async SSE telemetry emitter for parallel DAG visualization
 │   │   │   ├── config.py             # Runtime settings, model catalog & judge != synthesis guard
 │   │   │   ├── pricing.py            # Per-query & Tier-1/Tier-2 Monthly TCO/ROI calculator
 │   │   │   └── attribution.py        # Resource naming & GCP FinOps label helpers
+│   │   ├── engines/
+│   │   │   ├── adk_war_room.py       # Google ADK 2.15 ParallelAgent 3-way fan-out + ReviewAndCritiqueAgent
+│   │   │   ├── serial_baseline.py    # Single-Agent Serial Baseline for /compare benchmarking
+│   │   │   ├── safe_bq_runner.py     # Parameterized read-only BigQuery telemetry runner (100 MiB cap)
+│   │   │   ├── mcp_registry.py       # SSRF-hardened MCP tool registry & Tier-1 sandbox adapters
+│   │   │   ├── workflows_executor.py # Two-click approval ledger & live Cloud Workflows saga executor
+│   │   │   └── replay.py             # Zero-credential Replay recorder, scrubber & SSE fixture player
 │   │   └── packs/loader.py           # Declarative pack.yaml loader with SHA-256 MANIFEST check
-│   └── tests/                        # Offline TDD suite (FSM, sanitizer, verifier, packs, DDL, workflows)
+│   └── tests/                        # 29 offline tests (FSM, sanitizer, ADK, MCP SSRF, Workflows, Replay)
 ├── packs/
+│   ├── mcp_registry.yaml             # Declarative Tier-1 sandbox & Tier-2 external MCP contracts
 │   ├── secops_siem_triage/           # pack.yaml + corpus/{incidents,telemetry,intel,runbooks,MANIFEST}.json
 │   ├── supply_chain_o2c_saga/        # pack.yaml + corpus/{incidents,telemetry,intel,runbooks,MANIFEST}.json
 │   └── sre_outage_commander/         # pack.yaml + corpus/{incidents,telemetry,intel,runbooks,MANIFEST}.json
@@ -132,7 +144,8 @@ solutions/ops-war-room/
 │   ├── sql/bigquery_schema.sql       # Partitioned & clustered BigQuery DDL (5 tables)
 │   └── workflows/                    # Atomic Cloud Workflows YAML sagas (O2C, SecOps, SRE)
 └── scripts/
-    └── fetch_public_datasets.py      # Reproducible live public dataset curator
+    ├── fetch_public_datasets.py      # Reproducible live public dataset curator
+    └── seed_data.py                  # Idempotent BigQuery dataset/table seeder
 ```
 
 ---

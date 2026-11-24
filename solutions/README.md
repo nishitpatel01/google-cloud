@@ -13,7 +13,7 @@ Solutions are added here incrementally as each standalone app is implemented, te
 | Solution | Problem Solved & Business Impact | Industries | Core GCP AI Stack | Status |
 | :--- | :--- | :--- | :--- | :---: |
 | [**Risk & Contagion Intelligence (`enterprise-graphrag`)**](enterprise-graphrag/README.md) | Traces 2–4 hop supply chain, sanctions, and contract contagion missed by flat vector RAG (`0.00` → `0.88–1.00` multi-tier recall; `6–16h` manual audits reduced to seconds at `$0.003–$0.006`/query) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2` & GenAI Eval, Google ADK, Model Armor, React 19, Cloud Run | Production Ready (`v0.6.0`) |
-| [**Operations & Incident War Room (`ops-war-room`)**](ops-war-room/README.md) | Replaces 45–75 min swivel-chair triage with parallel multi-agent investigation, adversarial log-injection defense, two-click lead approval, and atomic Cloud Workflows sagas | Cybersecurity SOC, Supply Chain O2C, Cloud SRE | Google ADK `2.15` (`ParallelAgent`), BigQuery, Cloud Workflows, Firestore, Model Armor, Vertex AI GenAI Eval, Cloud Run | In Progress (`v0.1.0` · Foundation) |
+| [**Operations & Incident War Room (`ops-war-room`)**](ops-war-room/README.md) | Replaces 45–75 min swivel-chair triage with parallel multi-agent investigation, adversarial log-injection defense, two-click lead approval, and atomic Cloud Workflows sagas | Cybersecurity SOC, Supply Chain O2C, Cloud SRE | Google ADK `2.15` (`ParallelAgent`), BigQuery, Cloud Workflows, Firestore, Model Armor, Vertex AI GenAI Eval, Cloud Run | In Progress (`v0.2.0` · Live ADK & Workflows Verified) |
 
 ---
 

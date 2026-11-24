@@ -23,7 +23,12 @@ main:
 
     - step1_verify_target_revision:
         assign:
-          - saga_steps: ${list.concat(saga_steps, [{"step_id":"step1_health_check","system":"Cloud Run","status":"SUCCEEDED","detail":"Verified stable target revision " + target_revision + " ready & warm"}])}
+          - step1_rec:
+              step_id: "step1_health_check"
+              system: "Cloud Run"
+              status: "SUCCEEDED"
+              detail: ${"Verified stable target revision " + target_revision + " ready and warm"}
+          - saga_steps: ${list.concat(saga_steps, step1_rec)}
 
     - step2_shift_traffic_and_verify_slo:
         try:
@@ -36,10 +41,20 @@ main:
                       message: "Post-shift canary SLO probe detected elevated 5xx (simulated fault)"
             - record_traffic_shifted:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_traffic_split","system":"Cloud Run","status":"SUCCEEDED","detail":"Shifted 100% traffic to " + target_revision + " (dry_run=" + string(dry_run) + ")"}])}
+                  - step2_rec:
+                      step_id: "step2_traffic_split"
+                      system: "Cloud Run"
+                      status: "SUCCEEDED"
+                      detail: ${"Shifted 100% traffic to " + target_revision + " (dry_run=" + string(dry_run) + ")"}
+                  - saga_steps: ${list.concat(saga_steps, step2_rec)}
             - step3_confirm_slo_recovery:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step3_slo_probe","system":"Cloud Monitoring","status":"SUCCEEDED","detail":"Confirmed p99 latency & 5xx error budget burn stabilized"}])}
+                  - step3_rec:
+                      step_id: "step3_slo_probe"
+                      system: "Cloud Monitoring"
+                      status: "SUCCEEDED"
+                      detail: "Confirmed p99 latency and 5xx error budget burn stabilized"
+                  - saga_steps: ${list.concat(saga_steps, step3_rec)}
             - return_completed:
                 return:
                   incident_id: ${incident_id}
@@ -53,10 +68,20 @@ main:
           steps:
             - record_probe_failure:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_traffic_split","system":"Cloud Run","status":"FAILED","detail":text.decode(json.encode(err))}])}
+                  - fail_rec:
+                      step_id: "step2_traffic_split"
+                      system: "Cloud Run"
+                      status: "FAILED"
+                      detail: ${json.encode_to_string(err)}
+                  - saga_steps: ${list.concat(saga_steps, fail_rec)}
             - compensate_restore_previous_split:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"comp1_restore_split","system":"Cloud Run","status":"COMPENSATED","detail":"Reverted traffic split to prior baseline & paged primary SRE"}])}
+                  - comp_rec:
+                      step_id: "comp1_restore_split"
+                      system: "Cloud Run"
+                      status: "COMPENSATED"
+                      detail: "Reverted traffic split to prior baseline and paged primary SRE"
+                  - saga_steps: ${list.concat(saga_steps, comp_rec)}
             - return_rolled_back:
                 return:
                   incident_id: ${incident_id}

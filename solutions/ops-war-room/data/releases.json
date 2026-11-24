@@ -1,8 +1,20 @@
 {
   "solution_id": "acc04",
   "solution_name": "Operations & Incident War Room",
-  "current_version": "0.1.0",
+  "current_version": "0.2.0",
   "releases": [
+    {
+      "version": "0.2.0",
+      "date": "2026-11-24",
+      "tag": "Multi-Agent Engines",
+      "title": "ADK 2.15 Parallel War Room, Safe BigQuery Runner, MCP Registry & Live Cloud Workflows Sagas",
+      "summary": "Implemented the 3-way parallel Google ADK 2.15 investigator pipeline converging into ReviewAndCritiqueAgent, Single-Agent Serial baseline, parameterized read-only BigQuery runner, SSRF-hardened MCP registry, and live Cloud Workflows + named Firestore DB atomic saga execution with automatic compensation rollback.",
+      "highlights": [
+        "Live ADK ParallelAgent defeated embedded User-Agent prompt injection on sec_inc02 with 100% root-cause recall and 100% provenance verification",
+        "Live Google Cloud Workflows (acc04-o2c-saga) verified both SAGA_COMPLETED and automatic WMS compensation SAGA_ROLLED_BACK on Step-2 Carrier API failure",
+        "Idempotent BigQuery seeder (scripts/seed_data.py) and zero-credential Replay recorder/player with identifier scrubbing"
+      ]
+    },
     {
       "version": "0.1.0",
       "date": "2026-11-24",
