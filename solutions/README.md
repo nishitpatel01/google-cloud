@@ -10,9 +10,9 @@ Production-oriented, turnkey Google Cloud **Enterprise AI Accelerators** and **V
 
 Solutions are added here incrementally as each standalone app is implemented, tested, and verified on Cloud Run:
 
-| Solution | Category | Industries | Core GCP AI Stack | Status |
+| Solution | Problem Solved & Business Impact | Industries | Core GCP AI Stack | Status |
 | :--- | :--- | :--- | :--- | :---: |
-| [**Enterprise GraphRAG & Contagion Explorer**](enterprise-graphrag/README.md) (`enterprise-graphrag`) | Multi-Pack Accelerator (3 Packs) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2` & GenAI Eval, Google ADK `2.15`, Model Armor, React 19, Cloud Run | Production Ready (`v0.6.0` · `65` backend + `7` frontend suites · Tier-1/Tier-2 Terraform & Live Cloud Run Verified) |
+| [**Risk & Contagion Intelligence (`enterprise-graphrag`)**](enterprise-graphrag/README.md) | Traces 2–4 hop supply chain, sanctions, and contract contagion missed by flat vector RAG (`0.00` → `0.88–1.00` multi-tier recall; `6–16h` manual audits reduced to seconds at `$0.003–$0.006`/query) | Supply Chain, Banking AML, Legal M&A | BigQuery Property Graph (ISO GQL), Spanner Graph (Tier-2), Vertex AI `gemini-embedding-2` & GenAI Eval, Google ADK, Model Armor, React 19, Cloud Run | Production Ready (`v0.6.0`) |
 
 ---
 
@@ -20,12 +20,12 @@ Solutions are added here incrementally as each standalone app is implemented, te
 
 Every solution under `solutions/<slug>/` is designed to be **100% standalone-deployable** in any customer's Google Cloud project:
 
-1. **Zero-Empty-State Dual Mode**: Ships with sanitized industry seed data (`scripts/seed_data.py`) + deterministic `DEMO_MODE=replay` fixtures and 1-click `DEMO_MODE=live` execution on Vertex AI.
+1. **Zero-Empty-State Dual Mode**: Ships with real-public-first industry packs (`scripts/seed_data.py`), deterministic offline `DEMO_MODE=replay` fixtures, and 1-click `DEMO_MODE=live` execution on Vertex AI.
 2. **Two-Tier Terraform Footprint**:
-   - **Tier 1 (Default — `< 15 min` deploy, `≈ \$0–\$3/mo` idle)**: Cloud Run (`min-instances=0`) + BigQuery / Firestore + Vertex AI Serverless APIs + dedicated least-privilege runtime SA (zero JSON keys).
+   - **Tier 1 (Default — `< 15 min` deploy, `≈ $0–$3/mo` idle)**: Cloud Run (`min-instances=0`) + BigQuery / Firestore + Vertex AI Serverless APIs + dedicated least-privilege runtime SA (zero JSON keys).
    - **Tier 2 (`enable_enterprise_scale=true`)**: Optional production upgrade path for AlloyDB ScaNN, Spanner Graph, Vertex Vector Search, Cloud Healthcare FHIR, Dataflow, Cloud IAP, and Shared VPC / Private Service Connect.
-3. **Built-In Trust, Eval & ROI**: Ships with Model Armor + Cloud DLP guardrails, self-service BYO-data `/ingest`, and Vertex AI GenAI Evaluation + Monthly GCP TCO telemetry.
-4. **4-Layer GCP Resource Naming & FinOps Attribution**: Every solution stamps deterministic resource prefixes (`acc<nn>_` / `acc<nn>-` or `str<nn>_` / `str<nn>-`) and a 6-key GCP label schema (`portfolio=gcp_ai_accelerators`, `solution_id`, `solution`, `tier`, `managed_by`, `env`) across datasets, tables, jobs, Vertex AI calls, and guardrails, paired with `./scripts/inventory_resources.sh` for 1-command discovery and cleanup audits.
+3. **Built-In Trust, Eval & ROI**: Ships with Model Armor + Cloud DLP guardrails, self-service BYO-data `/ingest`, independent Vertex AI GenAI Evaluation, and Monthly GCP TCO estimation.
+4. **Clean Lifecycle & Inventory**: Every solution applies consistent GCP resource labels and ships with `./scripts/deploy.sh`, `./scripts/inventory_resources.sh`, and `./scripts/teardown.sh` for transparent discovery and safe cleanup.
 
 ```bash
 # Quickstart inside any published solution directory:
