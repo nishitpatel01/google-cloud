@@ -1,0 +1,208 @@
+[
+  {
+    "incident_id": "o2c_inc01",
+    "pack_id": "supply_chain_o2c_saga",
+    "title": "Port Weather Delay Threatening PO-8841 ($12,000 SLA Penalty)",
+    "summary": "72h berth delay at Los Angeles port threatens Tier-1 retail SLA; evaluate Dallas WMS split-shipment vs. air freight and execute atomic Cloud Workflows saga.",
+    "severity": "P1_CRITICAL",
+    "sla_minutes_remaining": 45,
+    "expected_verdict": "CONFIRMED_INCIDENT",
+    "expected_root_cause": "72h berth delay at LOCODE-USLAX linked to NWS-E6F5CEFB85; regional split-shipment from LOCODE-USDFW ($1,850) avoids $12,000 SLA penalty while staying well within margin floor.",
+    "expected_event_ids": [
+      "evt_o2c01_01",
+      "evt_o2c01_02"
+    ],
+    "expected_intel_ids": [
+      "LOCODE-USLAX",
+      "LOCODE-USDFW",
+      "NWS-E6F5CEFB85"
+    ],
+    "expected_action_type": "o2c_split_shipment",
+    "has_prompt_injection": false,
+    "financial_exposure_usd": 12000.0,
+    "remediation_options": [
+      {
+        "option_id": "opt_o2c01_split",
+        "title": "Split-Shipment from Dallas Hub (USDFW) via Ground Express",
+        "action_type": "o2c_split_shipment",
+        "workflow_name": "acc04-o2c-saga",
+        "command_or_diff": "workflow: acc04-o2c-saga\nstep1_wms: RESERVE 500x SKU-IND-4402 @ USDFW\nstep2_carrier: BOOK Ground-Express ($1,850, 18h ETA)\nstep3_erp: COMMIT split-shipment on PO-8841 (saves $10,150 net)",
+        "estimated_action_cost_usd": 1850.0,
+        "avoided_loss_usd": 12000.0,
+        "sla_risk_hours": 18.0,
+        "requires_vp_escalation": false,
+        "is_recommended": true,
+        "compensation_steps": [
+          "Release WMS reservation WMS-RES-PO-8841 if carrier booking fails",
+          "Revert ERP order status to HOLD_AWAITING_DISPATCH"
+        ]
+      },
+      {
+        "option_id": "opt_o2c01_air",
+        "title": "Emergency Air-Freight Expedite (Breaches 65% Margin Floor)",
+        "action_type": "o2c_air_freight_expedite",
+        "workflow_name": "acc04-o2c-saga",
+        "command_or_diff": "workflow: acc04-o2c-saga\nstep1_wms: RESERVE 500x SKU-IND-4402 @ USDFW\nstep2_carrier: BOOK Air-Charter ($8,900 — requires VP sign-off)\nstep3_erp: COMMIT air expedite on PO-8841",
+        "estimated_action_cost_usd": 8900.0,
+        "avoided_loss_usd": 12000.0,
+        "sla_risk_hours": 6.0,
+        "requires_vp_escalation": true,
+        "is_recommended": false,
+        "compensation_steps": [
+          "Release WMS reservation if air charter fails"
+        ]
+      }
+    ],
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "incident_id": "o2c_inc02",
+    "pack_id": "supply_chain_o2c_saga",
+    "title": "PO-9104 Stockout with Degraded Carrier API (Saga Compensation Scenario)",
+    "summary": "Chicago warehouse stockout threatens $18,500 medical SLA while carrier API shows 503 faults — test atomic Cloud Workflows rollback compensation.",
+    "severity": "P1_CRITICAL",
+    "sla_minutes_remaining": 30,
+    "expected_verdict": "CONFIRMED_INCIDENT",
+    "expected_root_cause": "Primary hub LOCODE-USCHI stockout on PO-9104 requiring atomic split-shipment from LOCODE-USMEM with automatic WMS compensation if Carrier API returns 503.",
+    "expected_event_ids": [
+      "evt_o2c02_01",
+      "evt_o2c02_02"
+    ],
+    "expected_intel_ids": [
+      "LOCODE-USCHI",
+      "LOCODE-USMEM"
+    ],
+    "expected_action_type": "o2c_split_shipment",
+    "has_prompt_injection": false,
+    "financial_exposure_usd": 18500.0,
+    "remediation_options": [
+      {
+        "option_id": "opt_o2c02_saga",
+        "title": "Execute Atomic Memphis Hub (USMEM) Reroute Saga with Auto-Rollback",
+        "action_type": "o2c_split_shipment",
+        "workflow_name": "acc04-o2c-saga",
+        "command_or_diff": "workflow: acc04-o2c-saga\nstep1_wms: RESERVE medical SKU @ USMEM\nstep2_carrier: BOOK Regional-Freight (auto-compensates WMS on HTTP 503)\nstep3_erp: COMMIT PO-9104 transfer",
+        "estimated_action_cost_usd": 2400.0,
+        "avoided_loss_usd": 18500.0,
+        "sla_risk_hours": 14.0,
+        "requires_vp_escalation": false,
+        "is_recommended": true,
+        "compensation_steps": [
+          "Auto-release WMS reservation WMS-RES-PO-9104 on Carrier 503 timeout"
+        ]
+      }
+    ],
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "incident_id": "o2c_inc03",
+    "pack_id": "supply_chain_o2c_saga",
+    "title": "Cold-Chain Excursion on PO-9220 (Margin-Floor VP Escalation)",
+    "summary": "Reefer excursion near Houston requires $7,400 air-freight replacement against a $9,500 SLA penalty — breaches deterministic 65% margin floor.",
+    "severity": "P2_HIGH",
+    "sla_minutes_remaining": 40,
+    "expected_verdict": "NEEDS_VP_ESCALATION",
+    "expected_root_cause": "Cold-chain excursion near LOCODE-USHOU; replacement charter cost ($7,400) equals 77.9% of avoided SLA penalty ($9,500), triggering deterministic VP escalation.",
+    "expected_event_ids": [
+      "evt_o2c03_01"
+    ],
+    "expected_intel_ids": [
+      "LOCODE-USHOU"
+    ],
+    "expected_action_type": "o2c_air_freight_expedite",
+    "has_prompt_injection": false,
+    "financial_exposure_usd": 9500.0,
+    "remediation_options": [
+      {
+        "option_id": "opt_o2c03_vp_air",
+        "title": "VP-Escalated Cold-Chain Charter Replacement ($7,400)",
+        "action_type": "o2c_air_freight_expedite",
+        "workflow_name": "acc04-o2c-saga",
+        "command_or_diff": "workflow: acc04-o2c-saga (VP_ESCALATION_REQUIRED=true)\nstep1_wms: RESERVE cold-chain replacement lot\nstep2_carrier: BOOK Reefer-Air Charter ($7,400)\nstep3_erp: UPDATE PO-9220 & log margin-floor override",
+        "estimated_action_cost_usd": 7400.0,
+        "avoided_loss_usd": 9500.0,
+        "sla_risk_hours": 8.0,
+        "requires_vp_escalation": true,
+        "is_recommended": true,
+        "compensation_steps": [
+          "Release cold-chain lot if charter unavailable"
+        ]
+      }
+    ],
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "incident_id": "o2c_inc04",
+    "pack_id": "supply_chain_o2c_saga",
+    "title": "Late Duplicate EDI-214 Delay Webhook on Delivered PO-8702",
+    "summary": "Legacy EDI bridge replayed a 48h-old Seattle delay alert; verify ERP Proof-of-Delivery before spending on replacement freight.",
+    "severity": "BENIGN_VERIFY",
+    "sla_minutes_remaining": 90,
+    "expected_verdict": "BENIGN_FALSE_POSITIVE",
+    "expected_root_cause": "Replayed stale EDI-214 delay webhook for LOCODE-USSEA; ERP already holds signed Proof-of-Delivery POD-8702-OK.",
+    "expected_event_ids": [
+      "evt_o2c04_01",
+      "evt_o2c04_02"
+    ],
+    "expected_intel_ids": [
+      "LOCODE-USSEA"
+    ],
+    "expected_action_type": "no_action_benign_clear",
+    "has_prompt_injection": false,
+    "financial_exposure_usd": 0.0,
+    "remediation_options": [
+      {
+        "option_id": "opt_o2c04_clear",
+        "title": "Dismiss Duplicate EDI Notice (Prevent $2,400 Duplicate Shipment)",
+        "action_type": "no_action_benign_clear",
+        "workflow_name": "acc04-o2c-saga",
+        "command_or_diff": "# POD-8702-OK confirmed signed — suppress duplicate reshipment.",
+        "estimated_action_cost_usd": 0.0,
+        "avoided_loss_usd": 2400.0,
+        "sla_risk_hours": 0.0,
+        "requires_vp_escalation": false,
+        "is_recommended": true,
+        "compensation_steps": []
+      }
+    ],
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "incident_id": "o2c_inc05",
+    "pack_id": "supply_chain_o2c_saga",
+    "title": "Savannah Drayage Bottleneck Reroute via Atlanta Hub (PO-9315)",
+    "summary": "48h port hold at Savannah threatens $14,200 SLA penalty; evaluate Atlanta inland rail/WMS fulfillment.",
+    "severity": "P2_HIGH",
+    "sla_minutes_remaining": 55,
+    "expected_verdict": "CONFIRMED_INCIDENT",
+    "expected_root_cause": "Drayage congestion at LOCODE-USSAV delaying PO-9315; inland reroute from LOCODE-USATL ($2,100) saves $12,100 net.",
+    "expected_event_ids": [
+      "evt_o2c05_01"
+    ],
+    "expected_intel_ids": [
+      "LOCODE-USSAV",
+      "LOCODE-USATL"
+    ],
+    "expected_action_type": "o2c_split_shipment",
+    "has_prompt_injection": false,
+    "financial_exposure_usd": 14200.0,
+    "remediation_options": [
+      {
+        "option_id": "opt_o2c05_reroute",
+        "title": "Fulfill PO-9315 from Atlanta Inland Hub (USATL)",
+        "action_type": "o2c_split_shipment",
+        "workflow_name": "acc04-o2c-saga",
+        "command_or_diff": "workflow: acc04-o2c-saga\nstep1_wms: RESERVE stock @ USATL\nstep2_carrier: BOOK Southeast-Express ($2,100)\nstep3_erp: REALLOCATE PO-9315 from USSAV -> USATL",
+        "estimated_action_cost_usd": 2100.0,
+        "avoided_loss_usd": 14200.0,
+        "sla_risk_hours": 16.0,
+        "requires_vp_escalation": false,
+        "is_recommended": true,
+        "compensation_steps": [
+          "Release USATL reservation on carrier booking failure"
+        ]
+      }
+    ],
+    "data_origin": "MODELED_BRIDGE"
+  }
+]

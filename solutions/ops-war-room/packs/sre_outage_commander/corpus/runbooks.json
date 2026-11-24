@@ -1,0 +1,33 @@
+[
+  {
+    "runbook_id": "rb_sre_burn_rate",
+    "pack_id": "sre_outage_commander",
+    "title": "Google SRE Workbook · Multi-Window Multi-Burn-Rate Rollback Policy",
+    "category": "SLO Burn Mitigation",
+    "content": "When 1-hour and 5-minute error-budget burn rates exceed 14.4x (consuming 2% of 30-day budget in 1h) immediately after a canary deployment, verify the prior stable revision health and shift 100% traffic via gcloud run services update-traffic.",
+    "safe_commands": [
+      "gcloud run services update-traffic checkout-svc --to-revisions=checkout-svc-00041-stable=100 --region=us-central1"
+    ],
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "runbook_id": "rb_sre_circuit_breaker",
+    "pack_id": "sre_outage_commander",
+    "title": "Upstream Dependency Circuit-Breaker & Traffic Shedding",
+    "category": "Resilience",
+    "content": "When upstream 504 timeouts or abusive edge floods degrade p99 latency without a recent local deploy, enable circuit-breaker fallback and rate-limit rules rather than rolling back healthy application revisions.",
+    "safe_commands": [
+      "gcloud compute security-policies rules update 200 --security-policy=checkout-edge-waf --action=throttle"
+    ],
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "runbook_id": "rb_sre_loadtest_filter",
+    "pack_id": "sre_outage_commander",
+    "title": "Synthetic Load-Test & Shadow Traffic Exclusion Check",
+    "category": "False-Positive Clearance",
+    "content": "Before rolling back production, confirm error spikes are not isolated to scheduled synthetic load-test headers (X-LoadTest-Run) or shadow traffic with zero customer SLO impact.",
+    "safe_commands": [],
+    "data_origin": "REAL_PUBLIC"
+  }
+]

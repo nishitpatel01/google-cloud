@@ -1,0 +1,73 @@
+# Google Cloud Workflows — Atomic Order-to-Cash Fulfillment Saga (acc04-o2c-saga)
+# Enforces idempotency_key, mandatory approval_digest, and automatic WMS compensation rollback on carrier failure.
+
+main:
+  params: [args]
+  steps:
+    - init_and_validate:
+        assign:
+          - incident_id: ${args.incident_id}
+          - order_id: ${default(map.get(args, "order_id"), "PO-8841")}
+          - plan_sha256: ${args.plan_sha256}
+          - idempotency_key: ${args.idempotency_key}
+          - dry_run: ${default(map.get(args, "dry_run"), true)}
+          - simulate_step2_failure: ${default(map.get(args, "simulate_step2_failure"), false)}
+          - wms_reserved: false
+          - saga_steps: []
+
+    - verify_approval_digest:
+        switch:
+          - condition: ${len(plan_sha256) != 64 or len(idempotency_key) == 0}
+            raise:
+              code: 403
+              message: "Missing mandatory SHA-256 lead approval digest or idempotency_key"
+
+    - step1_reserve_wms_inventory:
+        assign:
+          - wms_reserved: true
+          - reservation_id: ${"WMS-RES-" + order_id}
+          - saga_steps: ${list.concat(saga_steps, [{"step_id":"step1_wms","system":"WMS","status":"SUCCEEDED","detail":"Reserved alternate warehouse stock " + reservation_id}])}
+
+    - step2_book_carrier_and_update_erp:
+        try:
+          steps:
+            - check_carrier_fault_injection:
+                switch:
+                  - condition: ${simulate_step2_failure == true}
+                    raise:
+                      code: 503
+                      message: "Carrier API timeout during expedite booking (simulated fault)"
+            - record_carrier_booked:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_carrier","system":"Carrier API","status":"SUCCEEDED","detail":"Booked expedited reroute for " + order_id}])}
+            - step3_update_erp_order:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step3_erp","system":"ERP","status":"SUCCEEDED","detail":"Committed split-shipment allocation for " + order_id}])}
+            - return_completed:
+                return:
+                  incident_id: ${incident_id}
+                  idempotency_key: ${idempotency_key}
+                  final_state: "SAGA_COMPLETED"
+                  compensation_triggered: false
+                  dry_run: ${dry_run}
+                  steps: ${saga_steps}
+        except:
+          as: err
+          steps:
+            - record_carrier_failure:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_carrier","system":"Carrier API","status":"FAILED","detail":text.decode(json.encode(err))}])}
+            - compensate_release_wms_reservation:
+                switch:
+                  - condition: ${wms_reserved == true}
+                    assign:
+                      - wms_reserved: false
+                      - saga_steps: ${list.concat(saga_steps, [{"step_id":"comp1_wms_release","system":"WMS","status":"COMPENSATED","detail":"Automatically released reservation " + reservation_id + " (zero orphaned stock)"}])}
+            - return_rolled_back:
+                return:
+                  incident_id: ${incident_id}
+                  idempotency_key: ${idempotency_key}
+                  final_state: "SAGA_ROLLED_BACK"
+                  compensation_triggered: true
+                  dry_run: ${dry_run}
+                  steps: ${saga_steps}

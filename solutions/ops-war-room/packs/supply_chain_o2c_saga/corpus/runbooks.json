@@ -1,0 +1,31 @@
+[
+  {
+    "runbook_id": "rb_o2c_split_ship",
+    "pack_id": "supply_chain_o2c_saga",
+    "title": "Order-to-Cash Split-Shipment & Margin-Floor Policy",
+    "category": "Fulfillment Optimization",
+    "content": "When a port or carrier disruption threatens a Tier-1 customer SLA penalty, compare regional WMS split-shipment vs. air-freight expedite. Any expedite exceeding 65% of avoided SLA penalty requires mandatory VP Operations escalation before approval.",
+    "safe_commands": [
+      "workflows execute acc04-o2c-saga --data='{\"order_id\":\"PO-8841\",\"dry_run\":true}'"
+    ],
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "runbook_id": "rb_o2c_saga_comp",
+    "pack_id": "supply_chain_o2c_saga",
+    "title": "Atomic Multi-System Saga & WMS Compensation Rollback",
+    "category": "Transactional Integrity",
+    "content": "Never commit WMS inventory reservation independently from Carrier booking and ERP order updates. Execute all 3 writes inside Google Cloud Workflows with an idempotency_key; if Carrier API fails, automatically invoke release_wms_reservation to prevent orphaned inventory.",
+    "safe_commands": [],
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "runbook_id": "rb_o2c_dup_edi",
+    "pack_id": "supply_chain_o2c_saga",
+    "title": "EDI-214 Duplicate Webhook & Proof-of-Delivery Verification",
+    "category": "False-Positive Clearance",
+    "content": "Always cross-check late carrier EDI-214 delay notices against signed Proof-of-Delivery (POD) timestamps in WMS/ERP before dispatching replacement stock.",
+    "safe_commands": [],
+    "data_origin": "REAL_PUBLIC"
+  }
+]

@@ -1,0 +1,461 @@
+[
+  {
+    "intel_id": "LOCODE-DEHAM",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "DEHAM — Hamburg (DE)",
+    "summary": "UNECE UN/LOCODE trade and port hub Hamburg (DEHAM), function=12345---, subdivision=HH.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "DE",
+      "location": "HAM",
+      "function": "12345---",
+      "coordinates": "5331N 00956E"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-NLRTM",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "NLRTM — Rotterdam (NL)",
+    "summary": "UNECE UN/LOCODE trade and port hub Rotterdam (NLRTM), function=12345---, subdivision=ZH.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "NL",
+      "location": "RTM",
+      "function": "12345---",
+      "coordinates": "5155N 00430E"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-SGSIN",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "SGSIN — Singapore (SG)",
+    "summary": "UNECE UN/LOCODE trade and port hub Singapore (SGSIN), function=1--45---, subdivision=.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "SG",
+      "location": "SIN",
+      "function": "1--45---",
+      "coordinates": "0117N 10351E"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USATL",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USATL — Atlanta (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Atlanta (USATL), function=---45---, subdivision=GA.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "ATL",
+      "function": "---45---",
+      "coordinates": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USCHI",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USCHI — Chicago (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Chicago (USCHI), function=1--45---, subdivision=IL.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "CHI",
+      "function": "1--45---",
+      "coordinates": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USCHS",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USCHS — Charleston (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Charleston (USCHS), function=1--4----, subdivision=SC.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "CHS",
+      "function": "1--4----",
+      "coordinates": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USDFW",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USDFW — Dallas-Fort Worth Int Apt (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Dallas-Fort Worth Int Apt (USDFW), function=---4----, subdivision=TX.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "DFW",
+      "function": "---4----",
+      "coordinates": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USHOU",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USHOU — Houston (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Houston (USHOU), function=1-345---, subdivision=TX.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "HOU",
+      "function": "1-345---",
+      "coordinates": "2945N 09521W"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USLAX",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USLAX — Los Angeles (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Los Angeles (USLAX), function=1--45---, subdivision=CA.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "LAX",
+      "function": "1--45---",
+      "coordinates": "3403N 11815W"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USLGB",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USLGB — Long Beach (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Long Beach (USLGB), function=1234----, subdivision=CA.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "LGB",
+      "function": "1234----",
+      "coordinates": "3346N 11811W"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USMEM",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USMEM — Memphis (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Memphis (USMEM), function=1-34----, subdivision=TN.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "MEM",
+      "function": "1-34----",
+      "coordinates": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USMIA",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USMIA — Miami (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Miami (USMIA), function=1--45---, subdivision=FL.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "MIA",
+      "function": "1--45---",
+      "coordinates": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USNYC",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USNYC — New York (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub New York (USNYC), function=12345---, subdivision=NY.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "NYC",
+      "function": "12345---",
+      "coordinates": "4042N 07400W"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USSAV",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USSAV — Savannah (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Savannah (USSAV), function=1--4----, subdivision=GA.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "SAV",
+      "function": "1--4----",
+      "coordinates": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "LOCODE-USSEA",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "un_locode",
+    "title": "USSEA — Seattle (US)",
+    "summary": "UNECE UN/LOCODE trade and port hub Seattle (USSEA), function=1--45---, subdivision=WA.",
+    "source_name": "UNECE UN/LOCODE Code List (datasets/un-locode)",
+    "source_url": "https://raw.githubusercontent.com/datasets/un-locode/main/data/code-list.csv",
+    "license_name": "PDDL v1.0 Public Domain",
+    "metadata": {
+      "country": "US",
+      "location": "SEA",
+      "function": "1--45---",
+      "coordinates": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-E6F5CEFB85",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Coastal Flood Warning — Ocean; Coastal Ocean",
+    "summary": "Coastal Flood Warning issued November 24 at 2:30PM EST until November 27 at 3:00PM EST by NWS Mount Holly NJ",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Expected",
+      "effective": "2026-11-24T14:30:00-05:00",
+      "expires": "2026-11-25T03:30:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-B6E9144536",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Coastal Flood Warning — Kent; Cumberland",
+    "summary": "Coastal Flood Warning issued November 24 at 2:30PM EST until November 27 at 3:00AM EST by NWS Mount Holly NJ",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Expected",
+      "effective": "2026-11-24T14:30:00-05:00",
+      "expires": "2026-11-25T03:30:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-C456BB0B6C",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Coastal Flood Warning — Middlesex; Western Monmouth; Eastern Monmouth",
+    "summary": "Coastal Flood Warning issued November 24 at 2:30PM EST until November 27 at 3:00AM EST by NWS Mount Holly NJ",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Expected",
+      "effective": "2026-11-24T14:30:00-05:00",
+      "expires": "2026-11-25T03:30:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-AB1D62EA90",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Coastal Flood Warning — Atlantic; Cape May; Atlantic Coastal Cape May; Coastal Atlantic; Southeastern Burlington",
+    "summary": "Coastal Flood Warning issued November 24 at 2:30PM EST until November 27 at 3:00AM EST by NWS Mount Holly NJ",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Expected",
+      "effective": "2026-11-24T14:30:00-05:00",
+      "expires": "2026-11-25T03:30:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-46906693BA",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Coastal Flood Warning — New Castle; Salem",
+    "summary": "Coastal Flood Warning issued November 24 at 2:30PM EST until November 27 at 4:00AM EST by NWS Mount Holly NJ",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Expected",
+      "effective": "2026-11-24T14:30:00-05:00",
+      "expires": "2026-11-25T03:30:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-6EAE8D9C85",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Coastal Flood Warning — Inland Sussex; Delaware Beaches",
+    "summary": "Coastal Flood Warning issued November 24 at 2:30PM EST until November 27 at 3:00PM EST by NWS Mount Holly NJ",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Expected",
+      "effective": "2026-11-24T14:30:00-05:00",
+      "expires": "2026-11-25T03:30:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-CC087054CA",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "High Wind Watch — Dorchester; Wicomico; Somerset; Inland Worcester; Maryland Beaches; Accomack; Northampton",
+    "summary": "High Wind Watch issued November 24 at 2:17PM EST until November 26 at 7:00PM EST by NWS Wakefield VA",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Future",
+      "effective": "2026-11-24T14:17:00-05:00",
+      "expires": "2026-11-25T04:15:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-E1062EC256",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "High Wind Watch — Western Currituck; Eastern Currituck; Virginia Beach; Norfolk; Portsmouth",
+    "summary": "High Wind Watch issued November 24 at 2:17PM EST until November 26 at 1:00PM EST by NWS Wakefield VA",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Future",
+      "effective": "2026-11-24T14:17:00-05:00",
+      "expires": "2026-11-25T04:15:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-CEF33B6FCF",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Storm Warning — Coastal waters from Fenwick Island DE to Chincoteague VA out 20 NM; Coastal waters from Ch",
+    "summary": "Storm Warning issued November 24 at 2:07PM EST until November 26 at 7:00PM EST by NWS Wakefield VA",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "effective": "2026-11-24T14:07:00-05:00",
+      "expires": "2026-11-24T22:15:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-738EA0BAFD",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Storm Warning — Waters from Fenwick Island DE to Chintoteague VA from 20 to 60 NM; Waters from Chincoteagu",
+    "summary": "Storm Warning issued November 24 at 2:07PM EST until November 26 at 7:00PM EST by NWS Wakefield VA",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "effective": "2026-11-24T14:07:00-05:00",
+      "expires": "2026-11-24T22:15:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-F28F93F958",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Storm Warning — Waters from Parramore Island VA to Cape Charles Light VA from 20 to 60 NM; Waters from Cap",
+    "summary": "Storm Warning issued November 24 at 2:07PM EST until November 26 at 4:00PM EST by NWS Wakefield VA",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "effective": "2026-11-24T14:07:00-05:00",
+      "expires": "2026-11-24T22:15:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "NWS-C98DD615DD",
+    "pack_id": "supply_chain_o2c_saga",
+    "intel_type": "nws_alert",
+    "title": "Storm Warning — Chesapeake Bay from New Point Comfort to Little Creek VA; Chesapeake Bay from Little Creek",
+    "summary": "Storm Warning issued November 24 at 2:07PM EST until November 26 at 4:00PM EST by NWS Wakefield VA",
+    "source_name": "NOAA National Weather Service Active Alerts API",
+    "source_url": "https://api.weather.gov/alerts/active?status=actual&severity=Severe",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "severity": "Severe",
+      "urgency": "Immediate",
+      "effective": "2026-11-24T14:07:00-05:00",
+      "expires": "2026-11-24T22:15:00-05:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  }
+]

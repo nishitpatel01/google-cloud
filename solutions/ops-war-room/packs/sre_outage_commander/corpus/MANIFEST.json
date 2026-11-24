@@ -1,0 +1,19 @@
+{
+  "pack_id": "sre_outage_commander",
+  "generated_at_utc": "2026-11-24T19:35:03Z",
+  "counts": {
+    "incidents": 5,
+    "telemetry_events": 6,
+    "intel_records": 18,
+    "runbooks": 3,
+    "real_public_records": 21,
+    "modeled_bridge_records": 6,
+    "real_public_share_pct": 77.8
+  },
+  "files": {
+    "incidents.json": "941db5ca4ae757bc6d01b4bf7405845dc1d60a7382131253a6e7de39c071bbcf",
+    "telemetry.json": "23cd458f1ce80f6b54c4ddf4ce071184ad2f95b4206c2ddb7a819be0264ca47d",
+    "intel.json": "7b31f839c53c7bf2c13e58afdbd4ba41572e2538a9b77efde722fc171014d342",
+    "runbooks.json": "b2e9fccf856aa42a6961daa6e1a22f67ef98799a3f21c7f6d58eaf96213a78dd"
+  }
+}

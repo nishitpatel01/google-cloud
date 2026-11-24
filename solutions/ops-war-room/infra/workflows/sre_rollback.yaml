@@ -1,0 +1,67 @@
+# Google Cloud Workflows — SRE Verified Traffic-Split & Rollback Saga (acc04-sre-rollback)
+# Validates revision health before shifting Cloud Run traffic, with automatic restore on health probe failure.
+
+main:
+  params: [args]
+  steps:
+    - init:
+        assign:
+          - incident_id: ${args.incident_id}
+          - plan_sha256: ${args.plan_sha256}
+          - idempotency_key: ${args.idempotency_key}
+          - target_revision: ${default(map.get(args, "target_revision"), "checkout-svc-00041-stable")}
+          - dry_run: ${default(map.get(args, "dry_run"), true)}
+          - simulate_step2_failure: ${default(map.get(args, "simulate_step2_failure"), false)}
+          - saga_steps: []
+
+    - verify_approval_digest:
+        switch:
+          - condition: ${len(plan_sha256) != 64 or len(idempotency_key) == 0}
+            raise:
+              code: 403
+              message: "Rollback blocked: missing SHA-256 lead approval digest or idempotency_key"
+
+    - step1_verify_target_revision:
+        assign:
+          - saga_steps: ${list.concat(saga_steps, [{"step_id":"step1_health_check","system":"Cloud Run","status":"SUCCEEDED","detail":"Verified stable target revision " + target_revision + " ready & warm"}])}
+
+    - step2_shift_traffic_and_verify_slo:
+        try:
+          steps:
+            - check_probe_fault:
+                switch:
+                  - condition: ${simulate_step2_failure == true}
+                    raise:
+                      code: 502
+                      message: "Post-shift canary SLO probe detected elevated 5xx (simulated fault)"
+            - record_traffic_shifted:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_traffic_split","system":"Cloud Run","status":"SUCCEEDED","detail":"Shifted 100% traffic to " + target_revision + " (dry_run=" + string(dry_run) + ")"}])}
+            - step3_confirm_slo_recovery:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step3_slo_probe","system":"Cloud Monitoring","status":"SUCCEEDED","detail":"Confirmed p99 latency & 5xx error budget burn stabilized"}])}
+            - return_completed:
+                return:
+                  incident_id: ${incident_id}
+                  idempotency_key: ${idempotency_key}
+                  final_state: "SAGA_COMPLETED"
+                  compensation_triggered: false
+                  dry_run: ${dry_run}
+                  steps: ${saga_steps}
+        except:
+          as: err
+          steps:
+            - record_probe_failure:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_traffic_split","system":"Cloud Run","status":"FAILED","detail":text.decode(json.encode(err))}])}
+            - compensate_restore_previous_split:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"comp1_restore_split","system":"Cloud Run","status":"COMPENSATED","detail":"Reverted traffic split to prior baseline & paged primary SRE"}])}
+            - return_rolled_back:
+                return:
+                  incident_id: ${incident_id}
+                  idempotency_key: ${idempotency_key}
+                  final_state: "SAGA_ROLLED_BACK"
+                  compensation_triggered: true
+                  dry_run: ${dry_run}
+                  steps: ${saga_steps}

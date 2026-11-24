@@ -1,0 +1,298 @@
+[
+  {
+    "intel_id": "GCP-Xs2XTHzAVC9Ynafn",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "gcp_status",
+    "title": "Multiple Products — Multiple services were experiencing issues in the europe-west2 region.",
+    "summary": "Multiple services were experiencing issues in the europe-west2 region.",
+    "source_name": "Google Cloud Service Health Public Feed",
+    "source_url": "https://status.cloud.google.com/incidents.json",
+    "license_name": "Public Operational Status Feed",
+    "metadata": {
+      "service_name": "Multiple Products",
+      "severity": "medium",
+      "begin": "2026-10-20T06:00:00+00:00",
+      "end": "2026-10-20T12:08:00+00:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "GCP-mSFVt6PiP557bjRy",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "gcp_status",
+    "title": "Google Cloud Storage — Google Cloud Storage (GCS) customers experienced elevated latencies and error rates when p",
+    "summary": "Google Cloud Storage (GCS) customers experienced elevated latencies and error rates when performing upload or write operations.",
+    "source_name": "Google Cloud Service Health Public Feed",
+    "source_url": "https://status.cloud.google.com/incidents.json",
+    "license_name": "Public Operational Status Feed",
+    "metadata": {
+      "service_name": "Google Cloud Storage",
+      "severity": "medium",
+      "begin": "2026-10-08T11:00:00+00:00",
+      "end": "2026-10-09T16:46:00+00:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "GCP-J5ia5t9p3g9Q5Wi7",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "gcp_status",
+    "title": "Multiple Products — Multiple products in us-central1-b are experiencing network service degradation.",
+    "summary": "Multiple products in us-central1-b are experiencing network service degradation.",
+    "source_name": "Google Cloud Service Health Public Feed",
+    "source_url": "https://status.cloud.google.com/incidents.json",
+    "license_name": "Public Operational Status Feed",
+    "metadata": {
+      "service_name": "Multiple Products",
+      "severity": "medium",
+      "begin": "2026-09-01T14:42:00+00:00",
+      "end": "2026-09-01T18:52:00+00:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "GCP-utF3FMFdQfwBzJcG",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "gcp_status",
+    "title": "Multiple Products — We are investigating an issue where customers may experience timeouts, service degradation",
+    "summary": "We are investigating an issue where customers may experience timeouts, service degradations, errors, and elevated latencies across multiple products in the us-west1 region.",
+    "source_name": "Google Cloud Service Health Public Feed",
+    "source_url": "https://status.cloud.google.com/incidents.json",
+    "license_name": "Public Operational Status Feed",
+    "metadata": {
+      "service_name": "Multiple Products",
+      "severity": "high",
+      "begin": "2026-08-20T15:40:00+00:00",
+      "end": "2026-08-20T19:20:00+00:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "GCP-3BvH3LVGcupoYqV6",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "gcp_status",
+    "title": "Multiple Products — Google Cloud VMware Engine (GCVE), Google Cloud NetApp Volumes, and Bare Metal Solutions (",
+    "summary": "Google Cloud VMware Engine (GCVE), Google Cloud NetApp Volumes, and Bare Metal Solutions (BMS) services are experiencing a service outage in europe-west4-a due to a cooling failure.",
+    "source_name": "Google Cloud Service Health Public Feed",
+    "source_url": "https://status.cloud.google.com/incidents.json",
+    "license_name": "Public Operational Status Feed",
+    "metadata": {
+      "service_name": "Multiple Products",
+      "severity": "medium",
+      "begin": "2026-07-15T23:57:00+00:00",
+      "end": "2026-07-16T12:25:00+00:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "GCP-T8gmtofFSTGT5tbh",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "gcp_status",
+    "title": "VMWare engine — Google Cloud VMware Engine (GCVE) Stretched Cluster customers are experiencing zonal outag",
+    "summary": "Google Cloud VMware Engine (GCVE) Stretched Cluster customers are experiencing zonal outages impacting network connectivity across multiple regions.",
+    "source_name": "Google Cloud Service Health Public Feed",
+    "source_url": "https://status.cloud.google.com/incidents.json",
+    "license_name": "Public Operational Status Feed",
+    "metadata": {
+      "service_name": "VMWare engine",
+      "severity": "medium",
+      "begin": "2026-07-14T17:00:00+00:00",
+      "end": "2026-07-15T03:40:00+00:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "GCP-5fGQt4VbkDnr3Yp8",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "gcp_status",
+    "title": "Multiple Products — Network traffic to Google Cloud originating from Delhi, Chennai, Mumbai and surrounding ar",
+    "summary": "Network traffic to Google Cloud originating from Delhi, Chennai, Mumbai and surrounding areas is experiencing intermittent periods of elevated latency and possible packet loss.",
+    "source_name": "Google Cloud Service Health Public Feed",
+    "source_url": "https://status.cloud.google.com/incidents.json",
+    "license_name": "Public Operational Status Feed",
+    "metadata": {
+      "service_name": "Multiple Products",
+      "severity": "medium",
+      "begin": "2026-06-05T07:00:00+00:00",
+      "end": "2026-06-26T19:00:00+00:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "GCP-41E5S3mkTGDfkZuJ",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "gcp_status",
+    "title": "Multiple Products — Vertex AI Gemini API customers experienced increased error rates when accessing the global",
+    "summary": "Vertex AI Gemini API customers experienced increased error rates when accessing the global endpoint.",
+    "source_name": "Google Cloud Service Health Public Feed",
+    "source_url": "https://status.cloud.google.com/incidents.json",
+    "license_name": "Public Operational Status Feed",
+    "metadata": {
+      "service_name": "Multiple Products",
+      "severity": "low",
+      "begin": "2026-02-27T12:37:00+00:00",
+      "end": "2026-02-27T14:35:00+00:00"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-METRIC_ATTRIBUTES_HTTP_SERVER",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: metric_attributes.http.server",
+    "summary": "HTTP server attributes",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "metric_attributes.http.server",
+      "instrument": "",
+      "unit": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-METRIC_ATTRIBUTES_HTTP_CLIENT",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: metric_attributes.http.client",
+    "summary": "HTTP client attributes",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "metric_attributes.http.client",
+      "instrument": "",
+      "unit": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-METRIC_ATTRIBUTES_HTTP_CLIENT_EXPERIMENTAL",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: metric_attributes.http.client.experimental",
+    "summary": "HTTP client experimental attributes",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "metric_attributes.http.client.experimental",
+      "instrument": "",
+      "unit": ""
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-HTTP_SERVER_REQUEST_DURATION",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: http.server.request.duration",
+    "summary": "Duration of HTTP server requests.",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "http.server.request.duration",
+      "instrument": "histogram",
+      "unit": "s"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-HTTP_SERVER_ACTIVE_REQUESTS",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: http.server.active_requests",
+    "summary": "Number of active HTTP server requests.",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "http.server.active_requests",
+      "instrument": "updowncounter",
+      "unit": "{request}"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-HTTP_SERVER_REQUEST_BODY_SIZE",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: http.server.request.body.size",
+    "summary": "Size of HTTP server request bodies.",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "http.server.request.body.size",
+      "instrument": "histogram",
+      "unit": "By"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-HTTP_SERVER_RESPONSE_BODY_SIZE",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: http.server.response.body.size",
+    "summary": "Size of HTTP server response bodies.",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "http.server.response.body.size",
+      "instrument": "histogram",
+      "unit": "By"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-HTTP_CLIENT_REQUEST_DURATION",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: http.client.request.duration",
+    "summary": "Duration of HTTP client requests.",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "http.client.request.duration",
+      "instrument": "histogram",
+      "unit": "s"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-HTTP_CLIENT_REQUEST_BODY_SIZE",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: http.client.request.body.size",
+    "summary": "Size of HTTP client request bodies.",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "http.client.request.body.size",
+      "instrument": "histogram",
+      "unit": "By"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "OTEL-HTTP_CLIENT_RESPONSE_BODY_SIZE",
+    "pack_id": "sre_outage_commander",
+    "intel_type": "otel_metric",
+    "title": "OpenTelemetry Metric: http.client.response.body.size",
+    "summary": "Size of HTTP client response bodies.",
+    "source_name": "OpenTelemetry Semantic Conventions (CNCF)",
+    "source_url": "https://raw.githubusercontent.com/open-telemetry/semantic-conventions/main/model/http/metrics.yaml",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "metric_name": "http.client.response.body.size",
+      "instrument": "histogram",
+      "unit": "By"
+    },
+    "data_origin": "REAL_PUBLIC"
+  }
+]
