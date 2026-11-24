@@ -46,6 +46,34 @@ All metrics below are computed deterministically from recorded live runs in `dat
 
 ---
 
+## Application Walkthrough
+
+### 1. Risk Explorer — Interactive Multi-Hop Contagion Network
+
+Switch between industry packs (**Supply Chain**, **Banking AML & Sanctions**, **Legal M&A**) and trace 2-to-4 tier upstream or downstream exposure across an interactive `d3-force` risk graph (drag to pan, scroll to zoom, filter entities, or expand full width). Highlighted edges isolate the active contagion chain alongside upfront executive KPIs comparing manual audit cost (`$4,500 · 960 min`) against serverless GraphRAG (`~$0.003`).
+
+![Risk Explorer — Interactive Multi-Hop Contagion Network](docs/images/01-risk-explorer-graph.png)
+
+### 2. Verified Executive Risk Brief & Clickable Source Citations
+
+Every generated brief passes through the **Deterministic Provenance Verifier** before rendering. Each inline entity, relationship, and filing pill (`Intel Corporation`, `China Molybdenum Tungsten Co., Ltd.`, `SEC_FormSD_2026... · p.1`) is verified against the traversed subgraph and opens the primary-source Evidence Inspector—paired with stage-by-stage timing, transparent `Engine $` vs. `Judge $` cost, and independent Vertex AI GenAI Evaluation scores.
+
+![Verified Executive Risk Brief and Clickable Source Citations](docs/images/02-cited-brief-evidence.png)
+
+### 3. AI Comparison Lab — Standard Vector Search vs. Graph Intelligence
+
+Run the exact same multi-hop business question side by side through **Flat Vector RAG** and **BigQuery GraphRAG** (or the **Google ADK Coordinator**). Live execution rails show every retrieval step—including expandable parameterized BigQuery SQL and ISO GQL queries—demonstrating why flat chunk retrieval scores **`0%`** multi-tier recall while GraphRAG recovers **`100%`** (`+100 pts Graph Advantage`).
+
+![AI Comparison Lab — Standard Vector Search vs. Graph Intelligence](docs/images/03-ai-comparison-lab.png)
+
+### 4. Business ROI, Evaluation Leaderboard & Cloud TCO Estimator
+
+Review aggregated scores across all recorded live evaluation runs (zero hardcoded benchmarks), size monthly investigation volume with the interactive workload slider, compare **Tier-1 Serverless (BigQuery Property Graph)** against **Tier-2 Real-Time Enterprise (Spanner Graph)** monthly spend and ROI multiples, and export a spreadsheet-safe CSV Executive Brief.
+
+![Business ROI, Evaluation Leaderboard and Cloud TCO Estimator](docs/images/04-roi-and-benchmarks.png)
+
+---
+
 ## System Architecture
 
 ```mermaid
@@ -170,6 +198,8 @@ solutions/enterprise-graphrag/
 ├── data/
 │   ├── recordings/                   # 33 scrubbed live-recorded Replay fixtures across all 3 industry packs
 │   └── releases.json                 # Structured release notes powering the in-app Releases view
+├── docs/
+│   └── images/                       # Application walkthrough screenshots embedded in README.md
 ├── infra/
 │   ├── sql/                          # BigQuery Property Graph & Spanner Graph ISO GQL DDL schemas
 │   └── terraform/                    # Modular Tier-1 Serverless + Tier-2 Spanner Graph IaC (apis, iam, bq, run)
