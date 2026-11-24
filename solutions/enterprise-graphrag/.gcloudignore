@@ -8,6 +8,7 @@ deploy/*.env
 frontend/node_modules/
 frontend/dist/
 backend/tests/
+docs/
 infra/terraform/.terraform/
 infra/terraform/*.tfstate*
 infra/terraform/*.tfvars
