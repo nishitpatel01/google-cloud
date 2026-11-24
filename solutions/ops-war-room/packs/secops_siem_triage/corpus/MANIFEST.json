@@ -1,0 +1,19 @@
+{
+  "pack_id": "secops_siem_triage",
+  "generated_at_utc": "2026-11-24T19:35:02Z",
+  "counts": {
+    "incidents": 5,
+    "telemetry_events": 11,
+    "intel_records": 27,
+    "runbooks": 4,
+    "real_public_records": 31,
+    "modeled_bridge_records": 11,
+    "real_public_share_pct": 73.8
+  },
+  "files": {
+    "incidents.json": "8697b69f18228b2e821b2e19ccba7f498f4d29c09c22bf2ad67911ed77cfec78",
+    "telemetry.json": "f52759524afc24353b455c75bfb6c180369db6cf87cd648b20488d8d926b1e9c",
+    "intel.json": "5e270c653654137006026f325eb92d302feda71241f66caecb8be2da3167ce25",
+    "runbooks.json": "647e5709e3c57de515a87f5844e368f5c2441b665bd6aece8f8d6187fb8ea7d9"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "pack_id": "supply_chain_o2c_saga",
+  "generated_at_utc": "2026-11-24T19:35:03Z",
+  "counts": {
+    "incidents": 5,
+    "telemetry_events": 8,
+    "intel_records": 27,
+    "runbooks": 3,
+    "real_public_records": 30,
+    "modeled_bridge_records": 8,
+    "real_public_share_pct": 78.9
+  },
+  "files": {
+    "incidents.json": "bc6fa307cf49557248a6795358af6f2e50f55acec85273302111421753f4f690",
+    "telemetry.json": "ba02e2db162851747f2aa2d50495354c546a7f289dc2efbd23782bee7bffa2f1",
+    "intel.json": "9c2f4a2c75fad3892255f8be5a19e88916d6c20aaaaeea1cba56cd8354f4bf03",
+    "runbooks.json": "e3d4a7b0409e89a5ae35b3a3da31907f9908d24087924aef153700d8397474d7"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "solution_id": "acc04",
+  "solution_name": "Operations & Incident War Room",
+  "current_version": "0.1.0",
+  "releases": [
+    {
+      "version": "0.1.0",
+      "date": "2026-11-24",
+      "tag": "Foundation",
+      "title": "Domain Contracts, Remediation FSM, Public Packs & Cloud Workflows Schemas",
+      "summary": "Established strict incident triage contracts, illegal-states-unrepresentable remediation & saga FSM, adversarial log-injection sanitizer, deterministic O(C+R) citation verifier, BigQuery & Cloud Workflows schemas, and 3 real-public-first industry packs (SecOps SIEM, Supply Chain O2C, Cloud SRE).",
+      "highlights": [
+        "15 curated multi-domain incident scenarios grounded in live MITRE ATT&CK STIX, CISA KEV, NOAA NWS Alerts, UN/LOCODE, Google Cloud Status, and OpenTelemetry conventions",
+        "Deterministic log prompt-injection quarantine and two-click lead approval state machine preventing autonomous production mutations",
+        "Atomic Cloud Workflows YAML sagas with automatic WMS compensation rollback on downstream carrier failure"
+      ]
+    }
+  ]
+}

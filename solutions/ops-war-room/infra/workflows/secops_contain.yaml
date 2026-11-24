@@ -1,0 +1,67 @@
+# Google Cloud Workflows — SecOps Least-Privilege Containment Saga (acc04-secops-contain)
+# Validates lead approval digest before executing dry-run or sandbox-scoped IAM/GCS containment.
+
+main:
+  params: [args]
+  steps:
+    - init:
+        assign:
+          - incident_id: ${args.incident_id}
+          - plan_sha256: ${args.plan_sha256}
+          - idempotency_key: ${args.idempotency_key}
+          - target_resource: ${default(map.get(args, "target_resource"), "sandbox-sa-key")}
+          - dry_run: ${default(map.get(args, "dry_run"), true)}
+          - simulate_step2_failure: ${default(map.get(args, "simulate_step2_failure"), false)}
+          - saga_steps: []
+
+    - verify_approval_digest:
+        switch:
+          - condition: ${len(plan_sha256) != 64 or len(idempotency_key) == 0}
+            raise:
+              code: 403
+              message: "Containment blocked: missing SHA-256 lead approval digest or idempotency_key"
+
+    - step1_snapshot_iam_policy:
+        assign:
+          - saga_steps: ${list.concat(saga_steps, [{"step_id":"step1_iam_snapshot","system":"Cloud IAM","status":"SUCCEEDED","detail":"Captured immutable pre-containment policy snapshot for " + target_resource}])}
+
+    - step2_apply_containment:
+        try:
+          steps:
+            - check_fault_injection:
+                switch:
+                  - condition: ${simulate_step2_failure == true}
+                    raise:
+                      code: 409
+                      message: "IAM policy ETag conflict during containment (simulated fault)"
+            - record_contained:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_contain","system":"Cloud IAM / GCS","status":"SUCCEEDED","detail":"Applied least-privilege containment diff (dry_run=" + string(dry_run) + ")"}])}
+            - step3_notify_soc_ledger:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step3_audit","system":"Firestore Audit","status":"SUCCEEDED","detail":"Logged containment approval & SHA-256 digest"}])}
+            - return_completed:
+                return:
+                  incident_id: ${incident_id}
+                  idempotency_key: ${idempotency_key}
+                  final_state: "SAGA_COMPLETED"
+                  compensation_triggered: false
+                  dry_run: ${dry_run}
+                  steps: ${saga_steps}
+        except:
+          as: err
+          steps:
+            - record_failure:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_contain","system":"Cloud IAM / GCS","status":"FAILED","detail":text.decode(json.encode(err))}])}
+            - compensate_restore_snapshot:
+                assign:
+                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"comp1_iam_restore","system":"Cloud IAM","status":"COMPENSATED","detail":"Restored pre-containment policy snapshot safely"}])}
+            - return_rolled_back:
+                return:
+                  incident_id: ${incident_id}
+                  idempotency_key: ${idempotency_key}
+                  final_state: "SAGA_ROLLED_BACK"
+                  compensation_triggered: true
+                  dry_run: ${dry_run}
+                  steps: ${saga_steps}

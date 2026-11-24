@@ -1,0 +1,31 @@
+pack_id: supply_chain_o2c_saga
+title: Supply Chain Order-to-Cash & Fulfillment War Room
+subtitle: Resolve port delays and stockouts across ERP, WMS, and carrier APIs using
+  NOAA NWS alerts, UN/LOCODE hubs, margin-floor checks, and atomic Cloud Workflows
+  sagas.
+industry: Supply Chain, Wholesale & CPG
+persona: VP Order Operations
+manual_baseline_cost_usd: 110.0
+manual_baseline_minutes: 75
+default_workflow_name: acc04-o2c-saga
+margin_floor_ratio: 0.65
+primary_sources:
+- UNECE UN/LOCODE Global Port & Logistics Locations — PDDL v1.0 Public Domain
+- NOAA National Weather Service Active Severe Alerts API — US Gov Public Domain
+- Order-to-Cash Margin-Floor & Saga Compensation SOPs
+specialists:
+- agent_id: telemetry_sql_agent
+  display_name: ERP & EDI Telemetry Agent
+  responsibility: Queries BigQuery ERP orders, EDI-214 carrier delays, and Proof-of-Delivery
+    records.
+  tool_source: BigQuery Order Telemetry
+- agent_id: intel_mcp_agent
+  display_name: WMS, Port & Weather MCP Agent
+  responsibility: Correlates UN/LOCODE port bottlenecks, NOAA NWS severe weather alerts,
+    and regional WMS stock.
+  tool_source: WMS & Weather MCP Registry
+- agent_id: blast_radius_agent
+  display_name: SLA Penalty & Margin-Floor Analyst
+  responsibility: Calculates net SLA savings, enforces the 65% margin floor, and triggers
+    VP escalation when breached.
+  tool_source: Commercial SLA & Margin Engine

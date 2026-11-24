@@ -1,0 +1,167 @@
+[
+  {
+    "event_id": "evt_o2c01_01",
+    "pack_id": "supply_chain_o2c_saga",
+    "incident_id": "o2c_inc01",
+    "timestamp_iso": "2026-11-24T05:10:00Z",
+    "source_table": "carrier_edi_214",
+    "actor": "pacific-container-line",
+    "resource": "PO-8841",
+    "action": "VESSEL_BERTH_DELAY",
+    "status": "DELAYED_72H",
+    "severity": "CRITICAL",
+    "raw_message": "Container MSKU-904112 delayed 72h at port LOCODE-USLAX due to severe weather corridor alert (NWS-E6F5CEFB85).",
+    "structured_fields": {
+      "order_id": "PO-8841",
+      "port_code": "USLAX",
+      "delay_hours": 72,
+      "sla_penalty_usd": 12000
+    },
+    "contains_prompt_injection": false,
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "event_id": "evt_o2c01_02",
+    "pack_id": "supply_chain_o2c_saga",
+    "incident_id": "o2c_inc01",
+    "timestamp_iso": "2026-11-24T05:11:15Z",
+    "source_table": "wms_inventory",
+    "actor": "wms-hub-dallas",
+    "resource": "SKU-IND-4402",
+    "action": "AVAILABLE_TO_PROMISE",
+    "status": "IN_STOCK",
+    "severity": "INFO",
+    "raw_message": "Regional hub LOCODE-USDFW holds 640 units of SKU-IND-4402 available for ground split-shipment ($1,850 freight, 18h transit).",
+    "structured_fields": {
+      "hub": "USDFW",
+      "available_qty": 640,
+      "required_qty": 500,
+      "split_ship_cost_usd": 1850,
+      "air_freight_cost_usd": 8900
+    },
+    "contains_prompt_injection": false,
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "event_id": "evt_o2c02_01",
+    "pack_id": "supply_chain_o2c_saga",
+    "incident_id": "o2c_inc02",
+    "timestamp_iso": "2026-11-24T07:30:00Z",
+    "source_table": "erp_orders",
+    "actor": "erp-order-router",
+    "resource": "PO-9104",
+    "action": "STOCKOUT_ALERT",
+    "status": "AT_RISK",
+    "severity": "CRITICAL",
+    "raw_message": "Primary Midwest warehouse LOCODE-USCHI stocked out on PO-9104 ($18,500 healthcare SLA); regional backup at LOCODE-USMEM available.",
+    "structured_fields": {
+      "order_id": "PO-9104",
+      "primary_hub": "USCHI",
+      "backup_hub": "USMEM",
+      "sla_penalty_usd": 18500
+    },
+    "contains_prompt_injection": false,
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "event_id": "evt_o2c02_02",
+    "pack_id": "supply_chain_o2c_saga",
+    "incident_id": "o2c_inc02",
+    "timestamp_iso": "2026-11-24T07:31:40Z",
+    "source_table": "carrier_edi_214",
+    "actor": "regional-freight-api",
+    "resource": "PO-9104",
+    "action": "API_DEGRADED_503",
+    "status": "INTERMITTENT_503",
+    "severity": "HIGH",
+    "raw_message": "Carrier dispatch endpoint reporting intermittent 503 timeouts — saga execution MUST run with automatic WMS rollback compensation.",
+    "structured_fields": {
+      "carrier_status": "DEGRADED",
+      "requires_saga_compensation": true
+    },
+    "contains_prompt_injection": false,
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "event_id": "evt_o2c03_01",
+    "pack_id": "supply_chain_o2c_saga",
+    "incident_id": "o2c_inc03",
+    "timestamp_iso": "2026-11-24T08:45:00Z",
+    "source_table": "wms_inventory",
+    "actor": "coldchain-iot-gateway",
+    "resource": "PO-9220",
+    "action": "REEFER_TEMP_EXCURSION",
+    "status": "SPOILAGE_RISK",
+    "severity": "HIGH",
+    "raw_message": "Reefer trailer excursion near LOCODE-USHOU compromises PO-9220 ($9,500 SLA); sole charter air-freight quote is $7,400 (77.9% of SLA).",
+    "structured_fields": {
+      "order_id": "PO-9220",
+      "sla_penalty_usd": 9500,
+      "expedite_cost_usd": 7400,
+      "cost_to_sla_ratio": 0.779
+    },
+    "contains_prompt_injection": false,
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "event_id": "evt_o2c04_01",
+    "pack_id": "supply_chain_o2c_saga",
+    "incident_id": "o2c_inc04",
+    "timestamp_iso": "2026-11-24T10:02:00Z",
+    "source_table": "carrier_edi_214",
+    "actor": "legacy-edi-bridge",
+    "resource": "PO-8702",
+    "action": "DELAY_NOTICE_DUPLICATE",
+    "status": "REPLAYED_WEBHOOK",
+    "severity": "MEDIUM",
+    "raw_message": "Delayed EDI-214 message arrived for PO-8702 citing LOCODE-USSEA congestion from 48h ago.",
+    "structured_fields": {
+      "order_id": "PO-8702",
+      "edi_seq": "DUP-4410"
+    },
+    "contains_prompt_injection": false,
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "event_id": "evt_o2c04_02",
+    "pack_id": "supply_chain_o2c_saga",
+    "incident_id": "o2c_inc04",
+    "timestamp_iso": "2026-11-24T06:00:12Z",
+    "source_table": "erp_orders",
+    "actor": "wms-pod-verifier",
+    "resource": "PO-8702",
+    "action": "PROOF_OF_DELIVERY_SIGNED",
+    "status": "DELIVERED",
+    "severity": "INFO",
+    "raw_message": "Customer receiving dock signed Proof-of-Delivery POD-8702-OK 4 hours prior; order closed in ERP.",
+    "structured_fields": {
+      "order_id": "PO-8702",
+      "pod_id": "POD-8702-OK",
+      "order_status": "DELIVERED"
+    },
+    "contains_prompt_injection": false,
+    "data_origin": "MODELED_BRIDGE"
+  },
+  {
+    "event_id": "evt_o2c05_01",
+    "pack_id": "supply_chain_o2c_saga",
+    "incident_id": "o2c_inc05",
+    "timestamp_iso": "2026-11-24T11:10:00Z",
+    "source_table": "carrier_edi_214",
+    "actor": "atlantic-drayage",
+    "resource": "PO-9315",
+    "action": "PORT_CONGESTION_HOLD",
+    "status": "DELAYED_48H",
+    "severity": "HIGH",
+    "raw_message": "Drayage bottleneck at port LOCODE-USSAV puts PO-9315 ($14,200 SLA penalty) 48h behind schedule; inland hub LOCODE-USATL has stock.",
+    "structured_fields": {
+      "order_id": "PO-9315",
+      "port_code": "USSAV",
+      "alt_hub": "USATL",
+      "sla_penalty_usd": 14200,
+      "reroute_cost_usd": 2100
+    },
+    "contains_prompt_injection": false,
+    "data_origin": "MODELED_BRIDGE"
+  }
+]

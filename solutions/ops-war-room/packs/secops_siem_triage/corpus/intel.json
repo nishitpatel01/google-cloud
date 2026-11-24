@@ -1,0 +1,553 @@
+[
+  {
+    "intel_id": "CVE-2026-132224",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-132224 — Optimizely Web Experimentation",
+    "summary": "Optimizely Web Experimentation contains an external control of critical state data vulnerability in its account signup flow that could allow an attacker to impersonate existing customer users and modify Project JavaScript. Successful exploitation can result in attacker-controlled JavaScript being distributed through Optimizely-hosted assets and executed in browsers visiting affected customer websites.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Optimizely",
+      "product": "Web Experimentation",
+      "date_added": "2026-11-24",
+      "due_date": "2026-11-27",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-131914",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-131914 — Idunno AntiCsrf",
+    "summary": "Idunno AntiCsrf contains a deserialization of untrusted data vulnerability that allows an unauthenticated remote attacker to execute arbitrary code via object injection. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Idunno",
+      "product": "AntiCsrf",
+      "date_added": "2026-11-24",
+      "due_date": "2026-11-27",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-132165",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-132165 — Drupal Core",
+    "summary": "Drupal Core contains a not failing securely vulnerability that could allow an unauthenticated attacker to take over an existing site or execute arbitrary code via the Drupal installer. Under specific conditions, the attacker can use install.php to attempt to reinstall Drupal on the site.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Drupal",
+      "product": "Core",
+      "date_added": "2026-11-24",
+      "due_date": "2026-11-27",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-133968",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-133968 — Project MONAI MONAI Label",
+    "summary": "Project MONAI MONAI Label contains a path traversal vulnerability that allows an unauthenticated remote attacker to write arbitrary files outside the intended datastore directory, potentially resulting in remote code execution.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Project MONAI",
+      "product": "MONAI Label",
+      "date_added": "2026-11-23",
+      "due_date": "2026-11-26",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-134624",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-134624 — N-able MailAssure",
+    "summary": "N-able MailAssure (SpamExperts) contains a server-side request forgery vulnerability in the LDAP synchronization connection check that allows an authenticated API user to connect to arbitrary internal hosts and ports, determine which are reachable, and send crafted data to internal services.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "N-able",
+      "product": "MailAssure",
+      "date_added": "2026-11-23",
+      "due_date": "2026-11-26",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-129448",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-129448 — Apache Roller",
+    "summary": "Apache Roller contains a deserialization of untrusted data vulnerability that allows an unauthenticated remote attacker to execute arbitrary code via the XML-RPC endpoint, which accepts and deserializes vendor extension types before authentication. This CVE covers the same underlying vulnerability as CVE-2026-82384 but applies to a broader range of affected versions.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Apache",
+      "product": "Roller",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-123890",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-123890 — Broadcom VMware vCenter",
+    "summary": "Broadcom VMware vCenter contains an authentication bypass using an alternate path or channel vulnerability in the VMware Directory Service that allows an unauthenticated attacker with network access to vCenter to bypass authentication and gain unauthorized access to the system.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Broadcom",
+      "product": "VMware vCenter",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines"
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2025-42884",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2025-42884 — SAP NetWeaver",
+    "summary": "SAP NetWeaver Enterprise Portal contains an improper neutralization of special elements in data query logic vulnerability that allows an unauthenticated attacker to disclose or modify server information via injected JNDI environment properties or a URL used during JNDI lookup operations.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "SAP",
+      "product": "NetWeaver",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-76466",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-76466 — Cisco Expressway Series",
+    "summary": "Cisco Expressway Series contains a use of hard-coded credentials vulnerability that allows an unauthenticated, remote attacker with persistent cookies and network access to execute commands as root on a clustered device via the database service.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Cisco",
+      "product": "Expressway Series",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2024-10441",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2024-10441 — Synology DiskStation Manager (DSM)",
+    "summary": "Synology DSM contains an improper encoding or escaping of output vulnerability in the system plugin daemon in Synology BeeStation OS (BSM) that could allow a remote attacker to execute arbitrary code via unspecified vectors.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Synology",
+      "product": "DiskStation Manager (DSM)",
+      "date_added": "2026-11-18",
+      "due_date": "2026-11-21",
+      "known_ransomware": "Known",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-40217",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-40217 — BerriAI LiteLLM",
+    "summary": "BerriAI LiteLLM contains an unprotected alternate channel vulnerability that could allow remote attackers to execute arbitrary code via bytecode rewriting at the /guardrails/test_custom_code URI.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "BerriAI",
+      "product": "LiteLLM",
+      "date_added": "2026-11-18",
+      "due_date": "2026-12-02",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-90817",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-90817 — Vanderbilt University Research Electronic Data Capture (REDCap)",
+    "summary": "Vanderbilt University Research Electronic Data Capture (REDCap) contains a code injection vulnerability which could allow an unauthenticated attacker to execute arbitrary code on the server. An attacker could exploit this via crafted HTTP requests that access an unintended controller route from a public survey context and supply a crafted file-path or stream parameter during data import processing. Exploitation requires knowledge of a valid public survey hash.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Vanderbilt University",
+      "product": "Research Electronic Data Capture (REDCap)",
+      "date_added": "2026-11-18",
+      "due_date": "2026-11-21",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-90436",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-90436 — Apache Axis",
+    "summary": "Apache Axis contains an unsafe reflection vulnerability that could allow an unauthenticated remote attacker to execute arbitrary code via a crafted SOAP fault message that causes Axis to load and instantiate an attacker-specified class when a suitable class is available on the application classpath. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontinue use and/or transition to a supported version.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Apache",
+      "product": "Axis",
+      "date_added": "2026-11-18",
+      "due_date": "2026-11-21",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-115731",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-115731 — Perforce Puppet Enterprise",
+    "summary": "Perforce Puppet Enterprise contains a deserialization of untrusted data vulnerability in Puppet’s report-processing code that allows a client with any CA-signed agent certificate to execute arbitrary code on the Puppet Server as the service user by submitting a report containing a crafted rich-data type through a PUT request. If the certificate authority automatically signs requests without strong verification, an unauthenticated network attacker can obtain a valid certificate and exploit the vu",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Perforce",
+      "product": "Puppet Enterprise",
+      "date_added": "2026-11-17",
+      "due_date": "2026-12-01",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-114713",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-114713 — UnrealIRCd UnrealIRCd",
+    "summary": "UnrealIRCd UnrealIRCd contains an improper neutralization of delimiters vulnerability that allows any user on a network with two or more linked servers to inject server-to-server commands that are executed with server authority.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "UnrealIRCd",
+      "product": "UnrealIRCd",
+      "date_added": "2026-11-13",
+      "due_date": "2026-11-16",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-123039",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-123039 — Check Point Multiple Products",
+    "summary": "Check Point Firewall, Multi-Domain Security Management Server, Scalable Platforms, Security Gateway, and Security Management Server contain an incorrect permissions assignment for critical resources vulnerability when the Gaia OS DynamicCLI daemon runs as root and listens on a world-writable local socket without authenticating connecting processes. An authenticated local user can send a command to the socket and have it executed as root.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Check Point",
+      "product": "Multiple Products",
+      "date_added": "2026-11-13",
+      "due_date": "2026-11-16",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-124194",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-124194 — Microsoft Office",
+    "summary": "Microsoft Office Outlook contains a missing user interaction for potentially unsafe action vulnerability that allows an unauthorized attacker to perform spoofing over a network.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Microsoft",
+      "product": "Office",
+      "date_added": "2026-11-10",
+      "due_date": "2026-11-24",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "CVE-2026-111793",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "cisa_kev",
+    "title": "CVE-2026-111793 — Openwave Messaging Limited Webtop Media Transcoder",
+    "summary": "Openwave Messaging Limited Webtop Media Transcoder contains an incorrect resource transfer between spheres vulnerability that may allow an authenticated user to process and convert unintended document types if bypassing the Webmail experience.",
+    "source_name": "CISA Known Exploited Vulnerabilities Catalog",
+    "source_url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+    "license_name": "US Gov Public Domain",
+    "metadata": {
+      "vendor": "Openwave Messaging Limited",
+      "product": "Webtop Media Transcoder",
+      "date_added": "2026-11-10",
+      "due_date": "2026-11-24",
+      "known_ransomware": "Unknown",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA’s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA’s “Forensics Triage Requirements” (see URL in Notes). Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines."
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "T1552.005",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "mitre_technique",
+    "title": "T1552.005: Cloud Instance Metadata API",
+    "summary": "Adversaries may attempt to access the Cloud Instance Metadata API to collect credentials and other sensitive data. Most cloud service providers support a Cloud Instance Metadata API which is a service provided to running virtual instances that allows applications to access information about the running virtual instance. Available information generally includes name, security group, and additional metadata including sensitive data such as credentials and UserData scripts that may contain additional secrets. The Inst",
+    "source_name": "MITRE ATT&CK Enterprise Matrix (STIX 2.1)",
+    "source_url": "https://attack.mitre.org/techniques/T1552/005",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "tactics": [
+        "credential-access"
+      ],
+      "platforms": [
+        "IaaS"
+      ]
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "T1530",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "mitre_technique",
+    "title": "T1530: Data from Cloud Storage",
+    "summary": "Adversaries may access data from cloud storage. Many IaaS providers offer solutions for online data object storage such as Amazon S3, Azure Storage, and Google Cloud Storage. Similarly, SaaS enterprise platforms such as Office 365 and Google Workspace provide cloud-based document storage to users through services such as OneDrive and Google Drive, while SaaS application providers such as Slack, Confluence, Salesforce, and Dropbox may provide cloud storage solutions as a peripheral or primary use case of their platf",
+    "source_name": "MITRE ATT&CK Enterprise Matrix (STIX 2.1)",
+    "source_url": "https://attack.mitre.org/techniques/T1530",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "tactics": [
+        "collection"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "SaaS"
+      ]
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "T1190",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "mitre_technique",
+    "title": "T1190: Exploit Public-Facing Application",
+    "summary": "Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration. Exploited applications are often websites/web servers, but can also include databases (like SQL), standard services (like SMB or SSH), network device administration and management protocols (like SNMP and Smart Install), and any other system with Internet-accessible open sockets.(Citation: NVD CVE-2016-6662)(Cit",
+    "source_name": "MITRE ATT&CK Enterprise Matrix (STIX 2.1)",
+    "source_url": "https://attack.mitre.org/techniques/T1190",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "tactics": [
+        "initial-access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Windows"
+      ]
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "T1098.001",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "mitre_technique",
+    "title": "T1098.001: Additional Cloud Credentials",
+    "summary": "Adversaries may add adversary-controlled credentials to a cloud account to maintain persistent access to victim accounts and instances within the environment. For example, adversaries may add credentials for Service Principals and Applications in addition to existing legitimate credentials in Azure / Entra ID.(Citation: Microsoft SolarWinds Customer Guidance)(Citation: Blue Cloud of Death)(Citation: Blue Cloud of Death Video) These credentials include both x509 keys and passwords.(Citation: Microsoft SolarWinds Cus",
+    "source_name": "MITRE ATT&CK Enterprise Matrix (STIX 2.1)",
+    "source_url": "https://attack.mitre.org/techniques/T1098/001",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "tactics": [
+        "persistence",
+        "privilege-escalation"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "SaaS"
+      ]
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "T1059.004",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "mitre_technique",
+    "title": "T1059.004: Unix Shell",
+    "summary": "Adversaries may abuse Unix shell commands and scripts for execution. Unix shells are the primary command prompt on Linux, macOS, and ESXi systems, though many variations of the Unix shell exist (e.g. sh, ash, bash, zsh, etc.) depending on the specific OS or distribution.(Citation: DieNet Bash)(Citation: Apple ZShell) Unix shells can control every aspect of a system, with certain commands requiring elevated privileges. Unix shells also support scripts that enable sequential execution of commands as well as other typ",
+    "source_name": "MITRE ATT&CK Enterprise Matrix (STIX 2.1)",
+    "source_url": "https://attack.mitre.org/techniques/T1059/004",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "tactics": [
+        "execution"
+      ],
+      "platforms": [
+        "ESXi",
+        "Linux",
+        "macOS",
+        "Network Devices"
+      ]
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "T1078",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "mitre_technique",
+    "title": "T1078: Valid Accounts",
+    "summary": "Adversaries may obtain and abuse credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Compromised credentials may be used to bypass access controls placed on various resources on systems within the network and may even be used for persistent access to remote systems and externally available services, such as VPNs, Outlook Web Access, network devices, and remote desktop.(Citation: volexity_0day_sophos_FW) Compromised credentials may also grant ",
+    "source_name": "MITRE ATT&CK Enterprise Matrix (STIX 2.1)",
+    "source_url": "https://attack.mitre.org/techniques/T1078",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "tactics": [
+        "stealth",
+        "persistence",
+        "privilege-escalation",
+        "initial-access"
+      ],
+      "platforms": [
+        "Containers",
+        "ESXi",
+        "IaaS",
+        "Identity Provider",
+        "Linux",
+        "macOS",
+        "Network Devices",
+        "Office Suite",
+        "SaaS",
+        "Windows"
+      ]
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "T1486",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "mitre_technique",
+    "title": "T1486: Data Encrypted for Impact",
+    "summary": "Adversaries may encrypt data on target systems or on large numbers of systems in a network to interrupt availability to system and network resources. They can attempt to render stored data inaccessible by encrypting files or data on local and remote drives and withholding access to a decryption key. This may be done in order to extract monetary compensation from a victim in exchange for decryption or a decryption key (ransomware) or to render data permanently inaccessible in cases where the key is not saved or tran",
+    "source_name": "MITRE ATT&CK Enterprise Matrix (STIX 2.1)",
+    "source_url": "https://attack.mitre.org/techniques/T1486",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "tactics": [
+        "impact"
+      ],
+      "platforms": [
+        "ESXi",
+        "IaaS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ]
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "T1537",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "mitre_technique",
+    "title": "T1537: Transfer Data to Cloud Account",
+    "summary": "Adversaries may exfiltrate data by transferring the data, including through sharing/syncing and creating backups of cloud environments, to another cloud account they control on the same service. A defender who is monitoring for large transfers to outside the cloud environment through normal file transfers or over command and control channels may not be watching for data transfers to another account within the same cloud provider. Such transfers may utilize existing cloud provider APIs and the internal address space",
+    "source_name": "MITRE ATT&CK Enterprise Matrix (STIX 2.1)",
+    "source_url": "https://attack.mitre.org/techniques/T1537",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "tactics": [
+        "exfiltration"
+      ],
+      "platforms": [
+        "IaaS",
+        "Office Suite",
+        "SaaS"
+      ]
+    },
+    "data_origin": "REAL_PUBLIC"
+  },
+  {
+    "intel_id": "T1078.004",
+    "pack_id": "secops_siem_triage",
+    "intel_type": "mitre_technique",
+    "title": "T1078.004: Cloud Accounts",
+    "summary": "Valid accounts in cloud environments may allow adversaries to perform actions to achieve Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Cloud accounts are those created and configured by an organization for use by users, remote support, services, or for administration of resources within a cloud service provider or SaaS application. Cloud Accounts can exist solely in the cloud; alternatively, they may be hybrid-joined between on-premises systems and the cloud through syncing or federation wi",
+    "source_name": "MITRE ATT&CK Enterprise Matrix (STIX 2.1)",
+    "source_url": "https://attack.mitre.org/techniques/T1078/004",
+    "license_name": "Apache 2.0",
+    "metadata": {
+      "tactics": [
+        "stealth",
+        "persistence",
+        "privilege-escalation",
+        "initial-access"
+      ],
+      "platforms": [
+        "IaaS",
+        "Identity Provider",
+        "Office Suite",
+        "SaaS"
+      ]
+    },
+    "data_origin": "REAL_PUBLIC"
+  }
+]

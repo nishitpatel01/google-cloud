@@ -1,0 +1,41 @@
+Operations & Incident War Room (solutions/ops-war-room)
+Third-Party Public Data Attributions & Licenses
+================================================
+
+This accelerator curates real, permissively licensed public datasets for operational
+intelligence, threat taxonomy, logistics geography, and cloud reliability benchmarks.
+Synthetic/modeled incident event streams linking public intelligence to fictional
+tenants or purchase orders are explicitly labeled `data_origin="MODELED_BRIDGE"`.
+
+1. CISA Known Exploited Vulnerabilities (KEV) Catalog
+   - Source: Cybersecurity and Infrastructure Security Agency (U.S. Department of Homeland Security)
+   - URL: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+   - License: U.S. Government Work — Public Domain (17 U.S.C. § 105)
+
+2. MITRE ATT&CK® Enterprise Matrix (STIX 2.1 Data)
+   - Source: The MITRE Corporation (mitre-attack/attack-stix-data)
+   - URL: https://github.com/mitre-attack/attack-stix-data
+   - License: Apache License 2.0 (© The MITRE Corporation)
+
+3. NOAA National Weather Service (NWS) Active Alerts API
+   - Source: National Oceanic and Atmospheric Administration (U.S. Department of Commerce)
+   - URL: https://api.weather.gov/alerts/active
+   - License: U.S. Government Work — Public Domain (17 U.S.C. § 105)
+
+4. UN/LOCODE Code List (Global Port & Trade Locations)
+   - Source: United Nations Economic Commission for Europe (UNECE), packaged via datasets/un-locode
+   - URL: https://github.com/datasets/un-locode
+   - License: Open Data Commons Public Domain Dedication and License (PDDL v1.0)
+
+5. Google Cloud Service Health Public Incidents Feed
+   - Source: Google Cloud Service Health
+   - URL: https://status.cloud.google.com/incidents.json
+   - Usage: Public operational outage taxonomy & postmortem reference metadata
+
+6. OpenTelemetry Semantic Conventions
+   - Source: Cloud Native Computing Foundation (CNCF) — open-telemetry/semantic-conventions
+   - URL: https://github.com/open-telemetry/semantic-conventions
+   - License: Apache License 2.0
+
+7. NIST SP 800-61 Rev. 3 Incident Response Guidance & Google SRE Multi-Window Burn-Rate Formulas
+   - Source: National Institute of Standards and Technology (US Gov Public Domain) & Google SRE Workbook

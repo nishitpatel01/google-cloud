@@ -1,0 +1,31 @@
+pack_id: sre_outage_commander
+title: Cloud SRE & Production Outage Commander
+subtitle: Correlate Cloud Logging errors, recent deployments, and multi-window SLO
+  burn rates in parallel — producing verified rollback diffs while filtering benign
+  load tests.
+industry: SaaS & Cloud Platform Engineering
+persona: Head of SRE
+manual_baseline_cost_usd: 85.0
+manual_baseline_minutes: 50
+default_workflow_name: acc04-sre-rollback
+margin_floor_ratio: 0.65
+primary_sources:
+- Google Cloud Service Health Public Incidents Feed
+- OpenTelemetry Semantic Conventions — Apache 2.0
+- Google SRE Workbook Multi-Window Burn-Rate Alerting Standard
+specialists:
+- agent_id: telemetry_sql_agent
+  display_name: Cloud Logging & Deploy SQL Agent
+  responsibility: Correlates 5xx/p99 spikes against recent Cloud Run/GKE revisions
+    and Cloud SQL pool metrics.
+  tool_source: BigQuery Observability Logs
+- agent_id: intel_mcp_agent
+  display_name: Cloud Status & OTel Runbook Agent
+  responsibility: Cross-checks Google Cloud Service Health, OpenTelemetry metrics,
+    and SRE burn-rate playbooks.
+  tool_source: Status & Runbook MCP Registry
+- agent_id: blast_radius_agent
+  display_name: SLO Burn & Revenue Impact Analyst
+  responsibility: Quantifies error-budget burn rate, filters shadow load tests, and
+    validates rollback targets.
+  tool_source: SLO & Traffic Governance Engine

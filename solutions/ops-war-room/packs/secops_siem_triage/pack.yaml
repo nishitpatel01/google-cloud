@@ -1,0 +1,31 @@
+pack_id: secops_siem_triage
+title: Cybersecurity SOC & Cloud SIEM Triage
+subtitle: Correlate Cloud Audit, VPC Flow, and IAM alerts in parallel against live
+  MITRE ATT&CK and CISA KEV intelligence — with prompt-injection defense and two-click
+  containment.
+industry: Cybersecurity & Enterprise IT
+persona: SOC Lead / CISO
+manual_baseline_cost_usd: 55.0
+manual_baseline_minutes: 45
+default_workflow_name: acc04-secops-contain
+margin_floor_ratio: 0.65
+primary_sources:
+- MITRE ATT&CK Enterprise STIX 2.1 Matrix — Apache 2.0
+- CISA Known Exploited Vulnerabilities (KEV) Catalog — US Gov Public Domain
+- NIST SP 800-61 Rev. 3 Incident Response Playbooks — US Gov Public Domain
+specialists:
+- agent_id: telemetry_sql_agent
+  display_name: Telemetry SQL Investigator
+  responsibility: Queries read-only Cloud Audit, VPC Flow, and WAF logs in BigQuery
+    and quarantines untrusted strings.
+  tool_source: BigQuery Parameterized Telemetry
+- agent_id: intel_mcp_agent
+  display_name: Threat Intel & MITRE MCP Agent
+  responsibility: Correlates observed actions against live MITRE ATT&CK techniques,
+    CISA KEV CVEs, and NIST runbooks.
+  tool_source: Threat Intel MCP Registry
+- agent_id: blast_radius_agent
+  display_name: IAM Blast-Radius & Change Verifier
+  responsibility: Quantifies data/IAM exposure, verifies approved change tickets,
+    and flags benign red-team drills.
+  tool_source: IAM Asset & Change Ledger
