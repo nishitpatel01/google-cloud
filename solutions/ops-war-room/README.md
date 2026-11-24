@@ -2,7 +2,7 @@
 
 **Compress 45–75 minute swivel-chair incident triage into parallel multi-agent investigations with adversarial log-injection defense, deterministic citation verification, mandatory two-click lead approval, and atomic Cloud Workflows sagas.**
 
-![Status: Engines Verified](https://img.shields.io/badge/status-Engines%20Verified%20(v0.2.0)-34A853.svg) ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-ADK%202.15%20%C2%B7%20BigQuery%20%C2%B7%20Cloud%20Workflows%20%C2%B7%20Firestore%20%C2%B7%20Model%20Armor%20%C2%B7%20Cloud%20Run-4285F4.svg) ![Tier-1 Idle](https://img.shields.io/badge/tier--1%20idle-%240--%243%2Fmo-34A853.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status: API & Eval Verified](https://img.shields.io/badge/status-API%20%26%20Eval%20Verified%20(v0.3.0)-34A853.svg) ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-ADK%202.15%20%C2%B7%20BigQuery%20%C2%B7%20Cloud%20Workflows%20%C2%B7%20Firestore%20%C2%B7%20Model%20Armor%20%C2%B7%20Cloud%20Run-4285F4.svg) ![Tier-1 Idle](https://img.shields.io/badge/tier--1%20idle-%240--%243%2Fmo-34A853.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ---
 
@@ -90,6 +90,8 @@ flowchart TB
 | **Multi-Agent Engines** | `backend/app/engines/{adk_war_room,serial_baseline}.py` | Google ADK `2.15` (`ParallelAgent` + `SequentialAgent`), Vertex AI Gemini | Fans out 3 specialist `LlmAgent`s concurrently into `ReviewAndCritiqueAgent` with self-verifying citations (paired against a single-agent serial baseline). |
 | **Telemetry & MCP Tools** | `backend/app/engines/{safe_bq_runner,mcp_registry}.py` | BigQuery (Parameterized Read-Only SQL), Declarative `mcp_registry.yaml` | Enforces `SELECT`-only parameterized queries (`100 MiB` byte cap) and SSRF-validated Tier-1/Tier-2 MCP tool adapters. |
 | **Atomic Sagas & Ledger** | `backend/app/engines/workflows_executor.py`, `infra/workflows/*.yaml` | Google Cloud Workflows + Dedicated Firestore Native DB | Enforces two-click SHA-256 approval digests, idempotency keys, and `try/except` automatic compensation rollback (`SAGA_COMPLETED` / `SAGA_ROLLED_BACK`). |
+| **API & Guardrails** | `backend/app/main.py`, `api/routes.py`, `core/security.py` | FastAPI SSE, Model Armor, Cloud DLP, Cloud IAP | Streams live investigation/comparison events, enforces strict `style-src 'self'` CSP, rate limiting, `ES256` IAP JWT, Model Armor screening, and DLP PII scrubbing on `/ingest/upload`. |
+| **Independent Evaluation** | `backend/app/evaluation/{judge,leaderboard}.py` | Vertex AI GenAI Eval (`:evaluateInstances`), Claude Opus 5.5, Gemini 2.5 Pro | Scores Groundedness, Root-Cause Precision, and Remediation Safety with `judge != synthesis` enforced and split `Engine $` vs. `Judge $` accounting. |
 | **Data & TCO** | `infra/sql/bigquery_schema.sql` + `core/pricing.py` | BigQuery (Partitioned/Clustered) | Stores telemetry, public intel, runbooks, and immutable remediation audit trails alongside Tier-1 vs. Tier-2 Monthly TCO modeling. |
 
 ---
@@ -115,10 +117,13 @@ solutions/ops-war-room/
 ├── backend/
 │   ├── requirements.txt              # Python dependencies (FastAPI, ADK 2.15, BigQuery, Firestore, Workflows)
 │   ├── app/
+│   │   ├── main.py                   # FastAPI entrypoint, security middleware & safe SPA static mounting
+│   │   ├── api/routes.py             # 14 HTTP & SSE endpoints (/investigate, /compare, /remediate, /ingest)
 │   │   ├── core/
 │   │   │   ├── models.py             # Domain contracts & Remediation/Saga FSM
 │   │   │   ├── log_sanitizer.py      # Adversarial log prompt-injection detector & quarantine
 │   │   │   ├── evidence_verifier.py  # O(C+R) citation verifier & deterministic policy gates
+│   │   │   ├── security.py           # Strict CSP, rate limiter, ES256 Cloud IAP JWT & Model Armor REST
 │   │   │   ├── gcp_clients.py        # Lazy thread-safe BigQuery, Vertex AI, Firestore & Workflows pool
 │   │   │   ├── stage_emitter.py      # Async SSE telemetry emitter for parallel DAG visualization
 │   │   │   ├── config.py             # Runtime settings, model catalog & judge != synthesis guard
@@ -131,8 +136,15 @@ solutions/ops-war-room/
 │   │   │   ├── mcp_registry.py       # SSRF-hardened MCP tool registry & Tier-1 sandbox adapters
 │   │   │   ├── workflows_executor.py # Two-click approval ledger & live Cloud Workflows saga executor
 │   │   │   └── replay.py             # Zero-credential Replay recorder, scrubber & SSE fixture player
+│   │   ├── evaluation/
+│   │   │   ├── judge.py              # Vertex AI GenAI Eval (:evaluateInstances), Claude Opus 5.5 & Gemini judges
+│   │   │   └── leaderboard.py        # Deterministic recording aggregator (zero hardcoded benchmarks)
+│   │   ├── ingestion/
+│   │   │   ├── upload_validator.py   # Strict extension, size, traversal & binary log validator
+│   │   │   ├── dlp_guard.py          # Cloud DLP PII redaction + offline deterministic preview
+│   │   │   └── log_ingestor.py       # JSONL/CSV/log parser, prompt-injection scan & labeled BQ load
 │   │   └── packs/loader.py           # Declarative pack.yaml loader with SHA-256 MANIFEST check
-│   └── tests/                        # 29 offline tests (FSM, sanitizer, ADK, MCP SSRF, Workflows, Replay)
+│   └── tests/                        # 39 offline tests (FSM, sanitizer, ADK, MCP SSRF, API, DLP, Eval, Replay)
 ├── packs/
 │   ├── mcp_registry.yaml             # Declarative Tier-1 sandbox & Tier-2 external MCP contracts
 │   ├── secops_siem_triage/           # pack.yaml + corpus/{incidents,telemetry,intel,runbooks,MANIFEST}.json
@@ -145,8 +157,29 @@ solutions/ops-war-room/
 │   └── workflows/                    # Atomic Cloud Workflows YAML sagas (O2C, SecOps, SRE)
 └── scripts/
     ├── fetch_public_datasets.py      # Reproducible live public dataset curator
-    └── seed_data.py                  # Idempotent BigQuery dataset/table seeder
+    ├── seed_data.py                  # Idempotent BigQuery dataset/table seeder
+    └── provision_model_armor.py      # Dedicated $0/mo Model Armor guardrail provisioner
 ```
+
+---
+
+## API Reference
+
+| Method & Path | Purpose |
+| :--- | :--- |
+| `GET /health` | Container liveness, active mode (`replay` / `live`), and pack readiness. |
+| `GET /api/v1/meta` | Returns available engines, synthesis/judge catalog, and guardrail status. |
+| `GET /api/v1/packs` | Lists all 3 industry packs, specialists, manual baselines, and `15` scenarios. |
+| `GET /api/v1/packs/{pack_id}/incidents/{incident_id}` | Returns full incident telemetry, correlated public intel, runbooks, and remediation diffs. |
+| `GET /api/v1/mcp/registry` & `POST /api/v1/mcp/validate-url` | Inspects Tier-1/Tier-2 MCP contracts and tests external HTTPS URLs against SSRF guardrails. |
+| `POST /api/v1/investigate/stream` | Streams SSE stages, live Parallel Agent DAG nodes, verified brief, citations, and optional independent judge scores. |
+| `POST /api/v1/compare/stream` | Runs **Single-Agent Serial** vs. **ADK Parallel Multi-Agent War Room** side by side over SSE. |
+| `POST /api/v1/remediate/preview` | Step 1: Returns dry-run diff, SHA-256 `plan_sha256`, and deterministic benign/margin-floor audit. |
+| `POST /api/v1/remediate/approve` | Step 2a: Records mandatory two-click lead approval and returns an immutable `approval_token`. |
+| `POST /api/v1/remediate/execute` | Step 2b: Fail-closed Cloud Workflows atomic saga execution (supports `dry_run` & simulated Step-2 auto-rollback). |
+| `POST /api/v1/ingest/upload` | Validates uploaded JSONL/CSV/log files, runs Cloud DLP PII redaction & prompt-injection detection, and optionally loads into BigQuery. |
+| `GET /api/v1/benchmarks/summary` & `POST /api/v1/tco/estimate` | Aggregates recorded evaluation benchmarks and models Tier-1 vs. Tier-2 Monthly GCP TCO & ROI. |
+| `GET /api/v1/releases` | Returns structured release notes for the in-app Releases tab. |
 
 ---
 
