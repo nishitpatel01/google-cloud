@@ -1,0 +1,51 @@
+# Declarative MCP Tool Registry for ACC-04 Operations & Incident War Room
+# Tier 1 uses local deterministic sandbox adapters; Tier 2 points at customer Apigee /
+# Application Integration / Google SecOps (Chronicle) HTTPS endpoints validated against SSRF rules.
+
+allowed_external_domains:
+  - "chronicle.googleapis.com"
+  - "integrations.googleapis.com"
+  - "apigee.googleapis.com"
+  - "status.cloud.google.com"
+  - "api.weather.gov"
+
+adapters:
+  - adapter_id: threat_intel_mcp
+    pack_id: secops_siem_triage
+    display_name: "Threat Intel & MITRE/KEV MCP"
+    mode: tier1_sandbox
+    read_only: true
+    description: "Matches observed actions and CVEs against curated MITRE ATT&CK STIX & CISA KEV records."
+    tier2_endpoint_template: "https://chronicle.googleapis.com/v1alpha/projects/{project_id}/locations/us/instances/{instance_id}"
+
+  - adapter_id: change_calendar_mcp
+    pack_id: secops_siem_triage
+    display_name: "IAM Blast-Radius & Change Calendar MCP"
+    mode: tier1_sandbox
+    read_only: true
+    description: "Checks approved change tickets (e.g. authorized red-team windows) and calculates IAM blast radius."
+    tier2_endpoint_template: "https://integrations.googleapis.com/v1/projects/{project_id}/locations/us-central1/integrations/servicenow-chg"
+
+  - adapter_id: wms_inventory_mcp
+    pack_id: supply_chain_o2c_saga
+    display_name: "WMS Inventory & UN/LOCODE Port MCP"
+    mode: tier1_sandbox
+    read_only: true
+    description: "Queries alternate warehouse stock levels, UN/LOCODE hubs, and NOAA NWS severe weather alerts."
+    tier2_endpoint_template: "https://integrations.googleapis.com/v1/projects/{project_id}/locations/us-central1/integrations/sap-wms"
+
+  - adapter_id: carrier_sla_mcp
+    pack_id: supply_chain_o2c_saga
+    display_name: "Carrier Freight & Margin-Floor MCP"
+    mode: tier1_sandbox
+    read_only: true
+    description: "Compares ground split-shipment vs. air-freight quotes against deterministic 65% SLA margin floors."
+    tier2_endpoint_template: "https://apigee.googleapis.com/v1/organizations/{org}/apis/carrier-rates"
+
+  - adapter_id: slo_status_mcp
+    pack_id: sre_outage_commander
+    display_name: "Cloud Status, OTel & SLO Burn-Rate MCP"
+    mode: tier1_sandbox
+    read_only: true
+    description: "Evaluates Google Cloud Service Health status, OpenTelemetry HTTP/DB metrics, and 14.4x/6x burn rates."
+    tier2_endpoint_template: "https://status.cloud.google.com/incidents.json"

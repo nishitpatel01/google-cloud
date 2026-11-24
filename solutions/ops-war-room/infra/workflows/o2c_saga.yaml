@@ -26,7 +26,12 @@ main:
         assign:
           - wms_reserved: true
           - reservation_id: ${"WMS-RES-" + order_id}
-          - saga_steps: ${list.concat(saga_steps, [{"step_id":"step1_wms","system":"WMS","status":"SUCCEEDED","detail":"Reserved alternate warehouse stock " + reservation_id}])}
+          - step1_rec:
+              step_id: "step1_wms"
+              system: "WMS"
+              status: "SUCCEEDED"
+              detail: ${"Reserved alternate warehouse stock " + reservation_id}
+          - saga_steps: ${list.concat(saga_steps, step1_rec)}
 
     - step2_book_carrier_and_update_erp:
         try:
@@ -39,10 +44,20 @@ main:
                       message: "Carrier API timeout during expedite booking (simulated fault)"
             - record_carrier_booked:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_carrier","system":"Carrier API","status":"SUCCEEDED","detail":"Booked expedited reroute for " + order_id}])}
+                  - step2_rec:
+                      step_id: "step2_carrier"
+                      system: "Carrier API"
+                      status: "SUCCEEDED"
+                      detail: ${"Booked expedited reroute for " + order_id}
+                  - saga_steps: ${list.concat(saga_steps, step2_rec)}
             - step3_update_erp_order:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step3_erp","system":"ERP","status":"SUCCEEDED","detail":"Committed split-shipment allocation for " + order_id}])}
+                  - step3_rec:
+                      step_id: "step3_erp"
+                      system: "ERP"
+                      status: "SUCCEEDED"
+                      detail: ${"Committed split-shipment allocation for " + order_id}
+                  - saga_steps: ${list.concat(saga_steps, step3_rec)}
             - return_completed:
                 return:
                   incident_id: ${incident_id}
@@ -56,13 +71,23 @@ main:
           steps:
             - record_carrier_failure:
                 assign:
-                  - saga_steps: ${list.concat(saga_steps, [{"step_id":"step2_carrier","system":"Carrier API","status":"FAILED","detail":text.decode(json.encode(err))}])}
+                  - fail_rec:
+                      step_id: "step2_carrier"
+                      system: "Carrier API"
+                      status: "FAILED"
+                      detail: ${json.encode_to_string(err)}
+                  - saga_steps: ${list.concat(saga_steps, fail_rec)}
             - compensate_release_wms_reservation:
                 switch:
                   - condition: ${wms_reserved == true}
                     assign:
                       - wms_reserved: false
-                      - saga_steps: ${list.concat(saga_steps, [{"step_id":"comp1_wms_release","system":"WMS","status":"COMPENSATED","detail":"Automatically released reservation " + reservation_id + " (zero orphaned stock)"}])}
+                      - comp_rec:
+                          step_id: "comp1_wms_release"
+                          system: "WMS"
+                          status: "COMPENSATED"
+                          detail: ${"Automatically released reservation " + reservation_id + " (zero orphaned stock)"}
+                      - saga_steps: ${list.concat(saga_steps, comp_rec)}
             - return_rolled_back:
                 return:
                   incident_id: ${incident_id}

@@ -104,7 +104,7 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    app_version: str = "0.1.0"
+    app_version: str = "0.2.0"
     demo_mode: Literal["replay", "live"] = "replay"
     gcp_project_id: str = ""
     gcp_region: str = "us-central1"
